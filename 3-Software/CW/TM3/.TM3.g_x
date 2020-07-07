@@ -1,0 +1,39 @@
+<CodeGenerationInfo>
+  <ToolchainSettings>
+    <option>
+      <name>PE_G_4PEx_ToolChain_Compiler_SearchUserPaths</name>
+      <values lines_count="2">
+        <Line>"${ProjDirPath}/Sources"</Line>
+        <Line>"${ProjDirPath}/Generated_Code"</Line>
+      </values>
+    </option>
+  </ToolchainSettings>
+  <GeneratedFilesList>
+    <GeneratedByPE>
+      <File Name="Documentation/TM3_Settings.xml" FileDate="2020-06-10, 20:09:06" FileAge="1591812546025" FileType="3072" />
+      <File Name="Sources/Events.h" FileDate="2020-06-10, 20:09:05" FileAge="1591812545945" FileType="131328" />
+      <File Name="Documentation/TM3_SIGNALS.txt" FileDate="2020-06-10, 20:19:12" FileAge="1591813152872" FileType="3072" />
+      <File Name="Sources/main.c" FileDate="2020-06-10, 20:09:05" FileAge="1591812545896" FileType="128" />
+      <File Name="Generated_Code/ClockPin1.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152843" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/DataPin1.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152847" FileType="45637" CompNumb="8" />
+      <File Name="Sources/Events.c" FileDate="2020-06-10, 20:09:05" FileAge="1591812545950" FileType="131328" />
+      <File Name="Documentation/TM3.txt" FileDate="2020-06-10, 20:09:06" FileAge="1591812546042" FileType="3072" />
+      <File Name="Generated_Code/IO_Map.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152816" FileType="45637" />
+      <File Name="Generated_Code/ClockPin1.c" FileDate="2020-06-10, 20:19:12" FileAge="1591813152841" FileType="45637" CompNumb="9" />
+      <File Name="Generated_Code/DataPin1.c" FileDate="2020-06-10, 20:19:12" FileAge="1591813152845" FileType="45637" CompNumb="8" />
+      <File Name="Generated_Code/IO_Map.c" FileDate="2020-06-10, 20:19:12" FileAge="1591813152810" FileType="45637" />
+      <File Name="Generated_Code/EI2C1.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152838" FileType="45637" CompNumb="7" />
+      <File Name="Generated_Code/Vectors.c" FileDate="2020-06-10, 20:19:12" FileAge="1591813152787" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/PE_Const.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152819" FileType="45637" />
+      <File Name="Generated_Code/CI2C1.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152859" FileType="45637" CompNumb="6" />
+      <File Name="Generated_Code/Cpu.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152804" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/EI2C1.c" FileDate="2020-06-10, 20:19:12" FileAge="1591813152833" FileType="45637" CompNumb="7" />
+      <File Name="Generated_Code/PE_Error.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152821" FileType="45637" />
+      <File Name="Generated_Code/Cpu.c" FileDate="2020-06-10, 20:19:12" FileAge="1591813152798" FileType="45637" CompNumb="2" />
+      <File Name="Generated_Code/CI2C1.c" FileDate="2020-06-10, 20:19:12" FileAge="1591813152853" FileType="45637" CompNumb="6" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2020-06-10, 20:19:12" FileAge="1591813152827" FileType="45637" />
+      <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2020-06-10, 20:01:40" FileAge="1591812100175" FileType="8" CompNumb="2" />
+    </GeneratedByPE>
+  </GeneratedFilesList>
+  <CodeGenReference>3</CodeGenReference>
+</CodeGenerationInfo>

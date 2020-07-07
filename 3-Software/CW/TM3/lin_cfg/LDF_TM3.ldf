@@ -1,0 +1,225 @@
+/****************************************************************************/
+/*                                                                          */
+/* Description: LIN Description file created using Vector's LIN File Editor */
+/* Created:     xx.xx.xxxx                                                  */
+/* Author:                                                                  */
+/* Version:     0.1                                                         */
+/* Project:                                                                 */
+/*                                                                          */
+/****************************************************************************/
+
+// Global Definitions
+LIN_description_file;
+LIN_protocol_version = "2.1";
+LIN_language_version = "2.1";
+LIN_speed = 19.2 kbps; // baudrate (1.0-20.0) 
+// End of Global Definitions
+
+Nodes // Nodes Definition
+{
+  Master:
+    TM3Ecu,  	// master node name
+    5 ms, 		// time base (real)
+    0.5 ms;    	// jitter (real)
+      
+  Slaves:
+    TM3Sensor; 	// slave node names
+
+} // End of Nodes Definition
+
+Signals // Signals Definition
+{
+  // Scalar Signal
+  	           			// signal name 
+  	          			// signal size in bits (1-16)
+  	             		// init raw value (integer)  
+  	     	    			// publisher node name
+  							// list of subscribing node names
+  // End of Scalar Signal
+
+  // Byte Array Signal
+   Humidity:         // signal name
+     16,             // signal size in bits (8-64)
+     {0x0, 0x0},     // init raw value (integer) for each byte  
+     TM3Sensor,      // publisher node name
+     TM3Ecu; 			// list of subscribing node names
+  LuminosityA:     
+    16,            
+    {0x0, 0x0},    
+    TM3Sensor,     
+    TM3Ecu; 		
+  LuminosityB:     
+    16,            
+    {0x0, 0x0},    
+    TM3Sensor,     
+    TM3Ecu; 		
+  // End of Byte Array Signal
+
+} // End of Signals Definition
+
+Diagnostic_signals // Diagnostic Signals Definition (optional)
+{
+  // MasterReq Reserved Signals 
+  MasterReqB0: 8, 0; // signal name: signal size, signal offset;
+  MasterReqB1: 8, 0;
+  MasterReqB2: 8, 0;
+  MasterReqB3: 8, 0;
+  MasterReqB4: 8, 0;
+  MasterReqB5: 8, 0;
+  MasterReqB6: 8, 0;
+  MasterReqB7: 8, 0;
+        // End of MasterReq Reserved Signals
+
+  // SlaveResp Reserved Signals
+  SlaveRespB0: 8, 0; // signal name: signal size, signal offset;
+  SlaveRespB1: 8, 0;
+  SlaveRespB2: 8, 0;
+  SlaveRespB3: 8, 0;
+  SlaveRespB4: 8, 0;
+  SlaveRespB5: 8, 0;
+  SlaveRespB6: 8, 0;
+  SlaveRespB7: 8, 0; 
+  // End of SlaveResp Reserved Signals
+
+} // End of Diagnostic Signals Definition
+
+Frames // Unconditional Frames Definition
+{
+  <frame_name>:     // frame name
+    <frame_id>,   // frame id (0-59 or 62)
+    <node_name>,  // publisher node
+    <frame_size> // frame size in bytes (1-8)
+    {
+      // list of signals carried by this frame
+      <signal_name>, <signal_offset>; // signal name with LSB offset in bits
+    }
+    
+} // End of Unconditional Frames Definition
+
+Sporadic_frames // Sporadic Frames Definition (optional)
+{
+  // Sporadic Frame
+  <sporadic_frame_name>:            // sporadic frame name
+    <frame_name1>, <frame_name2>; // list of associated frame names
+  // End of Sporadic Frame
+
+} // End of Sporadic Frames Definition
+
+Event_triggered_frames // Event Triggered Frames Definition (optional)
+{
+  // Event Triggered Frame
+  <et_frame_name>:                  // event triggered frame name
+    <schedule_table_name>,        // name of schedule table to resolve collisions
+    <et_frame_id>,                // event triggered frame id (0-59) 
+    <frame_name1>, <frame_name2>; // list of associated frame names
+  // End of Event Triggered Frame
+
+} // End of Event Triggered Frames Definition
+
+Diagnostic_frames // Diagnostic Frame Definition (optional)
+{
+  MasterReq: 60 // reserved frame name and frame identifier
+  {
+    MasterReqB0, 0; // diagnostic signal name, signal offset
+    MasterReqB1, 8;
+    MasterReqB2, 16;
+    MasterReqB3, 24;
+    MasterReqB4, 32;
+    MasterReqB5, 40;
+    MasterReqB6, 48;
+    MasterReqB7, 56;
+  }
+
+  SlaveResp: 61 // reserved frame name and frame identifier
+  {
+    SlaveRespB0, 0; // diagnostic signal name, signal offset
+    SlaveRespB1, 8;
+    SlaveRespB2, 16;
+    SlaveRespB3, 24;
+    SlaveRespB4, 32;
+    SlaveRespB5, 40;
+    SlaveRespB6, 48;
+    SlaveRespB7, 56;
+  }
+} // End of Diagnostic Frame Definition
+
+Node_attributes // Node Attributes Definition
+{
+  // Node Attributes
+  <node_name> // node name
+  {
+    LIN_protocol = "2.1";
+    configured_NAD = <configured_NAD>;  // configured NAD of node (1-125)
+    initial_NAD = <initial_NAD>;        // initial NAD of node (1-125)
+    product_id = 
+      <supplier_id>,               // supplier_id (0-0x7FFE)
+      <function_id>,               // function_id (0-0xFFFE)
+      <variant>;                   // variant (0-0xFF)
+    response_error = <signal_name>;  // name of 1 bit error signal
+    fault_state_signals =            // diagnostic class I and II only 
+      <signal_name1>, <signal_name2> // list of signal names
+    P2_min = <p2_min_time> ms;       // min. time (real) between MasterReq and SlaveResp  (50-500)
+    ST_min = <st_min_time> ms;       // min. time (real) between consecutive SlaveResps 
+    N_As_timeout = <N_As_time> ms;   // time for transmission of MasterReq or SlaveResp
+    N_Cr_timeout = <N_Cr_time> ms;   // time until reception of the next consequtive SlaveResp
+    configurable_frames 
+    {
+      // list of configurable frames
+      <frame_name>; // frame name
+    }
+  } // End of Node Attributes
+
+} // End of Node Attributes Definition
+
+Schedule_tables // Schedule Table Definition
+{
+  // Hint: Use the LIN Schedule Designer from Vector to create/edit this section
+
+  // Schedule Table
+  <schedule_table_name> // schedule table name
+  {
+    // list of slots
+    <frame_name> delay <slot_time> ms; // frame name with slot time (real)
+  } // End of Schedule Table
+
+} // End of Schedule Table Definition
+
+Signal_encoding_types // Signal Encoding Type Definition (optional)
+{
+  // Logical Encoding Type
+  <encoding_type_name> // signal encoding type name
+  {
+    // List of Logical Values
+    logical_value, <sig_value>, "text_info"; // signal value (integer) with text info (char string)
+  } // End of Logical Encoding Type
+
+  // Physical Encoding Type
+  <encoding_type_name>
+  {
+    physical_value, // physical_value = scale * raw_value + offset
+    <min_value>,    // min value (0-65535)
+    <max_value>,    // max value (0-65535)
+    <scale>,        // scale (real)
+    <offset>,       // offset (real)
+    "text_info";    // text info (char string)
+  } // End of Physical Encoding Type
+
+  // BCD Encoding Type
+  <encoding_type_name>
+  {
+    bcd_value;
+  } // End of BCD Encoding Type
+
+  // Ascii Encoding Type
+  <encoding_type_name>
+  {
+    ascii_value;
+  } // End of Ascii Encoding Type
+
+} // End of Signal Encoding Type Definition
+
+Signal_representation // Signal Representation Definition (optional)
+{
+  <signal_encoding_type_name>:      // signal encoding type name
+    <signal_name>, <signal_name>; // list of signal names
+} // End of Signal Representation Definition

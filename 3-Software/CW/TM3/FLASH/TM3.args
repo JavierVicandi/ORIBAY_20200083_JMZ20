@@ -1,0 +1,17 @@
+-M
+"$(ProjDirPath)/Project_Settings/Linker_Files/ProcessorExpert.prm"
+-ViewHidden
+-WmsgFob"%f%e:%l:%k:%d:%m\n"
+-WmsgSd1100
+-WmsgSd1912 
+-Add("$(ProjDirPath)/FLASH/Sources/Events_c.obj"
+"$(ProjDirPath)/FLASH/Sources/main_c.obj"
+"$(ProjDirPath)/FLASH/Project_Settings/Startup_Code/starts12z_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/CI2C1_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/ClockPin1_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/Cpu_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/DataPin1_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/EI2C1_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/IO_Map_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/Vectors_c.obj"
+"$(MCUToolsBaseDirEnv)/S12lisa_Support/s12lisac/lib_small/ansii.lib" )
