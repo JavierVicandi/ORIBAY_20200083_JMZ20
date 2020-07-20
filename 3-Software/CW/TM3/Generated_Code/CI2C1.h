@@ -6,7 +6,7 @@
 **     Component   : InternalI2C
 **     Version     : Component 01.287, Driver 01.22, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
 **     Abstract    :
 **          This component encapsulates the internal I2C communication 
 **          interface. The implementation of the interface is based 
@@ -30,11 +30,11 @@
 **         Protocol
 **             Mode                    : MASTER
 **             Auto stop condition     : yes
-**             SCL frequency           : 78.125 kHz
+**             SCL frequency           : 86.806 kHz
 **
 **         Initialization
 **
-**             Target slave address    : 8
+**             Target slave address    : 69
 **             Component init          : Enabled
 **             Events                  : Enabled
 **

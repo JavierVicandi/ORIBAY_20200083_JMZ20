@@ -6,13 +6,30 @@
 "$(ProjDirPath)/Generated_Code"
 -i
 "$(ProjDirPath)/Sources"
+-i
+"$(ProjDirPath)/lin_cfg"
+-i
+"$(ProjDirPath)/LIN_Stack"
+-i
+"$(ProjDirPath)/LIN_Stack/transport"
+-i
+"$(ProjDirPath)/LIN_Stack/lowlevel"
+-i
+"$(ProjDirPath)/LIN_Stack/include"
+-i
+"$(ProjDirPath)/LIN_Stack/diagnostic"
+-i
+"$(ProjDirPath)/LIN_Stack/coreapi"
+-i
+"$(ProjDirPath)/LIN_Stack/bsp/SCI"
+-i
+"$(ProjDirPath)/LIN_Stack/bsp/AUTOBAUD"
 -I-
 -I"$(MCUToolsBaseDirEnv)/S12lisa_Support/s12lisac/include"
 -I-
 -I"$(MCUToolsBaseDirEnv)/S12lisa_Support/s12lisac/src"
 -I-
 -I"$(MCUToolsBaseDirEnv)/S12lisa_Support/s12lisac/lib_small"
--w illpragmas
 -w possible
 -w extended
 -w extracomma
@@ -25,6 +42,7 @@
 -opt level=0
 -opt space
 -requireprotos
+-lang c99
 -Cpp_Exceptions off
 -char unsigned
 -msgstyle parseable

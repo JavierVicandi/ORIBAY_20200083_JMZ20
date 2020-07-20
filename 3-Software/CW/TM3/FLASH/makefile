@@ -2,7 +2,7 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
-#Progress monitor hint: 10
+#Progress monitor hint: 27
 first : all
 -include ../makefile.init
 
@@ -14,8 +14,15 @@ RM := "$(GNU_Make_Install_DirEnv)/rm" -f
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include lin_cfg/subdir.mk
 -include Sources/subdir.mk
 -include Project_Settings/Startup_Code/subdir.mk
+-include LIN_Stack/transport/subdir.mk
+-include LIN_Stack/lowlevel/subdir.mk
+-include LIN_Stack/diagnostic/subdir.mk
+-include LIN_Stack/coreapi/subdir.mk
+-include LIN_Stack/bsp/SCI/subdir.mk
+-include LIN_Stack/bsp/AUTOBAUD/subdir.mk
 -include Generated_Code/subdir.mk
 -include objects.mk
 
@@ -74,14 +81,14 @@ all: warning-messages explicit-dependencies TM3.elf
 # Tool invocations
 TM3.elf: $(OBJS) $(USER_OBJS) ../Project_Settings/Linker_Files/ProcessorExpert.prm
 	@echo 'Building target: $@'
-	@echo 'Executing target #11 $@'
+	@echo 'Executing target #28 $@'
 	@echo 'Invoking: S12Z Linker'
 	"$(S12Z_ToolsDirEnv)/linker" -ArgFile"TM3.args" -O"TM3.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 TM3.elf.s19: $(BBL_SRCS) $(EXECUTABLES)
-	@echo 'Executing target #12 $@'
+	@echo 'Executing target #29 $@'
 	@echo 'Invoking: S12Z Burner'
 	"$(S12Z_ToolsDirEnv)/burner" -ViewHidden -WmsgFob"%f%e:%l:%k:%d:%m\n" -f="$<" -env"ABS_FILE=$(strip $(EXECUTABLES_OS_FORMAT))"
 	@echo 'Finished building: $@'
@@ -89,7 +96,7 @@ TM3.elf.s19: $(BBL_SRCS) $(EXECUTABLES)
 
 # Other Targets
 clean:
-	-$(RM) $(S_DEPS_QUOTED) "./*/*.obj" "./*/*/*.obj"  $(CPP_DEPS_QUOTED) $(CC_DEPS_QUOTED) $(S_UPPER_DEPS_QUOTED) $(CXX_DEPS_QUOTED) $(ASM_DEPS_QUOTED) $(BURNER_OUTPUT_OUTPUTS_QUOTED) $(ASM_UPPER_DEPS_QUOTED) $(C_UPPER_DEPS_QUOTED) $(C++_DEPS_QUOTED) $(EXECUTABLES_QUOTED) "./*/*.d" "./*/*/*.d"  $(ProjDirPath)/FLASH/TM3.elf
+	-$(RM) $(S_DEPS_QUOTED) "./*/*.obj" "./*/*/*/*.obj" "./*/*/*.obj"  $(CPP_DEPS_QUOTED) $(CC_DEPS_QUOTED) $(S_UPPER_DEPS_QUOTED) $(CXX_DEPS_QUOTED) $(ASM_DEPS_QUOTED) $(BURNER_OUTPUT_OUTPUTS_QUOTED) $(ASM_UPPER_DEPS_QUOTED) $(C_UPPER_DEPS_QUOTED) $(C++_DEPS_QUOTED) $(EXECUTABLES_QUOTED) "./*/*.d" "./*/*/*/*.d" "./*/*/*.d"  $(ProjDirPath)/FLASH/TM3.elf
 	-@echo ' '
 
 .PHONY: all clean dependents explicit-dependencies warning-messages

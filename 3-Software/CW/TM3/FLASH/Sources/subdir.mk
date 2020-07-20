@@ -37,7 +37,7 @@ OBJS_OS_FORMAT += \
 # Each subdirectory must supply rules for building sources it contributes
 Sources/Events_c.obj: ../Sources/Events.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #1 $<'
+	@echo 'Executing target #2 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Sources/Events.args" -o "Sources/Events_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -50,7 +50,7 @@ Sources/%.d: ../Sources/%.c
 
 Sources/main_c.obj: ../Sources/main.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #2 $<'
+	@echo 'Executing target #3 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Sources/main.args" -o "Sources/main_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

@@ -93,5 +93,8 @@ Module "Cpu"       (component MC9S12ZVLS32_32)
    - Cpu_SetWaitMode -Set low power mode - Wait mode.   For more information about the wait mode see documentation of this CPU. 
                 Release from Wait mode: Reset or interrupt
    - Cpu_SetStopMode -Set low power mode - Stop mode.   For more information about the stop mode see documentation of this CPU.
+   - Cpu_Delay100US -This method realizes software delay. The length of delay is at least 100 microsecond multiply input 
+                parameter [us100]. As the delay implementation is not based on real clock, the delay time may be increased by 
+                interrupt service routines processed during the delay. The method is independent on selected speed mode.
 
 ===================================================================================

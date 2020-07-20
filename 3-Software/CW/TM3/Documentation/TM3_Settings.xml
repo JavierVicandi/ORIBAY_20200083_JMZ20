@@ -140,11 +140,11 @@
         <group name="Enabled speed modes">
           <boolgroup name="High speed mode" v="Enabled">
             <High_speed_clock v="Internal Clock" />
-            <Internal_bus_clock v="6.250000000000" />
+            <Internal_bus_clock v="12.500000000000" />
             <boolgroup name="PLL clock" v="Enabled">
-              <Reference_divider v="Auto select" />
-              <PLL_multiplication_factor v="Auto select" />
-              <PLL_post_divider v="Auto select" />
+              <Reference_divider v="1" />
+              <PLL_multiplication_factor v="25" />
+              <PLL_post_divider v="2" />
               <VCO_clock_frequency__MHz_ v="50" />
               <Frequency_Modulation v="FM off" />
             </boolgroup>
@@ -164,7 +164,7 @@
         <DisableInt v="generate code" />
         <SetWaitMode v="generate code" />
         <SetStopMode v="generate code" />
-        <Delay100US v="don&amp;apos;t generate code" />
+        <Delay100US v="generate code" />
         <SetIPL v="don&amp;apos;t generate code" />
         <GetLowVoltageFlag v="don&amp;apos;t generate code" />
         <GetPllLockStatusFlag v="don&amp;apos;t generate code" />
@@ -262,7 +262,7 @@ asm(BGND);
         <Automatic_stop_condition v="yes" />
         <group name="Initialization">
           <Address_mode v="7-bit addressing" />
-          <Target_slave_address_init v="8" />
+          <Target_slave_address_init v="69" />
         </group>
       </boolgroup>
       <boolgroup name="SLAVE mode" v="Disabled" />
@@ -270,11 +270,11 @@ asm(BGND);
         <SDA_pin v="PT0_IOC0_0_SDA0_RXD1_PWM2_LPTXD0" />
         <SCL_pin v="PT1_IOC0_1_SCL0_TXD1_PWM0_LPRXD0" />
       </group>
-      <Internal_frequency__multiplier_factor_ v="1.5625 MHz" />
-      <Bits_0_2_of_Frequency_divider_register v="SCL Tap=5, SDA Tap=1" />
-      <Bits_3_5_of_Frequency_divider_register v="scl2tap=4, tap2tap=1" />
-      <SCL_frequency v="78.125 kHz" />
-      <SDA_Hold v="4.48 us" />
+      <Internal_frequency__multiplier_factor_ v="3.125 MHz" />
+      <Bits_0_2_of_Frequency_divider_register v="SCL Tap=7, SDA Tap=2" />
+      <Bits_3_5_of_Frequency_divider_register v="scl2tap=4, tap2tap=2" />
+      <SCL_frequency v="86.806 kHz" />
+      <SDA_Hold v="2.88 us" />
       <Stop_in_wait_mode v="no" />
       <group name="Initialization">
         <Enabled_in_init_code v="yes" />
@@ -417,7 +417,7 @@ pull up or no pull
       <Automatic_stop_condition v="no" />
       <Acknowledge_polling_trials v="2000" />
       <group name="Initialization">
-        <Slave_address_init v="8" />
+        <Slave_address_init v="68" />
         <Enabled_in_init__code v="yes" />
         <Events_enabled_in_init_ v="yes" />
       </group>

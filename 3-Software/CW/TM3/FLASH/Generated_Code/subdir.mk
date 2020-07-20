@@ -72,7 +72,7 @@ OBJS_OS_FORMAT += \
 # Each subdirectory must supply rules for building sources it contributes
 Generated_Code/CI2C1_c.obj: ../Generated_Code/CI2C1.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #4 $<'
+	@echo 'Executing target #21 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/CI2C1.args" -o "Generated_Code/CI2C1_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -85,7 +85,7 @@ Generated_Code/%.d: ../Generated_Code/%.c
 
 Generated_Code/ClockPin1_c.obj: ../Generated_Code/ClockPin1.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #5 $<'
+	@echo 'Executing target #22 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/ClockPin1.args" -o "Generated_Code/ClockPin1_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -93,7 +93,7 @@ Generated_Code/ClockPin1_c.obj: ../Generated_Code/ClockPin1.c
 
 Generated_Code/Cpu_c.obj: ../Generated_Code/Cpu.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #6 $<'
+	@echo 'Executing target #23 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/Cpu.args" -o "Generated_Code/Cpu_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -101,7 +101,7 @@ Generated_Code/Cpu_c.obj: ../Generated_Code/Cpu.c
 
 Generated_Code/DataPin1_c.obj: ../Generated_Code/DataPin1.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #7 $<'
+	@echo 'Executing target #24 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/DataPin1.args" -o "Generated_Code/DataPin1_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -109,7 +109,7 @@ Generated_Code/DataPin1_c.obj: ../Generated_Code/DataPin1.c
 
 Generated_Code/EI2C1_c.obj: ../Generated_Code/EI2C1.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #8 $<'
+	@echo 'Executing target #25 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/EI2C1.args" -o "Generated_Code/EI2C1_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -117,7 +117,7 @@ Generated_Code/EI2C1_c.obj: ../Generated_Code/EI2C1.c
 
 Generated_Code/IO_Map_c.obj: ../Generated_Code/IO_Map.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #9 $<'
+	@echo 'Executing target #26 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/IO_Map.args" -o "Generated_Code/IO_Map_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
@@ -125,7 +125,7 @@ Generated_Code/IO_Map_c.obj: ../Generated_Code/IO_Map.c
 
 Generated_Code/Vectors_c.obj: ../Generated_Code/Vectors.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #10 $<'
+	@echo 'Executing target #27 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/Vectors.args" -o "Generated_Code/Vectors_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

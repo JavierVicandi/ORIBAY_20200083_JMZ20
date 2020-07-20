@@ -6,7 +6,7 @@
 **     Component   : SW_I2C
 **     Version     : Component 01.121, Driver 03.31, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-15, 18:52, # CodeGen: 5
 **     Abstract    :
 **         This device "SW_I2C" implements an external I2C
 **         communication interface. It uses two general-purpose
@@ -41,7 +41,7 @@
 **
 **         Initialization
 **
-**             Slave address           : 8
+**             Slave address           : 68
 **             Component function      : Enabled
 **             Events                  : Enabled
 **     Contents    :

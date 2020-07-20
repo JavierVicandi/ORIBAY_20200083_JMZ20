@@ -2,7 +2,7 @@
 * 
 * Freescale Semiconductor Inc.
 * (c) Copyright 2013-2016 Freescale Semiconductor, Inc.
-* Copyright 2016-2019 NXP
+* Copyright 2016-2020 NXP
 * ALL RIGHTS RESERVED.
 * 
 ****************************************************************************//*!
@@ -13,14 +13,14 @@
 *
 * @version   1.0
 *
-* @date      Thu Mar 07 09:56:12 ICT 2019
+* @date      Wed Jul 15 18:39:12 CEST 2020
 *
 * @brief     Hardware configuration file
 *
 ******************************************************************************/
 #ifndef      _LIN_HW_CFG_H
 #define      _LIN_HW_CFG_H
-#include <MC9S12ZVL128.h>
+#include <MC9S12ZVL32.h>
 
 typedef enum {
    SCI0,
@@ -82,7 +82,7 @@ typedef enum {
 
 
 /* MCU bus frequency */
-#define MCU_BUS_FREQ       25000000
+#define MCU_BUS_FREQ       12500000
 
 /* Default interrupt period of the timer for LIN is TIME_BASE_PERIOD micro seconds */
 #define TIME_BASE_PERIOD   500

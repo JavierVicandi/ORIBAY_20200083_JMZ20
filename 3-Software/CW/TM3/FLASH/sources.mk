@@ -92,7 +92,14 @@ OBJS_OS_FORMAT :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
+lin_cfg \
 Sources \
 Project_Settings/Startup_Code \
+LIN_Stack/transport \
+LIN_Stack/lowlevel \
+LIN_Stack/diagnostic \
+LIN_Stack/coreapi \
+LIN_Stack/bsp/SCI \
+LIN_Stack/bsp/AUTOBAUD \
 Generated_Code \
 

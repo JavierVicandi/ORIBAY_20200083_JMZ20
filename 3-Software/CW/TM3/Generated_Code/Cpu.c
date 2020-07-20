@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -18,6 +18,7 @@
 **         DisableInt  - void Cpu_DisableInt(void);
 **         SetWaitMode - void Cpu_SetWaitMode(void);
 **         SetStopMode - void Cpu_SetStopMode(void);
+**         Delay100US  - void Cpu_Delay100US(word us100);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -71,7 +72,7 @@
 #include "Events.h"
 #include "Cpu.h"
 
-#define CGM_DELAY  0x02FFU
+#define CGM_DELAY  0x05FFU
 
 #pragma DATA_SEG DEFAULT               /* Select data segment "DEFAULT" */
 #pragma CODE_SEG DEFAULT
@@ -98,6 +99,59 @@ ISR(Cpu_Interrupt)
   /*lint -restore Enable MISRA rule (1.1) checking. */
 }
 
+
+/*
+** ===================================================================
+**     Method      :  Cpu_Delay100US (component MC9S12ZVLS32_32)
+**     Description :
+**         This method realizes software delay. The length of delay
+**         is at least 100 microsecond multiply input parameter
+**         [us100]. As the delay implementation is not based on real
+**         clock, the delay time may be increased by interrupt
+**         service routines processed during the delay. The method
+**         is independent on selected speed mode.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         us100           - Number of 100 us delay repetitions.
+**                         - The value of zero results in maximal 
+**                           delay of approx. 6.5 seconds.
+**     Returns     : Nothing
+** ===================================================================
+*/
+#pragma NO_ENTRY                       /* Suppress generation of prologue code in a function */
+#pragma NO_EXIT                        /* Suppress generation of  epilogue code in a function */
+void Cpu_Delay100US(word us100)
+{
+  /* irremovable overhead (ignored): 6.5 cycles */
+  /* jsr:  2.5 cycles overhead (call this function) */
+  /* LD D2,#x:  1 cycles overhead (load parameter into register) */
+  /* rts:  3 cycles overhead (return from this function) */
+
+  /* irremovable overhead for each 100us cycle (counted): 2.5 cycles */
+  /* dbne:  4.5 cycles overhead */
+
+  /*lint -save  -e950 -e522 Disable MISRA rule (1.1,14.2) checking. */
+  asm {
+    loop:
+    /* 100 us delay block begin */
+     
+     
+    /*
+     * Delay
+     *   - requested                  : 100 us @ 12.5MHz,
+     *   - possible                   : 1250 c, 100000 ns
+     *   - without removable overhead : 1245.5 c, 99640 ns
+     */
+    LD D6,#0x00E3                      /* (1_5 c: 120 ns) number of iterations */
+label0:
+    DEC D6                             /* (1 c: 80 ns) decrement d1 */
+    BNE label0                         /* (4 c: 320 ns) repeat 227x */
+    NOP                                /* (1 c: 80 ns) wait for 1 c */
+    /* 100 us delay block end */
+    DBNE D2, loop                      /* us100 parameter is passed via D register */
+  };
+  /*lint -restore Enable MISRA rule (1.1,14.2) checking. */
+}
 
 #pragma CODE_SEG DEFAULT
 
@@ -204,8 +258,8 @@ void _EntryPoint(void)
   clrReg8Bits(CPMUCLKS, 0x40U);         
   /* CPMUCLKS: PLLSEL=1 */
   setReg8Bits(CPMUCLKS, 0x80U);        /* Enable the PLL to allow write to divider registers */ 
-  /* CPMUPOSTDIV: ??=0,??=0,??=0,POSTDIV4=0,POSTDIV3=0,POSTDIV2=0,POSTDIV1=1,POSTDIV0=1 */
-  setReg8(CPMUPOSTDIV, 0x03U);         /* Set the post divider register */ 
+  /* CPMUPOSTDIV: ??=0,??=0,??=0,POSTDIV4=0,POSTDIV3=0,POSTDIV2=0,POSTDIV1=0,POSTDIV0=1 */
+  setReg8(CPMUPOSTDIV, 0x01U);         /* Set the post divider register */ 
   /* Whenever changing PLL reference clock (REFCLK) frequency to a higher value
    it is recommended to write CPMUSYNR = 0x00 in order to stay within specified
    maximum frequency of the MCU */

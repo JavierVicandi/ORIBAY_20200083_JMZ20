@@ -178,10 +178,12 @@ interrupt _D2D(void)
 #else
 
 /**
-* @def ISR(ivn, x)
+* @def ISR_LS(ivn, x)
 * Call function <B>x</B> with interrupt vector number is <B>ivn</B>
+* Redefined 16/07/2020 18:12:27 to avoid conflict with the ISR definition
+* in PE_Types.h 
 */
-#define ISR(ivn, x) interrupt ivn void x(void)
+#define ISR_LS(ivn, x) interrupt ivn void x(void)
 
 #if ((SCI_VERSION == SCI_V5) || (SCI_VERSION == SCI_V6))
 /* Change vector number define */
@@ -196,7 +198,7 @@ interrupt _D2D(void)
 
 #if _SCI0_ == 1
 /*FUNCTION*--------------------------------------------------------------*//**
-* @fn void ISR(VectorNumber_Vsci0, SCI0_INT)
+* @fn void ISR_LS(VectorNumber_Vsci0, SCI0_INT)
 * @brief interrupt service routine for SCI0 receiver
 *
 * @return #void
@@ -210,7 +212,7 @@ interrupt _D2D(void)
 * @see #lin_lld_sci_isr
 *//*END*----------------------------------------------------------------------*/
 void SCI0_INT(void);
-ISR(VectorNumber_Vsci0, SCI0_INT)
+ISR_LS(VectorNumber_Vsci0, SCI0_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_isr();
@@ -222,7 +224,7 @@ ISR(VectorNumber_Vsci0, SCI0_INT)
 
 #if _SCI1_ == 1
 /*FUNCTION*--------------------------------------------------------------*//**
-* @fn void ISR(VectorNumber_Vsci1, SCI1_INT)
+* @fn void ISR_LS(VectorNumber_Vsci1, SCI1_INT)
 * @brief interrupt service routine for SCI1 receiver
 *
 * @return #void
@@ -235,7 +237,7 @@ ISR(VectorNumber_Vsci0, SCI0_INT)
 *
 * @see #lin_lld_sci_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci1, SCI1_INT)
+ISR_LS(VectorNumber_Vsci1, SCI1_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_isr();
@@ -247,7 +249,7 @@ ISR(VectorNumber_Vsci1, SCI1_INT)
 
 #if _SCI2_ == 1
 /*FUNCTION*--------------------------------------------------------------*//**
-* @fn void ISR(VectorNumber_Vsci2, SCI2_INT)
+* @fn void ISR_LS(VectorNumber_Vsci2, SCI2_INT)
 * @brief interrupt service routine for SCI2 receiver
 *
 * @return #void
@@ -260,7 +262,7 @@ ISR(VectorNumber_Vsci1, SCI1_INT)
 *
 * @see #lin_lld_sci_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci2, SCI2_INT)
+ISR_LS(VectorNumber_Vsci2, SCI2_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_isr();
@@ -272,7 +274,7 @@ ISR(VectorNumber_Vsci2, SCI2_INT)
 
 #if _SCI3_ == 1
 /*FUNCTION*--------------------------------------------------------------*//**
-* @fn void ISR(VectorNumber_Vsci3, SCI3_INT)
+* @fn void ISR_LS(VectorNumber_Vsci3, SCI3_INT)
 * @brief interrupt service routine for SCI3 receiver
 *
 * @return #void
@@ -285,7 +287,7 @@ ISR(VectorNumber_Vsci2, SCI2_INT)
 *
 * @see #lin_lld_sci_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci3, SCI3_INT)
+ISR_LS(VectorNumber_Vsci3, SCI3_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_isr();
@@ -297,7 +299,7 @@ ISR(VectorNumber_Vsci3, SCI3_INT)
 
 #if _SCI4_ == 1
 /*FUNCTION*--------------------------------------------------------------*//**
-* @fn void ISR(VectorNumber_Vsci4, SCI4_INT)
+* @fn void ISR_LS(VectorNumber_Vsci4, SCI4_INT)
 * @brief interrupt service routine for SCI4 receiver
 *
 * @return #void
@@ -310,7 +312,7 @@ ISR(VectorNumber_Vsci3, SCI3_INT)
 *
 * @see #lin_lld_sci_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci4, SCI4_INT)
+ISR_LS(VectorNumber_Vsci4, SCI4_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_isr();
@@ -322,7 +324,7 @@ ISR(VectorNumber_Vsci4, SCI4_INT)
 
 #if _SCI5_ == 1
 /*FUNCTION*--------------------------------------------------------------*//**
-* @fn void ISR(VectorNumber_Vsci5, SCI5_INT)
+* @fn void ISR_LS(VectorNumber_Vsci5, SCI5_INT)
 * @brief interrupt service routine for SCI5 receiver
 *
 * @return #void
@@ -335,7 +337,7 @@ ISR(VectorNumber_Vsci4, SCI4_INT)
 *
 * @see #lin_lld_sci_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci5, SCI5_INT)
+ISR_LS(VectorNumber_Vsci5, SCI5_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_isr();
@@ -373,7 +375,7 @@ ISR(VectorNumber_Vsci5, SCI5_INT)
 * @details
 *   interrupt service routine for SCI0 transmiter
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci0tx, SCI0_TX_INT)
+ISR_LS(VectorNumber_Vsci0tx, SCI0_TX_INT)
 {
 }
 
@@ -391,7 +393,7 @@ ISR(VectorNumber_Vsci0tx, SCI0_TX_INT)
 *
 * @see #lin_lld_sci_rx_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci0rx, SCI0_RX_INT)
+ISR_LS(VectorNumber_Vsci0rx, SCI0_RX_INT)
 {
 #if (LIN_MODE == _SLAVE_MODE_)
     lin_lld_sci_rx_isr();
@@ -414,7 +416,7 @@ ISR(VectorNumber_Vsci0rx, SCI0_RX_INT)
 *
 * @see #lin_lld_sci_rx_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci0err, SCI0_ERR_INT)
+ISR_LS(VectorNumber_Vsci0err, SCI0_ERR_INT)
 {
 #if (LIN_MODE == _SLAVE_MODE_)
     lin_lld_sci_err_isr();
@@ -435,7 +437,7 @@ ISR(VectorNumber_Vsci0err, SCI0_ERR_INT)
 * @details
 *   interrupt service routine for SCI0 transmiter
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci1tx, SCI1_TX_INT)
+ISR_LS(VectorNumber_Vsci1tx, SCI1_TX_INT)
 {
 
 }
@@ -454,7 +456,7 @@ ISR(VectorNumber_Vsci1tx, SCI1_TX_INT)
 *
 * @see #lin_lld_sci_rx_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci1rx, SCI1_RX_INT)
+ISR_LS(VectorNumber_Vsci1rx, SCI1_RX_INT)
 {
 #if (LIN_MODE == _SLAVE_MODE_)
     lin_lld_sci_rx_isr();
@@ -477,7 +479,7 @@ ISR(VectorNumber_Vsci1rx, SCI1_RX_INT)
 *
 * @see #lin_lld_sci_rx_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci1err, SCI1_ERR_INT)
+ISR_LS(VectorNumber_Vsci1err, SCI1_ERR_INT)
 {
 #if (LIN_MODE == _SLAVE_MODE_)
     lin_lld_sci_err_isr();
@@ -502,7 +504,7 @@ ISR(VectorNumber_Vsci1err, SCI1_ERR_INT)
 * @details
 *   interrupt service routine for SCI1 transmiter
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci2tx, SCI2_TX_INT)
+ISR_LS(VectorNumber_Vsci2tx, SCI2_TX_INT)
 {
 
 }
@@ -521,7 +523,7 @@ ISR(VectorNumber_Vsci2tx, SCI2_TX_INT)
 *
 * @see #lin_lld_sci_rx_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci2rx, SCI2_RX_INT)
+ISR_LS(VectorNumber_Vsci2rx, SCI2_RX_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_rx_isr();
@@ -544,7 +546,7 @@ ISR(VectorNumber_Vsci2rx, SCI2_RX_INT)
 *
 * @see #lin_lld_sci_rx_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci2err, SCI2_ERR_INT)
+ISR_LS(VectorNumber_Vsci2err, SCI2_ERR_INT)
 {
 #if LIN_MODE == _SLAVE_MODE_
     lin_lld_sci_err_isr();
@@ -572,7 +574,7 @@ ISR(VectorNumber_Vsci2err, SCI2_ERR_INT)
 *
 * @see #lin_lld_xgate_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci1rx, SCI_RX_INT)
+ISR_LS(VectorNumber_Vsci1rx, SCI_RX_INT)
 {
 #if (LIN_MODE == _SLAVE_MODE_)
     lin_lld_sci_rx_isr();
@@ -595,7 +597,7 @@ ISR(VectorNumber_Vsci1rx, SCI_RX_INT)
 *
 * @see #lin_lld_xgate_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vsci1err, SCI_ERR_INT)
+ISR_LS(VectorNumber_Vsci1err, SCI_ERR_INT)
 {
 #if (LIN_MODE == _SLAVE_MODE_)
     lin_lld_sci_err_isr();
@@ -609,7 +611,7 @@ ISR(VectorNumber_Vsci1err, SCI_ERR_INT)
 #if (_MCU_ == _S12X_)
 #ifdef MULTI_TIMER_MODE
 #if (_PIT0_ == 1)
-ISR(VectorNumber_Vpit0, PIT0_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit0, PIT0_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT0_INDEX);
     __asm
@@ -635,7 +637,7 @@ ISR(VectorNumber_Vpit0, PIT0_TIMER_ISR)
 *//*END*----------------------------------------------------------------------*/
 #if (_PIT1_ == 1)
 /****CONGTH****/
-ISR(VectorNumber_Vpit1, PIT1_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit1, PIT1_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT1_INDEX);
     __asm
@@ -660,7 +662,7 @@ ISR(VectorNumber_Vpit1, PIT1_TIMER_ISR)
 * @see #lin_lld_timer_isr
 *//*END*----------------------------------------------------------------------*/
 #if (_PIT2_ == 1)
-ISR(VectorNumber_Vpit2, PIT2_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit2, PIT2_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT2_INDEX);
     __asm
@@ -685,7 +687,7 @@ ISR(VectorNumber_Vpit2, PIT2_TIMER_ISR)
 * @see #lin_lld_timer_isr
 *//*END*----------------------------------------------------------------------*/
 #if (_PIT3_ == 1)
-ISR(VectorNumber_Vpit3, PIT3_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit3, PIT3_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT3_INDEX);
     __asm
@@ -711,7 +713,7 @@ ISR(VectorNumber_Vpit3, PIT3_TIMER_ISR)
 *//*END*----------------------------------------------------------------------*/
 #if (_PIT4_ == 1)
 /****CONGTH****/
-ISR(VectorNumber_Vpit4, PIT4_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit4, PIT4_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT4_INDEX);
     __asm
@@ -739,7 +741,7 @@ ISR(VectorNumber_Vpit4, PIT4_TIMER_ISR)
 
 #if (_PIT5_ == 1)
 /****CONGTH****/
-ISR(VectorNumber_Vpit5, PIT5_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit5, PIT5_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT5_INDEX);
     __asm
@@ -765,7 +767,7 @@ ISR(VectorNumber_Vpit5, PIT5_TIMER_ISR)
 *//*END*----------------------------------------------------------------------*/
 #if (_PIT6_ == 1)
 /****CONGTH****/
-ISR(VectorNumber_Vpit6, PIT6_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit6, PIT6_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT6_INDEX);
     __asm
@@ -791,7 +793,7 @@ ISR(VectorNumber_Vpit6, PIT6_TIMER_ISR)
 *//*END*----------------------------------------------------------------------*/
 #if (_PIT7_ == 1)
 /****CONGTH****/
-ISR(VectorNumber_Vpit7, PIT7_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit7, PIT7_TIMER_ISR)
 {
     lin_lld_timer_isr(PIT7_INDEX);
     __asm
@@ -816,7 +818,7 @@ ISR(VectorNumber_Vpit7, PIT7_TIMER_ISR)
 *
 * @see #lin_lld_timer_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vpit0, PIT0_TIMER_ISR)
+ISR_LS(VectorNumber_Vpit0, PIT0_TIMER_ISR)
 {
     lin_lld_timer_isr();
     PITTF_PTF0 = 1;
@@ -841,7 +843,7 @@ ISR(VectorNumber_Vpit0, PIT0_TIMER_ISR)
 *
 * @see #lin_lld_timer_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vtim0ch7, TIM0CH7_TIMER_ISR)
+ISR_LS(VectorNumber_Vtim0ch7, TIM0CH7_TIMER_ISR)
 {
     lin_lld_timer_isr();
     /* Reset interrupt request flag */
@@ -864,7 +866,7 @@ ISR(VectorNumber_Vtim0ch7, TIM0CH7_TIMER_ISR)
 *
 * @see #lin_lld_timer_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vtimch7, TIM0_TIMER_ISR)
+ISR_LS(VectorNumber_Vtimch7, TIM0_TIMER_ISR)
 {
     lin_lld_timer_isr();
     TFLG1_C7F = 1;
@@ -886,7 +888,7 @@ ISR(VectorNumber_Vtimch7, TIM0_TIMER_ISR)
 *
 * @see #lin_lld_timer_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vtimch0, TIM_TIMER_ISR)
+ISR_LS(VectorNumber_Vtimch0, TIM_TIMER_ISR)
 {
     lin_lld_timer_isr();
     /* Write 1 to TFLG1 C0F bit to clear this C0F flag*/
@@ -911,7 +913,7 @@ ISR(VectorNumber_Vtimch0, TIM_TIMER_ISR)
 *
 * @see #lin_lld_timer_isr
 *//*END*----------------------------------------------------------------------*/
-ISR(VectorNumber_Vtimch0, TIM_TIMER_ISR)
+ISR_LS(VectorNumber_Vtimch0, TIM_TIMER_ISR)
 {
     lin_lld_timer_isr();
     /* Write 1 to TFLG1 C0F bit to clear this C0F flag*/
@@ -924,7 +926,7 @@ ISR(VectorNumber_Vtimch0, TIM_TIMER_ISR)
 #if (defined(_MC9S12VR64_H) || defined(_MC9S12VR32_H) || defined(_MC9S12VRP64_H) || defined(_MC9S12VRP48_H))
     #if (_SCI0_)
     void LinPhy_ISR(void);
-    ISR(VectorNumber_Vlinphy, LinPhy_ISR)
+    ISR_LS(VectorNumber_Vlinphy, LinPhy_ISR)
     {
         /* Clear over current interrupt flag */
         if(LPIF_LPOCIF == 1)
@@ -938,7 +940,7 @@ ISR(VectorNumber_Vtimch0, TIM_TIMER_ISR)
 #if (defined(_MC9S12ZVML128_H) || defined(_MC9S12ZVL32_H)||defined(_MC9S12ZVHY64_H)||defined(_MC9S12ZVH128_H)\
     ||defined(_MC9S12ZVML31_H)||defined(_MC9S12ZVMC256_H)||defined(_MC9S12ZVL128_H) ||defined(_MC9S12ZVMB_H))
 void TIMchan2_ISR(void);
-ISR(VectorNumber_Vtim0ch2, TIMchan2_ISR)
+ISR_LS(VectorNumber_Vtim0ch2, TIMchan2_ISR)
 {
     lin_lld_timer_isr();
     /* Write 1 to TFLG1 C2F bit to clear this C2F flag*/
@@ -952,7 +954,7 @@ defined(_MC9S12ZVMA_H) || defined(_MC9S12ZVMB_H))
 #if (_SCI0_)
 
 void LinPhy_ISR(void);
-ISR(VectorNumber_Vlinphy0, LinPhy_ISR)
+ISR_LS(VectorNumber_Vlinphy0, LinPhy_ISR)
 {
     /* Clear over current interrupt flag */
     if(LP0IF_LPOCIF == 1)
@@ -964,7 +966,7 @@ ISR(VectorNumber_Vlinphy0, LinPhy_ISR)
 #endif /* END ifdef _MC9S12ZVL32_H */
 
 #if (defined(_MC9S12ZVC64_H))
-ISR(VectorNumber_Vtim1ch2, TIMchan2_ISR)
+ISR_LS(VectorNumber_Vtim1ch2, TIMchan2_ISR)
 {
     lin_lld_timer_isr();
     /* Write 1 to TFLG1 C2F bit to clear this C2F flag*/
@@ -975,7 +977,7 @@ ISR(VectorNumber_Vtim1ch2, TIMchan2_ISR)
 
 #if (defined(_MC9S12ZVMA_H)||defined(_MC9S12VRP64_H)||defined(_MC9S12VRP48_H))
 void TIM1chan0_ISR(void);
-ISR(VectorNumber_Vtim1ch0, TIM1chan0_ISR)
+ISR_LS(VectorNumber_Vtim1ch0, TIM1chan0_ISR)
 {
     lin_lld_timer_isr();
     /* Write 1 to TFLG1 C0F bit to clear this C0F flag*/
@@ -1069,7 +1071,7 @@ void AutobaudTimerValEval(void)
 *//*END*----------------------------------------------------------------------*/
 #if (defined(_MC9S12ZVML128_H)||defined(_MC9S12ZVML31_H) ||defined(_MC9S12ZVL32_H)\
     ||defined(_MC9S12ZVL128_H)||defined(_MC9S12ZVMC256_H) || defined(_MC9S12ZVMB_H))
-ISR(VectorNumber_Vtim0ch3, TIM_Input_capture_ISR)
+ISR_LS(VectorNumber_Vtim0ch3, TIM_Input_capture_ISR)
 {
     AutobaudTimerValEval();
 }
@@ -1078,21 +1080,21 @@ ISR(VectorNumber_Vtim0ch3, TIM_Input_capture_ISR)
 /* ||defined(_MC9S12ZVL128_H)||defined(_MC9S12ZVMC256_H) || defined(_MC9S12ZVMB_H)) */
 
 #if (defined(_MC9S12ZVH128_H))
-ISR(VectorNumber_Vtim1ch0, TIM_Input_capture_ISR)
+ISR_LS(VectorNumber_Vtim1ch0, TIM_Input_capture_ISR)
 {
     AutobaudTimerValEval();
 }
 #endif /* End (defined(_MC9S12ZVH128_H)*/
 
 #if (defined(_MC9S12VR64_H)||defined(_MC9S12VR32_H))
-ISR(VectorNumber_Vtimch3, TIM_Input_capture_ISR)
+ISR_LS(VectorNumber_Vtimch3, TIM_Input_capture_ISR)
 {
     AutobaudTimerValEval();
 }
 #endif /* End if (defined(_MC9S12VR64_H)||defined(_MC9S12VR32_H))*/
 
 #if (defined(_MC9S12ZVMA_H)||defined(_MC9S12VRP64_H)||defined(_MC9S12VRP48_H))
-ISR(VectorNumber_Vtim1ch1, TIM_Input_capture_ISR)
+ISR_LS(VectorNumber_Vtim1ch1, TIM_Input_capture_ISR)
 {
     AutobaudTimerValEval();
 }
@@ -1119,14 +1121,14 @@ ISR(VectorNumber_Vtim1ch1, TIM_Input_capture_ISR)
 *//*END*----------------------------------------------------------------------*/
 #if defined(_MC9S08RN60_H)
 
-ISR(VectorNumber_Vmtim0, TPM1_TIMER_ISR)
+ISR_LS(VectorNumber_Vmtim0, TPM1_TIMER_ISR)
 {
     /* CH0F = 0 */
     MTIM0_SC &= ~MTIM0_SC_TOF_MASK;
     lin_lld_timer_isr();
 }
 #else
-ISR(VectorNumber_Vtpm1ch0, TPM1_TIMER_ISR)
+ISR_LS(VectorNumber_Vtpm1ch0, TPM1_TIMER_ISR)
 {
     /* CH0F = 0 */
     TPM1C0SC &= ~TPM1C0SC_CH0F_MASK;

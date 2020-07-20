@@ -112,6 +112,7 @@ l_bool l_ifc_init
 #endif /* End LIN_MODE == _SLAVE_MODE_ */
 } /* end of l_ifc_init() */
 
+#if LIN_MODE == _MASTER_MODE_		//Si no es nodo MASTER no se define 16/07/2020 19:03:01
 void l_ifc_goto_sleep
 (
     /* [IN] interface name */
@@ -119,7 +120,7 @@ void l_ifc_goto_sleep
 )
 {
     /* If node is master node */
-#if LIN_MODE == _MASTER_MODE_
+
     /* Get current configuration */
     lin_configuration const *conf;
     /* Get current configuration */
@@ -127,8 +128,9 @@ void l_ifc_goto_sleep
     /* Set active schedule as GOTO_SLEEP_SCHEDULE */
     l_sch_set(iii, (l_schedule_handle)(conf->schedule_start + 1), 0);
 
-#endif /* End LIN_MODE == _MASTER_MODE_ */
+
 } /* end of l_ifc_goto_sleep() */
+#endif /* End LIN_MODE == _MASTER_MODE_ */
 
 void l_ifc_wake_up
 (

@@ -6,7 +6,7 @@
 **     Component   : InternalI2C
 **     Version     : Component 01.287, Driver 01.22, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
 **     Abstract    :
 **          This component encapsulates the internal I2C communication 
 **          interface. The implementation of the interface is based 
@@ -30,11 +30,11 @@
 **         Protocol
 **             Mode                    : MASTER
 **             Auto stop condition     : yes
-**             SCL frequency           : 78.125 kHz
+**             SCL frequency           : 86.806 kHz
 **
 **         Initialization
 **
-**             Target slave address    : 8
+**             Target slave address    : 69
 **             Component init          : Enabled
 **             Events                  : Enabled
 **
@@ -564,9 +564,9 @@ void CI2C1_Init(void)
   /* IIC0IBCR: IBEN=0,IBIE=0,MS_SL=0,TX_RX=0,TXAK=0,RSTA=0,??=0,IBSWAI=0 */
   IIC0IBCR = 0U;                       /* Clear control register */
   CI2C1_SerFlag = 0x80U;               /* Reset all flags */
-  CI2C1_SlaveAddr = 0x10U;             /* Set variable for slave address */
-  /* IIC0IBFD: IBC7=1,IBC6=0,IBC5=0,IBC4=0,IBC3=0,IBC2=0,IBC1=0,IBC0=0 */
-  IIC0IBFD = 0x80U;                    /* Set prescaler bits */
+  CI2C1_SlaveAddr = 0x8AU;             /* Set variable for slave address */
+  /* IIC0IBFD: IBC7=1,IBC6=0,IBC5=0,IBC4=0,IBC3=1,IBC2=0,IBC1=1,IBC0=0 */
+  IIC0IBFD = 0x8AU;                    /* Set prescaler bits */
   IIC0IBCR_IBEN = 1U;                  /* Enable device */
 }
 

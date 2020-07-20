@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -18,6 +18,7 @@
 **         DisableInt  - void Cpu_DisableInt(void);
 **         SetWaitMode - void Cpu_SetWaitMode(void);
 **         SetStopMode - void Cpu_SetStopMode(void);
+**         Delay100US  - void Cpu_Delay100US(word us100);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -79,9 +80,9 @@
 
 #pragma DATA_SEG DEFAULT               /* Select data segment "DEFAULT" */
 
-#define CPU_BUS_CLK_HZ              0x005F5E10UL /* Initial value of the bus clock frequency in Hz */
+#define CPU_BUS_CLK_HZ              0x00BEBC20UL /* Initial value of the bus clock frequency in Hz */
 
-#define CPU_INSTR_CLK_HZ            0x005F5E10UL /* Initial value of the instruction clock frequency in Hz */
+#define CPU_INSTR_CLK_HZ            0x00BEBC20UL /* Initial value of the instruction clock frequency in Hz */
 
 #define CPU_INT_CLK_HZ              0x000F4240UL /* Value of the internal oscillator clock frequency in Hz */
 
@@ -111,6 +112,26 @@ void _EntryPoint(void);
 */
 
 /* Interrupt routine(s) prototypes */
+
+void Cpu_Delay100US(word us100);
+/*
+** ===================================================================
+**     Method      :  Cpu_Delay100US (component MC9S12ZVLS32_32)
+**     Description :
+**         This method realizes software delay. The length of delay
+**         is at least 100 microsecond multiply input parameter
+**         [us100]. As the delay implementation is not based on real
+**         clock, the delay time may be increased by interrupt
+**         service routines processed during the delay. The method
+**         is independent on selected speed mode.
+**     Parameters  :
+**         NAME            - DESCRIPTION
+**         us100           - Number of 100 us delay repetitions.
+**                         - The value of zero results in maximal 
+**                           delay of approx. 6.5 seconds.
+**     Returns     : Nothing
+** ===================================================================
+*/
 
 /* Forward declaration of the default interrupt routine(s) */
 __interrupt void Cpu_Interrupt(void);

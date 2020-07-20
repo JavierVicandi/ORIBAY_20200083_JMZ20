@@ -6,7 +6,7 @@
 **     Component   : SW_I2C
 **     Version     : Component 01.121, Driver 03.31, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-15, 18:52, # CodeGen: 5
 **     Abstract    :
 **         This device "SW_I2C" implements an external I2C
 **         communication interface. It uses two general-purpose
@@ -41,7 +41,7 @@
 **
 **         Initialization
 **
-**             Slave address           : 8
+**             Slave address           : 68
 **             Component function      : Enabled
 **             Events                  : Enabled
 **     Contents    :
@@ -137,15 +137,17 @@ static void Delay(void)
      
     /*
      * Delay
-     *   - requested                  : 1250 ns @ 6.25MHz,
-     *   - possible                   : 8 c, 1280 ns, delta 30 ns
-     *   - without removable overhead : 2.5 c, 400 ns
+     *   - requested                  : 1250 ns @ 12.5MHz,
+     *   - possible                   : 16 c, 1280 ns, delta 30 ns
+     *   - without removable overhead : 10.5 c, 840 ns
      */
-    LD D6,#0x0001                      /* (1_5 c: 240 ns) number of iterations */
+    LD D6,#0x0002                      /* (1_5 c: 120 ns) number of iterations */
 label0:
-    DEC D6                             /* (1 c: 160 ns) decrement d1 */
-    BNE label0                         /* (4 c: 640 ns) repeat 1x */
-    NOP                                /* (1 c: 160 ns) wait for 1 c */
+    DEC D6                             /* (1 c: 80 ns) decrement d1 */
+    BNE label0                         /* (4 c: 320 ns) repeat 2x */
+    NOP                                /* (1 c: 80 ns) wait for 1 c */
+    NOP                                /* (1 c: 80 ns) wait for 1 c */
+    NOP                                /* (1 c: 80 ns) wait for 1 c */
   }
 }
 /*lint -restore Enable MISRA rule (1.1) checking. */
@@ -163,7 +165,7 @@ label0:
 */
 void EI2C1_Init(void)
 {
-  SlaveAddr = 0x10U;
+  SlaveAddr = 0x88U;
 }
 
 /*
