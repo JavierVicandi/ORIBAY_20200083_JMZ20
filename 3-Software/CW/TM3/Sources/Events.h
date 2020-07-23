@@ -38,6 +38,13 @@
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
+#include "Vsci0.h"
+#include "Vtim0ch2.h"
+#include "TEST_IN_4.h"
+#include "TEST_IN_0_3.h"
+#include "TEST_OUT.h"
+#include "LINPHY0.h"
+#include "TI1.h"
 
 #pragma CODE_SEG DEFAULT
 
@@ -87,6 +94,22 @@ void EI2C1_OnNACK(void);
 **         successful. In the SLAVE mode, this event is called when a
 **         master sends an acknowledgement instead of no
 **         acknowledgement at the end of the last byte transfer.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void TI1_OnInterrupt(void);
+/*
+** ===================================================================
+**     Event       :  TI1_OnInterrupt (module Events)
+**
+**     Component   :  TI1 [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================

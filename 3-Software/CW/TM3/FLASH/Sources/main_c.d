@@ -8,4 +8,10 @@ Sources/main_c.obj: C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_mo
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\CI2C1.h \
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\EI2C1.h \
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\DataPin1.h \
-	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\ClockPin1.h 
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\ClockPin1.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\Vsci0.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\Vtim0ch2.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\TEST_IN_4.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\TEST_IN_0_3.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\TEST_OUT.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\LINPHY0.h 

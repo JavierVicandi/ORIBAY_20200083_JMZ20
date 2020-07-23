@@ -5,7 +5,7 @@
 **     Processor   : MC9S12ZVLS16MFM
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-23, 20:14, # CodeGen: 12
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -59,6 +59,13 @@
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
+#include "Vsci0.h"
+#include "Vtim0ch2.h"
+#include "TEST_IN_4.h"
+#include "TEST_IN_0_3.h"
+#include "TEST_OUT.h"
+#include "LINPHY0.h"
+#include "TI1.h"
 
 /* ISR prototype */
 typedef void (*const tIsrFunc)(void);
@@ -112,7 +119,7 @@ const InterruptTableEntry _InterruptVectorTable[123] @0x00FFFE10U = { /* Interru
   _VECTOR(Cpu_Interrupt),               /* 0x28  0x00FFFEA0   1   ivVReserved87        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x29  0x00FFFEA4   1   ivVReserved86        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x2A  0x00FFFEA8   1   ivVtim1ch1           unused by PE */
-  _VECTOR(Cpu_Interrupt),               /* 0x2B  0x00FFFEAC   1   ivVtim1ch0           unused by PE */
+  _VECTOR(TI1_Interrupt),               /* 0x2B  0x00FFFEAC   4   ivVtim1ch0           used by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x2C  0x00FFFEB0   1   ivVReserved83        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x2D  0x00FFFEB4   1   ivVReserved82        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x2E  0x00FFFEB8   1   ivVReserved81        unused by PE */
@@ -150,7 +157,7 @@ const InterruptTableEntry _InterruptVectorTable[123] @0x00FFFE10U = { /* Interru
   _VECTOR(Cpu_Interrupt),               /* 0x4E  0x00FFFF38   1   ivVReserved49        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x4F  0x00FFFF3C   1   ivVReserved48        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x50  0x00FFFF40   1   ivVbats              unused by PE */
-  _VECTOR(Cpu_Interrupt),               /* 0x51  0x00FFFF44   1   ivVlinphy0           unused by PE */
+  _VECTOR(LinPhy_ISR),                  /* 0x51  0x00FFFF44   1   ivVlinphy0           used by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x52  0x00FFFF48   1   ivVReserved45        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x53  0x00FFFF4C   1   ivVReserved44        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x54  0x00FFFF50   1   ivVReserved43        unused by PE */
@@ -172,7 +179,7 @@ const InterruptTableEntry _InterruptVectorTable[123] @0x00FFFE10U = { /* Interru
   _VECTOR(Cpu_Interrupt),               /* 0x64  0x00FFFF90   1   ivVReserved27        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x65  0x00FFFF94   1   ivVReserved26        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x66  0x00FFFF98   1   ivVsci1              unused by PE */
-  _VECTOR(Cpu_Interrupt),               /* 0x67  0x00FFFF9C   1   ivVsci0              unused by PE */
+  _VECTOR(SCI0_INT),                    /* 0x67  0x00FFFF9C   4   ivVsci0              used by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x68  0x00FFFFA0   1   ivVspi0              unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x69  0x00FFFFA4   1   ivVReserved22        unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x6A  0x00FFFFA8   1   ivVReserved21        unused by PE */
@@ -182,7 +189,7 @@ const InterruptTableEntry _InterruptVectorTable[123] @0x00FFFE10U = { /* Interru
   _VECTOR(Cpu_Interrupt),               /* 0x6E  0x00FFFFB8   1   ivVtim0ch5           unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x6F  0x00FFFFBC   1   ivVtim0ch4           unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x70  0x00FFFFC0   1   ivVtim0ch3           unused by PE */
-  _VECTOR(Cpu_Interrupt),               /* 0x71  0x00FFFFC4   1   ivVtim0ch2           unused by PE */
+  _VECTOR(TIMchan2_ISR),                /* 0x71  0x00FFFFC4   4   ivVtim0ch2           used by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x72  0x00FFFFC8   1   ivVtim0ch1           unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x73  0x00FFFFCC   1   ivVtim0ch0           unused by PE */
   _VECTOR(Cpu_Interrupt),               /* 0x74  0x00FFFFD0   1   ivVrti               unused by PE */

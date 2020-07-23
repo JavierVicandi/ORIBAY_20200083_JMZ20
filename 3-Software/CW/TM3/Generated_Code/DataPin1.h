@@ -6,7 +6,7 @@
 **     Component   : BitIO
 **     Version     : Component 02.086, Driver 03.00, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-23, 19:06, # CodeGen: 9
 **     Abstract    :
 **         This component "BitIO" implements an one-bit input/output.
 **         It uses one bit/pin of a port.
@@ -18,13 +18,13 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       25            |  PP3_IRQ_KWP3_PWM3
+**                       28            |  PP7_KWP7_PWM7_IOC1_0
 **             ----------------------------------------------------
 **
 **         Port name                   : P
 **
-**         Bit number (in port)        : 3
-**         Bit mask of the port        : 0x0008
+**         Bit number (in port)        : 7
+**         Bit mask of the port        : 0x0080
 **
 **         Initial direction           : Input (direction can be changed)
 **         Safe mode                   : no
@@ -117,7 +117,7 @@
 ** ===================================================================
 */
 #define DataPin1_GetVal() ( \
-    (bool)((getReg8(PTP) & 0x08U))     /* Return port data */ \
+    (bool)((getReg8(PTP) & 0x80U))     /* Return port data */ \
   )
 
 /*
@@ -132,7 +132,7 @@
 ** ===================================================================
 */
 #define DataPin1_ClrVal() ( \
-    (void)clrReg8Bits(PTP, 0x08U)      /* PTP3=0x00U */ \
+    (void)clrReg8Bits(PTP, 0x80U)      /* PTP7=0x00U */ \
   )
 
 /*
@@ -147,7 +147,7 @@
 ** ===================================================================
 */
 #define DataPin1_SetVal() ( \
-    (void)setReg8Bits(PTP, 0x08U)      /* PTP3=0x01U */ \
+    (void)setReg8Bits(PTP, 0x80U)      /* PTP7=0x01U */ \
   )
 
 /*

@@ -33,6 +33,13 @@
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
+#include "Vsci0.h"
+#include "Vtim0ch2.h"
+#include "TEST_IN_4.h"
+#include "TEST_IN_0_3.h"
+#include "TEST_OUT.h"
+#include "LINPHY0.h"
+#include "TI1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -51,6 +58,18 @@ void main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
+	
+	l_sys_init();
+	l_ifc_init(LI0);
+
+	for(;;){
+		
+		
+		
+		
+		
+	}
+
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/

@@ -1,3 +1,4 @@
+-B
 -M
 "$(ProjDirPath)/Project_Settings/Linker_Files/ProcessorExpert.prm"
 -ViewHidden
@@ -30,5 +31,11 @@
 "$(ProjDirPath)/FLASH/Generated_Code/DataPin1_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/EI2C1_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/IO_Map_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/LINPHY0_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/TEST_IN_0_3_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/TEST_IN_4_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/TEST_OUT_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Vectors_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/Vsci0_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/Vtim0ch2_c.obj"
 "$(MCUToolsBaseDirEnv)/S12lisa_Support/s12lisac/lib_small/ansii.lib" )

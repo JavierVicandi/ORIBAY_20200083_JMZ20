@@ -6,7 +6,7 @@
 **     Component   : SW_I2C
 **     Version     : Component 01.121, Driver 03.31, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-15, 18:52, # CodeGen: 5
+**     Date/Time   : 2020-07-23, 19:06, # CodeGen: 9
 **     Abstract    :
 **         This device "SW_I2C" implements an external I2C
 **         communication interface. It uses two general-purpose
@@ -23,7 +23,7 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       25            |  PP3_IRQ_KWP3_PWM3
+**                       28            |  PP7_KWP7_PWM7_IOC1_0
 **             ----------------------------------------------------
 **
 **

@@ -6,7 +6,7 @@
 **     Component   : BitIO
 **     Version     : Component 02.086, Driver 03.00, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-23, 19:06, # CodeGen: 9
 **     Abstract    :
 **         This component "BitIO" implements an one-bit input/output.
 **         It uses one bit/pin of a port.
@@ -18,13 +18,13 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       25            |  PP3_IRQ_KWP3_PWM3
+**                       28            |  PP7_KWP7_PWM7_IOC1_0
 **             ----------------------------------------------------
 **
 **         Port name                   : P
 **
-**         Bit number (in port)        : 3
-**         Bit mask of the port        : 0x0008
+**         Bit number (in port)        : 7
+**         Bit mask of the port        : 0x0080
 **
 **         Initial direction           : Input (direction can be changed)
 **         Safe mode                   : no
@@ -171,9 +171,9 @@ void DataPin1_SetVal(void)
 void DataPin1_SetDir(bool Dir)
 {
   if (Dir) {
-    setReg8Bits(DDRP, 0x08U);          /* DDRP3=0x01U */
+    setReg8Bits(DDRP, 0x80U);          /* DDRP7=0x01U */
   } else { /* !Dir */
-    clrReg8Bits(DDRP, 0x08U);          /* DDRP3=0x00U */
+    clrReg8Bits(DDRP, 0x80U);          /* DDRP7=0x00U */
   } /* !Dir */
 }
 

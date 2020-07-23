@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
+**     Date/Time   : 2020-07-23, 19:06, # CodeGen: 9
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -95,6 +95,10 @@
 /* Global variables */
 
 extern volatile byte CCR_reg;          /* Current CCR reegister */
+/*Shadow variables*/
+
+extern byte Shadow_P;                  /* Shadow variable for I/O components */
+
 /* Entry point routine(s) prototypes */
 
 #pragma CODE_SEG __NEAR_SEG NON_BANKED

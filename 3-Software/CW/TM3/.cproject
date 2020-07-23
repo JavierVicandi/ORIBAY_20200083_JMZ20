@@ -40,6 +40,7 @@
 									<listOptionValue builtIn="false" value="1100"/>
 									<listOptionValue builtIn="false" value="1912"/>
 								</option>
+								<option id="com.freescale.s12z.toolchain.linker.output.b.1907012635" superClass="com.freescale.s12z.toolchain.linker.output.b" value="true" valueType="boolean"/>
 								<inputType id="com.freescale.s12z.toolchain.linker.inputType.889101299" name="S12Z Linker Input" superClass="com.freescale.s12z.toolchain.linker.inputType">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -69,7 +70,7 @@
 								<option id="com.freescale.s12z.toolchain.compiler.msgs.msgStyle.1616551356" name="Message Style" superClass="com.freescale.s12z.toolchain.compiler.msgs.msgStyle" value="com.freescale.s12z.toolchain.compiler.msgs.msgStyle.parseable" valueType="enumerated"/>
 								<option id="com.freescale.s12z.toolchain.compiler.warnings.warningsFlag.hidden.adjusted.1577405295.adjusted.2107235010" superClass="com.freescale.s12z.toolchain.compiler.warnings.warningsFlag.hidden.adjusted.1577405295" value="false" valueType="boolean"/>
 								<option id="com.freescale.s12z.toolchain.compiler.warnings.enableWarnings.hidden.adjusted.349321733.adjusted.1942357254" superClass="com.freescale.s12z.toolchain.compiler.warnings.enableWarnings.hidden.adjusted.349321733" value="com.freescale.s12z.toolchain.warnings.enableWarnings.custom.hidden" valueType="enumerated"/>
-								<option id="com.freescale.s12z.toolchain.compiler.warnings.warnIllPragma.414297397" superClass="com.freescale.s12z.toolchain.compiler.warnings.warnIllPragma" value="false" valueType="boolean"/>
+								<option id="com.freescale.s12z.toolchain.compiler.warnings.warnIllPragma.414297397" name="Illegal #pragmas (most)" superClass="com.freescale.s12z.toolchain.compiler.warnings.warnIllPragma" value="false" valueType="boolean"/>
 								<inputType id="com.freescale.s12z.toolchain.compiler.inputType2.c.1501656936" name="S12Z C Compiler Input" superClass="com.freescale.s12z.toolchain.compiler.inputType2.c"/>
 								<inputType id="com.freescale.s12z.toolchain.compiler.inputType2.cpp.180530799" name="S12Z C++ Compiler Input" superClass="com.freescale.s12z.toolchain.compiler.inputType2.cpp"/>
 							</tool>

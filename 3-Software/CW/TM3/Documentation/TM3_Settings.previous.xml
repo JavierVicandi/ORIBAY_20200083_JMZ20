@@ -338,7 +338,7 @@ asm(BGND);
         <Template v="InOutPin" />
         <Properties>
           <Component_name v="DataPin1" />
-          <Pin_for_I_O v="PP3_IRQ_KWP3_PWM3" />
+          <Pin_for_I_O v="PP7_KWP7_PWM7_IOC1_0" />
           <Pull_resistor sel_value="pull up">
             
 pull up or no pull
@@ -346,7 +346,7 @@ pull up or no pull
             <EmptySection_DummyValue />
           </Pull_resistor>
           <Open_drain v="push-pull" />
-          <Reduced_drive_for_PP3 v="no" />
+          <Reduced_drive_for_PP7 v="no" />
           <Direction v="Input/Output" />
           <group name="Initialization">
             <Init__direction v="Input" />
@@ -417,7 +417,7 @@ pull up or no pull
       <Automatic_stop_condition v="no" />
       <Acknowledge_polling_trials v="2000" />
       <group name="Initialization">
-        <Slave_address_init v="8" />
+        <Slave_address_init v="68" />
         <Enabled_in_init__code v="yes" />
         <Events_enabled_in_init_ v="yes" />
       </group>
@@ -458,6 +458,226 @@ pull up or no pull
       <event name="OnNACK" v="generate code">
         <Event_procedure_name v="EI2C1_OnNACK" />
       </event>
+    </Events>
+  </Bean>
+  <Bean name="Vsci0" type="InterruptVector">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="Vsci0" />
+      <Interrupt_vector v="Vsci0" />
+      <Interrupt_priority v="medium priority" />
+      <boolgroup name="Shared interrupt" v="no" />
+      <ISR_name v="SCI0_INT" />
+      <Allow_duplicate_ISR_names v="no" />
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="Vtim0ch2" type="InterruptVector">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="Vtim0ch2" />
+      <Interrupt_vector v="Vtim0ch2" />
+      <Interrupt_priority v="medium priority" />
+      <boolgroup name="Shared interrupt" v="no" />
+      <ISR_name v="TIMchan2_ISR" />
+      <Allow_duplicate_ISR_names v="no" />
+    </Properties>
+    <Methods>
+      <EmptySection_DummyValue />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="TEST_IN_4" type="BitIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="TEST_IN_4" />
+      <Pin_for_I_O v="PL0_HVI0_KWL0" />
+      <Pull_resistor sel_value="pull up">
+        
+autoselected pull
+
+        <EmptySection_DummyValue />
+      </Pull_resistor>
+      <Open_drain sel_value="The settings is irrelevant for input direction">
+        
+push-pull
+
+        <EmptySection_DummyValue />
+      </Open_drain>
+      <Direction v="Input" />
+      <group name="Initialization">
+        <Init__direction v="Input" />
+        <Init__value v="0" />
+      </group>
+      <Safe_mode v="yes" />
+      <Optimization_for v="speed" />
+    </Properties>
+    <Methods>
+      <GetDir v="don&amp;apos;t generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="don&amp;apos;t generate code" />
+      <ClrVal v="don&amp;apos;t generate code" />
+      <SetVal v="don&amp;apos;t generate code" />
+      <NegVal v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="TEST_IN_0_3" type="BitsIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="TEST_IN_0_3" />
+      <Port v="S" />
+      <list name="Pins" v="4">
+        <group name="Pin0">
+          <Pin v="PS0_KWS0_MISO0_PWM4_RXD0_IOC0_2" />
+        </group>
+        <group name="Pin1">
+          <Pin v="PS1_KWS1_MOSI0_PWM6_TXD0_LPDC0_IOC0_3" />
+        </group>
+        <group name="Pin2">
+          <Pin v="PS2_KWS2_SCK0_IOC0_4_DBGEEV" />
+        </group>
+        <group name="Pin3">
+          <Pin v="PS3_KWS3_SS0_IOC0_5_ECLK" />
+        </group>
+      </list>
+      <Pull_resistor sel_value="no pull resistor">
+        
+autoselected pull
+
+        <EmptySection_DummyValue />
+      </Pull_resistor>
+      <Open_drain sel_value="The settings is irrelevant for input direction">
+        
+push-pull
+
+        <EmptySection_DummyValue />
+      </Open_drain>
+      <Direction v="Input" />
+      <group name="Initialization">
+        <Init__direction v="Input" />
+        <Init__value v="0" />
+      </group>
+      <Safe_mode v="yes" />
+      <Optimization_for v="speed" />
+    </Properties>
+    <Methods>
+      <GetDir v="generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="don&amp;apos;t generate code" />
+      <GetBit v="generate code" />
+      <PutBit v="don&amp;apos;t generate code" />
+      <SetBit v="don&amp;apos;t generate code" />
+      <ClrBit v="don&amp;apos;t generate code" />
+      <NegBit v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
+      <GetRawBit v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="TEST_OUT" type="BitIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="TEST_OUT" />
+      <Pin_for_I_O v="PP3_IRQ_KWP3_PWM3" />
+      <Pull_resistor sel_value="no pull resistor">
+        
+autoselected pull
+
+        <EmptySection_DummyValue />
+      </Pull_resistor>
+      <Open_drain v="push-pull" />
+      <Reduced_drive_for_PP3 v="no" />
+      <Direction v="Input/Output" />
+      <group name="Initialization">
+        <Init__direction v="Output" />
+        <Init__value v="0" />
+      </group>
+      <Safe_mode v="yes" />
+      <Optimization_for v="speed" />
+    </Properties>
+    <Methods>
+      <GetDir v="don&amp;apos;t generate code" />
+      <SetDir v="generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="generate code" />
+      <ClrVal v="generate code" />
+      <SetVal v="generate code" />
+      <NegVal v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="LINPHY0" type="Init_LINPHY">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="LINPHY0" />
+      <Device v="LINPHY0" />
+      <group name="Settings">
+        <Slew_rate v="Normal" />
+        <Rx_only_mode v="Disabled" />
+        <Wake_up v="Disabled" />
+        <Pull_up v="Strong (34k)" />
+        <TxD_dominant_timeout v="Enabled" />
+      </group>
+      <group name="Pins/Signals">
+        <group name="LIN Bus">
+          <Pin v="LIN" />
+        </group>
+        <group name="LIN GND">
+          <Pin v="LGND" />
+        </group>
+        <boolgroup name="Tx Input" v="Enabled">
+          <Pin v="LIN_TXD_to_SCI0TXD" />
+          <boolgroup name="Tx Probe Output" v="Disabled" />
+        </boolgroup>
+        <group name="Rx Output">
+          <boolgroup name="Output 0" v="Enabled">
+            <Pin_0 v="LIN_RXD_to_SCI0RXD" />
+          </boolgroup>
+          <boolgroup name="Output 1" v="Disabled" />
+        </group>
+      </group>
+      <group name="Interrupts">
+        <Interrupt v="Vlinphy0" />
+        <Interrupt_priority v="1" />
+        <Over_current_interrupt v="Disabled" />
+        <TxD_dominant_timeout_interrupt v="Disabled" />
+        <ISR_Name v="LinPhy_ISR" />
+      </group>
+      <group name="Initialization">
+        <Enable_LINPHY v="yes" />
+        <Init_state_of_Tx_SW_control v="1" />
+        <Call_Init_method v="yes" />
+      </group>
+    </Properties>
+    <Methods>
+      <Init v="generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
     </Events>
   </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>

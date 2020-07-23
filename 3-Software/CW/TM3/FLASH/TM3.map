@@ -27,6 +27,7 @@ CI2C1_c.obj                             Model: SMALL,         Lang: ANSI-C,     
 Cpu_c.obj                               Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 EI2C1_c.obj                             Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 IO_Map_c.obj                            Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+LINPHY0_c.obj                           Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 Vectors_c.obj                           Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 
 *********************************************************************************************
@@ -36,8 +37,8 @@ Entry point: 0xFFC003 (_EntryPoint)
 _startupData is allocated at 0xFFC061 and uses 20 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x1000     124
-  _Copy    *toCopyDownBeg 0xFFD629
+  _Range   pZeroOut       0x1000     125
+  _Copy    *toCopyDownBeg 0xFFD6ED
   int      nofInitBodies  0
   _Cpp     *initBodies    0xFFC07C
   int      nofFiniBodies  0
@@ -51,295 +52,293 @@ Section Name                    Size  Type     From       To       Segment
 .init                             97     R   0xFFC000   0xFFC060   ROM
 .startData                        27     R   0xFFC061   0xFFC07B   ROM
 .rodata                          120     R   0xFFC07C   0xFFC0F3   ROM
-.text                           5409     R   0xFFC0F4   0xFFD614   ROM
-.copy                             37     R   0xFFD629   0xFFD64D   ROM
+.text                           5545     R   0xFFC0F4   0xFFD69C   ROM
+.copy                             37     R   0xFFD6ED   0xFFD711   ROM
 .data                             34   R/W     0x1000     0x1021   RAM
-.__absdata___vector_24_SCI0_INT____          3     R   0xFFFF9D   0xFFFF9F   .absSeg0
-.__absdata___vector_14_TIMchan2_ISR____          3     R   0xFFFFC5   0xFFFFC7   .absSeg1
-.__absdata___vector_46_LinPhy_ISR____          3     R   0xFFFF45   0xFFFF47   .absSeg2
-.__absdata_ADC0RBP__               3   N/I      0x621      0x623   .absSeg3
-.__absdata_ADC0CBP__               3   N/I      0x61D      0x61F   .absSeg4
-.__absdata_ECCDPTR__               3   N/I      0x3C7      0x3C9   .absSeg5
-.__absdata_DBGDA__                 3   N/I      0x145      0x147   .absSeg6
-.__absdata_DBGBA__                 3   N/I      0x125      0x127   .absSeg7
-.__absdata_DBGAA__                 3   N/I      0x115      0x117   .absSeg8
-.__absdata_MMCPC__                 3   N/I       0x85       0x87   .absSeg9
-.__absdata__ADC0CMD__              4   N/I      0x614      0x617   .absSeg10
-.__absdata__PARTID__               4   N/I        0x0        0x3   .absSeg11
-.__absdata__SPI0DR__               2   N/I      0x784      0x785   .absSeg12
-.__absdata__SCI1BD__               2   N/I      0x710      0x711   .absSeg13
-.__absdata__SCI0BD__               2   N/I      0x700      0x701   .absSeg14
-.__absdata__CPMUIRCTRIM__          2   N/I      0x6D8      0x6D9   .absSeg15
-.__absdata__CPMUAPIR__             2   N/I      0x6D4      0x6D5   .absSeg16
-.__absdata__ADC0IMDRI__            2   N/I      0x60E      0x60F   .absSeg17
-.__absdata__ADC0CONIF__            2   N/I      0x60C      0x60D   .absSeg18
-.__absdata__ADC0CONIE__            2   N/I      0x60A      0x60B   .absSeg19
-.__absdata__ADC0CTL__              2   N/I      0x600      0x601   .absSeg20
-.__absdata__TIM0TC5__              2   N/I      0x5DA      0x5DB   .absSeg21
-.__absdata__TIM0TC4__              2   N/I      0x5D8      0x5D9   .absSeg22
-.__absdata__TIM0TC3__              2   N/I      0x5D6      0x5D7   .absSeg23
-.__absdata__TIM0TC2__              2   N/I      0x5D4      0x5D5   .absSeg24
-.__absdata__TIM0TC1__              2   N/I      0x5D2      0x5D3   .absSeg25
-.__absdata__TIM0TC0__              2   N/I      0x5D0      0x5D1   .absSeg26
-.__absdata__TIM0TCNT__             2   N/I      0x5C4      0x5C5   .absSeg27
-.__absdata__PWMDTY67__             2   N/I      0x4A2      0x4A3   .absSeg28
-.__absdata__PWMDTY45__             2   N/I      0x4A0      0x4A1   .absSeg29
-.__absdata__PWMDTY23__             2   N/I      0x49E      0x49F   .absSeg30
-.__absdata__PWMDTY01__             2   N/I      0x49C      0x49D   .absSeg31
-.__absdata__PWMPER67__             2   N/I      0x49A      0x49B   .absSeg32
-.__absdata__PWMPER45__             2   N/I      0x498      0x499   .absSeg33
-.__absdata__PWMPER23__             2   N/I      0x496      0x497   .absSeg34
-.__absdata__PWMPER01__             2   N/I      0x494      0x495   .absSeg35
-.__absdata__PWMCNT67__             2   N/I      0x492      0x493   .absSeg36
-.__absdata__PWMCNT45__             2   N/I      0x490      0x491   .absSeg37
-.__absdata__PWMCNT23__             2   N/I      0x48E      0x48F   .absSeg38
-.__absdata__PWMCNT01__             2   N/I      0x48C      0x48D   .absSeg39
-.__absdata__TIM1TC1__              2   N/I      0x412      0x413   .absSeg40
-.__absdata__TIM1TC0__              2   N/I      0x410      0x411   .absSeg41
-.__absdata__TIM1TCNT__             2   N/I      0x404      0x405   .absSeg42
-.__absdata__ECCDD__                2   N/I      0x3CC      0x3CD   .absSeg43
-.__absdata__FCCOB5__               2   N/I      0x396      0x397   .absSeg44
-.__absdata__FCCOB4__               2   N/I      0x394      0x395   .absSeg45
-.__absdata__FCCOB3__               2   N/I      0x392      0x393   .absSeg46
-.__absdata__FCCOB2__               2   N/I      0x390      0x391   .absSeg47
-.__absdata__FCCOB1__               2   N/I      0x38E      0x38F   .absSeg48
-.__absdata__FCCOB0__               2   N/I      0x38C      0x38D   .absSeg49
-.__absdata__DIENAD__               2   N/I      0x298      0x299   .absSeg50
-.__absdata__PIFAD__                2   N/I      0x28E      0x28F   .absSeg51
-.__absdata__PIEAD__                2   N/I      0x28C      0x28D   .absSeg52
-.__absdata__PPSAD__                2   N/I      0x288      0x289   .absSeg53
-.__absdata__PERAD__                2   N/I      0x286      0x287   .absSeg54
-.__absdata__DDRAD__                2   N/I      0x284      0x285   .absSeg55
-.__absdata__PTIAD__                2   N/I      0x282      0x283   .absSeg56
-.__absdata__PTAD__                 2   N/I      0x280      0x281   .absSeg57
-.__absdata__MMCCCR__               2   N/I       0x82       0x83   .absSeg58
-.__absdata__MMCEC__                2   N/I       0x80       0x81   .absSeg59
-.__absdata__IVBR__                 2   N/I       0x10       0x11   .absSeg60
-.__absdata__LP0IF__                1   N/I      0x987      0x987   .absSeg61
-.__absdata__LP0IE__                1   N/I      0x986      0x986   .absSeg62
-.__absdata__LP0SR__                1   N/I      0x985      0x985   .absSeg63
-.__absdata__LP0SLRM__              1   N/I      0x983      0x983   .absSeg64
-.__absdata__LP0CR__                1   N/I      0x981      0x981   .absSeg65
-.__absdata__LP0DR__                1   N/I      0x980      0x980   .absSeg66
-.__absdata__IIC0IBCR2__            1   N/I      0x7C5      0x7C5   .absSeg67
-.__absdata__IIC0IBDR__             1   N/I      0x7C4      0x7C4   .absSeg68
-.__absdata__IIC0IBSR__             1   N/I      0x7C3      0x7C3   .absSeg69
-.__absdata__IIC0IBCR__             1   N/I      0x7C2      0x7C2   .absSeg70
-.__absdata__IIC0IBFD__             1   N/I      0x7C1      0x7C1   .absSeg71
-.__absdata__IIC0IBAD__             1   N/I      0x7C0      0x7C0   .absSeg72
-.__absdata__SPI0SR__               1   N/I      0x783      0x783   .absSeg73
-.__absdata__SPI0BR__               1   N/I      0x782      0x782   .absSeg74
-.__absdata__SPI0CR2__              1   N/I      0x781      0x781   .absSeg75
-.__absdata__SPI0CR1__              1   N/I      0x780      0x780   .absSeg76
-.__absdata__SCI1DRL__              1   N/I      0x717      0x717   .absSeg77
-.__absdata__SCI1DRH__              1   N/I      0x716      0x716   .absSeg78
-.__absdata__SCI1SR2__              1   N/I      0x715      0x715   .absSeg79
-.__absdata__SCI1SR1__              1   N/I      0x714      0x714   .absSeg80
-.__absdata__SCI1CR2__              1   N/I      0x713      0x713   .absSeg81
-.__absdata__SCI1ACR2__             1   N/I      0x712      0x712   .absSeg82
-.__absdata__SCI0DRL__              1   N/I      0x707      0x707   .absSeg83
-.__absdata__SCI0DRH__              1   N/I      0x706      0x706   .absSeg84
-.__absdata__SCI0SR2__              1   N/I      0x705      0x705   .absSeg85
-.__absdata__SCI0SR1__              1   N/I      0x704      0x704   .absSeg86
-.__absdata__SCI0CR2__              1   N/I      0x703      0x703   .absSeg87
-.__absdata__SCI0ACR2__             1   N/I      0x702      0x702   .absSeg88
-.__absdata__BATIF__                1   N/I      0x6F3      0x6F3   .absSeg89
-.__absdata__BATIE__                1   N/I      0x6F2      0x6F2   .absSeg90
-.__absdata__BATSR__                1   N/I      0x6F1      0x6F1   .absSeg91
-.__absdata__BATE__                 1   N/I      0x6F0      0x6F0   .absSeg92
-.__absdata__CPMUOSC2__             1   N/I      0x6DE      0x6DE   .absSeg93
-.__absdata__CPMUVREGCTL__          1   N/I      0x6DD      0x6DD   .absSeg94
-.__absdata__CPMUPROT__             1   N/I      0x6DB      0x6DB   .absSeg95
-.__absdata__CPMUOSC__              1   N/I      0x6DA      0x6DA   .absSeg96
-.__absdata__CPMUHTTR__             1   N/I      0x6D7      0x6D7   .absSeg97
-.__absdata__CPMUACLKTR__           1   N/I      0x6D3      0x6D3   .absSeg98
-.__absdata__CPMUAPICTL__           1   N/I      0x6D2      0x6D2   .absSeg99
-.__absdata__CPMULVCTL__            1   N/I      0x6D1      0x6D1   .absSeg100
-.__absdata__CPMUHTCTL__            1   N/I      0x6D0      0x6D0   .absSeg101
-.__absdata__CPMUARMCOP__           1   N/I      0x6CF      0x6CF   .absSeg102
-.__absdata__CPMUCOP__              1   N/I      0x6CC      0x6CC   .absSeg103
-.__absdata__CPMURTI__              1   N/I      0x6CB      0x6CB   .absSeg104
-.__absdata__CPMUPLL__              1   N/I      0x6CA      0x6CA   .absSeg105
-.__absdata__CPMUCLKS__             1   N/I      0x6C9      0x6C9   .absSeg106
-.__absdata__CPMUINT__              1   N/I      0x6C8      0x6C8   .absSeg107
-.__absdata__CPMUIFLG__             1   N/I      0x6C7      0x6C7   .absSeg108
-.__absdata__CPMUPOSTDIV__          1   N/I      0x6C6      0x6C6   .absSeg109
-.__absdata__CPMUREFDIV__           1   N/I      0x6C5      0x6C5   .absSeg110
-.__absdata__CPMUSYNR__             1   N/I      0x6C4      0x6C4   .absSeg111
-.__absdata__CPMURFLG__             1   N/I      0x6C3      0x6C3   .absSeg112
-.__absdata__ADC0CROFF1__           1   N/I      0x625      0x625   .absSeg113
-.__absdata__ADC0CROFF0__           1   N/I      0x624      0x624   .absSeg114
-.__absdata__ADC0RBP_2__            1   N/I      0x623      0x623   .absSeg115
-.__absdata__ADC0RBP_1__            1   N/I      0x622      0x622   .absSeg116
-.__absdata__ADC0RBP_0__            1   N/I      0x621      0x621   .absSeg117
-.__absdata__ADC0RIDX__             1   N/I      0x620      0x620   .absSeg118
-.__absdata__ADC0CBP_2__            1   N/I      0x61F      0x61F   .absSeg119
-.__absdata__ADC0CBP_1__            1   N/I      0x61E      0x61E   .absSeg120
-.__absdata__ADC0CBP_0__            1   N/I      0x61D      0x61D   .absSeg121
-.__absdata__ADC0CIDX__             1   N/I      0x61C      0x61C   .absSeg122
-.__absdata__ADC0EOLRI__            1   N/I      0x610      0x610   .absSeg123
-.__absdata__ADC0IF__               1   N/I      0x609      0x609   .absSeg124
-.__absdata__ADC0EIF__              1   N/I      0x608      0x608   .absSeg125
-.__absdata__ADC0IE__               1   N/I      0x607      0x607   .absSeg126
-.__absdata__ADC0EIE__              1   N/I      0x606      0x606   .absSeg127
-.__absdata__ADC0FLWCTL__           1   N/I      0x605      0x605   .absSeg128
-.__absdata__ADC0FMT__              1   N/I      0x604      0x604   .absSeg129
-.__absdata__ADC0TIM__              1   N/I      0x603      0x603   .absSeg130
-.__absdata__ADC0STS__              1   N/I      0x602      0x602   .absSeg131
-.__absdata__TIM0PTPSR__            1   N/I      0x5EE      0x5EE   .absSeg132
-.__absdata__TIM0OCPD__             1   N/I      0x5EC      0x5EC   .absSeg133
-.__absdata__TIM0TFLG2__            1   N/I      0x5CF      0x5CF   .absSeg134
-.__absdata__TIM0TFLG1__            1   N/I      0x5CE      0x5CE   .absSeg135
-.__absdata__TIM0TSCR2__            1   N/I      0x5CD      0x5CD   .absSeg136
-.__absdata__TIM0TIE__              1   N/I      0x5CC      0x5CC   .absSeg137
-.__absdata__TIM0TCTL4__            1   N/I      0x5CB      0x5CB   .absSeg138
-.__absdata__TIM0TCTL3__            1   N/I      0x5CA      0x5CA   .absSeg139
-.__absdata__TIM0TCTL2__            1   N/I      0x5C9      0x5C9   .absSeg140
-.__absdata__TIM0TCTL1__            1   N/I      0x5C8      0x5C8   .absSeg141
-.__absdata__TIM0TTOV__             1   N/I      0x5C7      0x5C7   .absSeg142
-.__absdata__TIM0TSCR1__            1   N/I      0x5C6      0x5C6   .absSeg143
-.__absdata__TIM0CFORC__            1   N/I      0x5C1      0x5C1   .absSeg144
-.__absdata__TIM0TIOS__             1   N/I      0x5C0      0x5C0   .absSeg145
-.__absdata__PWMSCLB__              1   N/I      0x489      0x489   .absSeg146
-.__absdata__PWMSCLA__              1   N/I      0x488      0x488   .absSeg147
-.__absdata__PWMCLKAB__             1   N/I      0x486      0x486   .absSeg148
-.__absdata__PWMCTL__               1   N/I      0x485      0x485   .absSeg149
-.__absdata__PWMCAE__               1   N/I      0x484      0x484   .absSeg150
-.__absdata__PWMPRCLK__             1   N/I      0x483      0x483   .absSeg151
-.__absdata__PWMCLK__               1   N/I      0x482      0x482   .absSeg152
-.__absdata__PWMPOL__               1   N/I      0x481      0x481   .absSeg153
-.__absdata__PWME__                 1   N/I      0x480      0x480   .absSeg154
-.__absdata__TIM1PTPSR__            1   N/I      0x42E      0x42E   .absSeg155
-.__absdata__TIM1OCPD__             1   N/I      0x42C      0x42C   .absSeg156
-.__absdata__TIM1TFLG2__            1   N/I      0x40F      0x40F   .absSeg157
-.__absdata__TIM1TFLG1__            1   N/I      0x40E      0x40E   .absSeg158
-.__absdata__TIM1TSCR2__            1   N/I      0x40D      0x40D   .absSeg159
-.__absdata__TIM1TIE__              1   N/I      0x40C      0x40C   .absSeg160
-.__absdata__TIM1TCTL4__            1   N/I      0x40B      0x40B   .absSeg161
-.__absdata__TIM1TCTL2__            1   N/I      0x409      0x409   .absSeg162
-.__absdata__TIM1TTOV__             1   N/I      0x407      0x407   .absSeg163
-.__absdata__TIM1TSCR1__            1   N/I      0x406      0x406   .absSeg164
-.__absdata__TIM1CFORC__            1   N/I      0x401      0x401   .absSeg165
-.__absdata__TIM1TIOS__             1   N/I      0x400      0x400   .absSeg166
-.__absdata__ECCDCMD__              1   N/I      0x3CF      0x3CF   .absSeg167
-.__absdata__ECCDE__                1   N/I      0x3CE      0x3CE   .absSeg168
-.__absdata__ECCDPTRL__             1   N/I      0x3C9      0x3C9   .absSeg169
-.__absdata__ECCDPTRM__             1   N/I      0x3C8      0x3C8   .absSeg170
-.__absdata__ECCDPTRH__             1   N/I      0x3C7      0x3C7   .absSeg171
-.__absdata__ECCIF__                1   N/I      0x3C2      0x3C2   .absSeg172
-.__absdata__ECCIE__                1   N/I      0x3C1      0x3C1   .absSeg173
-.__absdata__ECCSTAT__              1   N/I      0x3C0      0x3C0   .absSeg174
-.__absdata__FOPT__                 1   N/I      0x38A      0x38A   .absSeg175
-.__absdata__DFPROT__               1   N/I      0x389      0x389   .absSeg176
-.__absdata__FPROT__                1   N/I      0x388      0x388   .absSeg177
-.__absdata__FERSTAT__              1   N/I      0x387      0x387   .absSeg178
-.__absdata__FSTAT__                1   N/I      0x386      0x386   .absSeg179
-.__absdata__FERCNFG__              1   N/I      0x385      0x385   .absSeg180
-.__absdata__FCNFG__                1   N/I      0x384      0x384   .absSeg181
-.__absdata__FPSTAT__               1   N/I      0x383      0x383   .absSeg182
-.__absdata__FCCOBIX__              1   N/I      0x382      0x382   .absSeg183
-.__absdata__FSEC__                 1   N/I      0x381      0x381   .absSeg184
-.__absdata__FCLKDIV__              1   N/I      0x380      0x380   .absSeg185
-.__absdata__PIRL__                 1   N/I      0x33E      0x33E   .absSeg186
-.__absdata__PTAL__                 1   N/I      0x33D      0x33D   .absSeg187
-.__absdata__DIENL__                1   N/I      0x33C      0x33C   .absSeg188
-.__absdata__PIFL__                 1   N/I      0x337      0x337   .absSeg189
-.__absdata__PIEL__                 1   N/I      0x336      0x336   .absSeg190
-.__absdata__PPSL__                 1   N/I      0x334      0x334   .absSeg191
-.__absdata__PTIL__                 1   N/I      0x331      0x331   .absSeg192
-.__absdata__WOMJ__                 1   N/I      0x31F      0x31F   .absSeg193
-.__absdata__PPSJ__                 1   N/I      0x314      0x314   .absSeg194
-.__absdata__PERJ__                 1   N/I      0x313      0x313   .absSeg195
-.__absdata__DDRJ__                 1   N/I      0x312      0x312   .absSeg196
-.__absdata__PTIJ__                 1   N/I      0x311      0x311   .absSeg197
-.__absdata__PTJ__                  1   N/I      0x310      0x310   .absSeg198
-.__absdata__RDRP__                 1   N/I      0x2FD      0x2FD   .absSeg199
-.__absdata__OCIFP__                1   N/I      0x2FB      0x2FB   .absSeg200
-.__absdata__OCIEP__                1   N/I      0x2FA      0x2FA   .absSeg201
-.__absdata__OCPEP__                1   N/I      0x2F9      0x2F9   .absSeg202
-.__absdata__PIFP__                 1   N/I      0x2F7      0x2F7   .absSeg203
-.__absdata__PIEP__                 1   N/I      0x2F6      0x2F6   .absSeg204
-.__absdata__PPSP__                 1   N/I      0x2F4      0x2F4   .absSeg205
-.__absdata__PERP__                 1   N/I      0x2F3      0x2F3   .absSeg206
-.__absdata__DDRP__                 1   N/I      0x2F2      0x2F2   .absSeg207
-.__absdata__PTIP__                 1   N/I      0x2F1      0x2F1   .absSeg208
-.__absdata__PTP__                  1   N/I      0x2F0      0x2F0   .absSeg209
-.__absdata__WOMS__                 1   N/I      0x2DF      0x2DF   .absSeg210
-.__absdata__PIFS__                 1   N/I      0x2D7      0x2D7   .absSeg211
-.__absdata__PIES__                 1   N/I      0x2D6      0x2D6   .absSeg212
-.__absdata__PPSS__                 1   N/I      0x2D4      0x2D4   .absSeg213
-.__absdata__PERS__                 1   N/I      0x2D3      0x2D3   .absSeg214
-.__absdata__DDRS__                 1   N/I      0x2D2      0x2D2   .absSeg215
-.__absdata__PTIS__                 1   N/I      0x2D1      0x2D1   .absSeg216
-.__absdata__PTS__                  1   N/I      0x2D0      0x2D0   .absSeg217
-.__absdata__PPST__                 1   N/I      0x2C4      0x2C4   .absSeg218
-.__absdata__PERT__                 1   N/I      0x2C3      0x2C3   .absSeg219
-.__absdata__DDRT__                 1   N/I      0x2C2      0x2C2   .absSeg220
-.__absdata__PTIT__                 1   N/I      0x2C1      0x2C1   .absSeg221
-.__absdata__PTT__                  1   N/I      0x2C0      0x2C0   .absSeg222
-.__absdata__PPSE__                 1   N/I      0x268      0x268   .absSeg223
-.__absdata__PERE__                 1   N/I      0x266      0x266   .absSeg224
-.__absdata__DDRE__                 1   N/I      0x264      0x264   .absSeg225
-.__absdata__PTIE__                 1   N/I      0x262      0x262   .absSeg226
-.__absdata__PTE__                  1   N/I      0x260      0x260   .absSeg227
-.__absdata__IRQCR__                1   N/I      0x209      0x209   .absSeg228
-.__absdata__ECLKCTL__              1   N/I      0x208      0x208   .absSeg229
-.__absdata__MODRR4__               1   N/I      0x204      0x204   .absSeg230
-.__absdata__MODRR3__               1   N/I      0x203      0x203   .absSeg231
-.__absdata__MODRR2__               1   N/I      0x202      0x202   .absSeg232
-.__absdata__MODRR1__               1   N/I      0x201      0x201   .absSeg233
-.__absdata__MODRR0__               1   N/I      0x200      0x200   .absSeg234
-.__absdata__DBGDAL__               1   N/I      0x147      0x147   .absSeg235
-.__absdata__DBGDAM__               1   N/I      0x146      0x146   .absSeg236
-.__absdata__DBGDAH__               1   N/I      0x145      0x145   .absSeg237
-.__absdata__DBGDCTL__              1   N/I      0x140      0x140   .absSeg238
-.__absdata__DBGBAL__               1   N/I      0x127      0x127   .absSeg239
-.__absdata__DBGBAM__               1   N/I      0x126      0x126   .absSeg240
-.__absdata__DBGBAH__               1   N/I      0x125      0x125   .absSeg241
-.__absdata__DBGBCTL__              1   N/I      0x120      0x120   .absSeg242
-.__absdata__DBGADM3__              1   N/I      0x11F      0x11F   .absSeg243
-.__absdata__DBGADM2__              1   N/I      0x11E      0x11E   .absSeg244
-.__absdata__DBGADM1__              1   N/I      0x11D      0x11D   .absSeg245
-.__absdata__DBGADM0__              1   N/I      0x11C      0x11C   .absSeg246
-.__absdata__DBGAD3__               1   N/I      0x11B      0x11B   .absSeg247
-.__absdata__DBGAD2__               1   N/I      0x11A      0x11A   .absSeg248
-.__absdata__DBGAD1__               1   N/I      0x119      0x119   .absSeg249
-.__absdata__DBGAD0__               1   N/I      0x118      0x118   .absSeg250
-.__absdata__DBGAAL__               1   N/I      0x117      0x117   .absSeg251
-.__absdata__DBGAAM__               1   N/I      0x116      0x116   .absSeg252
-.__absdata__DBGAAH__               1   N/I      0x115      0x115   .absSeg253
-.__absdata__DBGACTL__              1   N/I      0x110      0x110   .absSeg254
-.__absdata__DBGSR__                1   N/I      0x10B      0x10B   .absSeg255
-.__absdata__DBGEFR__               1   N/I      0x10A      0x10A   .absSeg256
-.__absdata__DBGSCR3__              1   N/I      0x109      0x109   .absSeg257
-.__absdata__DBGSCR2__              1   N/I      0x108      0x108   .absSeg258
-.__absdata__DBGSCR1__              1   N/I      0x107      0x107   .absSeg259
-.__absdata__DBGC2__                1   N/I      0x101      0x101   .absSeg260
-.__absdata__DBGC1__                1   N/I      0x100      0x100   .absSeg261
-.__absdata__MMCPCL__               1   N/I       0x87       0x87   .absSeg262
-.__absdata__MMCPCM__               1   N/I       0x86       0x86   .absSeg263
-.__absdata__MMCPCH__               1   N/I       0x85       0x85   .absSeg264
-.__absdata__MODE__                 1   N/I       0x70       0x70   .absSeg265
-.__absdata__INT_CFDATA7__          1   N/I       0x1F       0x1F   .absSeg266
-.__absdata__INT_CFDATA6__          1   N/I       0x1E       0x1E   .absSeg267
-.__absdata__INT_CFDATA5__          1   N/I       0x1D       0x1D   .absSeg268
-.__absdata__INT_CFDATA4__          1   N/I       0x1C       0x1C   .absSeg269
-.__absdata__INT_CFDATA3__          1   N/I       0x1B       0x1B   .absSeg270
-.__absdata__INT_CFDATA2__          1   N/I       0x1A       0x1A   .absSeg271
-.__absdata__INT_CFDATA1__          1   N/I       0x19       0x19   .absSeg272
-.__absdata__INT_CFDATA0__          1   N/I       0x18       0x18   .absSeg273
-.__absdata__INT_CFADDR__           1   N/I       0x17       0x17   .absSeg274
-.__absdata__InterruptVectorTable__        492     R   0xFFFE10   0xFFFFFB   .absSeg275
-.__absdata__ResetVectorTable__          4     R   0xFFFFFC   0xFFFFFF   .absSeg276
+.__absdata_ADC0RBP__               3   N/I      0x621      0x623   .absSeg0
+.__absdata_ADC0CBP__               3   N/I      0x61D      0x61F   .absSeg1
+.__absdata_ECCDPTR__               3   N/I      0x3C7      0x3C9   .absSeg2
+.__absdata_DBGDA__                 3   N/I      0x145      0x147   .absSeg3
+.__absdata_DBGBA__                 3   N/I      0x125      0x127   .absSeg4
+.__absdata_DBGAA__                 3   N/I      0x115      0x117   .absSeg5
+.__absdata_MMCPC__                 3   N/I       0x85       0x87   .absSeg6
+.__absdata__ADC0CMD__              4   N/I      0x614      0x617   .absSeg7
+.__absdata__PARTID__               4   N/I        0x0        0x3   .absSeg8
+.__absdata__SPI0DR__               2   N/I      0x784      0x785   .absSeg9
+.__absdata__SCI1BD__               2   N/I      0x710      0x711   .absSeg10
+.__absdata__SCI0BD__               2   N/I      0x700      0x701   .absSeg11
+.__absdata__CPMUIRCTRIM__          2   N/I      0x6D8      0x6D9   .absSeg12
+.__absdata__CPMUAPIR__             2   N/I      0x6D4      0x6D5   .absSeg13
+.__absdata__ADC0IMDRI__            2   N/I      0x60E      0x60F   .absSeg14
+.__absdata__ADC0CONIF__            2   N/I      0x60C      0x60D   .absSeg15
+.__absdata__ADC0CONIE__            2   N/I      0x60A      0x60B   .absSeg16
+.__absdata__ADC0CTL__              2   N/I      0x600      0x601   .absSeg17
+.__absdata__TIM0TC5__              2   N/I      0x5DA      0x5DB   .absSeg18
+.__absdata__TIM0TC4__              2   N/I      0x5D8      0x5D9   .absSeg19
+.__absdata__TIM0TC3__              2   N/I      0x5D6      0x5D7   .absSeg20
+.__absdata__TIM0TC2__              2   N/I      0x5D4      0x5D5   .absSeg21
+.__absdata__TIM0TC1__              2   N/I      0x5D2      0x5D3   .absSeg22
+.__absdata__TIM0TC0__              2   N/I      0x5D0      0x5D1   .absSeg23
+.__absdata__TIM0TCNT__             2   N/I      0x5C4      0x5C5   .absSeg24
+.__absdata__PWMDTY67__             2   N/I      0x4A2      0x4A3   .absSeg25
+.__absdata__PWMDTY45__             2   N/I      0x4A0      0x4A1   .absSeg26
+.__absdata__PWMDTY23__             2   N/I      0x49E      0x49F   .absSeg27
+.__absdata__PWMDTY01__             2   N/I      0x49C      0x49D   .absSeg28
+.__absdata__PWMPER67__             2   N/I      0x49A      0x49B   .absSeg29
+.__absdata__PWMPER45__             2   N/I      0x498      0x499   .absSeg30
+.__absdata__PWMPER23__             2   N/I      0x496      0x497   .absSeg31
+.__absdata__PWMPER01__             2   N/I      0x494      0x495   .absSeg32
+.__absdata__PWMCNT67__             2   N/I      0x492      0x493   .absSeg33
+.__absdata__PWMCNT45__             2   N/I      0x490      0x491   .absSeg34
+.__absdata__PWMCNT23__             2   N/I      0x48E      0x48F   .absSeg35
+.__absdata__PWMCNT01__             2   N/I      0x48C      0x48D   .absSeg36
+.__absdata__TIM1TC1__              2   N/I      0x412      0x413   .absSeg37
+.__absdata__TIM1TC0__              2   N/I      0x410      0x411   .absSeg38
+.__absdata__TIM1TCNT__             2   N/I      0x404      0x405   .absSeg39
+.__absdata__ECCDD__                2   N/I      0x3CC      0x3CD   .absSeg40
+.__absdata__FCCOB5__               2   N/I      0x396      0x397   .absSeg41
+.__absdata__FCCOB4__               2   N/I      0x394      0x395   .absSeg42
+.__absdata__FCCOB3__               2   N/I      0x392      0x393   .absSeg43
+.__absdata__FCCOB2__               2   N/I      0x390      0x391   .absSeg44
+.__absdata__FCCOB1__               2   N/I      0x38E      0x38F   .absSeg45
+.__absdata__FCCOB0__               2   N/I      0x38C      0x38D   .absSeg46
+.__absdata__DIENAD__               2   N/I      0x298      0x299   .absSeg47
+.__absdata__PIFAD__                2   N/I      0x28E      0x28F   .absSeg48
+.__absdata__PIEAD__                2   N/I      0x28C      0x28D   .absSeg49
+.__absdata__PPSAD__                2   N/I      0x288      0x289   .absSeg50
+.__absdata__PERAD__                2   N/I      0x286      0x287   .absSeg51
+.__absdata__DDRAD__                2   N/I      0x284      0x285   .absSeg52
+.__absdata__PTIAD__                2   N/I      0x282      0x283   .absSeg53
+.__absdata__PTAD__                 2   N/I      0x280      0x281   .absSeg54
+.__absdata__MMCCCR__               2   N/I       0x82       0x83   .absSeg55
+.__absdata__MMCEC__                2   N/I       0x80       0x81   .absSeg56
+.__absdata__IVBR__                 2   N/I       0x10       0x11   .absSeg57
+.__absdata__LP0IF__                1   N/I      0x987      0x987   .absSeg58
+.__absdata__LP0IE__                1   N/I      0x986      0x986   .absSeg59
+.__absdata__LP0SR__                1   N/I      0x985      0x985   .absSeg60
+.__absdata__LP0SLRM__              1   N/I      0x983      0x983   .absSeg61
+.__absdata__LP0CR__                1   N/I      0x981      0x981   .absSeg62
+.__absdata__LP0DR__                1   N/I      0x980      0x980   .absSeg63
+.__absdata__IIC0IBCR2__            1   N/I      0x7C5      0x7C5   .absSeg64
+.__absdata__IIC0IBDR__             1   N/I      0x7C4      0x7C4   .absSeg65
+.__absdata__IIC0IBSR__             1   N/I      0x7C3      0x7C3   .absSeg66
+.__absdata__IIC0IBCR__             1   N/I      0x7C2      0x7C2   .absSeg67
+.__absdata__IIC0IBFD__             1   N/I      0x7C1      0x7C1   .absSeg68
+.__absdata__IIC0IBAD__             1   N/I      0x7C0      0x7C0   .absSeg69
+.__absdata__SPI0SR__               1   N/I      0x783      0x783   .absSeg70
+.__absdata__SPI0BR__               1   N/I      0x782      0x782   .absSeg71
+.__absdata__SPI0CR2__              1   N/I      0x781      0x781   .absSeg72
+.__absdata__SPI0CR1__              1   N/I      0x780      0x780   .absSeg73
+.__absdata__SCI1DRL__              1   N/I      0x717      0x717   .absSeg74
+.__absdata__SCI1DRH__              1   N/I      0x716      0x716   .absSeg75
+.__absdata__SCI1SR2__              1   N/I      0x715      0x715   .absSeg76
+.__absdata__SCI1SR1__              1   N/I      0x714      0x714   .absSeg77
+.__absdata__SCI1CR2__              1   N/I      0x713      0x713   .absSeg78
+.__absdata__SCI1ACR2__             1   N/I      0x712      0x712   .absSeg79
+.__absdata__SCI0DRL__              1   N/I      0x707      0x707   .absSeg80
+.__absdata__SCI0DRH__              1   N/I      0x706      0x706   .absSeg81
+.__absdata__SCI0SR2__              1   N/I      0x705      0x705   .absSeg82
+.__absdata__SCI0SR1__              1   N/I      0x704      0x704   .absSeg83
+.__absdata__SCI0CR2__              1   N/I      0x703      0x703   .absSeg84
+.__absdata__SCI0ACR2__             1   N/I      0x702      0x702   .absSeg85
+.__absdata__BATIF__                1   N/I      0x6F3      0x6F3   .absSeg86
+.__absdata__BATIE__                1   N/I      0x6F2      0x6F2   .absSeg87
+.__absdata__BATSR__                1   N/I      0x6F1      0x6F1   .absSeg88
+.__absdata__BATE__                 1   N/I      0x6F0      0x6F0   .absSeg89
+.__absdata__CPMUOSC2__             1   N/I      0x6DE      0x6DE   .absSeg90
+.__absdata__CPMUVREGCTL__          1   N/I      0x6DD      0x6DD   .absSeg91
+.__absdata__CPMUPROT__             1   N/I      0x6DB      0x6DB   .absSeg92
+.__absdata__CPMUOSC__              1   N/I      0x6DA      0x6DA   .absSeg93
+.__absdata__CPMUHTTR__             1   N/I      0x6D7      0x6D7   .absSeg94
+.__absdata__CPMUACLKTR__           1   N/I      0x6D3      0x6D3   .absSeg95
+.__absdata__CPMUAPICTL__           1   N/I      0x6D2      0x6D2   .absSeg96
+.__absdata__CPMULVCTL__            1   N/I      0x6D1      0x6D1   .absSeg97
+.__absdata__CPMUHTCTL__            1   N/I      0x6D0      0x6D0   .absSeg98
+.__absdata__CPMUARMCOP__           1   N/I      0x6CF      0x6CF   .absSeg99
+.__absdata__CPMUCOP__              1   N/I      0x6CC      0x6CC   .absSeg100
+.__absdata__CPMURTI__              1   N/I      0x6CB      0x6CB   .absSeg101
+.__absdata__CPMUPLL__              1   N/I      0x6CA      0x6CA   .absSeg102
+.__absdata__CPMUCLKS__             1   N/I      0x6C9      0x6C9   .absSeg103
+.__absdata__CPMUINT__              1   N/I      0x6C8      0x6C8   .absSeg104
+.__absdata__CPMUIFLG__             1   N/I      0x6C7      0x6C7   .absSeg105
+.__absdata__CPMUPOSTDIV__          1   N/I      0x6C6      0x6C6   .absSeg106
+.__absdata__CPMUREFDIV__           1   N/I      0x6C5      0x6C5   .absSeg107
+.__absdata__CPMUSYNR__             1   N/I      0x6C4      0x6C4   .absSeg108
+.__absdata__CPMURFLG__             1   N/I      0x6C3      0x6C3   .absSeg109
+.__absdata__ADC0CROFF1__           1   N/I      0x625      0x625   .absSeg110
+.__absdata__ADC0CROFF0__           1   N/I      0x624      0x624   .absSeg111
+.__absdata__ADC0RBP_2__            1   N/I      0x623      0x623   .absSeg112
+.__absdata__ADC0RBP_1__            1   N/I      0x622      0x622   .absSeg113
+.__absdata__ADC0RBP_0__            1   N/I      0x621      0x621   .absSeg114
+.__absdata__ADC0RIDX__             1   N/I      0x620      0x620   .absSeg115
+.__absdata__ADC0CBP_2__            1   N/I      0x61F      0x61F   .absSeg116
+.__absdata__ADC0CBP_1__            1   N/I      0x61E      0x61E   .absSeg117
+.__absdata__ADC0CBP_0__            1   N/I      0x61D      0x61D   .absSeg118
+.__absdata__ADC0CIDX__             1   N/I      0x61C      0x61C   .absSeg119
+.__absdata__ADC0EOLRI__            1   N/I      0x610      0x610   .absSeg120
+.__absdata__ADC0IF__               1   N/I      0x609      0x609   .absSeg121
+.__absdata__ADC0EIF__              1   N/I      0x608      0x608   .absSeg122
+.__absdata__ADC0IE__               1   N/I      0x607      0x607   .absSeg123
+.__absdata__ADC0EIE__              1   N/I      0x606      0x606   .absSeg124
+.__absdata__ADC0FLWCTL__           1   N/I      0x605      0x605   .absSeg125
+.__absdata__ADC0FMT__              1   N/I      0x604      0x604   .absSeg126
+.__absdata__ADC0TIM__              1   N/I      0x603      0x603   .absSeg127
+.__absdata__ADC0STS__              1   N/I      0x602      0x602   .absSeg128
+.__absdata__TIM0PTPSR__            1   N/I      0x5EE      0x5EE   .absSeg129
+.__absdata__TIM0OCPD__             1   N/I      0x5EC      0x5EC   .absSeg130
+.__absdata__TIM0TFLG2__            1   N/I      0x5CF      0x5CF   .absSeg131
+.__absdata__TIM0TFLG1__            1   N/I      0x5CE      0x5CE   .absSeg132
+.__absdata__TIM0TSCR2__            1   N/I      0x5CD      0x5CD   .absSeg133
+.__absdata__TIM0TIE__              1   N/I      0x5CC      0x5CC   .absSeg134
+.__absdata__TIM0TCTL4__            1   N/I      0x5CB      0x5CB   .absSeg135
+.__absdata__TIM0TCTL3__            1   N/I      0x5CA      0x5CA   .absSeg136
+.__absdata__TIM0TCTL2__            1   N/I      0x5C9      0x5C9   .absSeg137
+.__absdata__TIM0TCTL1__            1   N/I      0x5C8      0x5C8   .absSeg138
+.__absdata__TIM0TTOV__             1   N/I      0x5C7      0x5C7   .absSeg139
+.__absdata__TIM0TSCR1__            1   N/I      0x5C6      0x5C6   .absSeg140
+.__absdata__TIM0CFORC__            1   N/I      0x5C1      0x5C1   .absSeg141
+.__absdata__TIM0TIOS__             1   N/I      0x5C0      0x5C0   .absSeg142
+.__absdata__PWMSCLB__              1   N/I      0x489      0x489   .absSeg143
+.__absdata__PWMSCLA__              1   N/I      0x488      0x488   .absSeg144
+.__absdata__PWMCLKAB__             1   N/I      0x486      0x486   .absSeg145
+.__absdata__PWMCTL__               1   N/I      0x485      0x485   .absSeg146
+.__absdata__PWMCAE__               1   N/I      0x484      0x484   .absSeg147
+.__absdata__PWMPRCLK__             1   N/I      0x483      0x483   .absSeg148
+.__absdata__PWMCLK__               1   N/I      0x482      0x482   .absSeg149
+.__absdata__PWMPOL__               1   N/I      0x481      0x481   .absSeg150
+.__absdata__PWME__                 1   N/I      0x480      0x480   .absSeg151
+.__absdata__TIM1PTPSR__            1   N/I      0x42E      0x42E   .absSeg152
+.__absdata__TIM1OCPD__             1   N/I      0x42C      0x42C   .absSeg153
+.__absdata__TIM1TFLG2__            1   N/I      0x40F      0x40F   .absSeg154
+.__absdata__TIM1TFLG1__            1   N/I      0x40E      0x40E   .absSeg155
+.__absdata__TIM1TSCR2__            1   N/I      0x40D      0x40D   .absSeg156
+.__absdata__TIM1TIE__              1   N/I      0x40C      0x40C   .absSeg157
+.__absdata__TIM1TCTL4__            1   N/I      0x40B      0x40B   .absSeg158
+.__absdata__TIM1TCTL2__            1   N/I      0x409      0x409   .absSeg159
+.__absdata__TIM1TTOV__             1   N/I      0x407      0x407   .absSeg160
+.__absdata__TIM1TSCR1__            1   N/I      0x406      0x406   .absSeg161
+.__absdata__TIM1CFORC__            1   N/I      0x401      0x401   .absSeg162
+.__absdata__TIM1TIOS__             1   N/I      0x400      0x400   .absSeg163
+.__absdata__ECCDCMD__              1   N/I      0x3CF      0x3CF   .absSeg164
+.__absdata__ECCDE__                1   N/I      0x3CE      0x3CE   .absSeg165
+.__absdata__ECCDPTRL__             1   N/I      0x3C9      0x3C9   .absSeg166
+.__absdata__ECCDPTRM__             1   N/I      0x3C8      0x3C8   .absSeg167
+.__absdata__ECCDPTRH__             1   N/I      0x3C7      0x3C7   .absSeg168
+.__absdata__ECCIF__                1   N/I      0x3C2      0x3C2   .absSeg169
+.__absdata__ECCIE__                1   N/I      0x3C1      0x3C1   .absSeg170
+.__absdata__ECCSTAT__              1   N/I      0x3C0      0x3C0   .absSeg171
+.__absdata__FOPT__                 1   N/I      0x38A      0x38A   .absSeg172
+.__absdata__DFPROT__               1   N/I      0x389      0x389   .absSeg173
+.__absdata__FPROT__                1   N/I      0x388      0x388   .absSeg174
+.__absdata__FERSTAT__              1   N/I      0x387      0x387   .absSeg175
+.__absdata__FSTAT__                1   N/I      0x386      0x386   .absSeg176
+.__absdata__FERCNFG__              1   N/I      0x385      0x385   .absSeg177
+.__absdata__FCNFG__                1   N/I      0x384      0x384   .absSeg178
+.__absdata__FPSTAT__               1   N/I      0x383      0x383   .absSeg179
+.__absdata__FCCOBIX__              1   N/I      0x382      0x382   .absSeg180
+.__absdata__FSEC__                 1   N/I      0x381      0x381   .absSeg181
+.__absdata__FCLKDIV__              1   N/I      0x380      0x380   .absSeg182
+.__absdata__PIRL__                 1   N/I      0x33E      0x33E   .absSeg183
+.__absdata__PTAL__                 1   N/I      0x33D      0x33D   .absSeg184
+.__absdata__DIENL__                1   N/I      0x33C      0x33C   .absSeg185
+.__absdata__PIFL__                 1   N/I      0x337      0x337   .absSeg186
+.__absdata__PIEL__                 1   N/I      0x336      0x336   .absSeg187
+.__absdata__PPSL__                 1   N/I      0x334      0x334   .absSeg188
+.__absdata__PTIL__                 1   N/I      0x331      0x331   .absSeg189
+.__absdata__WOMJ__                 1   N/I      0x31F      0x31F   .absSeg190
+.__absdata__PPSJ__                 1   N/I      0x314      0x314   .absSeg191
+.__absdata__PERJ__                 1   N/I      0x313      0x313   .absSeg192
+.__absdata__DDRJ__                 1   N/I      0x312      0x312   .absSeg193
+.__absdata__PTIJ__                 1   N/I      0x311      0x311   .absSeg194
+.__absdata__PTJ__                  1   N/I      0x310      0x310   .absSeg195
+.__absdata__RDRP__                 1   N/I      0x2FD      0x2FD   .absSeg196
+.__absdata__OCIFP__                1   N/I      0x2FB      0x2FB   .absSeg197
+.__absdata__OCIEP__                1   N/I      0x2FA      0x2FA   .absSeg198
+.__absdata__OCPEP__                1   N/I      0x2F9      0x2F9   .absSeg199
+.__absdata__PIFP__                 1   N/I      0x2F7      0x2F7   .absSeg200
+.__absdata__PIEP__                 1   N/I      0x2F6      0x2F6   .absSeg201
+.__absdata__PPSP__                 1   N/I      0x2F4      0x2F4   .absSeg202
+.__absdata__PERP__                 1   N/I      0x2F3      0x2F3   .absSeg203
+.__absdata__DDRP__                 1   N/I      0x2F2      0x2F2   .absSeg204
+.__absdata__PTIP__                 1   N/I      0x2F1      0x2F1   .absSeg205
+.__absdata__PTP__                  1   N/I      0x2F0      0x2F0   .absSeg206
+.__absdata__WOMS__                 1   N/I      0x2DF      0x2DF   .absSeg207
+.__absdata__PIFS__                 1   N/I      0x2D7      0x2D7   .absSeg208
+.__absdata__PIES__                 1   N/I      0x2D6      0x2D6   .absSeg209
+.__absdata__PPSS__                 1   N/I      0x2D4      0x2D4   .absSeg210
+.__absdata__PERS__                 1   N/I      0x2D3      0x2D3   .absSeg211
+.__absdata__DDRS__                 1   N/I      0x2D2      0x2D2   .absSeg212
+.__absdata__PTIS__                 1   N/I      0x2D1      0x2D1   .absSeg213
+.__absdata__PTS__                  1   N/I      0x2D0      0x2D0   .absSeg214
+.__absdata__PPST__                 1   N/I      0x2C4      0x2C4   .absSeg215
+.__absdata__PERT__                 1   N/I      0x2C3      0x2C3   .absSeg216
+.__absdata__DDRT__                 1   N/I      0x2C2      0x2C2   .absSeg217
+.__absdata__PTIT__                 1   N/I      0x2C1      0x2C1   .absSeg218
+.__absdata__PTT__                  1   N/I      0x2C0      0x2C0   .absSeg219
+.__absdata__PPSE__                 1   N/I      0x268      0x268   .absSeg220
+.__absdata__PERE__                 1   N/I      0x266      0x266   .absSeg221
+.__absdata__DDRE__                 1   N/I      0x264      0x264   .absSeg222
+.__absdata__PTIE__                 1   N/I      0x262      0x262   .absSeg223
+.__absdata__PTE__                  1   N/I      0x260      0x260   .absSeg224
+.__absdata__IRQCR__                1   N/I      0x209      0x209   .absSeg225
+.__absdata__ECLKCTL__              1   N/I      0x208      0x208   .absSeg226
+.__absdata__MODRR4__               1   N/I      0x204      0x204   .absSeg227
+.__absdata__MODRR3__               1   N/I      0x203      0x203   .absSeg228
+.__absdata__MODRR2__               1   N/I      0x202      0x202   .absSeg229
+.__absdata__MODRR1__               1   N/I      0x201      0x201   .absSeg230
+.__absdata__MODRR0__               1   N/I      0x200      0x200   .absSeg231
+.__absdata__DBGDAL__               1   N/I      0x147      0x147   .absSeg232
+.__absdata__DBGDAM__               1   N/I      0x146      0x146   .absSeg233
+.__absdata__DBGDAH__               1   N/I      0x145      0x145   .absSeg234
+.__absdata__DBGDCTL__              1   N/I      0x140      0x140   .absSeg235
+.__absdata__DBGBAL__               1   N/I      0x127      0x127   .absSeg236
+.__absdata__DBGBAM__               1   N/I      0x126      0x126   .absSeg237
+.__absdata__DBGBAH__               1   N/I      0x125      0x125   .absSeg238
+.__absdata__DBGBCTL__              1   N/I      0x120      0x120   .absSeg239
+.__absdata__DBGADM3__              1   N/I      0x11F      0x11F   .absSeg240
+.__absdata__DBGADM2__              1   N/I      0x11E      0x11E   .absSeg241
+.__absdata__DBGADM1__              1   N/I      0x11D      0x11D   .absSeg242
+.__absdata__DBGADM0__              1   N/I      0x11C      0x11C   .absSeg243
+.__absdata__DBGAD3__               1   N/I      0x11B      0x11B   .absSeg244
+.__absdata__DBGAD2__               1   N/I      0x11A      0x11A   .absSeg245
+.__absdata__DBGAD1__               1   N/I      0x119      0x119   .absSeg246
+.__absdata__DBGAD0__               1   N/I      0x118      0x118   .absSeg247
+.__absdata__DBGAAL__               1   N/I      0x117      0x117   .absSeg248
+.__absdata__DBGAAM__               1   N/I      0x116      0x116   .absSeg249
+.__absdata__DBGAAH__               1   N/I      0x115      0x115   .absSeg250
+.__absdata__DBGACTL__              1   N/I      0x110      0x110   .absSeg251
+.__absdata__DBGSR__                1   N/I      0x10B      0x10B   .absSeg252
+.__absdata__DBGEFR__               1   N/I      0x10A      0x10A   .absSeg253
+.__absdata__DBGSCR3__              1   N/I      0x109      0x109   .absSeg254
+.__absdata__DBGSCR2__              1   N/I      0x108      0x108   .absSeg255
+.__absdata__DBGSCR1__              1   N/I      0x107      0x107   .absSeg256
+.__absdata__DBGC2__                1   N/I      0x101      0x101   .absSeg257
+.__absdata__DBGC1__                1   N/I      0x100      0x100   .absSeg258
+.__absdata__MMCPCL__               1   N/I       0x87       0x87   .absSeg259
+.__absdata__MMCPCM__               1   N/I       0x86       0x86   .absSeg260
+.__absdata__MMCPCH__               1   N/I       0x85       0x85   .absSeg261
+.__absdata__MODE__                 1   N/I       0x70       0x70   .absSeg262
+.__absdata__INT_CFDATA7__          1   N/I       0x1F       0x1F   .absSeg263
+.__absdata__INT_CFDATA6__          1   N/I       0x1E       0x1E   .absSeg264
+.__absdata__INT_CFDATA5__          1   N/I       0x1D       0x1D   .absSeg265
+.__absdata__INT_CFDATA4__          1   N/I       0x1C       0x1C   .absSeg266
+.__absdata__INT_CFDATA3__          1   N/I       0x1B       0x1B   .absSeg267
+.__absdata__INT_CFDATA2__          1   N/I       0x1A       0x1A   .absSeg268
+.__absdata__INT_CFDATA1__          1   N/I       0x19       0x19   .absSeg269
+.__absdata__INT_CFDATA0__          1   N/I       0x18       0x18   .absSeg270
+.__absdata__INT_CFADDR__           1   N/I       0x17       0x17   .absSeg271
+.__absdata__InterruptVectorTable__        492     R   0xFFFE10   0xFFFFFB   .absSeg272
+.__absdata__ResetVectorTable__          4     R   0xFFFFFC   0xFFFFFF   .absSeg273
 .bss                               1   R/W     0x1022     0x1022   RAM
-.common                           87   R/W     0x1023     0x1079   RAM
-CI2C1_CODE                        20     R   0xFFD615   0xFFD628   ROM
-CI2C1_DATA                         2   R/W     0x107A     0x107B   RAM
-.stack                           256   R/W     0x107C     0x117B   RAM
+.common                           88   R/W     0x1023     0x107A   RAM
+CI2C1_CODE                        20     R   0xFFD69D   0xFFD6B0   ROM
+CI2C1_DATA                         2   R/W     0x107B     0x107C   RAM
+LINPHY0_CODE                      60     R   0xFFD6B1   0xFFD6EC   ROM
+.stack                           256   R/W     0x107D     0x117C   RAM
 
 Summary of section sizes per section type:
-READ_ONLY (R):        1847 (dec:     6215)
-READ_WRITE (R/W):      17C (dec:      380)
+READ_ONLY (R):        1902 (dec:     6402)
+READ_WRITE (R/W):      17D (dec:      381)
 NO_INIT (N/I):         155 (dec:      341)
 
 *********************************************************************************************
@@ -397,7 +396,7 @@ MODULE:                 -- starts12z_c.obj --
 - VARIABLES:
      _startupData                            FFC061       A      10       3   .startData  
 - LABELS:
-     __SEG_END_SSTACK                          117C       0       0       1               
+     __SEG_END_SSTACK                          117D       0       0       1               
 MODULE:                 -- lin_commontl_proto_c.obj --
 - PROCEDURES:
      lin_tl_make_slaveres_pdu                FFC17E     21E     542      12   .text       
@@ -450,22 +449,19 @@ MODULE:                 -- lin_lin21_proto_c.obj --
 - VARIABLES:
 MODULE:                 -- lin_isr_c.obj --
 - PROCEDURES:
-     SCI0_INT                                FFD00A       6       6       1   .text       
-     TIMchan2_ISR                            FFD010      16      22       1   .text       
-     LinPhy_ISR                              FFD026       B      11       1   .text       
+     SCI0_INT                                FFD00A       5       5       1   .text       
+     TIMchan2_ISR                            FFD00F      15      21       1   .text       
+     LinPhy_ISR                              FFD024       A      10       1   .text       
 - VARIABLES:
-     __vector_24_SCI0_INT__                  FFFF9D       3       3       0   .__absdata___vector_24_SCI0_INT____
-     __vector_14_TIMchan2_ISR__              FFFFC5       3       3       0   .__absdata___vector_14_TIMchan2_ISR____
-     __vector_46_LinPhy_ISR__                FFFF45       3       3       0   .__absdata___vector_46_LinPhy_ISR____
 MODULE:                 -- lin_lld_sci_c.obj --
 - PROCEDURES:
-     lin_lld_sci_ignore_response             FFD031       5       5       1   .text       
-     lin_lld_sci_set_low_power_mode          FFD036       5       5       1   .text       
-     lin_lld_sci_rx_response                 FFD03B      1A      26       1   .text       
-     lin_lld_sci_tx_response                 FFD055      3A      58       1   .text       
-     lin_lld_sci_timeout                     FFD08F      BB     187       1   .text       
-     lin_goto_idle_state                     FFD14A      11      17       3   .text       
-     lin_lld_sci_isr                         FFD15B     3B6     950       1   .text       
+     lin_lld_sci_ignore_response             FFD02E       5       5       1   .text       
+     lin_lld_sci_set_low_power_mode          FFD033       5       5       1   .text       
+     lin_lld_sci_rx_response                 FFD038      1A      26       1   .text       
+     lin_lld_sci_tx_response                 FFD052      3A      58       1   .text       
+     lin_lld_sci_timeout                     FFD08C      BB     187       1   .text       
+     lin_goto_idle_state                     FFD147      11      17       3   .text       
+     lin_lld_sci_isr                         FFD158     3B6     950       1   .text       
 - VARIABLES:
      cnt_byte                                  1068       1       1      11   .common     
      ptr                                       1069       3       3       4   .common     
@@ -480,25 +476,26 @@ MODULE:                 -- lin_lld_sci_c.obj --
      pid                                       1021       1       1       3   .data       
 MODULE:                 -- lin_lld_timesrv_c.obj --
 - PROCEDURES:
-     lin_lld_timer_isr                       FFD511       5       5       1   .text       
+     lin_lld_timer_isr                       FFD50E       5       5       1   .text       
 - VARIABLES:
 MODULE:                 -- CI2C1_c.obj --
 - PROCEDURES:
-     CI2C1_Init                              FFD615      14      20       1   CI2C1_CODE  
+     CI2C1_Init                              FFD69D      14      20       1   CI2C1_CODE  
 - VARIABLES:
-     CI2C1_SerFlag                             107A       1       1       1   CI2C1_DATA  
-     CI2C1_SlaveAddr                           107B       1       1       1   CI2C1_DATA  
+     CI2C1_SerFlag                             107B       1       1       1   CI2C1_DATA  
+     CI2C1_SlaveAddr                           107C       1       1       1   CI2C1_DATA  
 MODULE:                 -- Cpu_c.obj --
 - PROCEDURES:
-     Cpu_Interrupt                           FFC000       3       3     123   .init       
+     Cpu_Interrupt                           FFC000       3       3     120   .init       
      _EntryPoint                             FFC003      5E      94       1   .init       
-     PE_low_level_init                       FFD516      FA     250       1   .text       
+     PE_low_level_init                       FFD513     185     389       1   .text       
 - VARIABLES:
+     Shadow_P                                  1079       1       1       2   .common     
 MODULE:                 -- EI2C1_c.obj --
 - PROCEDURES:
-     EI2C1_Init                              FFD610       5       5       1   .text       
+     EI2C1_Init                              FFD698       5       5       1   .text       
 - VARIABLES:
-     SlaveAddr                                 1079       1       1       1   .common     
+     SlaveAddr                                 107A       1       1       1   .common     
 MODULE:                 -- IO_Map_c.obj --
 - PROCEDURES:
 - VARIABLES:
@@ -774,6 +771,10 @@ MODULE:                 -- IO_Map_c.obj --
      _INT_CFDATA1                                19       1       1       0   .__absdata__INT_CFDATA1__
      _INT_CFDATA0                                18       1       1       0   .__absdata__INT_CFDATA0__
      _INT_CFADDR                                 17       1       1       0   .__absdata__INT_CFADDR__
+MODULE:                 -- LINPHY0_c.obj --
+- PROCEDURES:
+     LINPHY0_Init                            FFD6B1      3C      60       1   LINPHY0_CODE
+- VARIABLES:
 MODULE:                 -- Vectors_c.obj --
 - PROCEDURES:
 - VARIABLES:
@@ -792,13 +793,14 @@ MODULE STATISTIC
   lin_diagnostic_service_c.obj                 0    704      5
   lin_common_proto_c.obj                       2   1336      0
   lin_lin21_proto_c.obj                        0    286      0
-  lin_isr_c.obj                                0     39      9
+  lin_isr_c.obj                                0     36      0
   lin_lld_sci_c.obj                           22   1248      0
   lin_lld_timesrv_c.obj                        0      5      0
   CI2C1_c.obj                                  2     20      0
-  Cpu_c.obj                                    0    347      0
+  Cpu_c.obj                                    1    486      0
   EI2C1_c.obj                                  1      5      0
   IO_Map_c.obj                               341      0      0
+  LINPHY0_c.obj                                0     60      0
   Vectors_c.obj                                0      0    496
   other                                      256     27     37
 
@@ -839,13 +841,8 @@ SECTION: ".common"
   lin_word_status lin_goto_sleep_flg lin_error_in_response 
   lin_successful_transfer lin_lld_response_buffer tl_check_timeout_type 
   frame_index frame_signal_error cnt_byte ptr current_id response_buffer 
-  frame_timeout_cnt res_frame_timeout_cnt idle_timeout_cnt l_status SlaveAddr 
-SECTION: ".__absdata___vector_24_SCI0_INT____"
-  __vector_24_SCI0_INT__ 
-SECTION: ".__absdata___vector_14_TIMchan2_ISR____"
-  __vector_14_TIMchan2_ISR__ 
-SECTION: ".__absdata___vector_46_LinPhy_ISR____"
-  __vector_46_LinPhy_ISR__ 
+  frame_timeout_cnt res_frame_timeout_cnt idle_timeout_cnt l_status Shadow_P 
+  SlaveAddr 
 SECTION: "CI2C1_CODE"
   CI2C1_Init 
 SECTION: "CI2C1_DATA"
@@ -1394,6 +1391,8 @@ SECTION: ".__absdata__INT_CFDATA0__"
   _INT_CFDATA0 
 SECTION: ".__absdata__INT_CFADDR__"
   _INT_CFADDR 
+SECTION: "LINPHY0_CODE"
+  LINPHY0_Init 
 SECTION: ".__absdata__InterruptVectorTable__"
   _InterruptVectorTable 
 SECTION: ".__absdata__ResetVectorTable__"
@@ -1711,10 +1710,11 @@ OBJECT LIST SORTED BY ADDRESS
      res_frame_timeout_cnt                     1072       2       2       4   .common     
      idle_timeout_cnt                          1074       2       2      18   .common     
      l_status                                  1076       3       3      41   .common     
-     SlaveAddr                                 1079       1       1       1   .common     
-     CI2C1_SerFlag                             107A       1       1       1   CI2C1_DATA  
-     CI2C1_SlaveAddr                           107B       1       1       1   CI2C1_DATA  
-     Cpu_Interrupt                           FFC000       3       3     123   .init       
+     Shadow_P                                  1079       1       1       2   .common     
+     SlaveAddr                                 107A       1       1       1   .common     
+     CI2C1_SerFlag                             107B       1       1       1   CI2C1_DATA  
+     CI2C1_SlaveAddr                           107C       1       1       1   CI2C1_DATA  
+     Cpu_Interrupt                           FFC000       3       3     120   .init       
      _EntryPoint                             FFC003      5E      94       1   .init       
      lin_virtual_ifc                         FFC07C       1       1       4   .rodata     
      LI0_response_error_signal               FFC07D       1       1       1   .rodata     
@@ -1761,24 +1761,22 @@ OBJECT LIST SORTED BY ADDRESS
      lin_update_word_status_lin21            FFCEEC      77     119       4   .text       
      lin_update_err_signal                   FFCF63      7E     126       2   .text       
      lin_make_res_evnt_frame                 FFCFE1      29      41       1   .text       
-     SCI0_INT                                FFD00A       6       6       1   .text       
-     TIMchan2_ISR                            FFD010      16      22       1   .text       
-     LinPhy_ISR                              FFD026       B      11       1   .text       
-     lin_lld_sci_ignore_response             FFD031       5       5       1   .text       
-     lin_lld_sci_set_low_power_mode          FFD036       5       5       1   .text       
-     lin_lld_sci_rx_response                 FFD03B      1A      26       1   .text       
-     lin_lld_sci_tx_response                 FFD055      3A      58       1   .text       
-     lin_lld_sci_timeout                     FFD08F      BB     187       1   .text       
-     lin_goto_idle_state                     FFD14A      11      17       3   .text       
-     lin_lld_sci_isr                         FFD15B     3B6     950       1   .text       
-     lin_lld_timer_isr                       FFD511       5       5       1   .text       
-     PE_low_level_init                       FFD516      FA     250       1   .text       
-     EI2C1_Init                              FFD610       5       5       1   .text       
-     CI2C1_Init                              FFD615      14      20       1   CI2C1_CODE  
+     SCI0_INT                                FFD00A       5       5       1   .text       
+     TIMchan2_ISR                            FFD00F      15      21       1   .text       
+     LinPhy_ISR                              FFD024       A      10       1   .text       
+     lin_lld_sci_ignore_response             FFD02E       5       5       1   .text       
+     lin_lld_sci_set_low_power_mode          FFD033       5       5       1   .text       
+     lin_lld_sci_rx_response                 FFD038      1A      26       1   .text       
+     lin_lld_sci_tx_response                 FFD052      3A      58       1   .text       
+     lin_lld_sci_timeout                     FFD08C      BB     187       1   .text       
+     lin_goto_idle_state                     FFD147      11      17       3   .text       
+     lin_lld_sci_isr                         FFD158     3B6     950       1   .text       
+     lin_lld_timer_isr                       FFD50E       5       5       1   .text       
+     PE_low_level_init                       FFD513     185     389       1   .text       
+     EI2C1_Init                              FFD698       5       5       1   .text       
+     CI2C1_Init                              FFD69D      14      20       1   CI2C1_CODE  
+     LINPHY0_Init                            FFD6B1      3C      60       1   LINPHY0_CODE
      _InterruptVectorTable                   FFFE10     1EC     492       0   .__absdata__InterruptVectorTable__
-     __vector_46_LinPhy_ISR__                FFFF45       3       3       0   .__absdata___vector_46_LinPhy_ISR____
-     __vector_24_SCI0_INT__                  FFFF9D       3       3       0   .__absdata___vector_24_SCI0_INT____
-     __vector_14_TIMchan2_ISR__              FFFFC5       3       3       0   .__absdata___vector_14_TIMchan2_ISR____
      _ResetVectorTable                       FFFFFC       4       4       0   .__absdata__ResetVectorTable__
 
 *********************************************************************************************
@@ -2030,18 +2028,11 @@ lin_lin21_proto_c.obj:
   .dwarf_aranges.lin_update_word_status_lin21 
   .dwarf_aranges.lin_update_err_signal .dwarf_aranges.lin_make_res_evnt_frame 
 lin_isr_c.obj:
-  .dwarf.__vector_24_SCI0_INT__ .dwarf.__vector_14_TIMchan2_ISR__ 
-  .dwarf.__vector_46_LinPhy_ISR__ .dwarf_type.void .dwarf_type.60 
-  .dwarf_type.61 .dwarf_type.62 .dwarf.SCI0_INT .dwarf.TIMchan2_ISR 
-  .dwarf.LinPhy_ISR .dwarf_line.SCI0_INT .dwarf_line.TIMchan2_ISR 
-  .dwarf_line.LinPhy_ISR .dwarf_frame.SCI0_INT .dwarf_frame.TIMchan2_ISR 
-  .dwarf_frame.LinPhy_ISR .dwarf_pubnames.__vector_24_SCI0_INT__ 
-  .dwarf_pubnames.__vector_14_TIMchan2_ISR__ 
-  .dwarf_pubnames.__vector_46_LinPhy_ISR__ .dwarf_pubnames.SCI0_INT 
-  .dwarf_pubnames.TIMchan2_ISR .dwarf_pubnames.LinPhy_ISR 
-  .dwarf_aranges.__vector_24_SCI0_INT__ 
-  .dwarf_aranges.__vector_14_TIMchan2_ISR__ 
-  .dwarf_aranges.__vector_46_LinPhy_ISR__ .dwarf_aranges.SCI0_INT 
+  .dwarf_type.void .dwarf.SCI0_INT .dwarf.TIMchan2_ISR .dwarf.LinPhy_ISR 
+  .dwarf_line.SCI0_INT .dwarf_line.TIMchan2_ISR .dwarf_line.LinPhy_ISR 
+  .dwarf_frame.SCI0_INT .dwarf_frame.TIMchan2_ISR .dwarf_frame.LinPhy_ISR 
+  .dwarf_pubnames.SCI0_INT .dwarf_pubnames.TIMchan2_ISR 
+  .dwarf_pubnames.LinPhy_ISR .dwarf_aranges.SCI0_INT 
   .dwarf_aranges.TIMchan2_ISR .dwarf_aranges.LinPhy_ISR 
 lin_lld_sci_c.obj:
   .dwarf.func .dwarf.pSCI .dwarf.ifc .dwarf.state .dwarf.cnt_byte .dwarf.ptr 
@@ -2137,22 +2128,23 @@ CI2C1_c.obj:
   .dwarf_aranges.CI2C1_Init ChrTemp PtrSndRcv CI2C1_SndRcvTemp OutPtrM OutLenM 
   InpPtrM InpLenM 
 Cpu_c.obj:
-  .dwarf.CCR_reg .dwarf_type.void .dwarf_type.unsigned char 
+  .dwarf.Shadow_P .dwarf.CCR_reg .dwarf_type.void .dwarf_type.unsigned char 
   .dwarf.Cpu_Interrupt .dwarf.Cpu_Delay100US .dwarf._EntryPoint 
   .dwarf.PE_low_level_init .dwarf_loc.PE_low_level_init 
   .dwarf_line.Cpu_Interrupt .dwarf_line.Cpu_Delay100US .dwarf_line._EntryPoint 
   .dwarf_line.PE_low_level_init .dwarf_frame.Cpu_Interrupt 
   .dwarf_frame.Cpu_Delay100US .dwarf_frame._EntryPoint 
-  .dwarf_frame.PE_low_level_init .dwarf_pubnames.CCR_reg 
-  .dwarf_pubnames.Cpu_Interrupt .dwarf_pubnames.Cpu_Delay100US 
-  .dwarf_pubnames._EntryPoint .dwarf_pubnames.PE_low_level_init 
+  .dwarf_frame.PE_low_level_init .dwarf_pubnames.Shadow_P 
+  .dwarf_pubnames.CCR_reg .dwarf_pubnames.Cpu_Interrupt 
+  .dwarf_pubnames.Cpu_Delay100US .dwarf_pubnames._EntryPoint 
+  .dwarf_pubnames.PE_low_level_init .dwarf_aranges.Shadow_P 
   .dwarf_aranges.CCR_reg .dwarf_aranges.Cpu_Interrupt 
   .dwarf_aranges.Cpu_Delay100US .dwarf_aranges._EntryPoint 
   .dwarf_aranges.PE_low_level_init CCR_reg 
 EI2C1_c.obj:
   .dwarf.SlaveAddr .dwarf_type.void .dwarf_type.unsigned char 
-  .dwarf_type.unsigned int .dwarf_type.448 .dwarf_type.449 .dwarf_type.450 
-  .dwarf_type.451 .dwarf_type.452 .dwarf_type.453 .dwarf.Delay 
+  .dwarf_type.unsigned int .dwarf_type.451 .dwarf_type.452 .dwarf_type.453 
+  .dwarf_type.454 .dwarf_type.455 .dwarf_type.456 .dwarf.Delay 
   .dwarf.EI2C1_Init .dwarf.Write .dwarf.Read .dwarf.GetAck .dwarf.SetAck 
   .dwarf.InternalStop .dwarf.EI2C1_SendChar .dwarf.EI2C1_RecvChar 
   .dwarf.EI2C1_SendBlock .dwarf.EI2C1_RecvBlock .dwarf.EI2C1_SendStop 
@@ -2745,59 +2737,63 @@ IO_Map_c.obj:
   .dwarf_aranges._INT_CFDATA3 .dwarf_aranges._INT_CFDATA2 
   .dwarf_aranges._INT_CFDATA1 .dwarf_aranges._INT_CFDATA0 
   .dwarf_aranges._INT_CFADDR 
+LINPHY0_c.obj:
+  .dwarf_type.void .dwarf.LINPHY0_Init .dwarf_line.LINPHY0_Init 
+  .dwarf_frame.LINPHY0_Init .dwarf_pubnames.LINPHY0_Init 
+  .dwarf_aranges.LINPHY0_Init 
 Vectors_c.obj:
-  .dwarf._InterruptVectorTable .dwarf._ResetVectorTable .dwarf_type.22 
-  .dwarf_type.23 .dwarf_typedef.InterruptTableEntry .dwarf_type.unsigned char 
-  .dwarf_type.24 .dwarf_type.25 .dwarf_type.void .dwarf_type.26 
+  .dwarf._InterruptVectorTable .dwarf._ResetVectorTable .dwarf_type.25 
+  .dwarf_type.26 .dwarf_typedef.InterruptTableEntry .dwarf_type.unsigned char 
+  .dwarf_type.27 .dwarf_type.28 .dwarf_type.void .dwarf_type.29 
   .dwarf_pubnames._InterruptVectorTable .dwarf_pubnames._ResetVectorTable 
   .dwarf_aranges._InterruptVectorTable .dwarf_aranges._ResetVectorTable 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xFFD629 ---- SIZE       7 ---
+------- ROM-ADDRESS: 0xFFD6ED ---- SIZE       7 ---
 Filling bytes inserted
  0000001A00 1008
-------- ROM-ADDRESS: 0xFFD630 ---- RAM-ADDRESS: 0x1008 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD6F4 ---- RAM-ADDRESS: 0x1008 ---- SIZE       1 ---
 Name of initialized Object : lin_pFrameBuf:8
  FE
-------- ROM-ADDRESS: 0xFFD631 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xFFD6F5 ---- SIZE       2 ---
 Filling bytes inserted
  0000
-------- ROM-ADDRESS: 0xFFD633 ---- RAM-ADDRESS: 0x100B ---- SIZE       5 ---
+------- ROM-ADDRESS: 0xFFD6F7 ---- RAM-ADDRESS: 0x100B ---- SIZE       5 ---
 Name of initialized Object : lin_flag_handle_tbl
  FFFFFFFFFF
-------- ROM-ADDRESS: 0xFFD638 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD6FC ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xFFD639 ---- RAM-ADDRESS: 0x1011 ---- SIZE       8 ---
+------- ROM-ADDRESS: 0xFFD6FD ---- RAM-ADDRESS: 0x1011 ---- SIZE       8 ---
 Name of initialized Object : lin_configuration_RAM:1
  050A121416 3C3DFF
-------- ROM-ADDRESS: 0xFFD641 ---- RAM-ADDRESS: 0x1019 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD705 ---- RAM-ADDRESS: 0x1019 ---- SIZE       1 ---
 Name of initialized Object : lin_configured_NAD
  05
-------- ROM-ADDRESS: 0xFFD642 ---- RAM-ADDRESS: 0x101A ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xFFD706 ---- RAM-ADDRESS: 0x101A ---- SIZE       2 ---
 Name of initialized Object : tl_check_timeout
  07D0
-------- ROM-ADDRESS: 0xFFD644 ---- RAM-ADDRESS: 0x101C ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD708 ---- RAM-ADDRESS: 0x101C ---- SIZE       1 ---
 Name of initialized Object : tl_service_status
  02
-------- ROM-ADDRESS: 0xFFD645 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD709 ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xFFD646 ---- RAM-ADDRESS: 0x101E ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD70A ---- RAM-ADDRESS: 0x101E ---- SIZE       1 ---
 Name of initialized Object : pSCI:1
  07
-------- ROM-ADDRESS: 0xFFD647 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD70B ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xFFD648 ---- RAM-ADDRESS: 0x1020 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD70C ---- RAM-ADDRESS: 0x1020 ---- SIZE       1 ---
 Name of initialized Object : state
  FF
-------- ROM-ADDRESS: 0xFFD649 ---- RAM-ADDRESS: 0x1021 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFD70D ---- RAM-ADDRESS: 0x1021 ---- SIZE       1 ---
 Name of initialized Object : pid
  80
-------- ROM-ADDRESS: 0xFFD64A ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xFFD70E ---- SIZE       4 ---
 Filling bytes inserted
  00000000
 
@@ -2890,13 +2886,10 @@ lin_lld_sci_isr           USES pSCI idle_timeout_cnt l_status
                                 lin_pid_response_callback_handler cnt_byte response_buffer ptr pid lin_checksum 
                                 lin_process_parity res_frame_timeout_cnt 
 lin_lld_timer_isr         USES lin_lld_sci_timeout 
-PE_low_level_init         USES CI2C1_Init EI2C1_Init 
+PE_low_level_init         USES CI2C1_Init EI2C1_Init Shadow_P LINPHY0_Init 
 EI2C1_Init                USES SlaveAddr 
 CI2C1_Init                USES CI2C1_SerFlag CI2C1_SlaveAddr 
-_InterruptVectorTable     USES Cpu_Interrupt 
-__vector_46_LinPhy_ISR__  USES LinPhy_ISR 
-__vector_24_SCI0_INT__    USES SCI0_INT 
-__vector_14_TIMchan2_ISR__ USES TIMchan2_ISR 
+_InterruptVectorTable     USES Cpu_Interrupt LinPhy_ISR SCI0_INT TIMchan2_ISR 
 _ResetVectorTable         USES _EntryPoint 
 
 *********************************************************************************************
@@ -2911,6 +2904,8 @@ DEPENDENCY TREE
  |     +- CI2C1_Init          
  |     |    
  |     +- EI2C1_Init          
+ |     |    
+ |     +- LINPHY0_Init        
  |          
  +- _EntryPoint         
     | 
@@ -2922,114 +2917,116 @@ DEPENDENCY TREE
        |    
        +- main                 (see above)
           
- __vector_24_SCI0_INT__
+ _InterruptVectorTable
  | 
+ +- Cpu_Interrupt       
+ |    
+ +- LinPhy_ISR          
+ |    
  +- SCI0_INT            
-    | 
-    +- lin_lld_sci_isr     
-       | 
-       +- lin_pid_response_callback_handler
-       |  | 
-       |  +- lin_process_pid     
-       |  |  | 
-       |  |  +- lin_get_frame_index 
-       |  |  |    
-       |  |  +- lin_make_res_evnt_frame
-       |  |  |  | 
-       |  |  |  +- lin_process_uncd_frame
-       |  |  |  |    
-       |  |  |  +- lin_process_parity  
-       |  |  |       
-       |  |  +- lin_process_uncd_frame (see above)
-       |  |  |  
-       |  |  +- lin_make_res_diag_frame
-       |  |  |  | 
-       |  |  |  +- lin_tl_get_pdu      
-       |  |  |       
-       |  |  +- lin_lld_set_response
-       |  |  |  | 
-       |  |  |  +- lin_lld_sci_tx_response
-       |  |  |     | 
-       |  |  |     +- lin_checksum        
-       |  |  |          
-       |  |  +- lin_lld_rx_response 
-       |  |  |  | 
-       |  |  |  +- lin_lld_sci_rx_response
-       |  |  |       
-       |  |  +- lin_lld_ignore_response
-       |  |     | 
-       |  |     +- lin_lld_sci_ignore_response
-       |  |        | 
-       |  |        +- lin_goto_idle_state 
-       |  |             
-       |  +- lin_update_tx       
-       |  |  | 
-       |  |  +- lin_get_frame_index  (see above)
-       |  |  |  
-       |  |  +- lin_update_tx_flags 
-       |  |  |    
-       |  |  +- lin_update_err_signal
-       |  |  |    
-       |  |  +- lin_update_word_status_lin21
-       |  |       
-       |  +- lin_update_rx       
-       |  |  | 
-       |  |  +- lin_process_uncd_frame (see above)
-       |  |  |  
-       |  |  +- lin_update_rx_diag_frame
-       |  |  |  | 
-       |  |  |  +- lin_lld_set_low_power_mode
-       |  |  |  |  | 
-       |  |  |  |  +- lin_lld_sci_set_low_power_mode
-       |  |  |  |       
-       |  |  |  +- lin_tl_put_pdu      
-       |  |  |  |    
-       |  |  |  +- lin_tl_handler      
-       |  |  |     | 
-       |  |  |     +- lin_tl_attach_service
-       |  |  |        | 
-       |  |  |        +- lin_condittional_change_nad
-       |  |  |        |  | 
-       |  |  |        |  +- lin_tl_make_slaveres_pdu
-       |  |  |        |     | 
-       |  |  |        |     +- ld_read_by_id_callout
-       |  |  |        |          
-       |  |  |        +- lin_tl_make_slaveres_pdu (see above)
-       |  |  |        |  
-       |  |  |        +- lin_diagservice_assign_frame_id_range
-       |  |  |        |  | 
-       |  |  |        |  +- lin_tl_make_slaveres_pdu (see above)
-       |  |  |        |  |  
-       |  |  |        |  +- lin_process_parity   (see above)
-       |  |  |        |     
-       |  |  |        +- lin_diagservice_read_by_identifier
-       |  |  |           | 
-       |  |  |           +- lin_tl_make_slaveres_pdu (see above)
-       |  |  |           |  
-       |  |  |           +- ld_read_by_id_callout (see above)
-       |  |  |              
-       |  |  +- lin_update_word_status_lin21 (see above)
-       |  |     
-       |  +- lin_bus_activity_timeout
-       |  |  | 
-       |  |  +- lin_update_word_status_lin21 (see above)
-       |  |  |  
-       |  |  +- lin_lld_set_low_power_mode (see above)
-       |  |     
-       |  +- lin_handle_error    
-       |     | 
-       |     +- lin_get_frame_index  (see above)
-       |     |  
-       |     +- lin_update_err_signal (see above)
-       |     |  
-       |     +- lin_update_word_status_lin21 (see above)
-       |        
-       +- lin_checksum         (see above)
-       |  
-       +- lin_process_parity   (see above)
-          
- __vector_14_TIMchan2_ISR__
- | 
+ |  | 
+ |  +- lin_lld_sci_isr     
+ |     | 
+ |     +- lin_pid_response_callback_handler
+ |     |  | 
+ |     |  +- lin_process_pid     
+ |     |  |  | 
+ |     |  |  +- lin_get_frame_index 
+ |     |  |  |    
+ |     |  |  +- lin_make_res_evnt_frame
+ |     |  |  |  | 
+ |     |  |  |  +- lin_process_uncd_frame
+ |     |  |  |  |    
+ |     |  |  |  +- lin_process_parity  
+ |     |  |  |       
+ |     |  |  +- lin_process_uncd_frame (see above)
+ |     |  |  |  
+ |     |  |  +- lin_make_res_diag_frame
+ |     |  |  |  | 
+ |     |  |  |  +- lin_tl_get_pdu      
+ |     |  |  |       
+ |     |  |  +- lin_lld_set_response
+ |     |  |  |  | 
+ |     |  |  |  +- lin_lld_sci_tx_response
+ |     |  |  |     | 
+ |     |  |  |     +- lin_checksum        
+ |     |  |  |          
+ |     |  |  +- lin_lld_rx_response 
+ |     |  |  |  | 
+ |     |  |  |  +- lin_lld_sci_rx_response
+ |     |  |  |       
+ |     |  |  +- lin_lld_ignore_response
+ |     |  |     | 
+ |     |  |     +- lin_lld_sci_ignore_response
+ |     |  |        | 
+ |     |  |        +- lin_goto_idle_state 
+ |     |  |             
+ |     |  +- lin_update_tx       
+ |     |  |  | 
+ |     |  |  +- lin_get_frame_index  (see above)
+ |     |  |  |  
+ |     |  |  +- lin_update_tx_flags 
+ |     |  |  |    
+ |     |  |  +- lin_update_err_signal
+ |     |  |  |    
+ |     |  |  +- lin_update_word_status_lin21
+ |     |  |       
+ |     |  +- lin_update_rx       
+ |     |  |  | 
+ |     |  |  +- lin_process_uncd_frame (see above)
+ |     |  |  |  
+ |     |  |  +- lin_update_rx_diag_frame
+ |     |  |  |  | 
+ |     |  |  |  +- lin_lld_set_low_power_mode
+ |     |  |  |  |  | 
+ |     |  |  |  |  +- lin_lld_sci_set_low_power_mode
+ |     |  |  |  |       
+ |     |  |  |  +- lin_tl_put_pdu      
+ |     |  |  |  |    
+ |     |  |  |  +- lin_tl_handler      
+ |     |  |  |     | 
+ |     |  |  |     +- lin_tl_attach_service
+ |     |  |  |        | 
+ |     |  |  |        +- lin_condittional_change_nad
+ |     |  |  |        |  | 
+ |     |  |  |        |  +- lin_tl_make_slaveres_pdu
+ |     |  |  |        |     | 
+ |     |  |  |        |     +- ld_read_by_id_callout
+ |     |  |  |        |          
+ |     |  |  |        +- lin_tl_make_slaveres_pdu (see above)
+ |     |  |  |        |  
+ |     |  |  |        +- lin_diagservice_assign_frame_id_range
+ |     |  |  |        |  | 
+ |     |  |  |        |  +- lin_tl_make_slaveres_pdu (see above)
+ |     |  |  |        |  |  
+ |     |  |  |        |  +- lin_process_parity   (see above)
+ |     |  |  |        |     
+ |     |  |  |        +- lin_diagservice_read_by_identifier
+ |     |  |  |           | 
+ |     |  |  |           +- lin_tl_make_slaveres_pdu (see above)
+ |     |  |  |           |  
+ |     |  |  |           +- ld_read_by_id_callout (see above)
+ |     |  |  |              
+ |     |  |  +- lin_update_word_status_lin21 (see above)
+ |     |  |     
+ |     |  +- lin_bus_activity_timeout
+ |     |  |  | 
+ |     |  |  +- lin_update_word_status_lin21 (see above)
+ |     |  |  |  
+ |     |  |  +- lin_lld_set_low_power_mode (see above)
+ |     |  |     
+ |     |  +- lin_handle_error    
+ |     |     | 
+ |     |     +- lin_get_frame_index  (see above)
+ |     |     |  
+ |     |     +- lin_update_err_signal (see above)
+ |     |     |  
+ |     |     +- lin_update_word_status_lin21 (see above)
+ |     |        
+ |     +- lin_checksum         (see above)
+ |     |  
+ |     +- lin_process_parity   (see above)
+ |        
  +- TIMchan2_ISR        
     | 
     +- lin_lld_timer_isr   
@@ -3040,14 +3037,6 @@ DEPENDENCY TREE
           |  
           +- lin_goto_idle_state  (see above)
              
- __vector_46_LinPhy_ISR__
- | 
- +- LinPhy_ISR          
-      
- _InterruptVectorTable
- | 
- +- Cpu_Interrupt       
-      
  _ResetVectorTable   
  | 
  +- _EntryPoint          (see above)
@@ -3058,6 +3047,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 9
-Total size of all blocks to be downloaded: 6215
+Number of blocks to be downloaded: 5
+Total size of all blocks to be downloaded: 6402
 

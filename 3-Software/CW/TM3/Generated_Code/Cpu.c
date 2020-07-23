@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
+**     Date/Time   : 2020-07-23, 20:14, # CodeGen: 12
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -69,6 +69,13 @@
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
+#include "Vsci0.h"
+#include "Vtim0ch2.h"
+#include "TEST_IN_4.h"
+#include "TEST_IN_0_3.h"
+#include "TEST_OUT.h"
+#include "LINPHY0.h"
+#include "TI1.h"
 #include "Events.h"
 #include "Cpu.h"
 
@@ -80,6 +87,10 @@
 
 /* Global variables */
 volatile byte CCR_reg;                 /* Current CCR reegister */
+
+/*Definition of global shadow variables*/
+byte Shadow_P;
+
 #pragma CODE_SEG __NEAR_SEG NON_BANKED
 
 
@@ -305,21 +316,61 @@ void PE_low_level_init(void)
   #ifdef PEX_RTOS_INIT
     PEX_RTOS_INIT();                   /* Initialization of the selected RTOS. Macro is defined by the RTOS component. */
   #endif
+  /* Int. priority initialization */
+  /*                                        No. Address Pri XGATE Name                 Description */
+  setReg8(INT_CFADDR, 0x28U);           
+  setReg8(INT_CFDATA3, 0x04U);         /*  0x2B  0x00FFFEAC   4   no   ivVtim1ch0           used by PE */ 
+  setReg8(INT_CFADDR, 0x50U);           
+  setReg8(INT_CFDATA1, 0x01U);         /*  0x51  0x00FFFF44   1   no   ivVlinphy0           used by PE */ 
+  setReg8(INT_CFADDR, 0x60U);           
+  setReg8(INT_CFDATA7, 0x04U);         /*  0x67  0x00FFFF9C   4   no   ivVsci0              used by PE */ 
+  setReg8(INT_CFADDR, 0x70U);           
+  setReg8(INT_CFDATA1, 0x04U);         /*  0x71  0x00FFFFC4   4   no   ivVtim0ch2           used by PE */ 
   /* Common initialization of the CPU registers */
   /* DDRT: DDRT7=1,DDRT6=1,DDRT5=1,DDRT4=1,DDRT3=1,DDRT2=1,DDRT1=0,DDRT0=0 */
   setReg8(DDRT, 0xFCU);                 
-  /* MODRR0: IIC0RR=1 */
-  setReg8Bits(MODRR0, 0x10U);           
-  /* PIEP: PIEP5=0,PIEP3=0 */
-  clrReg8Bits(PIEP, 0x28U);             
-  /* PTP: PTP5=1,PTP3=1 */
-  setReg8Bits(PTP, 0x28U);              
-  /* PPSP: PPSP5=0,PPSP3=0 */
-  clrReg8Bits(PPSP, 0x28U);             
-  /* PERP: PERP5=1,PERP3=1 */
-  setReg8Bits(PERP, 0x28U);             
-  /* DDRP: DDRP6=1,DDRP5=0,DDRP4=1,DDRP3=0,DDRP2=1,DDRP0=1 */
-  clrSetReg8Bits(DDRP, 0x28U, 0x55U);   
+  /* MODRR0: IIC0RR=1,S0L0RR&=~3 */
+  clrSetReg8Bits(MODRR0, 0x03U, 0x10U); 
+  /* PIEP: PIEP7=0,PIEP5=0,PIEP3=0 */
+  clrReg8Bits(PIEP, 0xA8U);             
+  /* PTP: PTP7=1,PTP5=1,PTP3=0 */
+  clrSetReg8Bits(PTP, 0x08U, 0xA0U);    
+  /* PPSP: PPSP7=0,PPSP5=0 */
+  clrReg8Bits(PPSP, 0xA0U);             
+  /* PERP: PERP7=1,PERP5=1,PERP3=0 */
+  clrSetReg8Bits(PERP, 0x08U, 0xA0U);   
+  /* DDRP: DDRP7=0,DDRP6=1,DDRP5=0,DDRP4=1,DDRP3=1,DDRP2=1,DDRP0=1 */
+  clrSetReg8Bits(DDRP, 0xA0U, 0x5DU);   
+  /* DIENL: DIENL0=1 */
+  setReg8Bits(DIENL, 0x01U);            
+  /* PIEL: PIEL0=0 */
+  clrReg8Bits(PIEL, 0x01U);             
+  /* PPSL: PPSL0=0 */
+  clrReg8Bits(PPSL, 0x01U);             
+  /* PIES: PIES3=0,PIES2=0,PIES1=0,PIES0=0 */
+  clrReg8Bits(PIES, 0x0FU);             
+  /* PERS: PERS3=0,PERS2=0,PERS1=0,PERS0=0 */
+  clrReg8Bits(PERS, 0x0FU);             
+  /* DDRS: DDRS3=0,DDRS2=0,DDRS1=0,DDRS0=0 */
+  clrReg8Bits(DDRS, 0x0FU);             
+  /* TIM1TSCR1: TEN=0,TSWAI=0,TSFRZ=0,TFFCA=0,PRNT=1,??=0,??=0,??=0 */
+  setReg8(TIM1TSCR1, 0x08U);            
+  /* TIM1OCPD: OCPD0=1 */
+  setReg8Bits(TIM1OCPD, 0x01U);         
+  /* TIM1TIOS: IOS0=1 */
+  setReg8Bits(TIM1TIOS, 0x01U);         
+  /* TIM1TCTL2: OM0=0,OL0=0 */
+  clrReg8Bits(TIM1TCTL2, 0x03U);        
+  /* TIM1TTOV: TOV0=0 */
+  clrReg8Bits(TIM1TTOV, 0x01U);         
+  /* TIM1TSCR2: TOI=0 */
+  clrReg8Bits(TIM1TSCR2, 0x80U);        
+  /* TIM1TFLG1: ??=1,??=1,??=1,??=1,??=1,??=1,C1F=1,C0F=1 */
+  setReg8(TIM1TFLG1, 0xFFU);            
+  /* TIM1TIE: C0I=1 */
+  setReg8Bits(TIM1TIE, 0x01U);          
+  /* TIM1PTPSR: PTPS7=0,PTPS6=0,PTPS5=0,PTPS4=0,PTPS3=0,PTPS2=0,PTPS1=0,PTPS0=0 */
+  setReg8(TIM1PTPSR, 0x00U);            
   /* CPMUINT: LOCKIE=0,OSCIE=0 */
   clrReg8Bits(CPMUINT, 0x12U);          
   /* CPMULVCTL: LVIE=0 */
@@ -345,6 +396,20 @@ void PE_low_level_init(void)
   /* ### BitIO "ClockPin1" init code ... */
   /* ###  "EI2C1" init code ... */
   EI2C1_Init();
+  /* ### BitIO "TEST_IN_4" init code ... */
+  /* ### BitsIO "TEST_IN_0_3" init code ... */
+  /* ### BitIO "TEST_OUT" init code ... */
+  Shadow_P &= 0xF7U;                   /* Initialize pin shadow variable bit */
+  /* ### Init_LINPHY "LINPHY0" init code ... */
+  LINPHY0_Init();
+  /* ### TimerInt "TI1" init code ... */
+  
+  
+  /* TIM1TC0: BIT=0x30D4 */
+  setReg16(TIM1TC0, 0x30D4U);          /* Store given value to the compare register */ 
+  /* Common peripheral initialization - ENABLE */
+  /* TIM1TSCR1: TEN=1,TSWAI=0,TSFRZ=0,TFFCA=0,PRNT=1,??=0,??=0,??=0 */
+  setReg8(TIM1TSCR1, 0x88U);            
   __EI();                              /* Enable interrupts */
 }
 
