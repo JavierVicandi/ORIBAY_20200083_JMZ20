@@ -8,30 +8,37 @@
 C_SRCS_QUOTED += \
 "../Sources/Events.c" \
 "../Sources/main.c" \
+"../Sources/sensores.c" \
 
 C_SRCS += \
 ../Sources/Events.c \
 ../Sources/main.c \
+../Sources/sensores.c \
 
 OBJS += \
 ./Sources/Events_c.obj \
 ./Sources/main_c.obj \
+./Sources/sensores_c.obj \
 
 OBJS_QUOTED += \
 "./Sources/Events_c.obj" \
 "./Sources/main_c.obj" \
+"./Sources/sensores_c.obj" \
 
 C_DEPS += \
 ./Sources/Events_c.d \
 ./Sources/main_c.d \
+./Sources/sensores_c.d \
 
 C_DEPS_QUOTED += \
 "./Sources/Events_c.d" \
 "./Sources/main_c.d" \
+"./Sources/sensores_c.d" \
 
 OBJS_OS_FORMAT += \
 ./Sources/Events_c.obj \
 ./Sources/main_c.obj \
+./Sources/sensores_c.obj \
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -53,6 +60,14 @@ Sources/main_c.obj: ../Sources/main.c
 	@echo 'Executing target #3 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Sources/main.args" -o "Sources/main_c.obj" "$<" -MD -gccdep
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Sources/sensores_c.obj: ../Sources/sensores.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #4 $<'
+	@echo 'Invoking: S12Z Compiler'
+	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Sources/sensores.args" -o "Sources/sensores_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
 	@echo ' '
 

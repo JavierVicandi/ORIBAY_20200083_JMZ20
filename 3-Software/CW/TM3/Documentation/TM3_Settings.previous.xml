@@ -191,7 +191,7 @@
     <Compiler v="CodeWarrior HCS12Z C Compiler" />
     <CompilerProperties>
       <Compiler v="CodeWarrior HCS12Z C Compiler" />
-      <enumgroup name="Unhandled interrupts" v="One handler for all">
+      <enumgroup name="Unhandled interrupts" v="Own handler for every">
         <Interrupt_priority v="Don&amp;apos;t initialize" />
         <Unhandled_int_code>
           <StrgList><![CDATA[/*lint -save -e950 Disable MISRA rule (1.1) checking. */
@@ -259,7 +259,7 @@ asm(BGND);
       <boolgroup name="Interrupt service/event" v="Disabled" />
       <boolgroup name="MASTER mode" v="Enabled">
         <Polling_trials v="2000" />
-        <Automatic_stop_condition v="yes" />
+        <Automatic_stop_condition v="no" />
         <group name="Initialization">
           <Address_mode v="7-bit addressing" />
           <Target_slave_address_init v="69" />
@@ -295,7 +295,7 @@ asm(BGND);
       <RecvChar v="generate code" />
       <SendBlock v="generate code" />
       <RecvBlock v="generate code" />
-      <SendStop v="don&amp;apos;t generate code" />
+      <SendStop v="generate code" />
       <ClearTxBuf v="don&amp;apos;t generate code" />
       <ClearRxBuf v="don&amp;apos;t generate code" />
       <GetCharsInTxBuf v="don&amp;apos;t generate code" />
@@ -675,6 +675,92 @@ autoselected pull
     </Properties>
     <Methods>
       <Init v="generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
+    </Events>
+  </Bean>
+  <Bean name="TI1" type="TimerInt">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="TI1" />
+      <Periodic_interrupt_source v="T1C0" />
+      <Counter v="TIM1_Counter" />
+      <boolgroup name="Interrupt service/event" v="Enabled">
+        <Interrupt v="Vtim1ch0" />
+        <Interrupt_priority v="medium priority" />
+      </boolgroup>
+      <Interrupt_period v="1 ms" />
+      <Same_period_in_modes v="yes" />
+      <Component_uses_entire_timer v="no" />
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+        <Events_enabled_in_init_ v="yes" />
+      </group>
+      <group name="CPU clock/speed selection">
+        <High_speed_mode v="This component enabled" />
+        <Low_speed_mode v="This component disabled" />
+        <Slow_speed_mode v="This component disabled" />
+      </group>
+    </Properties>
+    <Methods>
+      <Enable v="don&amp;apos;t generate code" />
+      <Disable v="don&amp;apos;t generate code" />
+      <EnableEvent v="don&amp;apos;t generate code" />
+      <DisableEvent v="don&amp;apos;t generate code" />
+      <SetPeriodMode v="don&amp;apos;t generate code" />
+      <SetPeriodTicks16 v="don&amp;apos;t generate code" />
+      <SetPeriodTicks32 v="don&amp;apos;t generate code" />
+      <SetPeriodUS v="don&amp;apos;t generate code" />
+      <SetPeriodMS v="don&amp;apos;t generate code" />
+      <SetPeriodSec v="don&amp;apos;t generate code" />
+      <SetPeriodReal v="don&amp;apos;t generate code" />
+      <SetFreqHz v="don&amp;apos;t generate code" />
+      <SetFreqkHz v="don&amp;apos;t generate code" />
+      <SetFreqMHz v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
+      <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
+      <event name="OnInterrupt" v="generate code">
+        <Event_procedure_name v="TI1_OnInterrupt" />
+        <Priority v="same as interrupt" />
+      </event>
+    </Events>
+  </Bean>
+  <Bean name="RST_SHT" type="BitIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="RST_SHT" />
+      <Pin_for_I_O v="PP1_KWP1_PWM1_IOC1_1" />
+      <Pull_resistor sel_value="no pull resistor">
+        
+autoselected pull
+
+        <EmptySection_DummyValue />
+      </Pull_resistor>
+      <Open_drain v="push-pull" />
+      <Reduced_drive_for_PP1 v="no" />
+      <Direction v="Output" />
+      <group name="Initialization">
+        <Init__direction v="Output" />
+        <Init__value v="1" />
+      </group>
+      <Safe_mode v="yes" />
+      <Optimization_for v="speed" />
+    </Properties>
+    <Methods>
+      <GetDir v="don&amp;apos;t generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="generate code" />
+      <ClrVal v="generate code" />
+      <SetVal v="generate code" />
+      <NegVal v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
     </Methods>
     <Events>
       <EmptySection_DummyValue />

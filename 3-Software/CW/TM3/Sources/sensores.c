@@ -10,13 +10,19 @@
 //                                                                                 
 
 // ---------------Includes ---------------
+#include "CI2C1.h"
+#include "EI2C1.h"
+#include "RST_SHT.h"
 
-#include <sensores.h>
+#include "sensores.h"
 
  // --------Definitions ---------------------
-#define SHT_31_I2C_ADDRESS_U8	    	(uint8_t)(0x45U)
+//#define SHT_31_I2C_ADDRESS_U8	    	(uint8_t)(0x45U)
+#define SHT_31_I2C_ADDRESS_U8	    	(uint8_t)(0x44U)	//Temporal 24/07/2020 18:47:34
 #define ISL_76683_I2C_ADDRESS_U8		(uint8_t)(0x44U)
-#define SHT_31_MEAS_TIME_MS			(uint16_t)(20U)	
+#define SHT_31_MEAS_TIME_MS			(uint16_t)(3U)
+#define ISL_76683_MEAS_TIME_MS		(uint16_t)(100U)	
+#define SHT_31_RST_TIME_MS				(uint16_t)(3U)	
 
 //------------Global variables
 
@@ -35,50 +41,56 @@ stimage_process_t stimage_process;
 ************************************************************************************************/
 void Config_ISLs(void)
 {
-	uint8_t u8cmd_ISL_commandII[2] = {0x01U, 0x02U};		    //Command-II: ADC Resolution 16-bit ADC / Full Scale range3, 16,000
+	uint8_t u8cmd_ISL_commandII[2] = {0x01U, 0x02U};			//Command-II: ADC Resolution 16-bit ADC / Full Scale range3, 16,000
 	uint8_t u8cmd_ISL_int_LT[3] = {0x04U, 0x00U, 0x10U};		//Lower Interrupt Threshold Registers:
 	uint8_t u8cmd_ISL_int_HT[3] = {0x06U, 0xFFU, 0x11U};		//Upper Interrupt Threshold Registers:
-	uint16_t u16sent;
+	uint16_t u16sent;														//Número de bytes efectivamente enviados
 	
-	
+	// Se configuran U3 y U1, sensores ISL76683 conectados a I2C hardware y software respectivamente.	
 	// Set slave address 
-	CI2C1_SelectSlave(ISL_76683_I2C_ADDRESS_U8);					//Bus IIC hardware compartido con sensor de humedad
-		
-	CI2C1_SendBlock(u8cmd_ISL_commandII, 2, &u16sent);
+	CI2C1_SelectSlave(ISL_76683_I2C_ADDRESS_U8);					//Bus IIC hardware compartido con sensor de humedad SHT31
+	// Enviar la configuración	a U3
+	CI2C1_SendBlock(u8cmd_ISL_commandII, 2, &u16sent);			
+	CI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41	
 	CI2C1_SendBlock(u8cmd_ISL_int_LT, 3, &u16sent);
-	CI2C1_SendBlock(u8cmd_ISL_int_HT, 3,&u16sent);
-
+	CI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41	
+	CI2C1_SendBlock(u8cmd_ISL_int_HT, 3, &u16sent);
+	CI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41
+	// Enviar la configuración	a U1
 	EI2C1_SendBlock(u8cmd_ISL_commandII, 2, &u16sent);			//Bus IIC software exclusivo del ISL76683
+	EI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41
 	EI2C1_SendBlock(u8cmd_ISL_int_LT, 3, &u16sent);
-	EI2C1_SendBlock(u8cmd_ISL_int_HT, 3,&u16sent);
+	EI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41	
+	EI2C1_SendBlock(u8cmd_ISL_int_HT, 3, &u16sent);
+	EI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41
 
 }//Fin de Config_ISLs 
+volatile uint8_t u8return;
 
 /***********************************************************************************************
 *
-* @brief    Lectura_Sensores_i2c - Lee los valores de los sensores: luminosidad y humedad
+* @brief    Lectura_Sensor_RH - Lee los valores del sensor de humedad SHT-31
 * @param    none
 * @return   none
 *
 ************************************************************************************************/
 void Lectura_Sensor_RH(void)
 {
-	uint8_t u8cmd_SHT31[2] = {0x24U, 0x00U};		        //Comando para lectura sensor RH
-	uint8_t u8receivebuff[6];                            //, u8CRC;
-	uint32_t u32i;
-	uint16_t u16sent;
-	uint16_t u16rcv;
+	uint8_t u8cmd_SHT31[2] = {0x24U, 0x00U};		      //Comando para lectura sensor RH
+	uint8_t u8receivebuff[6];                          //Temperatura[2] +CRC + Humedad[2] + CRC;
+	uint16_t u16sent;												//Número de bytes efectivamente enviados
+	uint16_t u16rcv;												//Número de bytes efectivamente recibidos
 	
     // Set slave address 
-    CI2C1_SelectSlave(SHT_31_I2C_ADDRESS_U8);
-
+    CI2C1_SelectSlave(SHT_31_I2C_ADDRESS_U8);			//Bus IIC hardware compartido con sensor de luminosidad ISL76683
   	//Lectura sensor de humedad
 	CI2C1_SendBlock(u8cmd_SHT31, 2, &u16sent);
 	for(stimage_process.u16temp = 0;
 		stimage_process.u16temp < SHT_31_MEAS_TIME_MS;
-		){;}//Espera unos 20ms para que se complete la medida
+		){;}//Espera unos SHT_31_MEAS_TIME_MS para que se complete la medida
 
-  	CI2C1_RecvBlock(u8receivebuff, 6, &u16rcv);
+  	u8return = CI2C1_RecvBlock(u8receivebuff, 6, &u16rcv);
+  	CI2C1_SendStop();												//No se envía de forma automática 27/07/2020 14:16:41
   	stimage_process.u8RH[1] = u8receivebuff[3];
   	stimage_process.u8RH[0] = u8receivebuff[4];
 
@@ -86,44 +98,65 @@ void Lectura_Sensor_RH(void)
 
 /***********************************************************************************************
 *
-* @brief    Lectura_Sensor_ALS - Lee el valor del sensor de ALS
+* @brief    Lectura_Sensores_ALS - Lee el valor del sensor de ALS
 * @param    none
 * @return   none
 *
 ************************************************************************************************/
-void Lectura_Sensor_ALS(void)
+void Lectura_Sensores_ALS(void)
 {
 	uint8_t u8receivebuff[2];
 	uint8_t u8cmd_ALS_commandI[2] = {0x00U, 0xA3U};		    //Command-I: IC measures ALS continuously operation mode, 16 persist integration cycles
-	//uint8_t u8cmd_ALS_commandI[2] = {0x00U, 0x23U};		//Command-I: IC measures ALS once operation mode, 16 persist integration cycles
-	uint8_t u8cmd_ISL_DataLSB[2] = {0x02U, 0x00U};		    //Comando para lectura sensor luminosidad
-	uint16_t u16i;
-
-    /* Set slave address */
-    LPI2C_DRV_MasterSetSlaveAddr(INST_LPI2C1, ISL_76683_I2C_ADDRESS_U8, false);
-
-  	//Lectura sensor de luminosidad ALS
-	LPI2C_DRV_MasterSendDataBlocking(INST_LPI2C1, u8cmd_ALS_commandI, 2, true, OSIF_WAIT_FOREVER);
-	LPI2C_DRV_MasterSendDataBlocking(INST_LPI2C1, u8cmd_ISL_DataLSB, 1, true, OSIF_WAIT_FOREVER);
-    //LPI2C_DRV_MasterSendData(INST_LPI2C1, u8cmd_ALS_commandI, 2, true);
-    //LPI2C_DRV_MasterSendData(INST_LPI2C1, u8cmd_ISL_DataLSB, 1, true);
-	//PutDataArrayI2C(ISL_76683_I2C_ADDRESS_U8, 2, u8cmd_ALS_commandI);       //Escribe dato en el registro
-  	//PutDataArrayI2C(ISL_76683_I2C_ADDRESS_U8, 1, u8cmd_ISL_DataLSB);
-  	for(u16i = 0; u16i < 5000; u16i++)
-  	{
-  		//WAIT1_Wait100Cycles();                               //Espera unos 100ms, 3000 ciclos de 33us
-  	}
-  	LPI2C_DRV_MasterReceiveDataBlocking(INST_LPI2C1, u8receivebuff, 2, true, OSIF_WAIT_FOREVER);
-  	//LPI2C_DRV_MasterReceiveData(INST_LPI2C1, u8receivebuff, 2, true);
-  	//GetDataArrayI2C(ISL_76683_I2C_ADDRESS_U8, 2, u8receiveBuff);
-//  	u8ALS[0] = u8I2C_ReceiveBuff[1];
-//  	u8ALS[1] = u8I2C_ReceiveBuff[0];
-
-  	u8ALS[1] = u8receivebuff[1];
-  	u8ALS[0] = u8receivebuff[0];
-
-}
+	uint8_t u8cmd_ISL_DataLSB[1] = {0x02U};		    	//Comando para lectura sensor luminosidad
+	uint16_t u16sent;												//Número de bytes efectivamente enviados
+	uint16_t u16rcv;												//Número de bytes efectivamente recibidos
 
 
+	// Se leen U3 y U1, sensores ISL76683 conectados a I2C hardware y software respectivamente.	
+	// Set slave address 
+	CI2C1_SelectSlave(ISL_76683_I2C_ADDRESS_U8);					//Bus IIC hardware compartido con sensor de humedad SHT31
+	// Enviar comando para conversión a U3
+	CI2C1_SendBlock(u8cmd_ALS_commandI, 2, &u16sent);	
+  	CI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41			
+	CI2C1_SendBlock(u8cmd_ISL_DataLSB, 1, &u16sent);			//Se van a leer los registros de datos
+	CI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41
+	// Enviar comando para conversión a U1
+	EI2C1_SendBlock(u8cmd_ALS_commandI, 2, &u16sent);	
+	EI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41			
+	EI2C1_SendBlock(u8cmd_ISL_DataLSB, 1, &u16sent);			//Se van a leer los registros de datos
+	EI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41
+	for(stimage_process.u16temp = 0;
+		stimage_process.u16temp < ISL_76683_MEAS_TIME_MS;
+		){;}//Espera unos ISL_76683_MEAS_TIME_MS para que se complete la medida
+	// Leer de U3
+  	CI2C1_RecvBlock(u8receivebuff, 2, &u16rcv);
+  	CI2C1_SendStop();												//No se envía de forma automática 27/07/2020 14:16:41
+  	stimage_process.u8ALS1[1] = u8receivebuff[1];
+  	stimage_process.u8ALS1[0] = u8receivebuff[0];
+	// Leer de U1
+  	EI2C1_RecvBlock(u8receivebuff, 2, &u16rcv);
+ 	EI2C1_SendStop();														//No se envía de forma automática 27/07/2020 14:16:41
+  	stimage_process.u8ALS2[1] = u8receivebuff[1];
+  	stimage_process.u8ALS2[0] = u8receivebuff[0];
+
+}//Fin de Lectura_Sensores_ALS
+
+/***********************************************************************************************
+*
+* @brief    Reset_Sensor_RH - Pulso a LOW para resetear el sensor de humedad SHT-31
+* @param    none
+* @return   none
+*
+************************************************************************************************/
+void Reset_Sensor_RH(void)
+{
+	
+	RST_SHT_ClrVal();
+	for(stimage_process.u16temp = 0;
+		stimage_process.u16temp < SHT_31_RST_TIME_MS;
+		){;}//Espera unos SHT_31_RST_TIME_MS para garantizar el reset
+	RST_SHT_SetVal();	
+
+}//Fin de Reset_Sensor_RH
 
 //************************ (C) COPYRIGHT MASERMIC *****END OF FILE****

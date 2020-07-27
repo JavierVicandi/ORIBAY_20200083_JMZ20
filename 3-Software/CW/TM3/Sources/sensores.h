@@ -13,9 +13,6 @@
 #define SENSORES_H 
 
 #include <PE_Types.h>			//Para uso de tipos enteros con notación indicando tamaño
-#include "CI2C1.h"
-#include "EI2C1.h"
-
 
 
 //---------------------- End of User Change Area -----------------------------
@@ -38,7 +35,8 @@ extern stimage_process_t stimage_process;
 //----------Prototipos
 void Config_ISLs(void);  
 void Lectura_Sensor_RH(void);
-void Lectura_Sensores_ALS(void); 
+void Lectura_Sensores_ALS(void);
+void Reset_Sensor_RH(void); 
 
 #endif // SENSORES_H   
 // In order to avoid a repeated usage of the header file  

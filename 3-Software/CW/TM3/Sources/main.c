@@ -40,6 +40,7 @@
 #include "TEST_OUT.h"
 #include "LINPHY0.h"
 #include "TI1.h"
+#include "RST_SHT.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -47,6 +48,8 @@
 #include "IO_Map.h"
 
 /* User includes (#include below this line is not maintained by Processor Expert) */
+#include "sensores.h"
+#include "lin_common_api.h"
 
 void main(void)
 {
@@ -58,13 +61,14 @@ void main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
-	
-	l_sys_init();
-	l_ifc_init(LI0);
+	//Config_ISLs();	
+	Reset_Sensor_RH();
+//	l_sys_init();
+//	l_ifc_init(LI0);
 
 	for(;;){
-		
-		
+		Lectura_Sensor_RH();	
+		//Lectura_Sensores_ALS();
 		
 		
 		

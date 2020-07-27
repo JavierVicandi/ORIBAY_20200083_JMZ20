@@ -6,7 +6,7 @@
 **     Component   : InternalI2C
 **     Version     : Component 01.287, Driver 01.22, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
+**     Date/Time   : 2020-07-27, 14:09, # CodeGen: 17
 **     Abstract    :
 **          This component encapsulates the internal I2C communication 
 **          interface. The implementation of the interface is based 
@@ -29,7 +29,7 @@
 **
 **         Protocol
 **             Mode                    : MASTER
-**             Auto stop condition     : yes
+**             Auto stop condition     : no
 **             SCL frequency           : 86.806 kHz
 **
 **         Initialization
@@ -46,7 +46,9 @@
 **             Baud setting reg.       : IIC0IBFD  [0x07C1]
 **             Address register        : IIC0IBAD  [0x07C0]
 **
-**             Priority                : 
+**         Interrupt
+**             Vector name             : Viic
+**             Priority                : 4
 **
 **         Used pins                   :
 **       ----------------------------------------------------------
@@ -56,11 +58,14 @@
 **              SCL       |     19     |  PT1_IOC0_1_SCL0_TXD1_PWM0_LPRXD0
 **       ----------------------------------------------------------
 **     Contents    :
-**         SendChar    - byte CI2C1_SendChar(byte Chr);
-**         RecvChar    - byte CI2C1_RecvChar(byte *Chr);
-**         SendBlock   - byte CI2C1_SendBlock(void* Ptr, word Siz, word *Snt);
-**         RecvBlock   - byte CI2C1_RecvBlock(void* Ptr, word Siz, word *Rcv);
-**         SelectSlave - byte CI2C1_SelectSlave(byte Slv);
+**         SendChar        - byte CI2C1_SendChar(byte Chr);
+**         RecvChar        - byte CI2C1_RecvChar(byte *Chr);
+**         SendBlock       - byte CI2C1_SendBlock(void* Ptr, word Siz, word *Snt);
+**         RecvBlock       - byte CI2C1_RecvBlock(void* Ptr, word Siz, word *Rcv);
+**         SendStop        - byte CI2C1_SendStop(void);
+**         GetCharsInTxBuf - word CI2C1_GetCharsInTxBuf(void);
+**         GetCharsInRxBuf - word CI2C1_GetCharsInRxBuf(void);
+**         SelectSlave     - byte CI2C1_SelectSlave(byte Slv);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -139,6 +144,20 @@
 /* MODULE CI2C1. */
 
 extern word CI2C1_SndRcvTemp;
+
+#pragma CODE_SEG __NEAR_SEG NON_BANKED
+__interrupt void CI2C1_Interrupt(void);
+#pragma CODE_SEG CI2C1_CODE
+/*
+** ===================================================================
+**     Method      :  CI2C1_Interrupt (component InternalI2C)
+**
+**     Description :
+**         The method services the interrupt of the selected peripheral(s)
+**         and eventually invokes the components event(s).
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
 
 byte CI2C1_SendChar(byte Chr);
 /*
@@ -345,6 +364,61 @@ byte CI2C1_RecvBlock(void* Ptr,word Siz,word *Rcv);
 **                           ERR_NOTAVAIL - Method is not available in
 **                           current mode - see the comment in the
 **                           generated code.
+** ===================================================================
+*/
+
+byte CI2C1_SendStop(void);
+/*
+** ===================================================================
+**     Method      :  CI2C1_SendStop (component InternalI2C)
+**     Description :
+**         If the "Automatic stop condition" property value is 'no',
+**         this method sends a valid stop condition to the serial data
+**         line of the I2C bus to terminate the communication on the
+**         bus after using send methods. This method is enabled only if
+**         "Automatic stop condition" property is set to 'no'.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_SPEED - This device does not work in
+**                           the active speed mode
+**                           ERR_DISABLED - Device is disabled
+**                           ERR_BUSOFF - Clock timeout elapsed - bus is
+**                           busy
+** ===================================================================
+*/
+
+word CI2C1_GetCharsInTxBuf(void);
+/*
+** ===================================================================
+**     Method      :  CI2C1_GetCharsInTxBuf (component InternalI2C)
+**     Description :
+**         Returns number of characters in the output buffer. In SLAVE
+**         mode returns the number of characters in the internal slave
+**         output buffer. In MASTER mode returns number of characters
+**         to be sent from the user buffer (passed by SendBlock method).
+**         This method is not supported in polling mode.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Number of characters in the output buffer.
+** ===================================================================
+*/
+
+word CI2C1_GetCharsInRxBuf(void);
+/*
+** ===================================================================
+**     Method      :  CI2C1_GetCharsInRxBuf (component InternalI2C)
+**     Description :
+**         Returns number of characters in the input buffer. In SLAVE
+**         mode returns the number of characters in the internal slave
+**         input buffer. In MASTER mode returns number of characters to
+**         be received into a user buffer (passed by RecvChar or
+**         RecvBlock method).
+**         This method is not supported in polling mode.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Number of characters in the input buffer.
 ** ===================================================================
 */
 

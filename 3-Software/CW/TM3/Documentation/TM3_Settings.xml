@@ -191,7 +191,7 @@
     <Compiler v="CodeWarrior HCS12Z C Compiler" />
     <CompilerProperties>
       <Compiler v="CodeWarrior HCS12Z C Compiler" />
-      <enumgroup name="Unhandled interrupts" v="One handler for all">
+      <enumgroup name="Unhandled interrupts" v="Own handler for every">
         <Interrupt_priority v="Don&amp;apos;t initialize" />
         <Unhandled_int_code>
           <StrgList><![CDATA[/*lint -save -e950 Disable MISRA rule (1.1) checking. */
@@ -256,10 +256,14 @@ asm(BGND);
       <Component_name v="CI2C1" />
       <I2C_channel v="IIC0" />
       <Mode_selection v="MASTER" />
-      <boolgroup name="Interrupt service/event" v="Disabled" />
+      <boolgroup name="Interrupt service/event" v="Enabled">
+        <Interrupt v="Viic" />
+        <Interrupt_priority v="medium priority" />
+        <boolgroup name="Buffers for SLAVE mode" v="Disabled" />
+      </boolgroup>
       <boolgroup name="MASTER mode" v="Enabled">
         <Polling_trials v="2000" />
-        <Automatic_stop_condition v="yes" />
+        <Automatic_stop_condition v="no" />
         <group name="Initialization">
           <Address_mode v="7-bit addressing" />
           <Target_slave_address_init v="69" />
@@ -295,11 +299,11 @@ asm(BGND);
       <RecvChar v="generate code" />
       <SendBlock v="generate code" />
       <RecvBlock v="generate code" />
-      <SendStop v="don&amp;apos;t generate code" />
+      <SendStop v="generate code" />
       <ClearTxBuf v="don&amp;apos;t generate code" />
       <ClearRxBuf v="don&amp;apos;t generate code" />
-      <GetCharsInTxBuf v="don&amp;apos;t generate code" />
-      <GetCharsInRxBuf v="don&amp;apos;t generate code" />
+      <GetCharsInTxBuf v="generate code" />
+      <GetCharsInRxBuf v="generate code" />
       <SelectSlave v="generate code" />
       <GetSelected v="don&amp;apos;t generate code" />
       <GetSelected10 v="don&amp;apos;t generate code" />
@@ -313,8 +317,14 @@ asm(BGND);
       <Event_module_name v="Events" />
       <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
       <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
-      <event name="OnReceiveData" v="don&amp;apos;t generate code" />
-      <event name="OnTransmitData" v="don&amp;apos;t generate code" />
+      <event name="OnReceiveData" v="generate code">
+        <Event_procedure_name v="CI2C1_OnReceiveData" />
+        <Priority v="same as interrupt" />
+      </event>
+      <event name="OnTransmitData" v="generate code">
+        <Event_procedure_name v="CI2C1_OnTransmitData" />
+        <Priority v="same as interrupt" />
+      </event>
       <event name="OnByteTransfer" v="don&amp;apos;t generate code" />
       <event name="OnReadReq" v="don&amp;apos;t generate code" />
       <event name="OnWriteReq" v="don&amp;apos;t generate code" />
@@ -727,6 +737,43 @@ autoselected pull
         <Event_procedure_name v="TI1_OnInterrupt" />
         <Priority v="same as interrupt" />
       </event>
+    </Events>
+  </Bean>
+  <Bean name="RST_SHT" type="BitIO">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="RST_SHT" />
+      <Pin_for_I_O v="PP1_KWP1_PWM1_IOC1_1" />
+      <Pull_resistor sel_value="no pull resistor">
+        
+autoselected pull
+
+        <EmptySection_DummyValue />
+      </Pull_resistor>
+      <Open_drain v="push-pull" />
+      <Reduced_drive_for_PP1 v="no" />
+      <Direction v="Output" />
+      <group name="Initialization">
+        <Init__direction v="Output" />
+        <Init__value v="1" />
+      </group>
+      <Safe_mode v="yes" />
+      <Optimization_for v="speed" />
+    </Properties>
+    <Methods>
+      <GetDir v="don&amp;apos;t generate code" />
+      <SetDir v="don&amp;apos;t generate code" />
+      <SetInput v="don&amp;apos;t generate code" />
+      <SetOutput v="don&amp;apos;t generate code" />
+      <GetVal v="generate code" />
+      <PutVal v="generate code" />
+      <ClrVal v="generate code" />
+      <SetVal v="generate code" />
+      <NegVal v="don&amp;apos;t generate code" />
+      <GetRawVal v="don&amp;apos;t generate code" />
+    </Methods>
+    <Events>
+      <EmptySection_DummyValue />
     </Events>
   </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>

@@ -6,7 +6,7 @@
 **     Component   : InternalI2C
 **     Version     : Component 01.287, Driver 01.22, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-15, 18:51, # CodeGen: 4
+**     Date/Time   : 2020-07-27, 14:09, # CodeGen: 17
 **     Abstract    :
 **          This component encapsulates the internal I2C communication 
 **          interface. The implementation of the interface is based 
@@ -29,7 +29,7 @@
 **
 **         Protocol
 **             Mode                    : MASTER
-**             Auto stop condition     : yes
+**             Auto stop condition     : no
 **             SCL frequency           : 86.806 kHz
 **
 **         Initialization
@@ -46,7 +46,9 @@
 **             Baud setting reg.       : IIC0IBFD  [0x07C1]
 **             Address register        : IIC0IBAD  [0x07C0]
 **
-**             Priority                : 
+**         Interrupt
+**             Vector name             : Viic
+**             Priority                : 4
 **
 **         Used pins                   :
 **       ----------------------------------------------------------
@@ -56,11 +58,14 @@
 **              SCL       |     19     |  PT1_IOC0_1_SCL0_TXD1_PWM0_LPRXD0
 **       ----------------------------------------------------------
 **     Contents    :
-**         SendChar    - byte CI2C1_SendChar(byte Chr);
-**         RecvChar    - byte CI2C1_RecvChar(byte *Chr);
-**         SendBlock   - byte CI2C1_SendBlock(void* Ptr, word Siz, word *Snt);
-**         RecvBlock   - byte CI2C1_RecvBlock(void* Ptr, word Siz, word *Rcv);
-**         SelectSlave - byte CI2C1_SelectSlave(byte Slv);
+**         SendChar        - byte CI2C1_SendChar(byte Chr);
+**         RecvChar        - byte CI2C1_RecvChar(byte *Chr);
+**         SendBlock       - byte CI2C1_SendBlock(void* Ptr, word Siz, word *Snt);
+**         RecvBlock       - byte CI2C1_RecvBlock(void* Ptr, word Siz, word *Rcv);
+**         SendStop        - byte CI2C1_SendStop(void);
+**         GetCharsInTxBuf - word CI2C1_GetCharsInTxBuf(void);
+**         GetCharsInRxBuf - word CI2C1_GetCharsInRxBuf(void);
+**         SelectSlave     - byte CI2C1_SelectSlave(byte Slv);
 **
 **     Copyright : 1997 - 2014 Freescale Semiconductor, Inc. 
 **     All Rights Reserved.
@@ -122,6 +127,7 @@
 
 /* MODULE CI2C1. */
 
+#include "Events.h"
 #include "CI2C1.h"
 
 #pragma DATA_SEG CI2C1_DATA            /* Select data segment "CI2C1_DATA" */
@@ -142,7 +148,6 @@ static byte *InpPtrM;                  /* Pointer to input buffer for Master mod
 static word OutLenM;                   /* Length of output bufer's content */
 static byte *OutPtrM;                  /* Pointer to output buffer for Master mode */
 word CI2C1_SndRcvTemp;                 /* Temporary variable for SendChar (RecvChar) when they call SendBlock (RecvBlock) */
-static word *PtrSndRcv;                /* Pointer to Snd/Rcv counter for SendBlock/RecvBlock */
 static byte ChrTemp;                   /* Temporary variable for SendChar method */
 static byte CI2C1_SerFlag;             /* Flags for serial communication */
                                        /* Bits: 0 - OverRun error */
@@ -154,12 +159,14 @@ static byte CI2C1_SerFlag;             /* Flags for serial communication */
                                        /*       6 - Full RX buffer */
                                        /*       7 - Master x Slave */
 
+
 /*
 ** ===================================================================
-**     Method      :  MainComm (component InternalI2C)
+**     Method      :  CI2C1_Interrupt (component InternalI2C)
 **
 **     Description :
-**         The method services the transmission/reception in polling mode.
+**         The method services the interrupt of the selected peripheral(s)
+**         and eventually invokes the components event(s).
 **         This method is internal. It is used by Processor Expert only.
 ** ===================================================================
 */
@@ -167,93 +174,81 @@ static byte CI2C1_SerFlag;             /* Flags for serial communication */
 #define SRW  0x04U
 #define IBAL 0x10U
 #define IAAS 0x40U
-static byte MainComm(void)
-{
-  word Tr;
-  byte Status;                         /* Temporary variable for saving status register */
 
-  *PtrSndRcv = 0U;                     /* Clear Snd/Rcv counter */
-  for(Tr=0U; Tr<0x07D0U;Tr++) {
-    if(IIC0IBSR_IBIF) {
-      Status = IIC0IBSR;               /* Save status register */
-      IIC0IBSR_IBIF = 1U;              /* Clear interrupt flag */
-      Tr = (byte)-1;                   /* Clear trials */
-      if(IIC0IBCR_MS_SL) {             /* Is device in master mode? */
-        if(IIC0IBCR_TX_RX) {           /* Is device in Tx mode? */
-          if(Status & RXAK) {          /* NACK received? */
-            IIC0IBCR_MS_SL = 0U;       /* Switch device to slave mode (stop signal sent) */
-            IIC0IBCR_TX_RX = 0U;       /* Switch to Rx mode */
-            OutLenM = 0U;              /* No character for sending */
-            InpLenM = 0U;              /* No character for reception */
-            CI2C1_SerFlag &= (byte)~(byte)(CHAR_IN_TX|WAIT_RX_CHAR|BUSY); /* No character for sending or reception*/
-            return ERR_BUSY;           /* Return with error */
-          }
-          else {
-          if(OutLenM) {                /* Is any char. for transmitting? */
-            OutLenM--;                 /* Decrease number of chars for the transmit */
-            IIC0IBDR = *(OutPtrM)++;   /* Send character */
-            (*PtrSndRcv)++;            /* Increment Snd counter */
-          }
-            else {
-              if(InpLenM) {            /* Is any char. for reception? */
-                if(InpLenM == 1U) {    /* If only one char to receive */
-                  IIC0IBCR_TXAK = 1U;  /* then transmit ACK disable */
-                }
-                else {
-                  IIC0IBCR_TXAK = 0U;  /* else transmit ACK anable */
-                }
-                IIC0IBCR_TX_RX = 0U;   /* Switch to Rx mode */
-                (void)IIC0IBDR;        /* Dummy read character */
-              }
-              else {
-                IIC0IBCR_MS_SL = 0U;   /* Switch device to slave mode (stop signal sent) */
-                IIC0IBCR_TX_RX = 0U;   /* Switch to Rx mode */
-                for(Tr=0x07D0U;Tr!=0U;Tr--) {
-                  if(!IIC0IBSR_IBB) {  /* Bus is busy? */
-                    return ERR_OK;     /* Return without error */
-                  }
-                }
-                return ERR_BUSOFF;     /* Return with error */
-              }
-            }
-          }
-        }
-        else {
-          InpLenM--;                   /* Decrease number of chars for the receive */
-          if(InpLenM) {                /* Is any char. for reception? */
-            if(InpLenM == 1U) {
-              IIC0IBCR_TXAK = 1U;      /* Transmit ACK disable */
-            }
-          }
-          else {
-            IIC0IBCR_MS_SL = 0U;       /* If no, switch device to slave mode (stop signal sent) */
-          }
-          *(InpPtrM)++ = IIC0IBDR;     /* Receive character */
-          (*PtrSndRcv)++;              /* Increment Rcv counter */
-          if(InpLenM == 0U) {          /* Is any char. for reception? */
-            for(Tr = 0x07D0U; Tr != 0U; Tr--) {
-              if(IIC0IBSR_IBB == 0U) { /* Bus is busy? */
-                return ERR_OK;         /* Return without error */
-              }
-            }
-            return ERR_BUSOFF;         /* Return with error */
-          }
-        }
+#define ON_ARBIT_LOST 0x01U
+#define ON_FULL_RX    0x02U
+#define ON_RX_CHAR    0x04U
+#define ON_FREE_TX    0x08U
+#define ON_TX_CHAR    0x10U
+#define ON_OVERRUN    0x20U
+#define ON_TX_EMPTY   0x40U
+
+#pragma CODE_SEG __NEAR_SEG NON_BANKED
+
+ISR(CI2C1_Interrupt)
+{
+  byte Status = IIC0IBSR;              /* Safe status register */
+  IIC0IBSR_IBIF = 1U;                  /* Clear interrupt flag */
+  if(IIC0IBCR_MS_SL){                  /* Is device in master mode? */
+    if(IIC0IBCR_TX_RX){                /* Is device in Tx mode? */
+      if(Status & RXAK) {              /* NACK received? */
+        OutLenM = 0U;                  /* No character for sending */
+        InpLenM = 0U;                  /* No character for reception */
+        CI2C1_SerFlag &= (byte)~(byte)(CHAR_IN_TX|WAIT_RX_CHAR|BUSY); /* No character for sending or reception*/
       }
       else {
-        if(Status & IBAL) {            /* Arbitration lost? */
-          OutLenM = 0U;                /* No character for sending */
-          InpLenM = 0U;                /* No character for reception */
-          CI2C1_SerFlag &= (byte)~(byte)(CHAR_IN_TX|WAIT_RX_CHAR|BUSY); /* No character for sent or reception*/
-          IIC0IBCR_TX_RX = 0U;         /* Switch to Rx mode */
-          return ERR_ARBITR;           /* Return with error */
+        if(OutLenM) {                  /* Is any char. for transmitting? */
+          OutLenM--;                   /* Decrease number of chars for the transmit */
+          IIC0IBDR = *(OutPtrM)++;     /* Send character */
+        }
+        else {
+          if(InpLenM) {                /* Is any char. for reception? */
+            if(InpLenM == 1U) {        /* If only one char to receive */
+              IIC0IBCR_TXAK = 1U;      /* then transmit ACK disable */
+            }
+            else {
+              IIC0IBCR_TXAK = 0U;      /* else transmit ACK anable */
+            }
+            IIC0IBCR_TX_RX = 0U;       /* Switch to Rx mode */
+            (void)IIC0IBDR;            /* Dummy read character */
+          }
+          else {
+            CI2C1_SerFlag &= (byte)~(byte)BUSY; /* Clear flag "busy" */
+             __DI();
+            CI2C1_OnTransmitData();    /* Invoke OnTransmitData event */
+          }
         }
       }
     }
+    else {
+      InpLenM--;                       /* Decrease number of chars for the receive */
+      if(InpLenM) {                    /* Is any char. for reception? */
+        if(InpLenM == 1U) {
+          IIC0IBCR_TXAK = 1U;          /* Transmit ACK disable */
+        }
+      }
+      else {
+        IIC0IBCR_MS_SL = 0U;           /* If no, switch device to slave mode (stop signal sent) */
+        IIC0IBCR_TXAK = 0U;            /* Transmit ACK enable */
+      }
+      *(InpPtrM)++ = IIC0IBDR;         /* Receive character */
+      if(InpLenM == 0U) {              /* Is any char. for reception? */
+         __DI();
+        CI2C1_OnReceiveData();         /* Invoke OnReceiveData event */
+      }
+    }
   }
-  return ERR_BUSOFF;                   /* Return with error */
+  else {
+    if(Status & IBAL) {                /* Arbitration lost? */
+      OutLenM = 0U;                    /* No character for sending */
+      InpLenM = 0U;                    /* No character for reception */
+      CI2C1_SerFlag &= (byte)~(byte)(CHAR_IN_TX|WAIT_RX_CHAR|BUSY); /* No character for sending or reception*/
+      IIC0IBCR_TX_RX = 0U;             /* Switch to Rx mode */
+    }
+  }
 }
 
+#pragma CODE_SEG CI2C1_CODE
 /*
 ** ===================================================================
 **     Method      :  CI2C1_SendChar (component InternalI2C)
@@ -299,7 +294,7 @@ static byte MainComm(void)
 */
 byte CI2C1_SendChar(byte Chr)
 {
-  if((IIC0IBSR_IBB != 0U) || (InpLenM != 0U) || ((CI2C1_SerFlag & (CHAR_IN_TX|WAIT_RX_CHAR|BUSY)) != 0U)) { /* Is the bus busy */
+  if((InpLenM != 0U) || ((CI2C1_SerFlag & (CHAR_IN_TX|WAIT_RX_CHAR|BUSY)) != 0U)) { /* Is the bus busy */
     return ERR_BUSOFF;                 /* If yes then error */
   }
   ChrTemp = Chr;                       /* Save character */
@@ -421,10 +416,11 @@ byte CI2C1_SendBlock(void* Ptr,word Siz,word *Snt)
     *Snt = 0U;
     return ERR_OK;                     /* If zero then OK */
   }
-  if((IIC0IBSR_IBB != 0U) || (InpLenM != 0U) || ((CI2C1_SerFlag & (CHAR_IN_TX|WAIT_RX_CHAR|BUSY)) != 0U)) { /* Is the bus busy */
+  if((InpLenM != 0U) || ((CI2C1_SerFlag & (CHAR_IN_TX|WAIT_RX_CHAR|BUSY)) != 0U)) { /* Is the bus busy */
     return ERR_BUSOFF;                 /* If yes then error */
   }
-  PtrSndRcv = Snt;                     /* Safe Snd pointer */
+  EnterCritical();                     /* Enter the critical section */
+  CI2C1_SerFlag |= BUSY;               /* Set flag "busy" */
   OutLenM = Siz;                       /* Set lenght of data */
   OutPtrM = (byte *)Ptr;               /* Save pointer to data for transmitting */
   IIC0IBCR_TX_RX = 1U;                 /* Set TX mode */
@@ -435,7 +431,9 @@ byte CI2C1_SendBlock(void* Ptr,word Siz,word *Snt)
     IIC0IBCR_MS_SL = 1U;               /* If no then start signal generated */
   }
   IIC0IBDR = CI2C1_SlaveAddr;          /* Send slave address */
-  return (MainComm());                 /* Call main communication method and return */
+  ExitCritical();                      /* Exit the critical section */
+  *Snt = Siz;                          /* Dummy number of really sent chars */
+  return ERR_OK;                       /* OK */
 }
 /*lint -restore Enable MISRA rule (16.7) checking. */
 
@@ -500,10 +498,10 @@ byte CI2C1_RecvBlock(void* Ptr,word Siz,word *Rcv)
     *Rcv = 0U;
     return ERR_OK;                     /* If zero then OK */
   }
-  if((IIC0IBSR_IBB != 0U) || (InpLenM != 0U) || ((CI2C1_SerFlag & (CHAR_IN_TX|WAIT_RX_CHAR|BUSY)) != 0U)) { /* Is the bus busy */
+  if((InpLenM != 0U) || ((CI2C1_SerFlag & (CHAR_IN_TX|WAIT_RX_CHAR|BUSY)) != 0U)) { /* Is the bus busy */
     return ERR_BUSOFF;                 /* If yes then error */
   }
-  PtrSndRcv = Rcv;                     /* Safe Rcv pointer */
+  EnterCritical();                     /* Enter the critical section */
   InpLenM = Siz;                       /* Set lenght of data */
   InpPtrM = (byte *)Ptr;               /* Save pointer to data for reception */
   IIC0IBCR_TX_RX = 1U;                 /* Set TX mode */
@@ -514,7 +512,78 @@ byte CI2C1_RecvBlock(void* Ptr,word Siz,word *Rcv)
     IIC0IBCR_MS_SL = 1U;               /* If no then start signal generated */
   }
   IIC0IBDR = (byte)(CI2C1_SlaveAddr + 1U); /* Send slave address */
-  return (MainComm());                 /* Call main communication method and return */
+  ExitCritical();                      /* Exit the critical section */
+  *Rcv = Siz;                          /* Dummy number of really received chars */
+  return ERR_OK;                       /* OK */
+}
+
+/*
+** ===================================================================
+**     Method      :  CI2C1_SendStop (component InternalI2C)
+**     Description :
+**         If the "Automatic stop condition" property value is 'no',
+**         this method sends a valid stop condition to the serial data
+**         line of the I2C bus to terminate the communication on the
+**         bus after using send methods. This method is enabled only if
+**         "Automatic stop condition" property is set to 'no'.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Error code, possible codes:
+**                           ERR_OK - OK
+**                           ERR_SPEED - This device does not work in
+**                           the active speed mode
+**                           ERR_DISABLED - Device is disabled
+**                           ERR_BUSOFF - Clock timeout elapsed - bus is
+**                           busy
+** ===================================================================
+*/
+byte CI2C1_SendStop(void)
+{
+  if((InpLenM != 0U) || ((CI2C1_SerFlag & (CHAR_IN_TX|WAIT_RX_CHAR|BUSY)) != 0U)) { /* Is the bus busy */
+    return ERR_BUSOFF;                 /* If yes then error */
+  }
+  IIC0IBCR_MS_SL = 0U;                 /* Set slave mode (send stop condition) */
+  IIC0IBCR_TX_RX = 0U;                 /* Switch to Rx mode */
+  return ERR_OK;                       /* Return without error */
+}
+
+/*
+** ===================================================================
+**     Method      :  CI2C1_GetCharsInTxBuf (component InternalI2C)
+**     Description :
+**         Returns number of characters in the output buffer. In SLAVE
+**         mode returns the number of characters in the internal slave
+**         output buffer. In MASTER mode returns number of characters
+**         to be sent from the user buffer (passed by SendBlock method).
+**         This method is not supported in polling mode.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Number of characters in the output buffer.
+** ===================================================================
+*/
+word CI2C1_GetCharsInTxBuf(void)
+{
+  return(OutLenM);                     /* Return number of chars remaining in the Master Tx buffer */
+}
+
+/*
+** ===================================================================
+**     Method      :  CI2C1_GetCharsInRxBuf (component InternalI2C)
+**     Description :
+**         Returns number of characters in the input buffer. In SLAVE
+**         mode returns the number of characters in the internal slave
+**         input buffer. In MASTER mode returns number of characters to
+**         be received into a user buffer (passed by RecvChar or
+**         RecvBlock method).
+**         This method is not supported in polling mode.
+**     Parameters  : None
+**     Returns     :
+**         ---             - Number of characters in the input buffer.
+** ===================================================================
+*/
+word CI2C1_GetCharsInRxBuf(void)
+{
+  return(InpLenM);                     /* Return number of chars remaining in the Master Rx buffer */
 }
 
 /*
@@ -568,6 +637,8 @@ void CI2C1_Init(void)
   /* IIC0IBFD: IBC7=1,IBC6=0,IBC5=0,IBC4=0,IBC3=1,IBC2=0,IBC1=1,IBC0=0 */
   IIC0IBFD = 0x8AU;                    /* Set prescaler bits */
   IIC0IBCR_IBEN = 1U;                  /* Enable device */
+  /* IIC0IBCR: IBEN=1,IBIE=1,MS_SL=0,TX_RX=0,TXAK=0,RSTA=0,??=0,IBSWAI=0 */
+  IIC0IBCR = 0xC0U;                    /* Control register settings */
 }
 
 

@@ -30,7 +30,7 @@ OBJS_OS_FORMAT += \
 # Each subdirectory must supply rules for building sources it contributes
 Project_Settings/Startup_Code/starts12z_c.obj: ../Project_Settings/Startup_Code/starts12z.c
 	@echo 'Building file: $<'
-	@echo 'Executing target #4 $<'
+	@echo 'Executing target #5 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Project_Settings/Startup_Code/starts12z.args" -o "Project_Settings/Startup_Code/starts12z_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'

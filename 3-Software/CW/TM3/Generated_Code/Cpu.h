@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-23, 19:06, # CodeGen: 9
+**     Date/Time   : 2020-07-27, 14:09, # CodeGen: 17
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -138,7 +138,124 @@ void Cpu_Delay100US(word us100);
 */
 
 /* Forward declaration of the default interrupt routine(s) */
-__interrupt void Cpu_Interrupt(void);
+__interrupt void Cpu_ivVReserved123(void);
+__interrupt void Cpu_ivVReserved122(void);
+__interrupt void Cpu_ivVReserved121(void);
+__interrupt void Cpu_ivVReserved120(void);
+__interrupt void Cpu_ivVReserved119(void);
+__interrupt void Cpu_ivVReserved118(void);
+__interrupt void Cpu_ivVReserved117(void);
+__interrupt void Cpu_ivVReserved116(void);
+__interrupt void Cpu_ivVReserved115(void);
+__interrupt void Cpu_ivVReserved114(void);
+__interrupt void Cpu_ivVReserved113(void);
+__interrupt void Cpu_ivVReserved112(void);
+__interrupt void Cpu_ivVReserved111(void);
+__interrupt void Cpu_ivVReserved110(void);
+__interrupt void Cpu_ivVReserved109(void);
+__interrupt void Cpu_ivVReserved108(void);
+__interrupt void Cpu_ivVReserved107(void);
+__interrupt void Cpu_ivVReserved106(void);
+__interrupt void Cpu_ivVReserved105(void);
+__interrupt void Cpu_ivVReserved104(void);
+__interrupt void Cpu_ivVReserved102(void);
+__interrupt void Cpu_ivVReserved101(void);
+__interrupt void Cpu_ivVReserved100(void);
+__interrupt void Cpu_ivVReserved99(void);
+__interrupt void Cpu_ivVReserved98(void);
+__interrupt void Cpu_ivVReserved97(void);
+__interrupt void Cpu_ivVReserved96(void);
+__interrupt void Cpu_ivVReserved95(void);
+__interrupt void Cpu_ivVReserved94(void);
+__interrupt void Cpu_ivVReserved93(void);
+__interrupt void Cpu_ivVtim1ovf(void);
+__interrupt void Cpu_ivVReserved91(void);
+__interrupt void Cpu_ivVReserved90(void);
+__interrupt void Cpu_ivVReserved89(void);
+__interrupt void Cpu_ivVReserved88(void);
+__interrupt void Cpu_ivVReserved87(void);
+__interrupt void Cpu_ivVReserved86(void);
+__interrupt void Cpu_ivVtim1ch1(void);
+__interrupt void Cpu_ivVReserved83(void);
+__interrupt void Cpu_ivVReserved82(void);
+__interrupt void Cpu_ivVReserved81(void);
+__interrupt void Cpu_ivVReserved80(void);
+__interrupt void Cpu_ivVportl(void);
+__interrupt void Cpu_ivVReserved78(void);
+__interrupt void Cpu_ivVReserved77(void);
+__interrupt void Cpu_ivVReserved76(void);
+__interrupt void Cpu_ivVReserved75(void);
+__interrupt void Cpu_ivVReserved74(void);
+__interrupt void Cpu_ivVReserved73(void);
+__interrupt void Cpu_ivVReserved72(void);
+__interrupt void Cpu_ivVReserved71(void);
+__interrupt void Cpu_ivVReserved70(void);
+__interrupt void Cpu_ivVReserved69(void);
+__interrupt void Cpu_ivVReserved68(void);
+__interrupt void Cpu_ivVReserved67(void);
+__interrupt void Cpu_ivVportad(void);
+__interrupt void Cpu_ivVReserved65(void);
+__interrupt void Cpu_ivVhti(void);
+__interrupt void Cpu_ivVapi(void);
+__interrupt void Cpu_ivVlvi(void);
+__interrupt void Cpu_ivVevddx(void);
+__interrupt void Cpu_ivVportp(void);
+__interrupt void Cpu_ivVReserved59(void);
+__interrupt void Cpu_ivVReserved58(void);
+__interrupt void Cpu_ivVReserved57(void);
+__interrupt void Cpu_ivVReserved56(void);
+__interrupt void Cpu_ivVReserved55(void);
+__interrupt void Cpu_ivVports(void);
+__interrupt void Cpu_ivVReserved53(void);
+__interrupt void Cpu_ivVReserved52(void);
+__interrupt void Cpu_ivVReserved51(void);
+__interrupt void Cpu_ivVReserved50(void);
+__interrupt void Cpu_ivVReserved49(void);
+__interrupt void Cpu_ivVReserved48(void);
+__interrupt void Cpu_ivVbats(void);
+__interrupt void Cpu_ivVReserved45(void);
+__interrupt void Cpu_ivVReserved44(void);
+__interrupt void Cpu_ivVReserved43(void);
+__interrupt void Cpu_ivVReserved42(void);
+__interrupt void Cpu_ivVReserved41(void);
+__interrupt void Cpu_ivVReserved40(void);
+__interrupt void Cpu_ivVflash(void);
+__interrupt void Cpu_ivVflasherr(void);
+__interrupt void Cpu_ivVReserved37(void);
+__interrupt void Cpu_ivVReserved36(void);
+__interrupt void Cpu_ivVRAM_err(void);
+__interrupt void Cpu_ivVReserved34(void);
+__interrupt void Cpu_ivVReserved33(void);
+__interrupt void Cpu_ivVcpmuplllck(void);
+__interrupt void Cpu_ivVcpmuosc(void);
+__interrupt void Cpu_ivVadc0conv_compl(void);
+__interrupt void Cpu_ivVadc0conv_seq_abrt(void);
+__interrupt void Cpu_ivVadc0err(void);
+__interrupt void Cpu_ivVReserved27(void);
+__interrupt void Cpu_ivVReserved26(void);
+__interrupt void Cpu_ivVsci1(void);
+__interrupt void Cpu_ivVspi0(void);
+__interrupt void Cpu_ivVReserved22(void);
+__interrupt void Cpu_ivVReserved21(void);
+__interrupt void Cpu_ivVtim0ovf(void);
+__interrupt void Cpu_ivVReserved19(void);
+__interrupt void Cpu_ivVReserved18(void);
+__interrupt void Cpu_ivVtim0ch5(void);
+__interrupt void Cpu_ivVtim0ch4(void);
+__interrupt void Cpu_ivVtim0ch3(void);
+__interrupt void Cpu_ivVtim0ch1(void);
+__interrupt void Cpu_ivVtim0ch0(void);
+__interrupt void Cpu_ivVrti(void);
+__interrupt void Cpu_ivVirq(void);
+__interrupt void Cpu_ivVxirq(void);
+__interrupt void Cpu_ivVsi(void);
+__interrupt void Cpu_ivVReserved7(void);
+__interrupt void Cpu_ivVReserved6(void);
+__interrupt void Cpu_ivVme(void);
+__interrupt void Cpu_ivVsys(void);
+__interrupt void Cpu_ivVswi(void);
+__interrupt void Cpu_ivVtrap(void);
+__interrupt void Cpu_ivVspare(void);
 
 #pragma CODE_SEG DEFAULT
 

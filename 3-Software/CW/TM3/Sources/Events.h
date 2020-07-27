@@ -45,6 +45,7 @@
 #include "TEST_OUT.h"
 #include "LINPHY0.h"
 #include "TI1.h"
+#include "RST_SHT.h"
 
 #pragma CODE_SEG DEFAULT
 
@@ -110,6 +111,38 @@ void TI1_OnInterrupt(void);
 **         when the component is enabled - <Enable> and the events are
 **         enabled - <EnableEvent>). This event is enabled only if a
 **         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void CI2C1_OnReceiveData(void);
+/*
+** ===================================================================
+**     Event       :  CI2C1_OnReceiveData (module Events)
+**
+**     Component   :  CI2C1 [InternalI2C]
+**     Description :
+**         This event is invoked when I2C finishes the reception of the
+**         data successfully. This event is not available for the SLAVE
+**         mode and if both RecvChar and RecvBlock are disabled. This
+**         event is enabled only if interrupts/events are enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void CI2C1_OnTransmitData(void);
+/*
+** ===================================================================
+**     Event       :  CI2C1_OnTransmitData (module Events)
+**
+**     Component   :  CI2C1 [InternalI2C]
+**     Description :
+**         This event is invoked when I2C finishes the transmission of
+**         the data successfully. This event is not available for the
+**         SLAVE mode and if both SendChar and SendBlock are disabled.
+**         This event is enabled only if interrupts/events are enabled.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================
