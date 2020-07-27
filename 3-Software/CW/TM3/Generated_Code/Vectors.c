@@ -5,7 +5,7 @@
 **     Processor   : MC9S12ZVLS16MFM
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 14:09, # CodeGen: 17
+**     Date/Time   : 2020-07-27, 17:52, # CodeGen: 32
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -55,7 +55,6 @@
 **  @{
 */         
 #include "Cpu.h"
-#include "CI2C1.h"
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
@@ -101,7 +100,7 @@ const InterruptTableEntry _InterruptVectorTable[123] @0x00FFFE10U = { /* Interru
   _VECTOR(Cpu_ivVReserved106),          /* 0x15  0x00FFFE54   1   ivVReserved106       unused by PE */
   _VECTOR(Cpu_ivVReserved105),          /* 0x16  0x00FFFE58   1   ivVReserved105       unused by PE */
   _VECTOR(Cpu_ivVReserved104),          /* 0x17  0x00FFFE5C   1   ivVReserved104       unused by PE */
-  _VECTOR(CI2C1_Interrupt),             /* 0x18  0x00FFFE60   4   ivViic               used by PE */
+  _VECTOR(Cpu_ivViic),                  /* 0x18  0x00FFFE60   1   ivViic               unused by PE */
   _VECTOR(Cpu_ivVReserved102),          /* 0x19  0x00FFFE64   1   ivVReserved102       unused by PE */
   _VECTOR(Cpu_ivVReserved101),          /* 0x1A  0x00FFFE68   1   ivVReserved101       unused by PE */
   _VECTOR(Cpu_ivVReserved100),          /* 0x1B  0x00FFFE6C   1   ivVReserved100       unused by PE */

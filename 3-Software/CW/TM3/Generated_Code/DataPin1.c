@@ -6,7 +6,7 @@
 **     Component   : BitIO
 **     Version     : Component 02.086, Driver 03.00, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-23, 19:06, # CodeGen: 9
+**     Date/Time   : 2020-07-27, 17:52, # CodeGen: 32
 **     Abstract    :
 **         This component "BitIO" implements an one-bit input/output.
 **         It uses one bit/pin of a port.
@@ -18,21 +18,21 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       28            |  PP7_KWP7_PWM7_IOC1_0
+**                       14            |  PT0_IOC0_0_SDA0_RXD1_PWM2_LPTXD0
 **             ----------------------------------------------------
 **
-**         Port name                   : P
+**         Port name                   : T
 **
-**         Bit number (in port)        : 7
-**         Bit mask of the port        : 0x0080
+**         Bit number (in port)        : 0
+**         Bit mask of the port        : 0x0001
 **
 **         Initial direction           : Input (direction can be changed)
 **         Safe mode                   : no
 **         Initial output value        : 1
-**         Initial pull option         : up
+**         Initial pull option         : off
 **
-**         Port data register          : PTP       [0x02F0]
-**         Port control register       : DDRP      [0x02F2]
+**         Port data register          : PTT       [0x02C0]
+**         Port control register       : DDRT      [0x02C2]
 **
 **         Optimization for            : speed
 **     Contents    :
@@ -171,9 +171,9 @@ void DataPin1_SetVal(void)
 void DataPin1_SetDir(bool Dir)
 {
   if (Dir) {
-    setReg8Bits(DDRP, 0x80U);          /* DDRP7=0x01U */
+    setReg8Bits(DDRT, 0x01U);          /* DDRT0=0x01U */
   } else { /* !Dir */
-    clrReg8Bits(DDRP, 0x80U);          /* DDRP7=0x00U */
+    clrReg8Bits(DDRT, 0x01U);          /* DDRT0=0x00U */
   } /* !Dir */
 }
 

@@ -29,7 +29,6 @@
 /* Including needed modules to compile this module/procedure */
 #include "Cpu.h"
 #include "Events.h"
-#include "CI2C1.h"
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
@@ -62,6 +61,12 @@ void main(void)
   /* Write your code here */
   /* For example: for(;;) { } */
 	//Config_ISLs();	
+  
+  //EI2C1_Disable();
+  
+  //uint8_t u8Error = EI2C1_Enable();
+
+  
 	Reset_Sensor_RH();
 //	l_sys_init();
 //	l_ifc_init(LI0);

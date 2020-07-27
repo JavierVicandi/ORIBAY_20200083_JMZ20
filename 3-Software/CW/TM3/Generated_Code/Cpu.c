@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 14:09, # CodeGen: 17
+**     Date/Time   : 2020-07-27, 17:52, # CodeGen: 32
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -65,7 +65,6 @@
 
 /* MODULE Cpu. */
 
-#include "CI2C1.h"
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
@@ -409,6 +408,22 @@ ISR(Cpu_ivVReserved105)
 ** ===================================================================
 */
 ISR(Cpu_ivVReserved104)
+{
+  /*lint -save -e950 Disable MISRA rule (1.1) checking. */
+  asm(BGND);
+  /*lint -restore Enable MISRA rule (1.1) checking. */
+}
+
+/*
+** ===================================================================
+**     Method      :  Cpu_Cpu_ivViic (component MC9S12ZVLS32_32)
+**
+**     Description :
+**         The method services unhandled interrupt vectors.
+**         This method is internal. It is used by Processor Expert only.
+** ===================================================================
+*/
+ISR(Cpu_ivViic)
 {
   /*lint -save -e950 Disable MISRA rule (1.1) checking. */
   asm(BGND);
@@ -2191,8 +2206,6 @@ void PE_low_level_init(void)
   #endif
   /* Int. priority initialization */
   /*                                        No. Address Pri XGATE Name                 Description */
-  setReg8(INT_CFADDR, 0x18U);           
-  setReg8(INT_CFDATA0, 0x04U);         /*  0x18  0x00FFFE60   4   no   ivViic               used by PE */ 
   setReg8(INT_CFADDR, 0x28U);           
   setReg8(INT_CFDATA3, 0x04U);         /*  0x2B  0x00FFFEAC   4   no   ivVtim1ch0           used by PE */ 
   setReg8(INT_CFADDR, 0x50U);           
@@ -2202,20 +2215,14 @@ void PE_low_level_init(void)
   setReg8(INT_CFADDR, 0x70U);           
   setReg8(INT_CFDATA1, 0x04U);         /*  0x71  0x00FFFFC4   4   no   ivVtim0ch2           used by PE */ 
   /* Common initialization of the CPU registers */
+  /* PTT: PTT1=1,PTT0=1 */
+  setReg8Bits(PTT, 0x03U);              
+  /* PPST: PPST1=0 */
+  clrReg8Bits(PPST, 0x02U);             
+  /* PERT: PERT1=1,PERT0=0 */
+  clrSetReg8Bits(PERT, 0x01U, 0x02U);   
   /* DDRT: DDRT7=1,DDRT6=1,DDRT5=1,DDRT4=1,DDRT3=1,DDRT2=1,DDRT1=0,DDRT0=0 */
   setReg8(DDRT, 0xFCU);                 
-  /* MODRR0: IIC0RR=1,S0L0RR&=~3 */
-  clrSetReg8Bits(MODRR0, 0x03U, 0x10U); 
-  /* PIEP: PIEP7=0,PIEP5=0,PIEP3=0,PIEP1=0 */
-  clrReg8Bits(PIEP, 0xAAU);             
-  /* PTP: PTP7=1,PTP5=1,PTP3=0,PTP1=1 */
-  clrSetReg8Bits(PTP, 0x08U, 0xA2U);    
-  /* PPSP: PPSP7=0,PPSP5=0 */
-  clrReg8Bits(PPSP, 0xA0U);             
-  /* PERP: PERP7=1,PERP5=1,PERP3=0,PERP1=0 */
-  clrSetReg8Bits(PERP, 0x0AU, 0xA0U);   
-  /* DDRP: DDRP7=0,DDRP6=1,DDRP5=0,DDRP4=1,DDRP3=1,DDRP2=1,DDRP1=1,DDRP0=1 */
-  setReg8(DDRP, 0x5FU);                 
   /* DIENL: DIENL0=1 */
   setReg8Bits(DIENL, 0x01U);            
   /* PIEL: PIEL0=0 */
@@ -2228,6 +2235,16 @@ void PE_low_level_init(void)
   clrReg8Bits(PERS, 0x0FU);             
   /* DDRS: DDRS3=0,DDRS2=0,DDRS1=0,DDRS0=0 */
   clrReg8Bits(DDRS, 0x0FU);             
+  /* PIEP: PIEP3=0,PIEP1=0 */
+  clrReg8Bits(PIEP, 0x0AU);             
+  /* PTP: PTP3=0,PTP1=1 */
+  clrSetReg8Bits(PTP, 0x08U, 0x02U);    
+  /* PERP: PERP3=0,PERP1=0 */
+  clrReg8Bits(PERP, 0x0AU);             
+  /* DDRP: DDRP6=1,DDRP4=1,DDRP3=1,DDRP2=1,DDRP1=1,DDRP0=1 */
+  setReg8Bits(DDRP, 0x5FU);             
+  /* MODRR0: S0L0RR&=~3 */
+  clrReg8Bits(MODRR0, 0x03U);           
   /* TIM1TSCR1: TEN=0,TSWAI=0,TSFRZ=0,TFFCA=0,PRNT=1,??=0,??=0,??=0 */
   setReg8(TIM1TSCR1, 0x08U);            
   /* TIM1OCPD: OCPD0=1 */
@@ -2265,8 +2282,6 @@ void PE_low_level_init(void)
   /* IRQCR: IRQEN=0 */
   clrReg8Bits(IRQCR, 0x40U);            
   /* ### MC9S12ZVLS32_32 "Cpu" init code ... */
-  /* ### InternalI2C "CI2C1" init code ... */
-  CI2C1_Init();
   /* ### BitIO "DataPin1" init code ... */
   /* ### BitIO "ClockPin1" init code ... */
   /* ###  "EI2C1" init code ... */

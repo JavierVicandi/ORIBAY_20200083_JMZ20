@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 14:09, # CodeGen: 17
+**     Date/Time   : 2020-07-27, 17:34, # CodeGen: 27
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -158,6 +158,7 @@ __interrupt void Cpu_ivVReserved107(void);
 __interrupt void Cpu_ivVReserved106(void);
 __interrupt void Cpu_ivVReserved105(void);
 __interrupt void Cpu_ivVReserved104(void);
+__interrupt void Cpu_ivViic(void);
 __interrupt void Cpu_ivVReserved102(void);
 __interrupt void Cpu_ivVReserved101(void);
 __interrupt void Cpu_ivVReserved100(void);

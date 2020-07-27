@@ -6,7 +6,7 @@
 **     Component   : BitIO
 **     Version     : Component 02.086, Driver 03.00, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-06-10, 20:19, # CodeGen: 2
+**     Date/Time   : 2020-07-27, 17:52, # CodeGen: 32
 **     Abstract    :
 **         This component "BitIO" implements an one-bit input/output.
 **         It uses one bit/pin of a port.
@@ -18,21 +18,21 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       27            |  PP5_XIRQ_KWP5_PWM5
+**                       19            |  PT1_IOC0_1_SCL0_TXD1_PWM0_LPRXD0
 **             ----------------------------------------------------
 **
-**         Port name                   : P
+**         Port name                   : T
 **
-**         Bit number (in port)        : 5
-**         Bit mask of the port        : 0x0020
+**         Bit number (in port)        : 1
+**         Bit mask of the port        : 0x0002
 **
 **         Initial direction           : Input (direction can be changed)
 **         Safe mode                   : no
 **         Initial output value        : 1
 **         Initial pull option         : up
 **
-**         Port data register          : PTP       [0x02F0]
-**         Port control register       : DDRP      [0x02F2]
+**         Port data register          : PTT       [0x02C0]
+**         Port control register       : DDRT      [0x02C2]
 **
 **         Optimization for            : speed
 **     Contents    :
@@ -117,7 +117,7 @@
 ** ===================================================================
 */
 #define ClockPin1_GetVal() ( \
-    (bool)((getReg8(PTP) & 0x20U))     /* Return port data */ \
+    (bool)((getReg8(PTT) & 0x02U))     /* Return port data */ \
   )
 
 /*
@@ -132,7 +132,7 @@
 ** ===================================================================
 */
 #define ClockPin1_ClrVal() ( \
-    (void)clrReg8Bits(PTP, 0x20U)      /* PTP5=0x00U */ \
+    (void)clrReg8Bits(PTT, 0x02U)      /* PTT1=0x00U */ \
   )
 
 /*
@@ -147,7 +147,7 @@
 ** ===================================================================
 */
 #define ClockPin1_SetVal() ( \
-    (void)setReg8Bits(PTP, 0x20U)      /* PTP5=0x01U */ \
+    (void)setReg8Bits(PTT, 0x02U)      /* PTT1=0x01U */ \
   )
 
 /*

@@ -26,7 +26,6 @@
 "$(ProjDirPath)/FLASH/LIN_Stack/bsp/SCI/lin_lld_sci_c.obj"
 "$(ProjDirPath)/FLASH/LIN_Stack/bsp/SCI/lin_lld_timesrv_c.obj"
 "$(ProjDirPath)/FLASH/LIN_Stack/bsp/AUTOBAUD/lin_lld_autobaud_c.obj"
-"$(ProjDirPath)/FLASH/Generated_Code/CI2C1_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/ClockPin1_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Cpu_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/DataPin1_c.obj"
