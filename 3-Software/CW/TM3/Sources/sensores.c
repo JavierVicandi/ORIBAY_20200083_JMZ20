@@ -84,8 +84,8 @@ void Lectura_Sensor_RH(void)
 		){;}//Espera unos SHT_31_MEAS_TIME_MS antes de la lectura (>1ms)
 
   	u8return = EI2C2_RecvBlock(u8receivebuff, 6, &u16rcv);
-  	stimage_process.unRH.u8RH[0] = u8receivebuff[3];		//Mantenemos en big endian
-  	stimage_process.unRH.u8RH[1] = u8receivebuff[4];
+  	stimage_process.unRH.u8RH[1] = u8receivebuff[3];		//Mantenemos en big endian
+  	stimage_process.unRH.u8RH[0] = u8receivebuff[4];
 	for(stimage_process.u16temp = 0;
 		stimage_process.u16temp < SHT_31_MEAS_TIME_MS;
 		){;}//Espera unos SHT_31_MEAS_TIME_MS antes de otro comando (>1ms)

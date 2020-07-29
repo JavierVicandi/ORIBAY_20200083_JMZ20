@@ -14,13 +14,13 @@
       <File Name="Generated_Code/ClockPin2.c" FileDate="2020-07-28, 16:13:23" FileAge="1595945603673" FileType="45637" CompNumb="33" />
       <File Name="Sources/Events.h" FileDate="2020-07-28, 15:40:26" FileAge="1595943626059" FileType="131328" />
       <File Name="Generated_Code/ClockPin1.h" FileDate="2020-07-28, 15:40:21" FileAge="1595943621728" FileType="45637" CompNumb="9" />
-      <File Name="Documentation/TM3_SIGNALS.txt" FileDate="2020-07-29, 14:29:21" FileAge="1596025761304" FileType="3072" />
+      <File Name="Documentation/TM3_SIGNALS.txt" FileDate="2020-07-29, 15:57:07" FileAge="1596031027142" FileType="3072" />
       <File Name="Sources/Events.c" FileDate="2020-07-28, 15:40:25" FileAge="1595943625999" FileType="131328" />
       <File Name="Generated_Code/TEST_IN_0_3.h" FileDate="2020-07-28, 15:40:22" FileAge="1595943622942" FileType="45637" CompNumb="20" />
       <File Name="Project_Settings/Linker_Files/ProcessorExpert.prm" FileDate="2020-07-28, 16:55:01" FileAge="1595948101762" FileType="8" CompNumb="2" />
       <File Name="Generated_Code/TI1.h" FileDate="2020-07-28, 15:40:23" FileAge="1595943623252" FileType="45637" CompNumb="23" />
       <File Name="Generated_Code/ClockPin1.c" FileDate="2020-07-28, 15:40:21" FileAge="1595943621658" FileType="45637" CompNumb="9" />
-      <File Name="Sources/main.c" FileDate="2020-07-28, 18:57:22" FileAge="1595955442064" FileType="128" />
+      <File Name="Sources/main.c" FileDate="2020-07-29, 15:56:58" FileAge="1596031018915" FileType="128" />
       <File Name="Generated_Code/RST_SHT.h" FileDate="2020-07-28, 15:40:22" FileAge="1595943622822" FileType="45637" CompNumb="24" />
       <File Name="Generated_Code/TEST_IN_0_3.c" FileDate="2020-07-28, 15:40:22" FileAge="1595943622882" FileType="45637" CompNumb="20" />
       <File Name="Generated_Code/EI2C2.h" FileDate="2020-07-28, 16:13:23" FileAge="1595945603669" FileType="45637" CompNumb="31" />

@@ -67,20 +67,19 @@ void main(void)
 	Reset_Sensor_RH();
 	l_sys_init();
 	l_ifc_init(LI0);
-	//l_sch_set(LI0, LI0_NormalTable,0);
 
 	for(;;){
 		Lectura_Sensor_RH();	
 		//Lectura_Sensores_ALS();
 		
-        if (l_flg_tst_LI0_Humidity_f_flag())
-        {        	
-        	l_flg_clr_LI0_Humidity_f_flag();
-
-        	l_bytes_wr_LI0_Humidity(0, 1, stimage_process.unRH.u8RH)
-
-        }
-	
+		if (l_flg_tst_LI0_Humidity_f_flag())
+		{
+			l_flg_clr_LI0_Humidity_f_flag();               // Clear flag
+			//WDOG_DRV_Trigger(INST_WATCHDOG1);             // Refresh wdog value
+			l_bytes_wr_LI0_Humidity(0, 2, stimage_process.unRH.u8RH);           // escribimos dato: señal humedad
+			//Lectura_Sensor_RH();                          // Lectura de humedad x I2C
+		} // (l_flg_tst_LI0_Humedad_f_flag())
+		
 	}
 
 

@@ -13,7 +13,7 @@
 *
 * @version   1.0
 *
-* @date      Wed Jul 29 15:29:45 CEST 2020
+* @date      Wed Jul 15 18:39:12 CEST 2020
 *
 * @brief     Hardware configuration file
 *
@@ -24,13 +24,16 @@
 /* Define operating mode */
 #define _MASTER_MODE_     0
 #define _SLAVE_MODE_      1
-#define LIN_MODE   _MASTER_MODE_
+#define LIN_MODE   _SLAVE_MODE_
 /* Define protocol version */
 #define PROTOCOL_21       0
 #define PROTOCOL_J2602    1
 #define PROTOCOL_20       2
 #define LIN_PROTOCOL    PROTOCOL_21
-#define LIN_NUM_OF_IFCS  1		/* For master */
+
+#define SCI_ADDR        SCI0_ADDR    /* For slave */
+
+#define LIN_BAUD_RATE    19200    	 /*For slave*/
 /**********************************************************************/
 /***************          Diagnostic class selection  *****************/
 /**********************************************************************/
@@ -45,17 +48,17 @@
 #define MAX_QUEUE_SIZE 1
 
 
-#define _LI0_DIAG_NUMBER_OF_SERVICES_    5
+#define _DIAG_NUMBER_OF_SERVICES_    5
 
-#define LI0_DIAGSRV_READ_BY_IDENTIFIER_ORDER    0
+#define DIAGSRV_READ_BY_IDENTIFIER_ORDER    0
 
-#define LI0_DIAGSRV_ASSIGN_FRAME_ID_RANGE_ORDER    1
+#define DIAGSRV_ASSIGN_FRAME_ID_RANGE_ORDER    1
 
-#define LI0_DIAGSRV_ASSIGN_NAD_ORDER    2
+#define DIAGSRV_ASSIGN_NAD_ORDER    2
 
-#define LI0_DIAGSRV_CONDITIONAL_CHANGE_NAD_ORDER    3
+#define DIAGSRV_CONDITIONAL_CHANGE_NAD_ORDER    3
 
-#define LI0_DIAGSRV_SAVE_CONFIGURATION_ORDER    4
+#define DIAGSRV_SAVE_CONFIGURATION_ORDER    4
 
 
 /**************** FRAME SUPPORT DEFINITION ******************/
@@ -127,36 +130,11 @@ typedef enum {
   
 } l_frame_handle;
 /**********************************************************************/
-/***************        schedule table       *******************/
-/**********************************************************************/
-/* Number of schedule tables */
-#define  LIN_NUM_OF_SCHD_TBL   7
-/* List of schedules */
-typedef enum {
-
-   /* Interface_name = LI0 */
-
-   LI0_LIN_NULL_SCHEDULE
-
-   ,LI0_GOTO_SLEEP_SCHEDULE
-   
-   ,LI0_MasterReqTable
-   
-   ,LI0_SlaveRespTable
-   
-   ,LI0_NormalTable
-   
-   ,LI0_InitTable
-   
-   ,LI0_DiagnosticTable
-   
-}l_schedule_handle;/**********************************************************************/
 /***************             Configuration          *******************/
 /**********************************************************************/
-
-/* Size of configuration in ROM and RAM used for interface: LI0 */
-#define LI0_LIN_SIZE_OF_CFG  9
-
+/* Size of configuration in ROM and RAM used for interface: LI1 */
+#define LIN_SIZE_OF_CFG  9
+#define LIN_CFG_FRAME_NUM  5
 /*********************************************************************
  * global macros
  *********************************************************************/
@@ -479,21 +457,10 @@ typedef enum {
 
 
 
-/* SCHEDULE MANAGEMENT */
-
-#define l_sch_tick_LI0() l_sch_tick(LI0)
-
-
-
-#define l_sch_set_LI0(schedule, entry) l_sch_set(LI0, schedule, entry)
-
 /* INTERFACE MANAGEMENT */
 
 #define l_ifc_init_LI0() l_ifc_init(LI0)
 
-
-
-#define l_ifc_goto_sleep_LI0() l_ifc_goto_sleep(LI0)
 
 
 #define l_ifc_wake_up_LI0() l_ifc_wake_up(LI0)
