@@ -13,7 +13,7 @@
 *
 * @version   1.0
 *
-* @date      Wed Jul 15 18:39:12 CEST 2020
+* @date      Wed Jul 29 15:13:29 CEST 2020
 *
 * @brief     Hardware configuration file
 *
@@ -53,9 +53,6 @@ typedef enum {
 
 /* Resynchronization support */
 #define __RESYN_EN   0
-
-/* Autobaud support */
-#define AUTOBAUD     0
 
 /* Interface type that MCU uses */
 #define XGATE_SUPPORT 0

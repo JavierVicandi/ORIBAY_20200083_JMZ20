@@ -24,6 +24,7 @@ network {
    autobaud_support              = no;
    max_message_length            = 6;
    LI0 {
+      //node                       = TM3Sensor;                  /* Name of node described in LDF (must check consistence with LDF) */
       node                       = TM3Sensor;                  /* Name of node described in LDF (must check consistence with LDF) */
       file                       = "LDF_TM3.ldf";              /* Name of LDF file */
       device                     = s12_sci0;

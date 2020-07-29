@@ -186,7 +186,12 @@ interrupt _D2D(void)
 //#define ISR_LS(ivn, x) interrupt ivn void x(void)	//23/07/2020 18:29:10
 //Finalmente se suprime la declaración como interrupción en este módulo
 //y se hace en PE.
-#define ISR_LS(ivn, x) void x(void)
+//#define ISR_LS(ivn, x) void x(void)
+//28/07/2020 18:54:55 Hace falta informar al compilador de que la
+//función atiende a una interrupción para que genere una instrucción RTI y
+//no una RTS.
+#define ISR_LS(ivn, x) interrupt void x(void)
+
 
 #if ((SCI_VERSION == SCI_V5) || (SCI_VERSION == SCI_V6))
 /* Change vector number define */

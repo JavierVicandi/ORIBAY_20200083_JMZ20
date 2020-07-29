@@ -32,6 +32,9 @@
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
+#include "EI2C2.h"
+#include "DataPin2.h"
+#include "ClockPin2.h"
 #include "Vsci0.h"
 #include "Vtim0ch2.h"
 #include "TEST_IN_4.h"
@@ -61,22 +64,23 @@ void main(void)
   /* Write your code here */
   /* For example: for(;;) { } */
 	//Config_ISLs();	
-  
-  //EI2C1_Disable();
-  
-  //uint8_t u8Error = EI2C1_Enable();
-
-  
 	Reset_Sensor_RH();
-//	l_sys_init();
-//	l_ifc_init(LI0);
+	l_sys_init();
+	l_ifc_init(LI0);
+	//l_sch_set(LI0, LI0_NormalTable,0);
 
 	for(;;){
 		Lectura_Sensor_RH();	
 		//Lectura_Sensores_ALS();
 		
-		
-		
+        if (l_flg_tst_LI0_Humidity_f_flag())
+        {        	
+        	l_flg_clr_LI0_Humidity_f_flag();
+
+        	l_bytes_wr_LI0_Humidity(0, 1, stimage_process.unRH.u8RH)
+
+        }
+	
 	}
 
 

@@ -112,21 +112,21 @@ Node_attributes {
 /* ----------SCHEDULE TABLE DEFINITIONS---------- */
 Schedule_tables {
    NormalTable {
-      Humidity_f                    delay 15.0 ms;
-      LuminosityA_f                 delay 15.0 ms;
-      LuminosityB_f					delay 15.0 ms;
-      Temperature_f					delay 15.0 ms;
-      TestSensor_f					delay 15.0 ms;
-    }
+      Humidity_f                          delay 15.0 ms;
+      LuminosityA_f                       delay 15.0 ms;
+      LuminosityB_f                       delay 15.0 ms;
+      Temperature_f                       delay 15.0 ms;
+      TestSensor_f                        delay 15.0 ms;
+   }
    InitTable {
-      AssignNAD {TM3Sensor} 	        delay 50.0 ms;
-      SlaveResp                         delay 50.0 ms;
-      AssignFrameIdRange {TM3Sensor, 0}      delay 50.0 ms;
-      AssignFrameIdRange {TM3Sensor, 4}      delay 50.0 ms;
-    }
+      AssignNAD {TM3Sensor}               delay 50.0 ms;
+      SlaveResp                           delay 50.0 ms;
+      AssignFrameIdRange {TM3Sensor, 0}   delay 50.0 ms;
+      AssignFrameIdRange {TM3Sensor, 4}   delay 50.0 ms;
+   }
    DiagnosticTable {
-	  MasterReq                    delay 15.0 ms;
-	  SlaveResp                    delay 15.0 ms;
-	}
+      MasterReq                           delay 15.0 ms;
+      SlaveResp                           delay 15.0 ms;
+   }
 }
 

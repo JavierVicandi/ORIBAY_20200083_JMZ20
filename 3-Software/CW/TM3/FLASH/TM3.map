@@ -20,15 +20,17 @@ starts12z_c.obj                         Model: SMALL,         Lang: ANSI-C,     
 lin_commontl_proto_c.obj                Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_c.obj                               Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_diagnostic_service_c.obj            Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+lin_common_api_c.obj                    Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_common_proto_c.obj                  Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_lin21_proto_c.obj                   Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_isr_c.obj                           Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_lld_sci_c.obj                       Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_lld_timesrv_c.obj                   Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
-ClockPin1_c.obj                         Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+ClockPin2_c.obj                         Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 Cpu_c.obj                               Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
-DataPin1_c.obj                          Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+DataPin2_c.obj                          Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 EI2C1_c.obj                             Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+EI2C2_c.obj                             Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 IO_Map_c.obj                            Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 LINPHY0_c.obj                           Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 TI1_c.obj                               Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
@@ -41,8 +43,8 @@ Entry point: 0xFFC165 (_EntryPoint)
 _startupData is allocated at 0xFFC1C3 and uses 20 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x1000     132
-  _Copy    *toCopyDownBeg 0xFFDE0E
+  _Range   pZeroOut       0x1000     210
+  _Copy    *toCopyDownBeg 0xFFEF07
   int      nofInitBodies  0
   _Cpp     *initBodies    0xFFC1DE
   int      nofFiniBodies  0
@@ -55,11 +57,11 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                            451     R   0xFFC000   0xFFC1C2   ROM
 .startData                        27     R   0xFFC1C3   0xFFC1DD   ROM
-.rodata                          122     R   0xFFC1DE   0xFFC257   ROM
-NON_BANKED                        19     R   0xFFC258   0xFFC26A   ROM
-.text                           6955     R   0xFFC26B   0xFFDD95   ROM
-.copy                             37     R   0xFFDE0E   0xFFDE32   ROM
-.data                             34   R/W     0x1000     0x1021   RAM
+.rodata                          371     R   0xFFC1DE   0xFFC350   ROM
+NON_BANKED                        19     R   0xFFC351   0xFFC363   ROM
+.text                          11051     R   0xFFC364   0xFFEE8E   ROM
+.copy                            100     R   0xFFEF07   0xFFEF6A   ROM
+.data                            107   R/W     0x1000     0x106A   RAM
 .__absdata_ADC0RBP__               3   N/I      0x621      0x623   .absSeg0
 .__absdata_ADC0CBP__               3   N/I      0x61D      0x61F   .absSeg1
 .__absdata_ECCDPTR__               3   N/I      0x3C7      0x3C9   .absSeg2
@@ -334,16 +336,16 @@ NON_BANKED                        19     R   0xFFC258   0xFFC26A   ROM
 .__absdata__INT_CFADDR__           1   N/I       0x17       0x17   .absSeg271
 .__absdata__InterruptVectorTable__        492     R   0xFFFE10   0xFFFFFB   .absSeg272
 .__absdata__ResetVectorTable__          4     R   0xFFFFFC   0xFFFFFF   .absSeg273
-.bss                               1   R/W     0x1022     0x1022   RAM
-.common                           97   R/W     0x1023     0x1083   RAM
-ClockPin1_CODE                    30     R   0xFFDD96   0xFFDDB3   ROM
-DataPin1_CODE                     30     R   0xFFDDB4   0xFFDDD1   ROM
-LINPHY0_CODE                      60     R   0xFFDDD2   0xFFDE0D   ROM
-.stack                           256   R/W     0x1084     0x1183   RAM
+.bss                               1   R/W     0x106B     0x106B   RAM
+.common                          102   R/W     0x106C     0x10D1   RAM
+ClockPin2_CODE                    30     R   0xFFEE8F   0xFFEEAC   ROM
+DataPin2_CODE                     30     R   0xFFEEAD   0xFFEECA   ROM
+LINPHY0_CODE                      60     R   0xFFEECB   0xFFEF06   ROM
+.stack                           512   R/W     0x10D2     0x12D1   RAM
 
 Summary of section sizes per section type:
-READ_ONLY (R):        2023 (dec:     8227)
-READ_WRITE (R/W):      184 (dec:      388)
+READ_ONLY (R):        315B (dec:    12635)
+READ_WRITE (R/W):      2D2 (dec:      722)
 NO_INIT (N/I):         155 (dec:      341)
 
 *********************************************************************************************
@@ -357,150 +359,160 @@ OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 MODULE:                 -- lin_cfg_c.obj --
 - PROCEDURES:
-     ld_read_by_id_callout                   FFC26B      46      70       2   .text       
+     ld_read_by_id_callout                   FFC364       3       3       2   .text       
 - VARIABLES:
-     lin_virtual_ifc                         FFC1DE       1       1       4   .rodata     
-     LI0_response_error_signal               FFC1DF       1       1       1   .rodata     
-     lin_frame_tbl                           FFC1E0      4D      77      19   .rodata     
-     lin_max_frame_res_timeout_val           FFC22D      10      16       2   .rodata     
-     lin_initial_NAD                         FFC23D       1       1       3   .rodata     
-     product_id                              FFC23E       5       5      12   .rodata     
-     response_error                          FFC243       1       1       1   .rodata     
-     num_frame_have_esignal                  FFC244       1       1       1   .rodata     
-     lin_response_error_byte_offset          FFC245       2       2       1   .rodata     
-     lin_diag_services_supported             FFC247       5       5       1   .rodata     
-     lin_save_configuration_flg                1023       1       1       2   .common     
-     lin_frame_flag_tbl                        1024       7       7       2   .common     
-     lin_frame_updating_flag_tbl               102B       7       7       1   .common     
-     tx_single_pdu_data                        1032       8       8       2   .common     
-     rx_single_pdu_data                        103A       8       8       1   .common     
-     lin_diag_services_flag                    1042       5       5       1   .common     
-     tl_slaveresp_cnt                          1047       1       1       9   .common     
-     tl_current_rx_pdu_ptr                     1048       3       3      20   .common     
-     tl_current_tx_pdu_ptr                     104B       3       3       2   .common     
-     buffer_backup_data                        104E       8       8       1   .common     
-     lin_word_status                           1056       2       2       7   .common     
-     lin_goto_sleep_flg                        1058       1       1       2   .common     
-     lin_error_in_response                     1059       1       1       5   .common     
-     lin_successful_transfer                   105A       1       1       5   .common     
-     lin_lld_response_buffer                   105B       A      10      11   .common     
-     lin_pFrameBuf                             1000       B      11       4   .data       
-     lin_flag_handle_tbl                       100B       5       5       4   .data       
-     lin_configuration_RAM                     1010       9       9       4   .data       
-     lin_configured_NAD                        1019       1       1       4   .data       
-     lin_response_error_bit_offset             1022       1       1       1   .bss        
+     lin_virtual_ifc                           106B       1       1       6   .bss        
+     lin_save_configuration_flg                106C       1       1       3   .common     
+     lin_frame_flag_tbl                        106D       7       7       5   .common     
+     lin_frame_updating_flag_tbl               1074       7       7       5   .common     
+     lin_schedule_start_entry                  107B       7       7       1   .common     
+     lin_active_schedule_id                    1082       1       1       1   .common     
+     lin_previous_schedule_id                  1083       1       1       1   .common     
+     lin_diag_frame_to_send                    1084       1       1       1   .common     
+     tx_single_pdu_data                        1085       8       8       1   .common     
+     rx_single_pdu_data                        108D       8       8       1   .common     
+     LI0_lin_diag_services_flag                1095       5       5       1   .common     
+     lin_diag_signal_tbl                       109A      10      16       1   .common     
+     buffer_backup_data                        10AA       8       8       2   .common     
+     lin_current_pid                           10B2       1       1       1   .common     
+     lin_word_status                           10B3       2       2       1   .common     
+     lin_next_transmit                         10B5       1       1       1   .common     
+     lin_goto_sleep_flg                        10B6       1       1       1   .common     
+     lin_error_in_response                     10B7       1       1       1   .common     
+     lin_successful_transfer                   10B8       1       1       1   .common     
+     lin_lld_response_buffer                   10B9       A      10       1   .common     
+     lin_pFrameBuf                             1000       B      11       6   .data       
+     lin_flag_handle_tbl                       100B       5       5       6   .data       
+     LI0_lin_configuration_RAM                 1010       9       9       1   .data       
+     lin_tl_desc                               1019      1C      28       1   .data       
+     lin_node_descrs                           1035      34      52       7   .data       
+     lin_frame_tbl                           FFC1DE      4D      77      10   .rodata     
+     lin_max_frame_res_timeout_val           FFC22B      10      16       3   .rodata     
+     LI0_lin_configuration_ROM               FFC23B      12      18       1   .rodata     
+     LI0_lin_gotosleep_data                  FFC24D       A      10       1   .rodata     
+     LI0_NormalTable_data                    FFC257      32      50       1   .rodata     
+     LI0_InitTable_data                      FFC289      28      40       1   .rodata     
+     LI0_DiagnosticTable_data                FFC2B1      14      20       1   .rodata     
+     LI0_MasterReqTable_data                 FFC2C5       A      10       1   .rodata     
+     LI0_SlaveRespTable_data                 FFC2CF       A      10       1   .rodata     
+     lin_schedule_tbl                        FFC2D9      23      35       1   .rodata     
+     LI0_lin_diag_services_supported         FFC2FC       5       5       1   .rodata     
+     lin_ifc_configuration                   FFC301      44      68      28   .rodata     
 MODULE:                 -- Events_c.obj --
 - PROCEDURES:
-     EI2C1_OnRxChar                          FFC2B1       1       1       1   .text       
-     EI2C1_OnTxChar                          FFC2B2       1       1       1   .text       
-     EI2C1_OnNACK                            FFC2B3       1       1       3   .text       
-     TI1_OnInterrupt                         FFC2B4      14      20       1   .text       
+     TI1_OnInterrupt                         FFC367      14      20       1   .text       
+     EI2C2_OnRxChar                          FFC37B       1       1       1   .text       
+     EI2C2_OnTxChar                          FFC37C       1       1       1   .text       
+     EI2C2_OnNACK                            FFC37D       1       1       3   .text       
 - VARIABLES:
 MODULE:                 -- main_c.obj --
 - PROCEDURES:
-     main                                    FFC2C8       E      14       1   .text       
+     main                                    FFC37E      83     131       1   .text       
 - VARIABLES:
 MODULE:                 -- sensores_c.obj --
 - PROCEDURES:
-     Lectura_Sensor_RH                       FFC2D6      60      96       1   .text       
-     Reset_Sensor_RH                         FFC336      20      32       1   .text       
+     Lectura_Sensor_RH                       FFC401      60      96       1   .text       
+     Reset_Sensor_RH                         FFC461      20      32       1   .text       
 - VARIABLES:
-     @31                                     FFC24C       2       2       1   .rodata     
-     u8return                                  1065       1       1       1   .common     
-     stimage_process                           1066       8       8       9   .common     
+     @41                                     FFC345       2       2       1   .rodata     
+     u8return                                  10C3       1       1       1   .common     
+     stimage_process                           10C4       8       8      10   .common     
 MODULE:                 -- starts12z_c.obj --
 - PROCEDURES:
-     DoZeroOut                               FFC356      19      25       1   .text       
-     DoCopyDown                              FFC36F      15      21       1   .text       
-     _Startup                                FFC384      10      16       1   .text       
+     DoZeroOut                               FFC481      19      25       1   .text       
+     DoCopyDown                              FFC49A      15      21       1   .text       
+     _Startup                                FFC4AF      10      16       1   .text       
 - VARIABLES:
      _startupData                            FFC1C3       A      10       3   .startData  
 - LABELS:
-     __SEG_END_SSTACK                          1184       0       0       1               
+     __SEG_END_SSTACK                          12D2       0       0       1               
 MODULE:                 -- lin_commontl_proto_c.obj --
 - PROCEDURES:
-     lin_tl_make_slaveres_pdu                FFC394     21E     542      12   .text       
-     lin_tl_get_pdu                          FFC5B2      2E      46       1   .text       
-     lin_tl_put_pdu                          FFC5E0      33      51       1   .text       
-     lin_tl_handler                          FFC613      79     121       1   .text       
-     lin_tl_attach_service                   FFC68C     138     312       1   .text       
+     lin_tl_make_mreq_pdu                    FFC4BF      58      88       1   .text       
+     lin_tl_make_slaveres_pdu                FFC517     2DE     734      12   .text       
+     lin_tl_get_pdu                          FFC7F5      58      88       1   .text       
+     lin_tl_handler                          FFC84D      DF     223       1   .text       
+     lin_tl_attach_service                   FFC92C     1BF     447       1   .text       
+     lin_tl_get_response                     FFCAEB     183     387       1   .text       
+     lin_tl_update_tx_flag                   FFCC6E      4D      77       1   .text       
+     lin_tl_put_pdu                          FFCCBB      5F      95       1   .text       
+     lin_tl_no_response                      FFCD1A      3C      60       1   .text       
 - VARIABLES:
-     @57                                     FFC24E       5       5       1   .rodata     
+     @150                                    FFC347       5       5       1   .rodata     
 MODULE:                 -- lin_c.obj --
 - PROCEDURES:
-     lin_lld_ignore_response                 FFC7C4       D      13       1   .text       
-     lin_lld_set_low_power_mode              FFC7D1       D      13       2   .text       
-     lin_lld_set_response                    FFC7DE      28      40       1   .text       
-     lin_lld_rx_response                     FFC806      16      22       1   .text       
-     lin_process_parity                      FFC81C      97     151       3   .text       
-     lin_checksum                            FFC8B3      57      87       2   .text       
+     lin_lld_init                            FFCD56      34      52       1   .text       
+     lin_lld_ignore_response                 FFCD8A      27      39       1   .text       
+     lin_lld_set_low_power_mode              FFCDB1      27      39       2   .text       
+     lin_lld_set_response                    FFCDD8      56      86       1   .text       
+     lin_lld_rx_response                     FFCE2E      34      52       1   .text       
+     lin_lld_set_etf_collision_flag          FFCE62      14      20       1   .text       
+     lin_process_parity                      FFCE76      97     151       5   .text       
+     lin_checksum                            FFCF0D      57      87       2   .text       
+     lin_lld_timer_init                      FFCF64       5       5       1   .text       
 - VARIABLES:
-     tl_check_timeout_type                     106E       1       1       4   .common     
-     tl_check_timeout                          101A       2       2       4   .data       
-     tl_service_status                         101C       1       1       3   .data       
+     etf_collision_flag                        10CC       1       1       1   .common     
+     tl_check_timeout_type_array               10CD       1       1       4   .common     
+     tl_check_timeout_array                    1069       2       2       3   .data       
 MODULE:                 -- lin_diagnostic_service_c.obj --
 - PROCEDURES:
-     lin_diagservice_read_by_identifier      FFC90A     13B     315       1   .text       
-     lin_diagservice_assign_frame_id_range     FFCA45      D6     214       1   .text       
-     lin_condittional_change_nad             FFCB1B      AF     175       1   .text       
+     lin_diagservice_read_by_identifier      FFCF69     1AD     429       1   .text       
+     lin_diagservice_assign_frame_id_range     FFD116     15E     350       1   .text       
+     lin_condittional_change_nad             FFD274      EF     239       1   .text       
 - VARIABLES:
-     @58                                     FFC253       5       5       1   .rodata     
+     @130                                    FFC34C       5       5       1   .rodata     
+MODULE:                 -- lin_common_api_c.obj --
+- PROCEDURES:
+     l_sys_init                              FFD363       6       6       1   .text       
+     l_ifc_init                              FFD369       D      13       1   .text       
+- VARIABLES:
 MODULE:                 -- lin_common_proto_c.obj --
 - PROCEDURES:
-     lin_pid_response_callback_handler       FFCBCA      4B      75      11   .text       
-     lin_process_pid                         FFCC15     134     308       1   .text       
-     lin_update_rx                           FFCD49      AE     174       1   .text       
-     lin_update_tx                           FFCDF7      57      87       1   .text       
-     lin_handle_error                        FFCE4E      5C      92       1   .text       
-     lin_bus_activity_timeout                FFCEAA      11      17       1   .text       
-     lin_update_tx_flags                     FFCEBB      ED     237       1   .text       
-     lin_update_rx_diag_frame                FFCFA8      18      24       1   .text       
-     lin_make_res_diag_frame                 FFCFC0       5       5       1   .text       
-     lin_get_frame_index                     FFCFC5      2F      47       4   .text       
-     lin_process_uncd_frame                  FFCFF4     10E     270       3   .text       
+     lin_pid_response_callback_handler       FFD376      68     104      12   .text       
+     lin_process_pid                         FFD3DE     1C5     453       1   .text       
+     lin_update_rx                           FFD5A3     130     304       1   .text       
+     lin_update_tx                           FFD6D3     157     343       1   .text       
+     lin_handle_error                        FFD82A      AC     172       1   .text       
+     lin_bus_activity_timeout                FFD8D6      39      57       1   .text       
+     lin_update_tx_flags                     FFD90F     119     281       1   .text       
+     lin_update_rx_diag_frame                FFDA28      7E     126       1   .text       
+     lin_make_res_diag_frame                 FFDAA6       D      13       1   .text       
+     lin_get_frame_index                     FFDAB3      4F      79       8   .text       
+     lin_process_uncd_frame                  FFDB02     144     324       4   .text       
 - VARIABLES:
-     frame_index                               106F       1       1      21   .common     
-     frame_signal_error                        1070       1       1       3   .common     
+     frame_signal_error                        10CE       1       1       3   .common     
 MODULE:                 -- lin_lin21_proto_c.obj --
 - PROCEDURES:
-     lin_update_word_status_lin21            FFD102      77     119       4   .text       
-     lin_update_err_signal                   FFD179      7E     126       2   .text       
-     lin_make_res_evnt_frame                 FFD1F7      29      41       1   .text       
+     lin_update_word_status_lin21            FFDC46     10A     266       4   .text       
+     lin_update_err_signal                   FFDD50      AD     173       2   .text       
+     lin_update_rx_evnt_frame                FFDDFD      AA     170       1   .text       
+     lin_make_res_evnt_frame                 FFDEA7      40      64       1   .text       
 - VARIABLES:
 MODULE:                 -- lin_isr_c.obj --
 - PROCEDURES:
-     SCI0_INT                                FFD220       5       5       1   .text       
-     TIMchan2_ISR                            FFD225      15      21       1   .text       
-     LinPhy_ISR                              FFD23A       A      10       1   .text       
+     SCI0_INT                                FFDEE7       7       7       1   .text       
+     TIMchan2_ISR                            FFDEEE      16      22       1   .text       
+     LinPhy_ISR                              FFDF04       B      11       1   .text       
 - VARIABLES:
 MODULE:                 -- lin_lld_sci_c.obj --
 - PROCEDURES:
-     lin_lld_sci_ignore_response             FFD244       5       5       1   .text       
-     lin_lld_sci_set_low_power_mode          FFD249       5       5       1   .text       
-     lin_lld_sci_rx_response                 FFD24E      1A      26       1   .text       
-     lin_lld_sci_tx_response                 FFD268      3A      58       1   .text       
-     lin_lld_sci_timeout                     FFD2A2      BB     187       1   .text       
-     lin_goto_idle_state                     FFD35D      11      17       3   .text       
-     lin_lld_sci_isr                         FFD36E     3B6     950       1   .text       
+     lin_lld_sci_init                        FFDF0F      CE     206       1   .text       
+     lin_lld_sci_ignore_response             FFDFDD       D      13       1   .text       
+     lin_lld_sci_set_low_power_mode          FFDFEA      24      36       1   .text       
+     lin_lld_sci_rx_response                 FFE00E      3E      62       1   .text       
+     lin_lld_sci_tx_response                 FFE04C      65     101       1   .text       
+     lin_lld_sci_timeout                     FFE0B1     15B     347       1   .text       
+     lin_goto_idle_state                     FFE20C      39      57      16   .text       
+     lin_lld_sci_isr                         FFE245     591    1425       1   .text       
 - VARIABLES:
-     cnt_byte                                  1071       1       1      11   .common     
-     ptr                                       1072       3       3       4   .common     
-     current_id                                1075       1       1      11   .common     
-     response_buffer                           1076       3       3      12   .common     
-     frame_timeout_cnt                         1079       2       2       4   .common     
-     res_frame_timeout_cnt                     107B       2       2       4   .common     
-     idle_timeout_cnt                          107D       2       2      18   .common     
-     l_status                                  107F       3       3      41   .common     
-     pSCI                                      101D       3       3      16   .data       
-     state                                     1020       1       1      33   .data       
-     pid                                       1021       1       1       3   .data       
 MODULE:                 -- lin_lld_timesrv_c.obj --
 - PROCEDURES:
-     lin_lld_timer_isr                       FFD724       5       5       1   .text       
+     lin_lld_timer_S12_init                  FFE7D6      19      25       1   .text       
+     lin_lld_timer_isr                       FFE7EF      25      37       1   .text       
 - VARIABLES:
-MODULE:                 -- ClockPin1_c.obj --
+MODULE:                 -- ClockPin2_c.obj --
 - PROCEDURES:
-     ClockPin1_SetDir                        FFDD96      1E      30      18   ClockPin1_CODE
+     ClockPin2_SetDir                        FFEE8F      1E      30      18   ClockPin2_CODE
 - VARIABLES:
 MODULE:                 -- Cpu_c.obj --
 - PROCEDURES:
@@ -624,26 +636,31 @@ MODULE:                 -- Cpu_c.obj --
      Cpu_ivVtrap                             FFC15F       3       3       1   .init       
      Cpu_ivVspare                            FFC162       3       3       1   .init       
      _EntryPoint                             FFC165      5E      94       1   .init       
-     PE_low_level_init                       FFD729     209     521       1   .text       
+     PE_low_level_init                       FFE814     212     530       1   .text       
 - VARIABLES:
-     Shadow_P                                  1082       1       1       2   .common     
-MODULE:                 -- DataPin1_c.obj --
+     Shadow_P                                  10CF       1       1       2   .common     
+MODULE:                 -- DataPin2_c.obj --
 - PROCEDURES:
-     DataPin1_SetDir                         FFDDB4      1E      30      13   DataPin1_CODE
+     DataPin2_SetDir                         FFEEAD      1E      30      13   DataPin2_CODE
 - VARIABLES:
 MODULE:                 -- EI2C1_c.obj --
 - PROCEDURES:
-     EI2C1_Init                              FFD932       5       5       1   .text       
-     Write                                   FFD937      A0     160       3   .text       
-     Read                                    FFD9D7      92     146       1   .text       
-     GetAck                                  FFDA69      43      67       3   .text       
-     SetAck                                  FFDAAC      78     120       2   .text       
-     InternalStop                            FFDB24      28      40       5   .text       
-     EI2C1_SendBlock                         FFDB4C     133     307       1   .text       
-     EI2C1_RecvBlock                         FFDC7F     109     265       1   .text       
-     EI2C1_SelectSlave                       FFDD88       E      14       1   .text       
+     EI2C1_Init                              FFEA26       5       5       1   .text       
 - VARIABLES:
-     SlaveAddr                                 1083       1       1       4   .common     
+     SlaveAddr                                 10D0       1       1       1   .common     
+MODULE:                 -- EI2C2_c.obj --
+- PROCEDURES:
+     EI2C2_Init                              FFEA2B       5       5       1   .text       
+     Write                                   FFEA30      A0     160       3   .text       
+     Read                                    FFEAD0      92     146       1   .text       
+     GetAck                                  FFEB62      43      67       3   .text       
+     SetAck                                  FFEBA5      78     120       2   .text       
+     InternalStop                            FFEC1D      28      40       5   .text       
+     EI2C2_SendBlock                         FFEC45     133     307       1   .text       
+     EI2C2_RecvBlock                         FFED78     109     265       1   .text       
+     EI2C2_SelectSlave                       FFEE81       E      14       1   .text       
+- VARIABLES:
+     SlaveAddr                                 10D1       1       1       4   .common     
 MODULE:                 -- IO_Map_c.obj --
 - PROCEDURES:
 - VARIABLES:
@@ -921,11 +938,11 @@ MODULE:                 -- IO_Map_c.obj --
      _INT_CFADDR                                 17       1       1       0   .__absdata__INT_CFADDR__
 MODULE:                 -- LINPHY0_c.obj --
 - PROCEDURES:
-     LINPHY0_Init                            FFDDD2      3C      60       1   LINPHY0_CODE
+     LINPHY0_Init                            FFEECB      3C      60       1   LINPHY0_CODE
 - VARIABLES:
 MODULE:                 -- TI1_c.obj --
 - PROCEDURES:
-     TI1_Interrupt                           FFC258      13      19       1   NON_BANKED  
+     TI1_Interrupt                           FFC351      13      19       1   NON_BANKED  
 - VARIABLES:
 MODULE:                 -- Vectors_c.obj --
 - PROCEDURES:
@@ -937,55 +954,60 @@ MODULE:                 -- Vectors_c.obj --
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
-  lin_cfg_c.obj                               93     70    110
+  lin_cfg_c.obj                              193      3    359
   Events_c.obj                                 0     23      0
-  main_c.obj                                   0     14      0
+  main_c.obj                                   0    131      0
   sensores_c.obj                               9    128      2
   starts12z_c.obj                              0     62      0
-  lin_commontl_proto_c.obj                     0   1072      5
-  lin_c.obj                                    4    326      0
-  lin_diagnostic_service_c.obj                 0    704      5
-  lin_common_proto_c.obj                       2   1336      0
-  lin_lin21_proto_c.obj                        0    286      0
-  lin_isr_c.obj                                0     36      0
-  lin_lld_sci_c.obj                           22   1248      0
-  lin_lld_timesrv_c.obj                        0      5      0
-  ClockPin1_c.obj                              0     30      0
-  Cpu_c.obj                                    1    972      0
-  DataPin1_c.obj                               0     30      0
-  EI2C1_c.obj                                  1   1124      0
+  lin_commontl_proto_c.obj                     0   2199      5
+  lin_c.obj                                    4    531      0
+  lin_diagnostic_service_c.obj                 0   1018      5
+  lin_common_api_c.obj                         0     19      0
+  lin_common_proto_c.obj                       1   2256      0
+  lin_lin21_proto_c.obj                        0    673      0
+  lin_isr_c.obj                                0     40      0
+  lin_lld_sci_c.obj                            0   2247      0
+  lin_lld_timesrv_c.obj                        0     62      0
+  ClockPin2_c.obj                              0     30      0
+  Cpu_c.obj                                    1    981      0
+  DataPin2_c.obj                               0     30      0
+  EI2C1_c.obj                                  1      5      0
+  EI2C2_c.obj                                  1   1124      0
   IO_Map_c.obj                               341      0      0
   LINPHY0_c.obj                                0     60      0
   TI1_c.obj                                    0     19      0
   Vectors_c.obj                                0      0    496
-  other                                      256     27     37
+  other                                      512     27    100
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  ld_read_by_id_callout EI2C1_OnRxChar EI2C1_OnTxChar EI2C1_OnNACK 
-  TI1_OnInterrupt main Lectura_Sensor_RH Reset_Sensor_RH DoZeroOut DoCopyDown 
-  _Startup lin_tl_make_slaveres_pdu lin_tl_get_pdu lin_tl_put_pdu 
-  lin_tl_handler lin_tl_attach_service lin_lld_ignore_response 
-  lin_lld_set_low_power_mode lin_lld_set_response lin_lld_rx_response 
-  lin_process_parity lin_checksum lin_diagservice_read_by_identifier 
-  lin_diagservice_assign_frame_id_range lin_condittional_change_nad 
-  lin_pid_response_callback_handler lin_process_pid lin_update_rx lin_update_tx 
-  lin_handle_error lin_bus_activity_timeout lin_update_tx_flags 
+  ld_read_by_id_callout TI1_OnInterrupt EI2C2_OnRxChar EI2C2_OnTxChar 
+  EI2C2_OnNACK main Lectura_Sensor_RH Reset_Sensor_RH DoZeroOut DoCopyDown 
+  _Startup lin_tl_make_mreq_pdu lin_tl_make_slaveres_pdu lin_tl_get_pdu 
+  lin_tl_handler lin_tl_attach_service lin_tl_get_response 
+  lin_tl_update_tx_flag lin_tl_put_pdu lin_tl_no_response lin_lld_init 
+  lin_lld_ignore_response lin_lld_set_low_power_mode lin_lld_set_response 
+  lin_lld_rx_response lin_lld_set_etf_collision_flag lin_process_parity 
+  lin_checksum lin_lld_timer_init lin_diagservice_read_by_identifier 
+  lin_diagservice_assign_frame_id_range lin_condittional_change_nad l_sys_init 
+  l_ifc_init lin_pid_response_callback_handler lin_process_pid lin_update_rx 
+  lin_update_tx lin_handle_error lin_bus_activity_timeout lin_update_tx_flags 
   lin_update_rx_diag_frame lin_make_res_diag_frame lin_get_frame_index 
   lin_process_uncd_frame lin_update_word_status_lin21 lin_update_err_signal 
-  lin_make_res_evnt_frame SCI0_INT TIMchan2_ISR LinPhy_ISR 
-  lin_lld_sci_ignore_response lin_lld_sci_set_low_power_mode 
-  lin_lld_sci_rx_response lin_lld_sci_tx_response lin_lld_sci_timeout 
-  lin_goto_idle_state lin_lld_sci_isr lin_lld_timer_isr PE_low_level_init 
-  EI2C1_Init Write Read GetAck SetAck InternalStop EI2C1_SendBlock 
-  EI2C1_RecvBlock EI2C1_SelectSlave 
+  lin_update_rx_evnt_frame lin_make_res_evnt_frame SCI0_INT TIMchan2_ISR 
+  LinPhy_ISR lin_lld_sci_init lin_lld_sci_ignore_response 
+  lin_lld_sci_set_low_power_mode lin_lld_sci_rx_response 
+  lin_lld_sci_tx_response lin_lld_sci_timeout lin_goto_idle_state 
+  lin_lld_sci_isr lin_lld_timer_S12_init lin_lld_timer_isr PE_low_level_init 
+  EI2C1_Init EI2C2_Init Write Read GetAck SetAck InternalStop EI2C2_SendBlock 
+  EI2C2_RecvBlock EI2C2_SelectSlave 
 SECTION: ".data"
-  lin_pFrameBuf lin_flag_handle_tbl lin_configuration_RAM lin_configured_NAD 
-  tl_check_timeout tl_service_status pSCI state pid 
+  lin_pFrameBuf lin_flag_handle_tbl LI0_lin_configuration_RAM lin_tl_desc 
+  lin_node_descrs tl_check_timeout_array 
 SECTION: ".bss"
-  lin_response_error_bit_offset 
+  lin_virtual_ifc 
 SECTION: ".init"
   Cpu_ivVReserved123 Cpu_ivVReserved122 Cpu_ivVReserved121 Cpu_ivVReserved120 
   Cpu_ivVReserved119 Cpu_ivVReserved118 Cpu_ivVReserved117 Cpu_ivVReserved116 
@@ -1016,25 +1038,26 @@ SECTION: ".init"
   Cpu_ivVrti Cpu_ivVirq Cpu_ivVxirq Cpu_ivVsi Cpu_ivVReserved7 Cpu_ivVReserved6 
   Cpu_ivVme Cpu_ivVsys Cpu_ivVswi Cpu_ivVtrap Cpu_ivVspare _EntryPoint 
 SECTION: ".rodata"
-  lin_virtual_ifc LI0_response_error_signal lin_frame_tbl 
-  lin_max_frame_res_timeout_val lin_initial_NAD product_id response_error 
-  num_frame_have_esignal lin_response_error_byte_offset 
-  lin_diag_services_supported @31 @57 @58 
+  lin_frame_tbl lin_max_frame_res_timeout_val LI0_lin_configuration_ROM 
+  LI0_lin_gotosleep_data LI0_NormalTable_data LI0_InitTable_data 
+  LI0_DiagnosticTable_data LI0_MasterReqTable_data LI0_SlaveRespTable_data 
+  lin_schedule_tbl LI0_lin_diag_services_supported lin_ifc_configuration @41 
+  @150 @130 
 SECTION: "NON_BANKED"
   TI1_Interrupt 
 SECTION: ".common"
   lin_save_configuration_flg lin_frame_flag_tbl lin_frame_updating_flag_tbl 
-  tx_single_pdu_data rx_single_pdu_data lin_diag_services_flag tl_slaveresp_cnt 
-  tl_current_rx_pdu_ptr tl_current_tx_pdu_ptr buffer_backup_data 
-  lin_word_status lin_goto_sleep_flg lin_error_in_response 
-  lin_successful_transfer lin_lld_response_buffer u8return stimage_process 
-  tl_check_timeout_type frame_index frame_signal_error cnt_byte ptr current_id 
-  response_buffer frame_timeout_cnt res_frame_timeout_cnt idle_timeout_cnt 
-  l_status Shadow_P SlaveAddr 
-SECTION: "ClockPin1_CODE"
-  ClockPin1_SetDir 
-SECTION: "DataPin1_CODE"
-  DataPin1_SetDir 
+  lin_schedule_start_entry lin_active_schedule_id lin_previous_schedule_id 
+  lin_diag_frame_to_send tx_single_pdu_data rx_single_pdu_data 
+  LI0_lin_diag_services_flag lin_diag_signal_tbl buffer_backup_data 
+  lin_current_pid lin_word_status lin_next_transmit lin_goto_sleep_flg 
+  lin_error_in_response lin_successful_transfer lin_lld_response_buffer 
+  u8return stimage_process etf_collision_flag tl_check_timeout_type_array 
+  frame_signal_error Shadow_P SlaveAddr SlaveAddr 
+SECTION: "ClockPin2_CODE"
+  ClockPin2_SetDir 
+SECTION: "DataPin2_CODE"
+  DataPin2_SetDir 
 SECTION: ".__absdata_ADC0RBP__"
   ADC0RBP 
 SECTION: ".__absdata_ADC0CBP__"
@@ -1862,46 +1885,40 @@ OBJECT LIST SORTED BY ADDRESS
      _LP0SR                                     985       1       1       0   .__absdata__LP0SR__
      _LP0IE                                     986       1       1       0   .__absdata__LP0IE__
      _LP0IF                                     987       1       1       0   .__absdata__LP0IF__
-     lin_pFrameBuf                             1000       B      11       4   .data       
-     lin_flag_handle_tbl                       100B       5       5       4   .data       
-     lin_configuration_RAM                     1010       9       9       4   .data       
-     lin_configured_NAD                        1019       1       1       4   .data       
-     tl_check_timeout                          101A       2       2       4   .data       
-     tl_service_status                         101C       1       1       3   .data       
-     pSCI                                      101D       3       3      16   .data       
-     state                                     1020       1       1      33   .data       
-     pid                                       1021       1       1       3   .data       
-     lin_response_error_bit_offset             1022       1       1       1   .bss        
-     lin_save_configuration_flg                1023       1       1       2   .common     
-     lin_frame_flag_tbl                        1024       7       7       2   .common     
-     lin_frame_updating_flag_tbl               102B       7       7       1   .common     
-     tx_single_pdu_data                        1032       8       8       2   .common     
-     rx_single_pdu_data                        103A       8       8       1   .common     
-     lin_diag_services_flag                    1042       5       5       1   .common     
-     tl_slaveresp_cnt                          1047       1       1       9   .common     
-     tl_current_rx_pdu_ptr                     1048       3       3      20   .common     
-     tl_current_tx_pdu_ptr                     104B       3       3       2   .common     
-     buffer_backup_data                        104E       8       8       1   .common     
-     lin_word_status                           1056       2       2       7   .common     
-     lin_goto_sleep_flg                        1058       1       1       2   .common     
-     lin_error_in_response                     1059       1       1       5   .common     
-     lin_successful_transfer                   105A       1       1       5   .common     
-     lin_lld_response_buffer                   105B       A      10      11   .common     
-     u8return                                  1065       1       1       1   .common     
-     stimage_process                           1066       8       8       9   .common     
-     tl_check_timeout_type                     106E       1       1       4   .common     
-     frame_index                               106F       1       1      21   .common     
-     frame_signal_error                        1070       1       1       3   .common     
-     cnt_byte                                  1071       1       1      11   .common     
-     ptr                                       1072       3       3       4   .common     
-     current_id                                1075       1       1      11   .common     
-     response_buffer                           1076       3       3      12   .common     
-     frame_timeout_cnt                         1079       2       2       4   .common     
-     res_frame_timeout_cnt                     107B       2       2       4   .common     
-     idle_timeout_cnt                          107D       2       2      18   .common     
-     l_status                                  107F       3       3      41   .common     
-     Shadow_P                                  1082       1       1       2   .common     
-     SlaveAddr                                 1083       1       1       4   .common     
+     lin_pFrameBuf                             1000       B      11       6   .data       
+     lin_flag_handle_tbl                       100B       5       5       6   .data       
+     LI0_lin_configuration_RAM                 1010       9       9       1   .data       
+     lin_tl_desc                               1019      1C      28       1   .data       
+     lin_node_descrs                           1035      34      52       7   .data       
+     tl_check_timeout_array                    1069       2       2       3   .data       
+     lin_virtual_ifc                           106B       1       1       6   .bss        
+     lin_save_configuration_flg                106C       1       1       3   .common     
+     lin_frame_flag_tbl                        106D       7       7       5   .common     
+     lin_frame_updating_flag_tbl               1074       7       7       5   .common     
+     lin_schedule_start_entry                  107B       7       7       1   .common     
+     lin_active_schedule_id                    1082       1       1       1   .common     
+     lin_previous_schedule_id                  1083       1       1       1   .common     
+     lin_diag_frame_to_send                    1084       1       1       1   .common     
+     tx_single_pdu_data                        1085       8       8       1   .common     
+     rx_single_pdu_data                        108D       8       8       1   .common     
+     LI0_lin_diag_services_flag                1095       5       5       1   .common     
+     lin_diag_signal_tbl                       109A      10      16       1   .common     
+     buffer_backup_data                        10AA       8       8       2   .common     
+     lin_current_pid                           10B2       1       1       1   .common     
+     lin_word_status                           10B3       2       2       1   .common     
+     lin_next_transmit                         10B5       1       1       1   .common     
+     lin_goto_sleep_flg                        10B6       1       1       1   .common     
+     lin_error_in_response                     10B7       1       1       1   .common     
+     lin_successful_transfer                   10B8       1       1       1   .common     
+     lin_lld_response_buffer                   10B9       A      10       1   .common     
+     u8return                                  10C3       1       1       1   .common     
+     stimage_process                           10C4       8       8      10   .common     
+     etf_collision_flag                        10CC       1       1       1   .common     
+     tl_check_timeout_type_array               10CD       1       1       4   .common     
+     frame_signal_error                        10CE       1       1       3   .common     
+     Shadow_P                                  10CF       1       1       2   .common     
+     SlaveAddr                                 10D0       1       1       1   .common     
+     SlaveAddr                                 10D1       1       1       4   .common     
      Cpu_ivVReserved123                      FFC000       3       3       1   .init       
      Cpu_ivVReserved122                      FFC003       3       3       1   .init       
      Cpu_ivVReserved121                      FFC006       3       3       1   .init       
@@ -2022,83 +2039,98 @@ OBJECT LIST SORTED BY ADDRESS
      Cpu_ivVtrap                             FFC15F       3       3       1   .init       
      Cpu_ivVspare                            FFC162       3       3       1   .init       
      _EntryPoint                             FFC165      5E      94       1   .init       
-     lin_virtual_ifc                         FFC1DE       1       1       4   .rodata     
-     LI0_response_error_signal               FFC1DF       1       1       1   .rodata     
-     lin_frame_tbl                           FFC1E0      4D      77      19   .rodata     
-     lin_max_frame_res_timeout_val           FFC22D      10      16       2   .rodata     
-     lin_initial_NAD                         FFC23D       1       1       3   .rodata     
-     product_id                              FFC23E       5       5      12   .rodata     
-     response_error                          FFC243       1       1       1   .rodata     
-     num_frame_have_esignal                  FFC244       1       1       1   .rodata     
-     lin_response_error_byte_offset          FFC245       2       2       1   .rodata     
-     lin_diag_services_supported             FFC247       5       5       1   .rodata     
-     @31                                     FFC24C       2       2       1   .rodata     
-     @57                                     FFC24E       5       5       1   .rodata     
-     @58                                     FFC253       5       5       1   .rodata     
-     TI1_Interrupt                           FFC258      13      19       1   NON_BANKED  
-     ld_read_by_id_callout                   FFC26B      46      70       2   .text       
-     EI2C1_OnRxChar                          FFC2B1       1       1       1   .text       
-     EI2C1_OnTxChar                          FFC2B2       1       1       1   .text       
-     EI2C1_OnNACK                            FFC2B3       1       1       3   .text       
-     TI1_OnInterrupt                         FFC2B4      14      20       1   .text       
-     main                                    FFC2C8       E      14       1   .text       
-     Lectura_Sensor_RH                       FFC2D6      60      96       1   .text       
-     Reset_Sensor_RH                         FFC336      20      32       1   .text       
-     DoZeroOut                               FFC356      19      25       1   .text       
-     DoCopyDown                              FFC36F      15      21       1   .text       
-     _Startup                                FFC384      10      16       1   .text       
-     lin_tl_make_slaveres_pdu                FFC394     21E     542      12   .text       
-     lin_tl_get_pdu                          FFC5B2      2E      46       1   .text       
-     lin_tl_put_pdu                          FFC5E0      33      51       1   .text       
-     lin_tl_handler                          FFC613      79     121       1   .text       
-     lin_tl_attach_service                   FFC68C     138     312       1   .text       
-     lin_lld_ignore_response                 FFC7C4       D      13       1   .text       
-     lin_lld_set_low_power_mode              FFC7D1       D      13       2   .text       
-     lin_lld_set_response                    FFC7DE      28      40       1   .text       
-     lin_lld_rx_response                     FFC806      16      22       1   .text       
-     lin_process_parity                      FFC81C      97     151       3   .text       
-     lin_checksum                            FFC8B3      57      87       2   .text       
-     lin_diagservice_read_by_identifier      FFC90A     13B     315       1   .text       
-     lin_diagservice_assign_frame_id_range     FFCA45      D6     214       1   .text       
-     lin_condittional_change_nad             FFCB1B      AF     175       1   .text       
-     lin_pid_response_callback_handler       FFCBCA      4B      75      11   .text       
-     lin_process_pid                         FFCC15     134     308       1   .text       
-     lin_update_rx                           FFCD49      AE     174       1   .text       
-     lin_update_tx                           FFCDF7      57      87       1   .text       
-     lin_handle_error                        FFCE4E      5C      92       1   .text       
-     lin_bus_activity_timeout                FFCEAA      11      17       1   .text       
-     lin_update_tx_flags                     FFCEBB      ED     237       1   .text       
-     lin_update_rx_diag_frame                FFCFA8      18      24       1   .text       
-     lin_make_res_diag_frame                 FFCFC0       5       5       1   .text       
-     lin_get_frame_index                     FFCFC5      2F      47       4   .text       
-     lin_process_uncd_frame                  FFCFF4     10E     270       3   .text       
-     lin_update_word_status_lin21            FFD102      77     119       4   .text       
-     lin_update_err_signal                   FFD179      7E     126       2   .text       
-     lin_make_res_evnt_frame                 FFD1F7      29      41       1   .text       
-     SCI0_INT                                FFD220       5       5       1   .text       
-     TIMchan2_ISR                            FFD225      15      21       1   .text       
-     LinPhy_ISR                              FFD23A       A      10       1   .text       
-     lin_lld_sci_ignore_response             FFD244       5       5       1   .text       
-     lin_lld_sci_set_low_power_mode          FFD249       5       5       1   .text       
-     lin_lld_sci_rx_response                 FFD24E      1A      26       1   .text       
-     lin_lld_sci_tx_response                 FFD268      3A      58       1   .text       
-     lin_lld_sci_timeout                     FFD2A2      BB     187       1   .text       
-     lin_goto_idle_state                     FFD35D      11      17       3   .text       
-     lin_lld_sci_isr                         FFD36E     3B6     950       1   .text       
-     lin_lld_timer_isr                       FFD724       5       5       1   .text       
-     PE_low_level_init                       FFD729     209     521       1   .text       
-     EI2C1_Init                              FFD932       5       5       1   .text       
-     Write                                   FFD937      A0     160       3   .text       
-     Read                                    FFD9D7      92     146       1   .text       
-     GetAck                                  FFDA69      43      67       3   .text       
-     SetAck                                  FFDAAC      78     120       2   .text       
-     InternalStop                            FFDB24      28      40       5   .text       
-     EI2C1_SendBlock                         FFDB4C     133     307       1   .text       
-     EI2C1_RecvBlock                         FFDC7F     109     265       1   .text       
-     EI2C1_SelectSlave                       FFDD88       E      14       1   .text       
-     ClockPin1_SetDir                        FFDD96      1E      30      18   ClockPin1_CODE
-     DataPin1_SetDir                         FFDDB4      1E      30      13   DataPin1_CODE
-     LINPHY0_Init                            FFDDD2      3C      60       1   LINPHY0_CODE
+     lin_frame_tbl                           FFC1DE      4D      77      10   .rodata     
+     lin_max_frame_res_timeout_val           FFC22B      10      16       3   .rodata     
+     LI0_lin_configuration_ROM               FFC23B      12      18       1   .rodata     
+     LI0_lin_gotosleep_data                  FFC24D       A      10       1   .rodata     
+     LI0_NormalTable_data                    FFC257      32      50       1   .rodata     
+     LI0_InitTable_data                      FFC289      28      40       1   .rodata     
+     LI0_DiagnosticTable_data                FFC2B1      14      20       1   .rodata     
+     LI0_MasterReqTable_data                 FFC2C5       A      10       1   .rodata     
+     LI0_SlaveRespTable_data                 FFC2CF       A      10       1   .rodata     
+     lin_schedule_tbl                        FFC2D9      23      35       1   .rodata     
+     LI0_lin_diag_services_supported         FFC2FC       5       5       1   .rodata     
+     lin_ifc_configuration                   FFC301      44      68      28   .rodata     
+     @41                                     FFC345       2       2       1   .rodata     
+     @150                                    FFC347       5       5       1   .rodata     
+     @130                                    FFC34C       5       5       1   .rodata     
+     TI1_Interrupt                           FFC351      13      19       1   NON_BANKED  
+     ld_read_by_id_callout                   FFC364       3       3       2   .text       
+     TI1_OnInterrupt                         FFC367      14      20       1   .text       
+     EI2C2_OnRxChar                          FFC37B       1       1       1   .text       
+     EI2C2_OnTxChar                          FFC37C       1       1       1   .text       
+     EI2C2_OnNACK                            FFC37D       1       1       3   .text       
+     main                                    FFC37E      83     131       1   .text       
+     Lectura_Sensor_RH                       FFC401      60      96       1   .text       
+     Reset_Sensor_RH                         FFC461      20      32       1   .text       
+     DoZeroOut                               FFC481      19      25       1   .text       
+     DoCopyDown                              FFC49A      15      21       1   .text       
+     _Startup                                FFC4AF      10      16       1   .text       
+     lin_tl_make_mreq_pdu                    FFC4BF      58      88       1   .text       
+     lin_tl_make_slaveres_pdu                FFC517     2DE     734      12   .text       
+     lin_tl_get_pdu                          FFC7F5      58      88       1   .text       
+     lin_tl_handler                          FFC84D      DF     223       1   .text       
+     lin_tl_attach_service                   FFC92C     1BF     447       1   .text       
+     lin_tl_get_response                     FFCAEB     183     387       1   .text       
+     lin_tl_update_tx_flag                   FFCC6E      4D      77       1   .text       
+     lin_tl_put_pdu                          FFCCBB      5F      95       1   .text       
+     lin_tl_no_response                      FFCD1A      3C      60       1   .text       
+     lin_lld_init                            FFCD56      34      52       1   .text       
+     lin_lld_ignore_response                 FFCD8A      27      39       1   .text       
+     lin_lld_set_low_power_mode              FFCDB1      27      39       2   .text       
+     lin_lld_set_response                    FFCDD8      56      86       1   .text       
+     lin_lld_rx_response                     FFCE2E      34      52       1   .text       
+     lin_lld_set_etf_collision_flag          FFCE62      14      20       1   .text       
+     lin_process_parity                      FFCE76      97     151       5   .text       
+     lin_checksum                            FFCF0D      57      87       2   .text       
+     lin_lld_timer_init                      FFCF64       5       5       1   .text       
+     lin_diagservice_read_by_identifier      FFCF69     1AD     429       1   .text       
+     lin_diagservice_assign_frame_id_range     FFD116     15E     350       1   .text       
+     lin_condittional_change_nad             FFD274      EF     239       1   .text       
+     l_sys_init                              FFD363       6       6       1   .text       
+     l_ifc_init                              FFD369       D      13       1   .text       
+     lin_pid_response_callback_handler       FFD376      68     104      12   .text       
+     lin_process_pid                         FFD3DE     1C5     453       1   .text       
+     lin_update_rx                           FFD5A3     130     304       1   .text       
+     lin_update_tx                           FFD6D3     157     343       1   .text       
+     lin_handle_error                        FFD82A      AC     172       1   .text       
+     lin_bus_activity_timeout                FFD8D6      39      57       1   .text       
+     lin_update_tx_flags                     FFD90F     119     281       1   .text       
+     lin_update_rx_diag_frame                FFDA28      7E     126       1   .text       
+     lin_make_res_diag_frame                 FFDAA6       D      13       1   .text       
+     lin_get_frame_index                     FFDAB3      4F      79       8   .text       
+     lin_process_uncd_frame                  FFDB02     144     324       4   .text       
+     lin_update_word_status_lin21            FFDC46     10A     266       4   .text       
+     lin_update_err_signal                   FFDD50      AD     173       2   .text       
+     lin_update_rx_evnt_frame                FFDDFD      AA     170       1   .text       
+     lin_make_res_evnt_frame                 FFDEA7      40      64       1   .text       
+     SCI0_INT                                FFDEE7       7       7       1   .text       
+     TIMchan2_ISR                            FFDEEE      16      22       1   .text       
+     LinPhy_ISR                              FFDF04       B      11       1   .text       
+     lin_lld_sci_init                        FFDF0F      CE     206       1   .text       
+     lin_lld_sci_ignore_response             FFDFDD       D      13       1   .text       
+     lin_lld_sci_set_low_power_mode          FFDFEA      24      36       1   .text       
+     lin_lld_sci_rx_response                 FFE00E      3E      62       1   .text       
+     lin_lld_sci_tx_response                 FFE04C      65     101       1   .text       
+     lin_lld_sci_timeout                     FFE0B1     15B     347       1   .text       
+     lin_goto_idle_state                     FFE20C      39      57      16   .text       
+     lin_lld_sci_isr                         FFE245     591    1425       1   .text       
+     lin_lld_timer_S12_init                  FFE7D6      19      25       1   .text       
+     lin_lld_timer_isr                       FFE7EF      25      37       1   .text       
+     PE_low_level_init                       FFE814     212     530       1   .text       
+     EI2C1_Init                              FFEA26       5       5       1   .text       
+     EI2C2_Init                              FFEA2B       5       5       1   .text       
+     Write                                   FFEA30      A0     160       3   .text       
+     Read                                    FFEAD0      92     146       1   .text       
+     GetAck                                  FFEB62      43      67       3   .text       
+     SetAck                                  FFEBA5      78     120       2   .text       
+     InternalStop                            FFEC1D      28      40       5   .text       
+     EI2C2_SendBlock                         FFEC45     133     307       1   .text       
+     EI2C2_RecvBlock                         FFED78     109     265       1   .text       
+     EI2C2_SelectSlave                       FFEE81       E      14       1   .text       
+     ClockPin2_SetDir                        FFEE8F      1E      30      18   ClockPin2_CODE
+     DataPin2_SetDir                         FFEEAD      1E      30      13   DataPin2_CODE
+     LINPHY0_Init                            FFEECB      3C      60       1   LINPHY0_CODE
      _InterruptVectorTable                   FFFE10     1EC     492       0   .__absdata__InterruptVectorTable__
      _ResetVectorTable                       FFFFFC       4       4       0   .__absdata__ResetVectorTable__
 
@@ -2106,114 +2138,167 @@ OBJECT LIST SORTED BY ADDRESS
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
 NOT USED PROCEDURES
+Events_c.obj:
+  EI2C1_OnRxChar EI2C1_OnTxChar EI2C1_OnNACK 
 sensores_c.obj:
   Config_ISLs Lectura_Sensores_ALS 
 lin_c.obj:
-  lin_lld_init lin_lld_deinit lin_lld_get_status lin_lld_get_state 
-  lin_lld_tx_wake_up lin_lld_int_enable lin_lld_int_disable lin_lld_timer_init 
-  lin_lld_mcu_reset 
+  lin_lld_deinit lin_lld_get_state lin_lld_tx_header lin_lld_tx_wake_up 
+  lin_lld_int_enable lin_lld_int_disable lin_lld_clear_etf_collision_flag 
+lin_common_api_c.obj:
+  l_sch_set l_sch_tick l_ifc_goto_sleep l_ifc_wake_up l_ifc_rx l_ifc_tx 
+  l_ifc_aux l_ifc_read_status l_sys_irq_disable l_sys_irq_restore 
+lin_common_proto_c.obj:
+  lin_tick_callback_handler lin_switch_sch_table lin_check_sporadic_update 
+lin_lin21_proto_c.obj:
+  lin_collision_resolve 
 lin_lld_sci_c.obj:
-  lin_lld_sci_init lin_lld_sci_deinit lin_lld_sci_tx_wake_up 
+  lin_lld_sci_deinit lin_lld_sci_tx_header lin_lld_sci_tx_wake_up 
   lin_lld_sci_int_enable lin_lld_sci_int_disable lin_lld_sci_get_status 
-  lin_lld_sci_get_state lin_lld_sci_err_isr lin_lld_sci_rx_isr 
-lin_lld_timesrv_c.obj:
-  lin_lld_timer_S12_init 
+  lin_lld_sci_get_state 
 Cpu_c.obj:
   Cpu_Delay100US 
 EI2C1_c.obj:
-  Delay EI2C1_SendChar EI2C1_RecvChar EI2C1_GetSelected 
+  Delay Write Read GetAck SetAck InternalStop EI2C1_SendChar EI2C1_RecvChar 
+  EI2C1_SendBlock EI2C1_RecvBlock EI2C1_SelectSlave EI2C1_GetSelected 
+EI2C2_c.obj:
+  Delay EI2C2_SendChar EI2C2_RecvChar EI2C2_GetSelected 
 NOT USED VARIABLES
 lin_cfg_c.obj:
   .dwarf.lin_virtual_ifc .dwarf.lin_save_configuration_flg 
-  .dwarf.LI0_response_error_signal .dwarf.lin_pFrameBuf 
-  .dwarf.lin_flag_handle_tbl .dwarf.lin_frame_tbl .dwarf.lin_frame_flag_tbl 
-  .dwarf.lin_frame_updating_flag_tbl .dwarf.lin_max_frame_res_timeout_val 
-  .dwarf.lin_configuration_RAM .dwarf.lin_configuration_ROM 
-  .dwarf.lin_configured_NAD .dwarf.lin_initial_NAD .dwarf.product_id 
-  .dwarf.response_error .dwarf.num_frame_have_esignal 
-  .dwarf.lin_response_error_byte_offset .dwarf.lin_response_error_bit_offset 
+  .dwarf.lin_pFrameBuf .dwarf.lin_flag_handle_tbl .dwarf.lin_frame_tbl 
+  .dwarf.lin_frame_flag_tbl .dwarf.lin_frame_updating_flag_tbl 
+  .dwarf.lin_max_frame_res_timeout_val .dwarf.LI0_lin_configuration_RAM 
+  .dwarf.LI0_lin_configuration_ROM .dwarf.LI0_lin_gotosleep_data 
+  .dwarf.LI0_NormalTable_data .dwarf.LI0_InitTable_data 
+  .dwarf.LI0_DiagnosticTable_data .dwarf.LI0_MasterReqTable_data 
+  .dwarf.LI0_SlaveRespTable_data .dwarf.lin_schedule_tbl 
+  .dwarf.lin_schedule_start_entry .dwarf.lin_active_schedule_id 
+  .dwarf.lin_previous_schedule_id .dwarf.lin_diag_frame_to_send 
   .dwarf.tx_single_pdu_data .dwarf.rx_single_pdu_data 
-  .dwarf.lin_diag_services_supported .dwarf.lin_diag_services_flag 
-  .dwarf.tl_slaveresp_cnt .dwarf.tl_current_rx_pdu_ptr 
-  .dwarf.tl_current_tx_pdu_ptr .dwarf.lin_diag_signal_tbl 
-  .dwarf.buffer_backup_data .dwarf.lin_current_pid .dwarf.lin_word_status 
-  .dwarf.lin_goto_sleep_flg .dwarf.lin_error_in_response 
-  .dwarf.lin_successful_transfer .dwarf.lin_lld_response_buffer 
-  .dwarf_type.@enum$1lin_cfg_c .dwarf_type.unsigned char 
-  .dwarf_type.@enum$3lin_cfg_c .dwarf_type.50 .dwarf_type.51 .dwarf_type.52 
-  .dwarf_type.53 .dwarf_typedef.lin_frame_struct .dwarf_type.@enum$11lin_cfg_c 
-  .dwarf_type.@enum$12lin_cfg_c .dwarf_type.unsigned short .dwarf_type.54 
-  .dwarf_type.55 .dwarf_type.56 .dwarf_type.57 .dwarf_type.58 .dwarf_type.59 
-  .dwarf_type.60 .dwarf_typedef.lin_product_id .dwarf_type.61 .dwarf_type.62 
-  .dwarf_type.63 .dwarf_type.64 .dwarf_type.65 .dwarf_type.66 .dwarf_type.67 
-  .dwarf_type.68 .dwarf_type.69 .dwarf_type.70 .dwarf_type.wstatus 
-  .dwarf_typedef.lin_word_status_str .dwarf_type.71 .dwarf_type.72 
-  .dwarf.ld_read_by_id_callout .dwarf_loc.ld_read_by_id_callout 
-  .dwarf_line.ld_read_by_id_callout .dwarf_frame.ld_read_by_id_callout 
-  .dwarf_pubnames.lin_virtual_ifc .dwarf_pubnames.lin_save_configuration_flg 
-  .dwarf_pubnames.LI0_response_error_signal .dwarf_pubnames.lin_pFrameBuf 
+  .dwarf.LI0_lin_diag_services_supported .dwarf.LI0_lin_diag_services_flag 
+  .dwarf.lin_tl_desc .dwarf.lin_ifc_configuration .dwarf.lin_node_descrs 
+  .dwarf.lin_diag_signal_tbl .dwarf.buffer_backup_data .dwarf.lin_current_pid 
+  .dwarf.lin_word_status .dwarf.lin_next_transmit .dwarf.lin_goto_sleep_flg 
+  .dwarf.lin_error_in_response .dwarf.lin_successful_transfer 
+  .dwarf.lin_lld_response_buffer .dwarf_type.94 .dwarf_type.@enum$1lin_cfg_c 
+  .dwarf_type.95 .dwarf_type.unsigned char .dwarf_type.96 .dwarf_type.97 
+  .dwarf_type.98 .dwarf_type.99 .dwarf_typedef.lin_frame_struct 
+  .dwarf_type.@enum$13lin_cfg_c .dwarf_type.@enum$14lin_cfg_c 
+  .dwarf_type.unsigned short .dwarf_type.100 .dwarf_type.101 .dwarf_type.102 
+  .dwarf_type.103 .dwarf_type.104 .dwarf_type.105 .dwarf_type.106 
+  .dwarf_type.107 .dwarf_type.108 .dwarf_typedef.lin_schedule_data 
+  .dwarf_type.@enum$4lin_cfg_c .dwarf_type.109 .dwarf_type.110 .dwarf_type.111 
+  .dwarf_type.112 .dwarf_type.113 .dwarf_type.114 .dwarf_type.115 
+  .dwarf_type.116 .dwarf_typedef.lin_schedule_struct 
+  .dwarf_type.@enum$15lin_cfg_c .dwarf_type.117 .dwarf_type.118 .dwarf_type.119 
+  .dwarf_type.120 .dwarf_type.121 .dwarf_type.122 .dwarf_type.123 
+  .dwarf_type.124 .dwarf_type.125 .dwarf_type.126 .dwarf_type.127 
+  .dwarf_type.128 .dwarf_typedef.lin_tl_descriptor .dwarf_type.129 
+  .dwarf_type.130 .dwarf_type.131 .dwarf_type.132 .dwarf_type.@enum$17lin_cfg_c 
+  .dwarf_type.@enum$18lin_cfg_c .dwarf_type.133 .dwarf_type.134 .dwarf_type.135 
+  .dwarf_type.136 .dwarf_type.137 .dwarf_typedef.lin_configuration 
+  .dwarf_type.@enum$9lin_cfg_c .dwarf_type.@enum$10lin_cfg_c .dwarf_type.138 
+  .dwarf_type.139 .dwarf_typedef.lin_node_attribute .dwarf_type.140 
+  .dwarf_typedef.lin_product_id .dwarf_type.@enum$3lin_cfg_c .dwarf_type.141 
+  .dwarf_type.142 .dwarf_type.143 .dwarf_type.144 .dwarf_type.145 
+  .dwarf_type.146 .dwarf_type.147 .dwarf_type.148 .dwarf_type.149 
+  .dwarf_type.wstatus .dwarf_typedef.lin_word_status_str .dwarf_type.150 
+  .dwarf_type.151 .dwarf_type.152 .dwarf_type.153 .dwarf_type.154 
+  .dwarf_type.155 .dwarf_type.156 .dwarf_type.157 .dwarf_type.158 
+  .dwarf_type.159 .dwarf_type.@enum$16lin_cfg_c .dwarf_type.160 .dwarf_type.161 
+  .dwarf_type.162 .dwarf_type.163 .dwarf_type.164 .dwarf_typedef.lin_node 
+  .dwarf_type.165 .dwarf_type.166 .dwarf_typedef.tSCI .dwarf_type.uSCIBDH 
+  .dwarf_typedef.tSCIBDH .dwarf_type.167 .dwarf_type.168 .dwarf_type.uSCIBDL 
+  .dwarf_typedef.tSCIBDL .dwarf_type.169 .dwarf_type.170 .dwarf_type.uSCICR1 
+  .dwarf_typedef.tSCICR1 .dwarf_type.171 .dwarf_type.172 .dwarf_type.uSCICR2 
+  .dwarf_typedef.tSCICR2 .dwarf_type.173 .dwarf_type.uSCISR1 
+  .dwarf_typedef.tSCISR1 .dwarf_type.174 .dwarf_type.uSCISR2 
+  .dwarf_typedef.tSCISR2 .dwarf_type.175 .dwarf_type.uSCIDRH 
+  .dwarf_typedef.tSCIDRH .dwarf_type.176 .dwarf_type.uREG08 
+  .dwarf_typedef.tREG08 .dwarf_type.177 .dwarf_type.178 
+  .dwarf_typedef.lin_status .dwarf_type.179 .dwarf_type.180 .dwarf_type.181 
+  .dwarf_type.182 .dwarf_type.183 .dwarf_type.184 .dwarf_type.185 
+  .dwarf_type.186 .dwarf_type.187 .dwarf_type.188 .dwarf_type.189 
+  .dwarf_type.190 .dwarf_type.191 .dwarf_type.192 .dwarf.ld_read_by_id_callout 
+  .dwarf_loc.ld_read_by_id_callout .dwarf_line.ld_read_by_id_callout 
+  .dwarf_frame.ld_read_by_id_callout .dwarf_pubnames.lin_virtual_ifc 
+  .dwarf_pubnames.lin_save_configuration_flg .dwarf_pubnames.lin_pFrameBuf 
   .dwarf_pubnames.lin_flag_handle_tbl .dwarf_pubnames.lin_frame_tbl 
   .dwarf_pubnames.lin_frame_flag_tbl 
   .dwarf_pubnames.lin_frame_updating_flag_tbl 
   .dwarf_pubnames.lin_max_frame_res_timeout_val 
-  .dwarf_pubnames.lin_configuration_RAM .dwarf_pubnames.lin_configuration_ROM 
-  .dwarf_pubnames.lin_configured_NAD .dwarf_pubnames.lin_initial_NAD 
-  .dwarf_pubnames.product_id .dwarf_pubnames.response_error 
-  .dwarf_pubnames.num_frame_have_esignal 
-  .dwarf_pubnames.lin_response_error_byte_offset 
-  .dwarf_pubnames.lin_response_error_bit_offset 
-  .dwarf_pubnames.tx_single_pdu_data .dwarf_pubnames.rx_single_pdu_data 
-  .dwarf_pubnames.lin_diag_services_supported 
-  .dwarf_pubnames.lin_diag_services_flag .dwarf_pubnames.tl_slaveresp_cnt 
-  .dwarf_pubnames.tl_current_rx_pdu_ptr .dwarf_pubnames.tl_current_tx_pdu_ptr 
+  .dwarf_pubnames.LI0_lin_configuration_RAM 
+  .dwarf_pubnames.LI0_lin_configuration_ROM 
+  .dwarf_pubnames.LI0_lin_gotosleep_data .dwarf_pubnames.LI0_NormalTable_data 
+  .dwarf_pubnames.LI0_InitTable_data .dwarf_pubnames.LI0_DiagnosticTable_data 
+  .dwarf_pubnames.LI0_MasterReqTable_data 
+  .dwarf_pubnames.LI0_SlaveRespTable_data .dwarf_pubnames.lin_schedule_tbl 
+  .dwarf_pubnames.lin_schedule_start_entry 
+  .dwarf_pubnames.lin_active_schedule_id 
+  .dwarf_pubnames.lin_previous_schedule_id 
+  .dwarf_pubnames.lin_diag_frame_to_send .dwarf_pubnames.tx_single_pdu_data 
+  .dwarf_pubnames.rx_single_pdu_data 
+  .dwarf_pubnames.LI0_lin_diag_services_supported 
+  .dwarf_pubnames.LI0_lin_diag_services_flag .dwarf_pubnames.lin_tl_desc 
+  .dwarf_pubnames.lin_ifc_configuration .dwarf_pubnames.lin_node_descrs 
   .dwarf_pubnames.lin_diag_signal_tbl .dwarf_pubnames.buffer_backup_data 
   .dwarf_pubnames.lin_current_pid .dwarf_pubnames.lin_word_status 
-  .dwarf_pubnames.lin_goto_sleep_flg .dwarf_pubnames.lin_error_in_response 
-  .dwarf_pubnames.lin_successful_transfer 
+  .dwarf_pubnames.lin_next_transmit .dwarf_pubnames.lin_goto_sleep_flg 
+  .dwarf_pubnames.lin_error_in_response .dwarf_pubnames.lin_successful_transfer 
   .dwarf_pubnames.lin_lld_response_buffer .dwarf_pubnames.ld_read_by_id_callout 
   .dwarf_aranges.lin_virtual_ifc .dwarf_aranges.lin_save_configuration_flg 
-  .dwarf_aranges.LI0_response_error_signal .dwarf_aranges.lin_pFrameBuf 
-  .dwarf_aranges.lin_flag_handle_tbl .dwarf_aranges.lin_frame_tbl 
-  .dwarf_aranges.lin_frame_flag_tbl .dwarf_aranges.lin_frame_updating_flag_tbl 
+  .dwarf_aranges.lin_pFrameBuf .dwarf_aranges.lin_flag_handle_tbl 
+  .dwarf_aranges.lin_frame_tbl .dwarf_aranges.lin_frame_flag_tbl 
+  .dwarf_aranges.lin_frame_updating_flag_tbl 
   .dwarf_aranges.lin_max_frame_res_timeout_val 
-  .dwarf_aranges.lin_configuration_RAM .dwarf_aranges.lin_configuration_ROM 
-  .dwarf_aranges.lin_configured_NAD .dwarf_aranges.lin_initial_NAD 
-  .dwarf_aranges.product_id .dwarf_aranges.response_error 
-  .dwarf_aranges.num_frame_have_esignal 
-  .dwarf_aranges.lin_response_error_byte_offset 
-  .dwarf_aranges.lin_response_error_bit_offset 
-  .dwarf_aranges.tx_single_pdu_data .dwarf_aranges.rx_single_pdu_data 
-  .dwarf_aranges.lin_diag_services_supported 
-  .dwarf_aranges.lin_diag_services_flag .dwarf_aranges.tl_slaveresp_cnt 
-  .dwarf_aranges.tl_current_rx_pdu_ptr .dwarf_aranges.tl_current_tx_pdu_ptr 
+  .dwarf_aranges.LI0_lin_configuration_RAM 
+  .dwarf_aranges.LI0_lin_configuration_ROM 
+  .dwarf_aranges.LI0_lin_gotosleep_data .dwarf_aranges.LI0_NormalTable_data 
+  .dwarf_aranges.LI0_InitTable_data .dwarf_aranges.LI0_DiagnosticTable_data 
+  .dwarf_aranges.LI0_MasterReqTable_data .dwarf_aranges.LI0_SlaveRespTable_data 
+  .dwarf_aranges.lin_schedule_tbl .dwarf_aranges.lin_schedule_start_entry 
+  .dwarf_aranges.lin_active_schedule_id .dwarf_aranges.lin_previous_schedule_id 
+  .dwarf_aranges.lin_diag_frame_to_send .dwarf_aranges.tx_single_pdu_data 
+  .dwarf_aranges.rx_single_pdu_data 
+  .dwarf_aranges.LI0_lin_diag_services_supported 
+  .dwarf_aranges.LI0_lin_diag_services_flag .dwarf_aranges.lin_tl_desc 
+  .dwarf_aranges.lin_ifc_configuration .dwarf_aranges.lin_node_descrs 
   .dwarf_aranges.lin_diag_signal_tbl .dwarf_aranges.buffer_backup_data 
   .dwarf_aranges.lin_current_pid .dwarf_aranges.lin_word_status 
-  .dwarf_aranges.lin_goto_sleep_flg .dwarf_aranges.lin_error_in_response 
-  .dwarf_aranges.lin_successful_transfer .dwarf_aranges.lin_lld_response_buffer 
-  .dwarf_aranges.ld_read_by_id_callout lin_configuration_ROM 
-  lin_diag_signal_tbl lin_current_pid 
+  .dwarf_aranges.lin_next_transmit .dwarf_aranges.lin_goto_sleep_flg 
+  .dwarf_aranges.lin_error_in_response .dwarf_aranges.lin_successful_transfer 
+  .dwarf_aranges.lin_lld_response_buffer .dwarf_aranges.ld_read_by_id_callout 
 Events_c.obj:
   .dwarf_type.void .dwarf.EI2C1_OnRxChar .dwarf.EI2C1_OnTxChar 
-  .dwarf.EI2C1_OnNACK .dwarf.TI1_OnInterrupt .dwarf_loc.TI1_OnInterrupt 
+  .dwarf.EI2C1_OnNACK .dwarf.TI1_OnInterrupt .dwarf.EI2C2_OnRxChar 
+  .dwarf.EI2C2_OnTxChar .dwarf.EI2C2_OnNACK .dwarf_loc.TI1_OnInterrupt 
   .dwarf_line.EI2C1_OnRxChar .dwarf_line.EI2C1_OnTxChar 
   .dwarf_line.EI2C1_OnNACK .dwarf_line.TI1_OnInterrupt 
-  .dwarf_frame.EI2C1_OnRxChar .dwarf_frame.EI2C1_OnTxChar 
-  .dwarf_frame.EI2C1_OnNACK .dwarf_frame.TI1_OnInterrupt 
+  .dwarf_line.EI2C2_OnRxChar .dwarf_line.EI2C2_OnTxChar 
+  .dwarf_line.EI2C2_OnNACK .dwarf_frame.EI2C1_OnRxChar 
+  .dwarf_frame.EI2C1_OnTxChar .dwarf_frame.EI2C1_OnNACK 
+  .dwarf_frame.TI1_OnInterrupt .dwarf_frame.EI2C2_OnRxChar 
+  .dwarf_frame.EI2C2_OnTxChar .dwarf_frame.EI2C2_OnNACK 
   .dwarf_pubnames.EI2C1_OnRxChar .dwarf_pubnames.EI2C1_OnTxChar 
   .dwarf_pubnames.EI2C1_OnNACK .dwarf_pubnames.TI1_OnInterrupt 
-  .dwarf_aranges.EI2C1_OnRxChar .dwarf_aranges.EI2C1_OnTxChar 
-  .dwarf_aranges.EI2C1_OnNACK .dwarf_aranges.TI1_OnInterrupt 
+  .dwarf_pubnames.EI2C2_OnRxChar .dwarf_pubnames.EI2C2_OnTxChar 
+  .dwarf_pubnames.EI2C2_OnNACK .dwarf_aranges.EI2C1_OnRxChar 
+  .dwarf_aranges.EI2C1_OnTxChar .dwarf_aranges.EI2C1_OnNACK 
+  .dwarf_aranges.TI1_OnInterrupt .dwarf_aranges.EI2C2_OnRxChar 
+  .dwarf_aranges.EI2C2_OnTxChar .dwarf_aranges.EI2C2_OnNACK 
 main_c.obj:
-  .dwarf_type.void .dwarf.main .dwarf_line.main .dwarf_frame.main 
-  .dwarf_pubnames.main .dwarf_aranges.main 
+  .dwarf_type.void .dwarf_type.unsigned char .dwarf.main .dwarf_loc.main 
+  .dwarf_line.main .dwarf_frame.main .dwarf_pubnames.main .dwarf_aranges.main 
 sensores_c.obj:
-  .dwarf.u8return .dwarf.stimage_process .dwarf_type.void .dwarf_type.88 
-  .dwarf_type.unsigned char .dwarf_type.89 .dwarf_type.90 
-  .dwarf_type.unsigned int .dwarf_type.91 .dwarf_type.92 .dwarf_type.93 
-  .dwarf_type.94 .dwarf_type.95 .dwarf_type.96 .dwarf_typedef.stimage_process_t 
-  .dwarf_type.97 .dwarf_type.98 .dwarf_type.99 .dwarf.Config_ISLs 
-  .dwarf.Lectura_Sensor_RH .dwarf.Lectura_Sensores_ALS .dwarf.Reset_Sensor_RH 
-  .dwarf_loc.Config_ISLs .dwarf_loc.Lectura_Sensor_RH 
+  .dwarf.u8return .dwarf.stimage_process .dwarf_type.void 
+  .dwarf_type.unsigned int .dwarf_type.98 .dwarf_type.unsigned char 
+  .dwarf_type.99 .dwarf_type.100 .dwarf_type.101 .dwarf_type.102 
+  .dwarf_type.103 .dwarf_type.104 .dwarf_type.105 .dwarf_type.106 
+  .dwarf_typedef.stimage_process_t .dwarf_type.107 .dwarf_type.108 
+  .dwarf_type.109 .dwarf_type.110 .dwarf_type.111 .dwarf_type.112 
+  .dwarf.Config_ISLs .dwarf.Lectura_Sensor_RH .dwarf.Lectura_Sensores_ALS 
+  .dwarf.Reset_Sensor_RH .dwarf_loc.Config_ISLs .dwarf_loc.Lectura_Sensor_RH 
   .dwarf_loc.Lectura_Sensores_ALS .dwarf_line.Config_ISLs 
   .dwarf_line.Lectura_Sensor_RH .dwarf_line.Lectura_Sensores_ALS 
   .dwarf_line.Reset_Sensor_RH .dwarf_frame.Config_ISLs 
@@ -2224,7 +2309,7 @@ sensores_c.obj:
   .dwarf_pubnames.Reset_Sensor_RH .dwarf_aranges.u8return 
   .dwarf_aranges.stimage_process .dwarf_aranges.Config_ISLs 
   .dwarf_aranges.Lectura_Sensor_RH .dwarf_aranges.Lectura_Sensores_ALS 
-  .dwarf_aranges.Reset_Sensor_RH @17 @19 @21 @58 @60 
+  .dwarf_aranges.Reset_Sensor_RH @27 @29 @31 @68 @70 
 starts12z_c.obj:
   .dwarf._startupData .dwarf_type.void .dwarf_type._tagStartup 
   .dwarf_type.unsigned long .dwarf_type.89 .dwarf_type._Range 
@@ -2236,75 +2321,151 @@ starts12z_c.obj:
   .dwarf_pubnames._Startup .dwarf_aranges._startupData .dwarf_aranges.DoZeroOut 
   .dwarf_aranges.DoCopyDown .dwarf_aranges._Startup 
 lin_commontl_proto_c.obj:
-  .dwarf_type.void .dwarf_type.unsigned char .dwarf_type.235 .dwarf_type.236 
-  .dwarf_type.unsigned short .dwarf.lin_tl_make_slaveres_pdu 
-  .dwarf.lin_tl_get_pdu .dwarf.lin_tl_put_pdu .dwarf.lin_tl_handler 
-  .dwarf.lin_tl_attach_service .dwarf_loc.lin_tl_make_slaveres_pdu 
-  .dwarf_loc.lin_tl_get_pdu .dwarf_loc.lin_tl_put_pdu .dwarf_loc.lin_tl_handler 
-  .dwarf_loc.lin_tl_attach_service .dwarf_line.lin_tl_make_slaveres_pdu 
-  .dwarf_line.lin_tl_get_pdu .dwarf_line.lin_tl_put_pdu 
+  .dwarf_type.void .dwarf_type.@enum$2lin_commontl_proto_c 
+  .dwarf_type.unsigned char .dwarf_type.445 .dwarf_type.446 .dwarf_type.447 
+  .dwarf_type.448 .dwarf_typedef.lin_tl_descriptor .dwarf_type.449 
+  .dwarf_type.450 .dwarf_type.451 .dwarf_type.452 
+  .dwarf_type.@enum$17lin_commontl_proto_c 
+  .dwarf_type.@enum$18lin_commontl_proto_c .dwarf_type.453 .dwarf_type.454 
+  .dwarf_type.455 .dwarf_type.456 .dwarf_type.457 
+  .dwarf_typedef.lin_configuration .dwarf_type.@enum$9lin_commontl_proto_c 
+  .dwarf_type.unsigned short .dwarf_type.@enum$10lin_commontl_proto_c 
+  .dwarf_type.458 .dwarf_type.459 .dwarf_typedef.lin_node_attribute 
+  .dwarf_type.460 .dwarf_typedef.lin_product_id 
+  .dwarf_type.@enum$3lin_commontl_proto_c .dwarf_type.461 .dwarf_type.462 
+  .dwarf_type.463 .dwarf_type.464 .dwarf_type.465 .dwarf_type.466 
+  .dwarf_type.467 .dwarf_type.468 .dwarf_type.469 .dwarf_type.wstatus 
+  .dwarf_typedef.lin_word_status_str .dwarf_type.470 .dwarf_type.471 
+  .dwarf_type.472 .dwarf_type.473 .dwarf_typedef.lin_frame_struct 
+  .dwarf_type.@enum$13lin_commontl_proto_c 
+  .dwarf_type.@enum$14lin_commontl_proto_c .dwarf_type.474 .dwarf_type.475 
+  .dwarf_type.476 .dwarf_type.477 .dwarf_typedef.lin_schedule_struct 
+  .dwarf_type.@enum$15lin_commontl_proto_c .dwarf_type.478 .dwarf_type.479 
+  .dwarf_typedef.lin_schedule_data .dwarf_type.@enum$4lin_commontl_proto_c 
+  .dwarf_type.480 .dwarf_type.481 .dwarf_type.482 .dwarf_type.483 
+  .dwarf_type.484 .dwarf_type.485 .dwarf_type.@enum$16lin_commontl_proto_c 
+  .dwarf_type.486 .dwarf_type.487 .dwarf_type.488 .dwarf_type.489 
+  .dwarf_type.490 .dwarf_type.491 .dwarf_type.492 .dwarf_type.493 
+  .dwarf_type.494 .dwarf_type.495 .dwarf_type.496 .dwarf_type.497 
+  .dwarf_type.498 .dwarf_type.499 .dwarf_type.500 .dwarf_type.501 
+  .dwarf_type.502 .dwarf_type.503 .dwarf_type.504 .dwarf_type.505 
+  .dwarf_type.506 .dwarf_type.507 .dwarf_type.508 .dwarf_type.509 
+  .dwarf_type.510 .dwarf_type.511 .dwarf_type.512 .dwarf_type.513 
+  .dwarf_type.514 .dwarf_type.515 .dwarf_type.516 .dwarf_type.517 
+  .dwarf_type.518 .dwarf_type.519 .dwarf.lin_tl_make_mreq_pdu 
+  .dwarf.lin_tl_make_slaveres_pdu .dwarf.lin_tl_get_pdu .dwarf.lin_tl_handler 
+  .dwarf.lin_tl_attach_service .dwarf.lin_tl_get_response 
+  .dwarf.lin_tl_update_tx_flag .dwarf.lin_tl_put_pdu .dwarf.lin_tl_no_response 
+  .dwarf_loc.lin_tl_make_mreq_pdu .dwarf_loc.lin_tl_make_slaveres_pdu 
+  .dwarf_loc.lin_tl_get_pdu .dwarf_loc.lin_tl_handler 
+  .dwarf_loc.lin_tl_attach_service .dwarf_loc.lin_tl_get_response 
+  .dwarf_loc.lin_tl_update_tx_flag .dwarf_loc.lin_tl_put_pdu 
+  .dwarf_loc.lin_tl_no_response .dwarf_line.lin_tl_make_mreq_pdu 
+  .dwarf_line.lin_tl_make_slaveres_pdu .dwarf_line.lin_tl_get_pdu 
   .dwarf_line.lin_tl_handler .dwarf_line.lin_tl_attach_service 
-  .dwarf_frame.lin_tl_make_slaveres_pdu .dwarf_frame.lin_tl_get_pdu 
-  .dwarf_frame.lin_tl_put_pdu .dwarf_frame.lin_tl_handler 
-  .dwarf_frame.lin_tl_attach_service .dwarf_pubnames.lin_tl_make_slaveres_pdu 
-  .dwarf_pubnames.lin_tl_get_pdu .dwarf_pubnames.lin_tl_put_pdu 
+  .dwarf_line.lin_tl_get_response .dwarf_line.lin_tl_update_tx_flag 
+  .dwarf_line.lin_tl_put_pdu .dwarf_line.lin_tl_no_response 
+  .dwarf_frame.lin_tl_make_mreq_pdu .dwarf_frame.lin_tl_make_slaveres_pdu 
+  .dwarf_frame.lin_tl_get_pdu .dwarf_frame.lin_tl_handler 
+  .dwarf_frame.lin_tl_attach_service .dwarf_frame.lin_tl_get_response 
+  .dwarf_frame.lin_tl_update_tx_flag .dwarf_frame.lin_tl_put_pdu 
+  .dwarf_frame.lin_tl_no_response .dwarf_pubnames.lin_tl_make_mreq_pdu 
+  .dwarf_pubnames.lin_tl_make_slaveres_pdu .dwarf_pubnames.lin_tl_get_pdu 
   .dwarf_pubnames.lin_tl_handler .dwarf_pubnames.lin_tl_attach_service 
-  .dwarf_aranges.lin_tl_make_slaveres_pdu .dwarf_aranges.lin_tl_get_pdu 
-  .dwarf_aranges.lin_tl_put_pdu .dwarf_aranges.lin_tl_handler 
-  .dwarf_aranges.lin_tl_attach_service 
+  .dwarf_pubnames.lin_tl_get_response .dwarf_pubnames.lin_tl_update_tx_flag 
+  .dwarf_pubnames.lin_tl_put_pdu .dwarf_pubnames.lin_tl_no_response 
+  .dwarf_aranges.lin_tl_make_mreq_pdu .dwarf_aranges.lin_tl_make_slaveres_pdu 
+  .dwarf_aranges.lin_tl_get_pdu .dwarf_aranges.lin_tl_handler 
+  .dwarf_aranges.lin_tl_attach_service .dwarf_aranges.lin_tl_get_response 
+  .dwarf_aranges.lin_tl_update_tx_flag .dwarf_aranges.lin_tl_put_pdu 
+  .dwarf_aranges.lin_tl_no_response 
 lin_c.obj:
-  .dwarf.tl_check_timeout_type .dwarf.tl_check_timeout 
-  .dwarf.tl_service_status .dwarf_type.@enum$16lin_c .dwarf_type.unsigned short 
-  .dwarf_type.@enum$14lin_c .dwarf_type.unsigned char .dwarf_type.void 
-  .dwarf_type.237 .dwarf.lin_lld_init .dwarf.lin_lld_deinit 
-  .dwarf.lin_lld_get_status .dwarf.lin_lld_get_state .dwarf.lin_lld_tx_wake_up 
+  .dwarf.etf_collision_flag .dwarf.tl_check_timeout_type_array 
+  .dwarf.tl_check_timeout_array .dwarf_type.388 .dwarf_type.unsigned char 
+  .dwarf_type.389 .dwarf_type.@enum$19lin_c .dwarf_type.390 
+  .dwarf_type.unsigned short .dwarf_type.@enum$2lin_c .dwarf_type.@enum$1lin_c 
+  .dwarf_type.void .dwarf_type.391 .dwarf.lin_lld_init .dwarf.lin_lld_deinit 
+  .dwarf.lin_lld_get_state .dwarf.lin_lld_tx_header .dwarf.lin_lld_tx_wake_up 
   .dwarf.lin_lld_int_enable .dwarf.lin_lld_int_disable 
   .dwarf.lin_lld_ignore_response .dwarf.lin_lld_set_low_power_mode 
   .dwarf.lin_lld_set_response .dwarf.lin_lld_rx_response 
+  .dwarf.lin_lld_set_etf_collision_flag .dwarf.lin_lld_clear_etf_collision_flag 
   .dwarf.lin_process_parity .dwarf.lin_checksum .dwarf.lin_lld_timer_init 
-  .dwarf.lin_lld_mcu_reset .dwarf_loc.lin_lld_get_status 
-  .dwarf_loc.lin_lld_get_state .dwarf_loc.lin_lld_set_response 
-  .dwarf_loc.lin_lld_rx_response .dwarf_loc.lin_process_parity 
+  .dwarf_loc.lin_lld_init .dwarf_loc.lin_lld_deinit 
+  .dwarf_loc.lin_lld_get_state .dwarf_loc.lin_lld_tx_header 
+  .dwarf_loc.lin_lld_tx_wake_up .dwarf_loc.lin_lld_int_enable 
+  .dwarf_loc.lin_lld_int_disable .dwarf_loc.lin_lld_ignore_response 
+  .dwarf_loc.lin_lld_set_low_power_mode .dwarf_loc.lin_lld_set_response 
+  .dwarf_loc.lin_lld_rx_response .dwarf_loc.lin_lld_set_etf_collision_flag 
+  .dwarf_loc.lin_lld_clear_etf_collision_flag .dwarf_loc.lin_process_parity 
   .dwarf_loc.lin_checksum .dwarf_line.lin_lld_init .dwarf_line.lin_lld_deinit 
-  .dwarf_line.lin_lld_get_status .dwarf_line.lin_lld_get_state 
+  .dwarf_line.lin_lld_get_state .dwarf_line.lin_lld_tx_header 
   .dwarf_line.lin_lld_tx_wake_up .dwarf_line.lin_lld_int_enable 
   .dwarf_line.lin_lld_int_disable .dwarf_line.lin_lld_ignore_response 
   .dwarf_line.lin_lld_set_low_power_mode .dwarf_line.lin_lld_set_response 
-  .dwarf_line.lin_lld_rx_response .dwarf_line.lin_process_parity 
+  .dwarf_line.lin_lld_rx_response .dwarf_line.lin_lld_set_etf_collision_flag 
+  .dwarf_line.lin_lld_clear_etf_collision_flag .dwarf_line.lin_process_parity 
   .dwarf_line.lin_checksum .dwarf_line.lin_lld_timer_init 
-  .dwarf_line.lin_lld_mcu_reset .dwarf_frame.lin_lld_init 
-  .dwarf_frame.lin_lld_deinit .dwarf_frame.lin_lld_get_status 
-  .dwarf_frame.lin_lld_get_state .dwarf_frame.lin_lld_tx_wake_up 
-  .dwarf_frame.lin_lld_int_enable .dwarf_frame.lin_lld_int_disable 
-  .dwarf_frame.lin_lld_ignore_response .dwarf_frame.lin_lld_set_low_power_mode 
-  .dwarf_frame.lin_lld_set_response .dwarf_frame.lin_lld_rx_response 
-  .dwarf_frame.lin_process_parity .dwarf_frame.lin_checksum 
-  .dwarf_frame.lin_lld_timer_init .dwarf_frame.lin_lld_mcu_reset 
-  .dwarf_pubnames.tl_check_timeout_type .dwarf_pubnames.tl_check_timeout 
-  .dwarf_pubnames.tl_service_status .dwarf_pubnames.lin_lld_init 
-  .dwarf_pubnames.lin_lld_deinit .dwarf_pubnames.lin_lld_get_status 
-  .dwarf_pubnames.lin_lld_get_state .dwarf_pubnames.lin_lld_tx_wake_up 
+  .dwarf_frame.lin_lld_init .dwarf_frame.lin_lld_deinit 
+  .dwarf_frame.lin_lld_get_state .dwarf_frame.lin_lld_tx_header 
+  .dwarf_frame.lin_lld_tx_wake_up .dwarf_frame.lin_lld_int_enable 
+  .dwarf_frame.lin_lld_int_disable .dwarf_frame.lin_lld_ignore_response 
+  .dwarf_frame.lin_lld_set_low_power_mode .dwarf_frame.lin_lld_set_response 
+  .dwarf_frame.lin_lld_rx_response .dwarf_frame.lin_lld_set_etf_collision_flag 
+  .dwarf_frame.lin_lld_clear_etf_collision_flag .dwarf_frame.lin_process_parity 
+  .dwarf_frame.lin_checksum .dwarf_frame.lin_lld_timer_init 
+  .dwarf_pubnames.etf_collision_flag 
+  .dwarf_pubnames.tl_check_timeout_type_array 
+  .dwarf_pubnames.tl_check_timeout_array .dwarf_pubnames.lin_lld_init 
+  .dwarf_pubnames.lin_lld_deinit .dwarf_pubnames.lin_lld_get_state 
+  .dwarf_pubnames.lin_lld_tx_header .dwarf_pubnames.lin_lld_tx_wake_up 
   .dwarf_pubnames.lin_lld_int_enable .dwarf_pubnames.lin_lld_int_disable 
   .dwarf_pubnames.lin_lld_ignore_response 
   .dwarf_pubnames.lin_lld_set_low_power_mode 
   .dwarf_pubnames.lin_lld_set_response .dwarf_pubnames.lin_lld_rx_response 
+  .dwarf_pubnames.lin_lld_set_etf_collision_flag 
+  .dwarf_pubnames.lin_lld_clear_etf_collision_flag 
   .dwarf_pubnames.lin_process_parity .dwarf_pubnames.lin_checksum 
-  .dwarf_pubnames.lin_lld_timer_init .dwarf_pubnames.lin_lld_mcu_reset 
-  .dwarf_aranges.tl_check_timeout_type .dwarf_aranges.tl_check_timeout 
-  .dwarf_aranges.tl_service_status .dwarf_aranges.lin_lld_init 
-  .dwarf_aranges.lin_lld_deinit .dwarf_aranges.lin_lld_get_status 
-  .dwarf_aranges.lin_lld_get_state .dwarf_aranges.lin_lld_tx_wake_up 
+  .dwarf_pubnames.lin_lld_timer_init .dwarf_aranges.etf_collision_flag 
+  .dwarf_aranges.tl_check_timeout_type_array 
+  .dwarf_aranges.tl_check_timeout_array .dwarf_aranges.lin_lld_init 
+  .dwarf_aranges.lin_lld_deinit .dwarf_aranges.lin_lld_get_state 
+  .dwarf_aranges.lin_lld_tx_header .dwarf_aranges.lin_lld_tx_wake_up 
   .dwarf_aranges.lin_lld_int_enable .dwarf_aranges.lin_lld_int_disable 
   .dwarf_aranges.lin_lld_ignore_response 
   .dwarf_aranges.lin_lld_set_low_power_mode .dwarf_aranges.lin_lld_set_response 
-  .dwarf_aranges.lin_lld_rx_response .dwarf_aranges.lin_process_parity 
-  .dwarf_aranges.lin_checksum .dwarf_aranges.lin_lld_timer_init 
-  .dwarf_aranges.lin_lld_mcu_reset 
+  .dwarf_aranges.lin_lld_rx_response 
+  .dwarf_aranges.lin_lld_set_etf_collision_flag 
+  .dwarf_aranges.lin_lld_clear_etf_collision_flag 
+  .dwarf_aranges.lin_process_parity .dwarf_aranges.lin_checksum 
+  .dwarf_aranges.lin_lld_timer_init 
 lin_diagnostic_service_c.obj:
-  .dwarf_type.void .dwarf_type.unsigned char .dwarf_type.185 
-  .dwarf_type.unsigned short .dwarf_type.186 .dwarf_type.187 
-  .dwarf_type.signed char .dwarf_type.188 
-  .dwarf.lin_diagservice_read_by_identifier 
+  .dwarf_type.void .dwarf_type.@enum$2lin_diagnostic_service_c 
+  .dwarf_type.unsigned char .dwarf_type.295 .dwarf_type.unsigned short 
+  .dwarf_type.296 .dwarf_typedef.lin_product_id .dwarf_type.297 .dwarf_type.298 
+  .dwarf_typedef.lin_node_attribute .dwarf_type.@enum$9lin_diagnostic_service_c 
+  .dwarf_type.@enum$3lin_diagnostic_service_c .dwarf_type.299 .dwarf_type.300 
+  .dwarf_type.301 .dwarf_type.302 .dwarf_type.303 .dwarf_type.304 
+  .dwarf_type.305 .dwarf_typedef.lin_tl_descriptor .dwarf_type.306 
+  .dwarf_type.307 .dwarf_type.308 .dwarf_type.309 
+  .dwarf_type.@enum$17lin_diagnostic_service_c 
+  .dwarf_type.@enum$18lin_diagnostic_service_c .dwarf_type.310 .dwarf_type.311 
+  .dwarf_type.312 .dwarf_type.313 .dwarf_type.314 
+  .dwarf_typedef.lin_configuration .dwarf_type.@enum$10lin_diagnostic_service_c 
+  .dwarf_type.315 .dwarf_type.316 .dwarf_type.317 .dwarf_type.318 
+  .dwarf_type.319 .dwarf_type.320 .dwarf_type.321 .dwarf_type.wstatus 
+  .dwarf_typedef.lin_word_status_str .dwarf_type.322 .dwarf_type.323 
+  .dwarf_type.324 .dwarf_type.325 .dwarf_typedef.lin_frame_struct 
+  .dwarf_type.@enum$13lin_diagnostic_service_c 
+  .dwarf_type.@enum$14lin_diagnostic_service_c .dwarf_type.326 .dwarf_type.327 
+  .dwarf_type.328 .dwarf_type.329 .dwarf_typedef.lin_schedule_struct 
+  .dwarf_type.@enum$15lin_diagnostic_service_c .dwarf_type.330 .dwarf_type.331 
+  .dwarf_typedef.lin_schedule_data .dwarf_type.@enum$4lin_diagnostic_service_c 
+  .dwarf_type.332 .dwarf_type.333 .dwarf_type.334 .dwarf_type.335 
+  .dwarf_type.336 .dwarf_type.337 .dwarf_type.@enum$16lin_diagnostic_service_c 
+  .dwarf_type.338 .dwarf_type.339 .dwarf_type.340 .dwarf_type.signed char 
+  .dwarf_type.341 .dwarf_type.342 .dwarf_type.343 .dwarf_type.344 
+  .dwarf_type.345 .dwarf_type.346 .dwarf.lin_diagservice_read_by_identifier 
   .dwarf.lin_diagservice_assign_frame_id_range 
   .dwarf.lin_condittional_change_nad 
   .dwarf_loc.lin_diagservice_read_by_identifier 
@@ -2322,62 +2483,182 @@ lin_diagnostic_service_c.obj:
   .dwarf_aranges.lin_diagservice_read_by_identifier 
   .dwarf_aranges.lin_diagservice_assign_frame_id_range 
   .dwarf_aranges.lin_condittional_change_nad 
+lin_common_api_c.obj:
+  .dwarf._ZZ17l_ifc_read_status23@enum$2lin_common_api_cE15tmp_word_status 
+  .dwarf_type.unsigned char .dwarf_type.void 
+  .dwarf_type.@enum$2lin_common_api_c .dwarf_type.@enum$5lin_common_api_c 
+  .dwarf_type.248 .dwarf_type.249 .dwarf_typedef.lin_configuration 
+  .dwarf_type.@enum$9lin_common_api_c .dwarf_type.unsigned short 
+  .dwarf_type.@enum$10lin_common_api_c .dwarf_type.250 .dwarf_type.251 
+  .dwarf_typedef.lin_node_attribute .dwarf_type.252 
+  .dwarf_typedef.lin_product_id .dwarf_type.@enum$3lin_common_api_c 
+  .dwarf_type.253 .dwarf_type.254 .dwarf_type.255 .dwarf_type.256 
+  .dwarf_type.257 .dwarf_type.258 .dwarf_type.259 .dwarf_type.260 
+  .dwarf_type.261 .dwarf_type.wstatus .dwarf_typedef.lin_word_status_str 
+  .dwarf_type.262 .dwarf_type.263 .dwarf_type.264 .dwarf_type.265 
+  .dwarf_typedef.lin_frame_struct .dwarf_type.@enum$13lin_common_api_c 
+  .dwarf_type.@enum$14lin_common_api_c .dwarf_type.266 .dwarf_type.267 
+  .dwarf_type.268 .dwarf_type.269 .dwarf_typedef.lin_schedule_struct 
+  .dwarf_type.@enum$15lin_common_api_c .dwarf_type.270 .dwarf_type.271 
+  .dwarf_typedef.lin_schedule_data .dwarf_type.@enum$4lin_common_api_c 
+  .dwarf_type.272 .dwarf_type.273 .dwarf_type.274 .dwarf_type.275 
+  .dwarf_type.276 .dwarf_type.277 .dwarf_type.@enum$16lin_common_api_c 
+  .dwarf_type.278 .dwarf_type.279 .dwarf_type.280 .dwarf_type.281 
+  .dwarf_typedef.lin_tl_descriptor .dwarf_type.282 .dwarf_type.283 
+  .dwarf_type.284 .dwarf_type.285 .dwarf_type.286 
+  .dwarf_type.@enum$17lin_common_api_c .dwarf_type.@enum$18lin_common_api_c 
+  .dwarf_type.287 .dwarf_type.288 .dwarf_type.289 .dwarf_type.290 
+  .dwarf_type.291 .dwarf.l_sys_init .dwarf.l_sch_set .dwarf.l_sch_tick 
+  .dwarf.l_ifc_init .dwarf.l_ifc_goto_sleep .dwarf.l_ifc_wake_up 
+  .dwarf.l_ifc_rx .dwarf.l_ifc_tx .dwarf.l_ifc_aux .dwarf.l_ifc_read_status 
+  .dwarf.l_sys_irq_disable .dwarf.l_sys_irq_restore .dwarf_loc.l_sch_set 
+  .dwarf_loc.l_sch_tick .dwarf_loc.l_ifc_init .dwarf_loc.l_ifc_goto_sleep 
+  .dwarf_loc.l_ifc_wake_up .dwarf_loc.l_ifc_read_status 
+  .dwarf_loc.l_sys_irq_disable .dwarf_loc.l_sys_irq_restore 
+  .dwarf_line.l_sys_init .dwarf_line.l_sch_set .dwarf_line.l_sch_tick 
+  .dwarf_line.l_ifc_init .dwarf_line.l_ifc_goto_sleep .dwarf_line.l_ifc_wake_up 
+  .dwarf_line.l_ifc_rx .dwarf_line.l_ifc_tx .dwarf_line.l_ifc_aux 
+  .dwarf_line.l_ifc_read_status .dwarf_line.l_sys_irq_disable 
+  .dwarf_line.l_sys_irq_restore .dwarf_frame.l_sys_init .dwarf_frame.l_sch_set 
+  .dwarf_frame.l_sch_tick .dwarf_frame.l_ifc_init .dwarf_frame.l_ifc_goto_sleep 
+  .dwarf_frame.l_ifc_wake_up .dwarf_frame.l_ifc_rx .dwarf_frame.l_ifc_tx 
+  .dwarf_frame.l_ifc_aux .dwarf_frame.l_ifc_read_status 
+  .dwarf_frame.l_sys_irq_disable .dwarf_frame.l_sys_irq_restore 
+  .dwarf_pubnames.l_sys_init .dwarf_pubnames.l_sch_set 
+  .dwarf_pubnames.l_sch_tick .dwarf_pubnames.l_ifc_init 
+  .dwarf_pubnames.l_ifc_goto_sleep .dwarf_pubnames.l_ifc_wake_up 
+  .dwarf_pubnames.l_ifc_rx .dwarf_pubnames.l_ifc_tx .dwarf_pubnames.l_ifc_aux 
+  .dwarf_pubnames.l_ifc_read_status .dwarf_pubnames.l_sys_irq_disable 
+  .dwarf_pubnames.l_sys_irq_restore .dwarf_aranges.l_sys_init 
+  .dwarf_aranges.l_sch_set .dwarf_aranges.l_sch_tick .dwarf_aranges.l_ifc_init 
+  .dwarf_aranges.l_ifc_goto_sleep .dwarf_aranges.l_ifc_wake_up 
+  .dwarf_aranges.l_ifc_rx .dwarf_aranges.l_ifc_tx .dwarf_aranges.l_ifc_aux 
+  .dwarf_aranges.l_ifc_read_status .dwarf_aranges.l_sys_irq_disable 
+  .dwarf_aranges.l_sys_irq_restore 
+  _ZZ17l_ifc_read_status23@enum$2lin_common_api_cE15tmp_word_status 
 lin_common_proto_c.obj:
-  .dwarf.frame_index .dwarf.frame_signal_error .dwarf_type.void 
-  .dwarf_type.@enum$6lin_common_proto_c .dwarf_type.unsigned char 
-  .dwarf_type.unsigned short .dwarf_type.364 .dwarf_type.365 
-  .dwarf_typedef.lin_frame_struct .dwarf_type.@enum$11lin_common_proto_c 
-  .dwarf_type.@enum$12lin_common_proto_c .dwarf_type.366 .dwarf_type.367 
-  .dwarf_type.@enum$3lin_common_proto_c 
-  .dwarf.lin_pid_response_callback_handler .dwarf.lin_process_pid 
-  .dwarf.lin_update_rx .dwarf.lin_update_tx .dwarf.lin_handle_error 
-  .dwarf.lin_bus_activity_timeout .dwarf.lin_update_tx_flags 
-  .dwarf.lin_update_rx_diag_frame .dwarf.lin_make_res_diag_frame 
-  .dwarf.lin_get_frame_index .dwarf.lin_process_uncd_frame 
-  .dwarf_loc.lin_pid_response_callback_handler .dwarf_loc.lin_process_pid 
+  .dwarf.frame_signal_error .dwarf_type.void 
+  .dwarf_type.@enum$2lin_common_proto_c .dwarf_type.@enum$7lin_common_proto_c 
+  .dwarf_type.unsigned char .dwarf_type.759 .dwarf_type.760 .dwarf_type.761 
+  .dwarf_type.762 .dwarf_type.763 .dwarf_typedef.lin_schedule_struct 
+  .dwarf_type.@enum$15lin_common_proto_c .dwarf_type.764 .dwarf_type.765 
+  .dwarf_typedef.lin_schedule_data .dwarf_type.@enum$4lin_common_proto_c 
+  .dwarf_type.766 .dwarf_type.767 .dwarf_type.768 .dwarf_type.769 
+  .dwarf_typedef.lin_tl_descriptor .dwarf_type.770 .dwarf_type.771 
+  .dwarf_type.772 .dwarf_type.773 .dwarf_type.774 
+  .dwarf_type.@enum$17lin_common_proto_c .dwarf_type.@enum$18lin_common_proto_c 
+  .dwarf_type.775 .dwarf_type.776 .dwarf_type.777 .dwarf_type.778 
+  .dwarf_type.779 .dwarf_typedef.lin_configuration 
+  .dwarf_type.@enum$9lin_common_proto_c .dwarf_type.unsigned short 
+  .dwarf_type.@enum$10lin_common_proto_c .dwarf_type.780 .dwarf_type.781 
+  .dwarf_typedef.lin_node_attribute .dwarf_type.782 
+  .dwarf_typedef.lin_product_id .dwarf_type.@enum$3lin_common_proto_c 
+  .dwarf_type.783 .dwarf_type.784 .dwarf_type.785 .dwarf_type.786 
+  .dwarf_type.787 .dwarf_type.788 .dwarf_type.789 .dwarf_type.790 
+  .dwarf_type.791 .dwarf_type.wstatus .dwarf_typedef.lin_word_status_str 
+  .dwarf_type.792 .dwarf_type.793 .dwarf_type.794 .dwarf_type.795 
+  .dwarf_typedef.lin_frame_struct .dwarf_type.@enum$13lin_common_proto_c 
+  .dwarf_type.@enum$14lin_common_proto_c .dwarf_type.796 .dwarf_type.797 
+  .dwarf_type.798 .dwarf_type.799 .dwarf_type.800 .dwarf_type.801 
+  .dwarf_type.802 .dwarf_type.803 .dwarf_type.@enum$16lin_common_proto_c 
+  .dwarf_type.804 .dwarf_type.805 .dwarf_type.806 .dwarf_type.807 
+  .dwarf_type.808 .dwarf_type.809 .dwarf_type.810 .dwarf_type.811 
+  .dwarf_type.812 .dwarf_type.813 .dwarf_type.814 .dwarf_type.815 
+  .dwarf_type.816 .dwarf_type.817 .dwarf_type.818 .dwarf_type.819 
+  .dwarf_typedef.lin_associate_frame_struct .dwarf_type.820 .dwarf_type.821 
+  .dwarf_type.822 .dwarf_type.823 .dwarf_type.824 .dwarf_type.825 
+  .dwarf_type.826 .dwarf_type.827 .dwarf_type.828 .dwarf_type.829 
+  .dwarf.lin_pid_response_callback_handler .dwarf.lin_tick_callback_handler 
+  .dwarf.lin_process_pid .dwarf.lin_update_rx .dwarf.lin_update_tx 
+  .dwarf.lin_handle_error .dwarf.lin_bus_activity_timeout 
+  .dwarf.lin_switch_sch_table .dwarf.lin_check_sporadic_update 
+  .dwarf.lin_update_tx_flags .dwarf.lin_update_rx_diag_frame 
+  .dwarf.lin_make_res_diag_frame .dwarf.lin_get_frame_index 
+  .dwarf.lin_process_uncd_frame .dwarf_loc.lin_pid_response_callback_handler 
+  .dwarf_loc.lin_tick_callback_handler .dwarf_loc.lin_process_pid 
   .dwarf_loc.lin_update_rx .dwarf_loc.lin_update_tx .dwarf_loc.lin_handle_error 
-  .dwarf_loc.lin_bus_activity_timeout .dwarf_loc.lin_update_tx_flags 
+  .dwarf_loc.lin_bus_activity_timeout .dwarf_loc.lin_switch_sch_table 
+  .dwarf_loc.lin_check_sporadic_update .dwarf_loc.lin_update_tx_flags 
+  .dwarf_loc.lin_update_rx_diag_frame .dwarf_loc.lin_make_res_diag_frame 
   .dwarf_loc.lin_get_frame_index .dwarf_loc.lin_process_uncd_frame 
-  .dwarf_line.lin_pid_response_callback_handler .dwarf_line.lin_process_pid 
+  .dwarf_line.lin_pid_response_callback_handler 
+  .dwarf_line.lin_tick_callback_handler .dwarf_line.lin_process_pid 
   .dwarf_line.lin_update_rx .dwarf_line.lin_update_tx 
   .dwarf_line.lin_handle_error .dwarf_line.lin_bus_activity_timeout 
+  .dwarf_line.lin_switch_sch_table .dwarf_line.lin_check_sporadic_update 
   .dwarf_line.lin_update_tx_flags .dwarf_line.lin_update_rx_diag_frame 
   .dwarf_line.lin_make_res_diag_frame .dwarf_line.lin_get_frame_index 
   .dwarf_line.lin_process_uncd_frame 
-  .dwarf_frame.lin_pid_response_callback_handler .dwarf_frame.lin_process_pid 
+  .dwarf_frame.lin_pid_response_callback_handler 
+  .dwarf_frame.lin_tick_callback_handler .dwarf_frame.lin_process_pid 
   .dwarf_frame.lin_update_rx .dwarf_frame.lin_update_tx 
   .dwarf_frame.lin_handle_error .dwarf_frame.lin_bus_activity_timeout 
+  .dwarf_frame.lin_switch_sch_table .dwarf_frame.lin_check_sporadic_update 
   .dwarf_frame.lin_update_tx_flags .dwarf_frame.lin_update_rx_diag_frame 
   .dwarf_frame.lin_make_res_diag_frame .dwarf_frame.lin_get_frame_index 
-  .dwarf_frame.lin_process_uncd_frame .dwarf_pubnames.frame_index 
-  .dwarf_pubnames.frame_signal_error 
+  .dwarf_frame.lin_process_uncd_frame .dwarf_pubnames.frame_signal_error 
   .dwarf_pubnames.lin_pid_response_callback_handler 
-  .dwarf_pubnames.lin_process_pid .dwarf_pubnames.lin_update_rx 
-  .dwarf_pubnames.lin_update_tx .dwarf_pubnames.lin_handle_error 
-  .dwarf_pubnames.lin_bus_activity_timeout .dwarf_pubnames.lin_update_tx_flags 
+  .dwarf_pubnames.lin_tick_callback_handler .dwarf_pubnames.lin_process_pid 
+  .dwarf_pubnames.lin_update_rx .dwarf_pubnames.lin_update_tx 
+  .dwarf_pubnames.lin_handle_error .dwarf_pubnames.lin_bus_activity_timeout 
+  .dwarf_pubnames.lin_switch_sch_table 
+  .dwarf_pubnames.lin_check_sporadic_update .dwarf_pubnames.lin_update_tx_flags 
   .dwarf_pubnames.lin_update_rx_diag_frame 
   .dwarf_pubnames.lin_make_res_diag_frame .dwarf_pubnames.lin_get_frame_index 
-  .dwarf_pubnames.lin_process_uncd_frame .dwarf_aranges.frame_index 
-  .dwarf_aranges.frame_signal_error 
+  .dwarf_pubnames.lin_process_uncd_frame .dwarf_aranges.frame_signal_error 
   .dwarf_aranges.lin_pid_response_callback_handler 
-  .dwarf_aranges.lin_process_pid .dwarf_aranges.lin_update_rx 
-  .dwarf_aranges.lin_update_tx .dwarf_aranges.lin_handle_error 
-  .dwarf_aranges.lin_bus_activity_timeout .dwarf_aranges.lin_update_tx_flags 
-  .dwarf_aranges.lin_update_rx_diag_frame 
+  .dwarf_aranges.lin_tick_callback_handler .dwarf_aranges.lin_process_pid 
+  .dwarf_aranges.lin_update_rx .dwarf_aranges.lin_update_tx 
+  .dwarf_aranges.lin_handle_error .dwarf_aranges.lin_bus_activity_timeout 
+  .dwarf_aranges.lin_switch_sch_table .dwarf_aranges.lin_check_sporadic_update 
+  .dwarf_aranges.lin_update_tx_flags .dwarf_aranges.lin_update_rx_diag_frame 
   .dwarf_aranges.lin_make_res_diag_frame .dwarf_aranges.lin_get_frame_index 
   .dwarf_aranges.lin_process_uncd_frame 
 lin_lin21_proto_c.obj:
-  .dwarf_type.void .dwarf_type.unsigned char .dwarf_type.unsigned short 
+  .dwarf_type.void .dwarf_type.@enum$2lin_lin21_proto_c 
+  .dwarf_type.unsigned char .dwarf_type.264 .dwarf_type.265 
+  .dwarf_typedef.lin_associate_frame_struct .dwarf_type.266 .dwarf_type.267 
+  .dwarf_type.268 .dwarf_type.269 .dwarf_typedef.lin_configuration 
+  .dwarf_type.@enum$9lin_lin21_proto_c .dwarf_type.unsigned short 
+  .dwarf_type.@enum$10lin_lin21_proto_c .dwarf_type.270 .dwarf_type.271 
+  .dwarf_typedef.lin_node_attribute .dwarf_type.272 
+  .dwarf_typedef.lin_product_id .dwarf_type.@enum$3lin_lin21_proto_c 
+  .dwarf_type.273 .dwarf_type.274 .dwarf_type.275 .dwarf_type.276 
+  .dwarf_type.277 .dwarf_type.278 .dwarf_type.279 .dwarf_type.280 
+  .dwarf_type.281 .dwarf_type.wstatus .dwarf_typedef.lin_word_status_str 
+  .dwarf_type.282 .dwarf_type.283 .dwarf_type.284 .dwarf_type.285 
+  .dwarf_typedef.lin_frame_struct .dwarf_type.@enum$13lin_lin21_proto_c 
+  .dwarf_type.@enum$14lin_lin21_proto_c .dwarf_type.286 .dwarf_type.287 
+  .dwarf_type.288 .dwarf_type.289 .dwarf_typedef.lin_schedule_struct 
+  .dwarf_type.@enum$15lin_lin21_proto_c .dwarf_type.290 .dwarf_type.291 
+  .dwarf_typedef.lin_schedule_data .dwarf_type.@enum$4lin_lin21_proto_c 
+  .dwarf_type.292 .dwarf_type.293 .dwarf_type.294 .dwarf_type.295 
+  .dwarf_type.296 .dwarf_type.297 .dwarf_type.@enum$16lin_lin21_proto_c 
+  .dwarf_type.298 .dwarf_type.299 .dwarf_type.300 .dwarf_type.301 
+  .dwarf_typedef.lin_tl_descriptor .dwarf_type.302 .dwarf_type.303 
+  .dwarf_type.304 .dwarf_type.305 .dwarf_type.306 
+  .dwarf_type.@enum$17lin_lin21_proto_c .dwarf_type.@enum$18lin_lin21_proto_c 
+  .dwarf_type.307 .dwarf_type.308 .dwarf_type.309 
+  .dwarf_type.@enum$7lin_lin21_proto_c .dwarf_type.310 .dwarf_type.311 
+  .dwarf_type.312 .dwarf_type.313 .dwarf_type.314 .dwarf_type.315 
+  .dwarf_type.316 .dwarf_type.317 .dwarf.lin_collision_resolve 
   .dwarf.lin_update_word_status_lin21 .dwarf.lin_update_err_signal 
-  .dwarf.lin_make_res_evnt_frame .dwarf_loc.lin_update_word_status_lin21 
-  .dwarf_loc.lin_update_err_signal .dwarf_loc.lin_make_res_evnt_frame 
+  .dwarf.lin_update_rx_evnt_frame .dwarf.lin_make_res_evnt_frame 
+  .dwarf_loc.lin_collision_resolve .dwarf_loc.lin_update_word_status_lin21 
+  .dwarf_loc.lin_update_err_signal .dwarf_loc.lin_update_rx_evnt_frame 
+  .dwarf_loc.lin_make_res_evnt_frame .dwarf_line.lin_collision_resolve 
   .dwarf_line.lin_update_word_status_lin21 .dwarf_line.lin_update_err_signal 
-  .dwarf_line.lin_make_res_evnt_frame .dwarf_frame.lin_update_word_status_lin21 
-  .dwarf_frame.lin_update_err_signal .dwarf_frame.lin_make_res_evnt_frame 
+  .dwarf_line.lin_update_rx_evnt_frame .dwarf_line.lin_make_res_evnt_frame 
+  .dwarf_frame.lin_collision_resolve .dwarf_frame.lin_update_word_status_lin21 
+  .dwarf_frame.lin_update_err_signal .dwarf_frame.lin_update_rx_evnt_frame 
+  .dwarf_frame.lin_make_res_evnt_frame .dwarf_pubnames.lin_collision_resolve 
   .dwarf_pubnames.lin_update_word_status_lin21 
-  .dwarf_pubnames.lin_update_err_signal .dwarf_pubnames.lin_make_res_evnt_frame 
+  .dwarf_pubnames.lin_update_err_signal 
+  .dwarf_pubnames.lin_update_rx_evnt_frame 
+  .dwarf_pubnames.lin_make_res_evnt_frame .dwarf_aranges.lin_collision_resolve 
   .dwarf_aranges.lin_update_word_status_lin21 
-  .dwarf_aranges.lin_update_err_signal .dwarf_aranges.lin_make_res_evnt_frame 
+  .dwarf_aranges.lin_update_err_signal .dwarf_aranges.lin_update_rx_evnt_frame 
+  .dwarf_aranges.lin_make_res_evnt_frame 
 lin_isr_c.obj:
   .dwarf_type.void .dwarf.SCI0_INT .dwarf.TIMchan2_ISR .dwarf.LinPhy_ISR 
   .dwarf_line.SCI0_INT .dwarf_line.TIMchan2_ISR .dwarf_line.LinPhy_ISR 
@@ -2386,51 +2667,76 @@ lin_isr_c.obj:
   .dwarf_pubnames.LinPhy_ISR .dwarf_aranges.SCI0_INT 
   .dwarf_aranges.TIMchan2_ISR .dwarf_aranges.LinPhy_ISR 
 lin_lld_sci_c.obj:
-  .dwarf.func .dwarf.pSCI .dwarf.ifc .dwarf.state .dwarf.cnt_byte .dwarf.ptr 
-  .dwarf.current_id .dwarf.response_buffer .dwarf.pid .dwarf.tbit 
-  .dwarf.frame_timeout_cnt .dwarf.res_frame_timeout_cnt .dwarf.idle_timeout_cnt 
-  .dwarf.l_status .dwarf_type.unsigned char .dwarf_type.352 .dwarf_type.353 
-  .dwarf_typedef.tSCI .dwarf_type.uSCIBDH .dwarf_typedef.tSCIBDH 
-  .dwarf_type.354 .dwarf_type.355 .dwarf_type.uSCIBDL .dwarf_typedef.tSCIBDL 
-  .dwarf_type.356 .dwarf_type.357 .dwarf_type.uSCICR1 .dwarf_typedef.tSCICR1 
-  .dwarf_type.358 .dwarf_type.359 .dwarf_type.uSCICR2 .dwarf_typedef.tSCICR2 
-  .dwarf_type.360 .dwarf_type.uSCISR1 .dwarf_typedef.tSCISR1 .dwarf_type.361 
-  .dwarf_type.uSCISR2 .dwarf_typedef.tSCISR2 .dwarf_type.362 
-  .dwarf_type.uSCIDRH .dwarf_typedef.tSCIDRH .dwarf_type.363 .dwarf_type.uREG08 
-  .dwarf_typedef.tREG08 .dwarf_type.364 .dwarf_type.365 .dwarf_type.366 
-  .dwarf_type.unsigned short .dwarf_type.void .dwarf_type.@enum$2lin_lld_sci_c 
-  .dwarf_type.367 .dwarf_typedef.lin_status .dwarf_type.368 
-  .dwarf.lin_lld_sci_init .dwarf.lin_lld_sci_deinit 
+  .dwarf_type.void .dwarf_type.unsigned short .dwarf_type.@enum$2lin_lld_sci_c 
+  .dwarf_type.529 .dwarf_type.530 .dwarf_typedef.lin_configuration 
+  .dwarf_type.@enum$9lin_lld_sci_c .dwarf_type.@enum$10lin_lld_sci_c 
+  .dwarf_type.531 .dwarf_type.532 .dwarf_typedef.lin_node_attribute 
+  .dwarf_type.unsigned char .dwarf_type.533 .dwarf_typedef.lin_product_id 
+  .dwarf_type.@enum$3lin_lld_sci_c .dwarf_type.534 .dwarf_type.535 
+  .dwarf_type.536 .dwarf_type.537 .dwarf_type.538 .dwarf_type.539 
+  .dwarf_type.540 .dwarf_type.541 .dwarf_type.542 .dwarf_type.wstatus 
+  .dwarf_typedef.lin_word_status_str .dwarf_type.543 .dwarf_type.544 
+  .dwarf_type.545 .dwarf_type.546 .dwarf_typedef.lin_frame_struct 
+  .dwarf_type.@enum$13lin_lld_sci_c .dwarf_type.@enum$14lin_lld_sci_c 
+  .dwarf_type.547 .dwarf_type.548 .dwarf_type.549 .dwarf_type.550 
+  .dwarf_typedef.lin_schedule_struct .dwarf_type.@enum$15lin_lld_sci_c 
+  .dwarf_type.551 .dwarf_type.552 .dwarf_typedef.lin_schedule_data 
+  .dwarf_type.@enum$4lin_lld_sci_c .dwarf_type.553 .dwarf_type.554 
+  .dwarf_type.555 .dwarf_type.556 .dwarf_type.557 .dwarf_type.558 
+  .dwarf_type.@enum$16lin_lld_sci_c .dwarf_type.559 .dwarf_type.560 
+  .dwarf_type.561 .dwarf_type.562 .dwarf_typedef.lin_tl_descriptor 
+  .dwarf_type.563 .dwarf_type.564 .dwarf_type.565 .dwarf_type.566 
+  .dwarf_type.567 .dwarf_type.@enum$17lin_lld_sci_c 
+  .dwarf_type.@enum$18lin_lld_sci_c .dwarf_type.568 .dwarf_type.569 
+  .dwarf_type.570 .dwarf_type.571 .dwarf_type.572 .dwarf_typedef.tSCI 
+  .dwarf_type.uSCIBDH .dwarf_typedef.tSCIBDH .dwarf_type.573 .dwarf_type.574 
+  .dwarf_type.uSCIBDL .dwarf_typedef.tSCIBDL .dwarf_type.575 .dwarf_type.576 
+  .dwarf_type.uSCICR1 .dwarf_typedef.tSCICR1 .dwarf_type.577 .dwarf_type.578 
+  .dwarf_type.uSCICR2 .dwarf_typedef.tSCICR2 .dwarf_type.579 
+  .dwarf_type.uSCISR1 .dwarf_typedef.tSCISR1 .dwarf_type.580 
+  .dwarf_type.uSCISR2 .dwarf_typedef.tSCISR2 .dwarf_type.581 
+  .dwarf_type.uSCIDRH .dwarf_typedef.tSCIDRH .dwarf_type.582 .dwarf_type.uREG08 
+  .dwarf_typedef.tREG08 .dwarf_type.583 .dwarf_type.584 .dwarf_type.585 
+  .dwarf_typedef.lin_node .dwarf_type.586 .dwarf_type.587 
+  .dwarf_typedef.lin_status .dwarf_type.588 .dwarf_type.589 .dwarf_type.590 
+  .dwarf_type.591 .dwarf_type.592 .dwarf_type.593 .dwarf_type.594 
+  .dwarf_type.595 .dwarf_type.596 .dwarf_type.597 .dwarf_type.598 
+  .dwarf_type.599 .dwarf_type.600 .dwarf_type.601 .dwarf_type.602 
+  .dwarf_type.603 .dwarf_type.604 .dwarf_type.605 .dwarf_type.606 
+  .dwarf_type.607 .dwarf_type.608 .dwarf.lin_lld_sci_init 
+  .dwarf.lin_lld_sci_deinit .dwarf.lin_lld_sci_tx_header 
   .dwarf.lin_lld_sci_tx_wake_up .dwarf.lin_lld_sci_int_enable 
   .dwarf.lin_lld_sci_int_disable .dwarf.lin_lld_sci_ignore_response 
   .dwarf.lin_lld_sci_set_low_power_mode .dwarf.lin_lld_sci_rx_response 
   .dwarf.lin_lld_sci_tx_response .dwarf.lin_lld_sci_get_status 
   .dwarf.lin_lld_sci_get_state .dwarf.lin_lld_sci_timeout 
-  .dwarf.lin_goto_idle_state .dwarf.lin_lld_sci_err_isr 
-  .dwarf.lin_lld_sci_rx_isr .dwarf.lin_lld_sci_isr .dwarf_loc.lin_lld_sci_init 
-  .dwarf_loc.lin_lld_sci_int_enable .dwarf_loc.lin_lld_sci_int_disable 
-  .dwarf_loc.lin_lld_sci_rx_response .dwarf_loc.lin_lld_sci_tx_response 
-  .dwarf_loc.lin_lld_sci_timeout .dwarf_loc.lin_lld_sci_isr 
+  .dwarf.lin_goto_idle_state .dwarf.lin_lld_sci_isr .dwarf_loc.lin_lld_sci_init 
+  .dwarf_loc.lin_lld_sci_deinit .dwarf_loc.lin_lld_sci_tx_header 
+  .dwarf_loc.lin_lld_sci_tx_wake_up .dwarf_loc.lin_lld_sci_int_enable 
+  .dwarf_loc.lin_lld_sci_int_disable .dwarf_loc.lin_lld_sci_ignore_response 
+  .dwarf_loc.lin_lld_sci_set_low_power_mode .dwarf_loc.lin_lld_sci_rx_response 
+  .dwarf_loc.lin_lld_sci_tx_response .dwarf_loc.lin_lld_sci_get_status 
+  .dwarf_loc.lin_lld_sci_get_state .dwarf_loc.lin_lld_sci_timeout 
+  .dwarf_loc.lin_goto_idle_state .dwarf_loc.lin_lld_sci_isr 
   .dwarf_line.lin_lld_sci_init .dwarf_line.lin_lld_sci_deinit 
-  .dwarf_line.lin_lld_sci_tx_wake_up .dwarf_line.lin_lld_sci_int_enable 
-  .dwarf_line.lin_lld_sci_int_disable .dwarf_line.lin_lld_sci_ignore_response 
+  .dwarf_line.lin_lld_sci_tx_header .dwarf_line.lin_lld_sci_tx_wake_up 
+  .dwarf_line.lin_lld_sci_int_enable .dwarf_line.lin_lld_sci_int_disable 
+  .dwarf_line.lin_lld_sci_ignore_response 
   .dwarf_line.lin_lld_sci_set_low_power_mode 
   .dwarf_line.lin_lld_sci_rx_response .dwarf_line.lin_lld_sci_tx_response 
   .dwarf_line.lin_lld_sci_get_status .dwarf_line.lin_lld_sci_get_state 
   .dwarf_line.lin_lld_sci_timeout .dwarf_line.lin_goto_idle_state 
-  .dwarf_line.lin_lld_sci_err_isr .dwarf_line.lin_lld_sci_rx_isr 
   .dwarf_line.lin_lld_sci_isr .dwarf_frame.lin_lld_sci_init 
-  .dwarf_frame.lin_lld_sci_deinit .dwarf_frame.lin_lld_sci_tx_wake_up 
-  .dwarf_frame.lin_lld_sci_int_enable .dwarf_frame.lin_lld_sci_int_disable 
-  .dwarf_frame.lin_lld_sci_ignore_response 
+  .dwarf_frame.lin_lld_sci_deinit .dwarf_frame.lin_lld_sci_tx_header 
+  .dwarf_frame.lin_lld_sci_tx_wake_up .dwarf_frame.lin_lld_sci_int_enable 
+  .dwarf_frame.lin_lld_sci_int_disable .dwarf_frame.lin_lld_sci_ignore_response 
   .dwarf_frame.lin_lld_sci_set_low_power_mode 
   .dwarf_frame.lin_lld_sci_rx_response .dwarf_frame.lin_lld_sci_tx_response 
   .dwarf_frame.lin_lld_sci_get_status .dwarf_frame.lin_lld_sci_get_state 
   .dwarf_frame.lin_lld_sci_timeout .dwarf_frame.lin_goto_idle_state 
-  .dwarf_frame.lin_lld_sci_err_isr .dwarf_frame.lin_lld_sci_rx_isr 
   .dwarf_frame.lin_lld_sci_isr .dwarf_pubnames.lin_lld_sci_init 
-  .dwarf_pubnames.lin_lld_sci_deinit .dwarf_pubnames.lin_lld_sci_tx_wake_up 
-  .dwarf_pubnames.lin_lld_sci_int_enable 
+  .dwarf_pubnames.lin_lld_sci_deinit .dwarf_pubnames.lin_lld_sci_tx_header 
+  .dwarf_pubnames.lin_lld_sci_tx_wake_up .dwarf_pubnames.lin_lld_sci_int_enable 
   .dwarf_pubnames.lin_lld_sci_int_disable 
   .dwarf_pubnames.lin_lld_sci_ignore_response 
   .dwarf_pubnames.lin_lld_sci_set_low_power_mode 
@@ -2438,28 +2744,28 @@ lin_lld_sci_c.obj:
   .dwarf_pubnames.lin_lld_sci_tx_response 
   .dwarf_pubnames.lin_lld_sci_get_status .dwarf_pubnames.lin_lld_sci_get_state 
   .dwarf_pubnames.lin_lld_sci_timeout .dwarf_pubnames.lin_goto_idle_state 
-  .dwarf_pubnames.lin_lld_sci_err_isr .dwarf_pubnames.lin_lld_sci_rx_isr 
   .dwarf_pubnames.lin_lld_sci_isr .dwarf_aranges.lin_lld_sci_init 
-  .dwarf_aranges.lin_lld_sci_deinit .dwarf_aranges.lin_lld_sci_tx_wake_up 
-  .dwarf_aranges.lin_lld_sci_int_enable .dwarf_aranges.lin_lld_sci_int_disable 
+  .dwarf_aranges.lin_lld_sci_deinit .dwarf_aranges.lin_lld_sci_tx_header 
+  .dwarf_aranges.lin_lld_sci_tx_wake_up .dwarf_aranges.lin_lld_sci_int_enable 
+  .dwarf_aranges.lin_lld_sci_int_disable 
   .dwarf_aranges.lin_lld_sci_ignore_response 
   .dwarf_aranges.lin_lld_sci_set_low_power_mode 
   .dwarf_aranges.lin_lld_sci_rx_response .dwarf_aranges.lin_lld_sci_tx_response 
   .dwarf_aranges.lin_lld_sci_get_status .dwarf_aranges.lin_lld_sci_get_state 
   .dwarf_aranges.lin_lld_sci_timeout .dwarf_aranges.lin_goto_idle_state 
-  .dwarf_aranges.lin_lld_sci_err_isr .dwarf_aranges.lin_lld_sci_rx_isr 
-  .dwarf_aranges.lin_lld_sci_isr func tbit ifc 
+  .dwarf_aranges.lin_lld_sci_isr 
 lin_lld_timesrv_c.obj:
-  .dwarf_type.void .dwarf.lin_lld_timer_S12_init .dwarf.lin_lld_timer_isr 
+  .dwarf_type.void .dwarf_type.unsigned char .dwarf.lin_lld_timer_S12_init 
+  .dwarf.lin_lld_timer_isr .dwarf_loc.lin_lld_timer_isr 
   .dwarf_line.lin_lld_timer_S12_init .dwarf_line.lin_lld_timer_isr 
   .dwarf_frame.lin_lld_timer_S12_init .dwarf_frame.lin_lld_timer_isr 
   .dwarf_pubnames.lin_lld_timer_S12_init .dwarf_pubnames.lin_lld_timer_isr 
   .dwarf_aranges.lin_lld_timer_S12_init .dwarf_aranges.lin_lld_timer_isr 
-ClockPin1_c.obj:
-  .dwarf_type.void .dwarf_type.unsigned char .dwarf.ClockPin1_SetDir 
-  .dwarf_loc.ClockPin1_SetDir .dwarf_line.ClockPin1_SetDir 
-  .dwarf_frame.ClockPin1_SetDir .dwarf_pubnames.ClockPin1_SetDir 
-  .dwarf_aranges.ClockPin1_SetDir 
+ClockPin2_c.obj:
+  .dwarf_type.void .dwarf_type.unsigned char .dwarf.ClockPin2_SetDir 
+  .dwarf_loc.ClockPin2_SetDir .dwarf_line.ClockPin2_SetDir 
+  .dwarf_frame.ClockPin2_SetDir .dwarf_pubnames.ClockPin2_SetDir 
+  .dwarf_aranges.ClockPin2_SetDir 
 Cpu_c.obj:
   .dwarf.Shadow_P .dwarf.CCR_reg .dwarf_type.void .dwarf_type.unsigned char 
   .dwarf.Cpu_ivVReserved123 .dwarf.Cpu_ivVReserved122 .dwarf.Cpu_ivVReserved121 
@@ -2743,15 +3049,15 @@ Cpu_c.obj:
   .dwarf_aranges.Cpu_ivVtrap .dwarf_aranges.Cpu_ivVspare 
   .dwarf_aranges.Cpu_Delay100US .dwarf_aranges._EntryPoint 
   .dwarf_aranges.PE_low_level_init CCR_reg 
-DataPin1_c.obj:
-  .dwarf_type.void .dwarf_type.unsigned char .dwarf.DataPin1_SetDir 
-  .dwarf_loc.DataPin1_SetDir .dwarf_line.DataPin1_SetDir 
-  .dwarf_frame.DataPin1_SetDir .dwarf_pubnames.DataPin1_SetDir 
-  .dwarf_aranges.DataPin1_SetDir 
+DataPin2_c.obj:
+  .dwarf_type.void .dwarf_type.unsigned char .dwarf.DataPin2_SetDir 
+  .dwarf_loc.DataPin2_SetDir .dwarf_line.DataPin2_SetDir 
+  .dwarf_frame.DataPin2_SetDir .dwarf_pubnames.DataPin2_SetDir 
+  .dwarf_aranges.DataPin2_SetDir 
 EI2C1_c.obj:
   .dwarf.SlaveAddr .dwarf_type.void .dwarf_type.unsigned char 
-  .dwarf_type.unsigned int .dwarf_type.433 .dwarf_type.434 .dwarf_type.435 
-  .dwarf_type.436 .dwarf_type.437 .dwarf_type.438 .dwarf.Delay 
+  .dwarf_type.unsigned int .dwarf_type.445 .dwarf_type.446 .dwarf_type.447 
+  .dwarf_type.448 .dwarf_type.449 .dwarf_type.450 .dwarf.Delay 
   .dwarf.EI2C1_Init .dwarf.Write .dwarf.Read .dwarf.GetAck .dwarf.SetAck 
   .dwarf.InternalStop .dwarf.EI2C1_SendChar .dwarf.EI2C1_RecvChar 
   .dwarf.EI2C1_SendBlock .dwarf.EI2C1_RecvBlock .dwarf.EI2C1_SelectSlave 
@@ -2778,6 +3084,36 @@ EI2C1_c.obj:
   .dwarf_aranges.EI2C1_RecvChar .dwarf_aranges.EI2C1_SendBlock 
   .dwarf_aranges.EI2C1_RecvBlock .dwarf_aranges.EI2C1_SelectSlave 
   .dwarf_aranges.EI2C1_GetSelected 
+EI2C2_c.obj:
+  .dwarf.SlaveAddr .dwarf_type.void .dwarf_type.unsigned char 
+  .dwarf_type.unsigned int .dwarf_type.445 .dwarf_type.446 .dwarf_type.447 
+  .dwarf_type.448 .dwarf_type.449 .dwarf_type.450 .dwarf.Delay 
+  .dwarf.EI2C2_Init .dwarf.Write .dwarf.Read .dwarf.GetAck .dwarf.SetAck 
+  .dwarf.InternalStop .dwarf.EI2C2_SendChar .dwarf.EI2C2_RecvChar 
+  .dwarf.EI2C2_SendBlock .dwarf.EI2C2_RecvBlock .dwarf.EI2C2_SelectSlave 
+  .dwarf.EI2C2_GetSelected .dwarf_loc.Write .dwarf_loc.Read .dwarf_loc.GetAck 
+  .dwarf_loc.SetAck .dwarf_loc.EI2C2_SendChar .dwarf_loc.EI2C2_RecvChar 
+  .dwarf_loc.EI2C2_SendBlock .dwarf_loc.EI2C2_RecvBlock 
+  .dwarf_loc.EI2C2_SelectSlave .dwarf_loc.EI2C2_GetSelected .dwarf_line.Delay 
+  .dwarf_line.EI2C2_Init .dwarf_line.Write .dwarf_line.Read .dwarf_line.GetAck 
+  .dwarf_line.SetAck .dwarf_line.InternalStop .dwarf_line.EI2C2_SendChar 
+  .dwarf_line.EI2C2_RecvChar .dwarf_line.EI2C2_SendBlock 
+  .dwarf_line.EI2C2_RecvBlock .dwarf_line.EI2C2_SelectSlave 
+  .dwarf_line.EI2C2_GetSelected .dwarf_frame.Delay .dwarf_frame.EI2C2_Init 
+  .dwarf_frame.Write .dwarf_frame.Read .dwarf_frame.GetAck .dwarf_frame.SetAck 
+  .dwarf_frame.InternalStop .dwarf_frame.EI2C2_SendChar 
+  .dwarf_frame.EI2C2_RecvChar .dwarf_frame.EI2C2_SendBlock 
+  .dwarf_frame.EI2C2_RecvBlock .dwarf_frame.EI2C2_SelectSlave 
+  .dwarf_frame.EI2C2_GetSelected .dwarf_pubnames.EI2C2_Init 
+  .dwarf_pubnames.EI2C2_SendChar .dwarf_pubnames.EI2C2_RecvChar 
+  .dwarf_pubnames.EI2C2_SendBlock .dwarf_pubnames.EI2C2_RecvBlock 
+  .dwarf_pubnames.EI2C2_SelectSlave .dwarf_pubnames.EI2C2_GetSelected 
+  .dwarf_aranges.Delay .dwarf_aranges.EI2C2_Init .dwarf_aranges.Write 
+  .dwarf_aranges.Read .dwarf_aranges.GetAck .dwarf_aranges.SetAck 
+  .dwarf_aranges.InternalStop .dwarf_aranges.EI2C2_SendChar 
+  .dwarf_aranges.EI2C2_RecvChar .dwarf_aranges.EI2C2_SendBlock 
+  .dwarf_aranges.EI2C2_RecvBlock .dwarf_aranges.EI2C2_SelectSlave 
+  .dwarf_aranges.EI2C2_GetSelected 
 IO_Map_c.obj:
   .dwarf.ADC0RBP .dwarf.ADC0CBP .dwarf.ECCDPTR .dwarf.DBGDA .dwarf.DBGBA 
   .dwarf.DBGAA .dwarf.MMCPC .dwarf._ADC0CMD .dwarf._PARTID .dwarf._SPI0DR 
@@ -3350,170 +3686,210 @@ TI1_c.obj:
   .dwarf_frame.TI1_Interrupt .dwarf_pubnames.TI1_Interrupt 
   .dwarf_aranges.TI1_Interrupt 
 Vectors_c.obj:
-  .dwarf._InterruptVectorTable .dwarf._ResetVectorTable .dwarf_type.18 
-  .dwarf_type.19 .dwarf_typedef.InterruptTableEntry .dwarf_type.unsigned char 
-  .dwarf_type.20 .dwarf_type.21 .dwarf_type.void .dwarf_type.22 
+  .dwarf._InterruptVectorTable .dwarf._ResetVectorTable .dwarf_type.30 
+  .dwarf_type.31 .dwarf_typedef.InterruptTableEntry .dwarf_type.unsigned char 
+  .dwarf_type.32 .dwarf_type.33 .dwarf_type.void .dwarf_type.34 
   .dwarf_pubnames._InterruptVectorTable .dwarf_pubnames._ResetVectorTable 
   .dwarf_aranges._InterruptVectorTable .dwarf_aranges._ResetVectorTable 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xFFDE0E ---- SIZE       7 ---
+------- ROM-ADDRESS: 0xFFEF07 ---- SIZE       7 ---
 Filling bytes inserted
- 0000001A00 1008
-------- ROM-ADDRESS: 0xFFDE15 ---- RAM-ADDRESS: 0x1008 ---- SIZE       1 ---
+ 0000003300 1008
+------- ROM-ADDRESS: 0xFFEF0E ---- RAM-ADDRESS: 0x1008 ---- SIZE       1 ---
 Name of initialized Object : lin_pFrameBuf:8
  FE
-------- ROM-ADDRESS: 0xFFDE16 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xFFEF0F ---- SIZE       2 ---
 Filling bytes inserted
  0000
-------- ROM-ADDRESS: 0xFFDE18 ---- RAM-ADDRESS: 0x100B ---- SIZE       5 ---
+------- ROM-ADDRESS: 0xFFEF11 ---- RAM-ADDRESS: 0x100B ---- SIZE       5 ---
 Name of initialized Object : lin_flag_handle_tbl
  FFFFFFFFFF
-------- ROM-ADDRESS: 0xFFDE1D ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFEF16 ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xFFDE1E ---- RAM-ADDRESS: 0x1011 ---- SIZE       8 ---
-Name of initialized Object : lin_configuration_RAM:1
+------- ROM-ADDRESS: 0xFFEF17 ---- RAM-ADDRESS: 0x1011 ---- SIZE       8 ---
+Name of initialized Object : LI0_lin_configuration_RAM:1
  050A121416 3C3DFF
-------- ROM-ADDRESS: 0xFFDE26 ---- RAM-ADDRESS: 0x1019 ---- SIZE       1 ---
-Name of initialized Object : lin_configured_NAD
- 05
-------- ROM-ADDRESS: 0xFFDE27 ---- RAM-ADDRESS: 0x101A ---- SIZE       2 ---
-Name of initialized Object : tl_check_timeout
- 07D0
-------- ROM-ADDRESS: 0xFFDE29 ---- RAM-ADDRESS: 0x101C ---- SIZE       1 ---
-Name of initialized Object : tl_service_status
+------- ROM-ADDRESS: 0xFFEF1F ---- SIZE       1 ---
+Filling bytes inserted
+ 00
+------- ROM-ADDRESS: 0xFFEF20 ---- RAM-ADDRESS: 0x101A ---- SIZE       5 ---
+Name of initialized Object : lin_tl_desc:1
+ 108500108D
+------- ROM-ADDRESS: 0xFFEF25 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000000 0000
+------- ROM-ADDRESS: 0xFFEF2C ---- RAM-ADDRESS: 0x1026 ---- SIZE       1 ---
+Name of initialized Object : lin_tl_desc:13
  02
-------- ROM-ADDRESS: 0xFFDE2A ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFEF2D ---- SIZE       6 ---
 Filling bytes inserted
- 00
-------- ROM-ADDRESS: 0xFFDE2B ---- RAM-ADDRESS: 0x101E ---- SIZE       1 ---
-Name of initialized Object : pSCI:1
- 07
-------- ROM-ADDRESS: 0xFFDE2C ---- SIZE       1 ---
+ 0000000000 00
+------- ROM-ADDRESS: 0xFFEF33 ---- RAM-ADDRESS: 0x102D ---- SIZE       7 ---
+Name of initialized Object : lin_tl_desc:20
+ 05FFC2FC00 1095
+------- ROM-ADDRESS: 0xFFEF3A ---- SIZE       2 ---
 Filling bytes inserted
- 00
-------- ROM-ADDRESS: 0xFFDE2D ---- RAM-ADDRESS: 0x1020 ---- SIZE       1 ---
-Name of initialized Object : state
- FF
-------- ROM-ADDRESS: 0xFFDE2E ---- RAM-ADDRESS: 0x1021 ---- SIZE       1 ---
-Name of initialized Object : pid
+ 0000
+------- ROM-ADDRESS: 0xFFEF3C ---- RAM-ADDRESS: 0x1036 ---- SIZE       5 ---
+Name of initialized Object : lin_node_descrs:1
+ 070000FFFF
+------- ROM-ADDRESS: 0xFFEF41 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000100 1046
+------- ROM-ADDRESS: 0xFFEF48 ---- RAM-ADDRESS: 0x1046 ---- SIZE       1 ---
+Name of initialized Object : lin_node_descrs:17
  80
-------- ROM-ADDRESS: 0xFFDE2F ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xFFEF49 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000500 1050
+------- ROM-ADDRESS: 0xFFEF50 ---- RAM-ADDRESS: 0x1050 ---- SIZE       5 ---
+Name of initialized Object : lin_node_descrs:27
+ 071000FFFF
+------- ROM-ADDRESS: 0xFFEF55 ---- SIZE       7 ---
+Filling bytes inserted
+ 0000000B00 1060
+------- ROM-ADDRESS: 0xFFEF5C ---- RAM-ADDRESS: 0x1060 ---- SIZE       1 ---
+Name of initialized Object : lin_node_descrs:43
+ 80
+------- ROM-ADDRESS: 0xFFEF5D ---- SIZE       8 ---
+Filling bytes inserted
+ 0000000000 000000
+------- ROM-ADDRESS: 0xFFEF65 ---- RAM-ADDRESS: 0x1069 ---- SIZE       2 ---
+Name of initialized Object : tl_check_timeout_array
+ 07D0
+------- ROM-ADDRESS: 0xFFEF67 ---- SIZE       4 ---
 Filling bytes inserted
  00000000
 
 *********************************************************************************************
 OBJECT-DEPENDENCIES SECTION
 ---------------------------------------------------------------------------------------------
+lin_tl_desc               USES tx_single_pdu_data rx_single_pdu_data 
+                                LI0_lin_diag_services_supported LI0_lin_diag_services_flag 
 _EntryPoint               USES _Startup 
-lin_frame_tbl             USES LI0_response_error_signal 
+lin_schedule_tbl          USES LI0_lin_gotosleep_data LI0_MasterReqTable_data 
+                                LI0_SlaveRespTable_data LI0_NormalTable_data LI0_InitTable_data 
+                                LI0_DiagnosticTable_data 
+lin_ifc_configuration     USES lin_lld_response_buffer lin_successful_transfer 
+                                lin_error_in_response lin_goto_sleep_flg lin_current_pid 
+                                lin_word_status lin_diag_signal_tbl lin_frame_tbl 
+                                lin_frame_flag_tbl lin_schedule_tbl lin_schedule_start_entry 
+                                lin_next_transmit lin_active_schedule_id 
+                                lin_previous_schedule_id lin_diag_frame_to_send 
+                                LI0_lin_configuration_RAM LI0_lin_configuration_ROM lin_tl_desc 
 TI1_Interrupt             USES TI1_OnInterrupt 
 TI1_OnInterrupt           USES stimage_process 
-main                      USES PE_low_level_init Reset_Sensor_RH 
-                                Lectura_Sensor_RH 
-Lectura_Sensor_RH         USES @31 EI2C1_SelectSlave EI2C1_SendBlock 
-                                stimage_process EI2C1_RecvBlock u8return 
+main                      USES PE_low_level_init Reset_Sensor_RH l_sys_init 
+                                l_ifc_init Lectura_Sensor_RH lin_frame_flag_tbl 
+                                buffer_backup_data lin_pFrameBuf lin_frame_updating_flag_tbl 
+                                stimage_process lin_flag_handle_tbl 
+Lectura_Sensor_RH         USES @41 EI2C2_SelectSlave EI2C2_SendBlock 
+                                stimage_process EI2C2_RecvBlock u8return 
 Reset_Sensor_RH           USES stimage_process 
 DoZeroOut                 USES _startupData 
 DoCopyDown                USES _startupData 
 _Startup                  USES __SEG_END_SSTACK DoZeroOut DoCopyDown main 
-lin_tl_make_slaveres_pdu  USES lin_configured_NAD tl_current_rx_pdu_ptr 
-                                lin_initial_NAD product_id @57 ld_read_by_id_callout 
-                                tx_single_pdu_data tl_current_tx_pdu_ptr tl_check_timeout 
-                                tl_check_timeout_type tl_slaveresp_cnt 
-lin_tl_get_pdu            USES lin_lld_response_buffer tl_current_tx_pdu_ptr 
-lin_tl_put_pdu            USES rx_single_pdu_data tl_current_rx_pdu_ptr 
-                                lin_lld_response_buffer 
-lin_tl_handler            USES tl_current_rx_pdu_ptr lin_configured_NAD 
-                                lin_initial_NAD tl_slaveresp_cnt tl_service_status 
-                                lin_tl_attach_service 
-lin_tl_attach_service     USES tl_current_rx_pdu_ptr 
-                                lin_diag_services_supported lin_diag_services_flag 
-                                lin_condittional_change_nad lin_initial_NAD product_id 
-                                lin_tl_make_slaveres_pdu lin_save_configuration_flg 
-                                lin_diagservice_assign_frame_id_range lin_diagservice_read_by_identifier 
+lin_tl_make_mreq_pdu      USES lin_ifc_configuration 
+lin_tl_make_slaveres_pdu  USES lin_ifc_configuration @150 
+                                ld_read_by_id_callout tl_check_timeout_array 
+                                tl_check_timeout_type_array 
+lin_tl_get_pdu            USES lin_ifc_configuration 
+lin_tl_handler            USES lin_ifc_configuration lin_tl_attach_service 
+                                lin_tl_get_response 
+lin_tl_attach_service     USES lin_ifc_configuration 
+                                lin_condittional_change_nad lin_tl_make_slaveres_pdu 
+                                lin_save_configuration_flg lin_diagservice_assign_frame_id_range 
+                                lin_diagservice_read_by_identifier 
+lin_tl_get_response       USES lin_ifc_configuration 
+lin_tl_update_tx_flag     USES lin_ifc_configuration 
+lin_tl_put_pdu            USES lin_ifc_configuration 
+lin_tl_no_response        USES lin_ifc_configuration 
+lin_lld_init              USES lin_virtual_ifc lin_lld_sci_init 
 lin_lld_ignore_response   USES lin_virtual_ifc lin_lld_sci_ignore_response 
 lin_lld_set_low_power_mode USES lin_virtual_ifc lin_lld_sci_set_low_power_mode 
-lin_lld_set_response      USES lin_lld_response_buffer lin_virtual_ifc 
+lin_lld_set_response      USES lin_ifc_configuration lin_virtual_ifc 
                                 lin_lld_sci_tx_response 
 lin_lld_rx_response       USES lin_virtual_ifc lin_lld_sci_rx_response 
-lin_diagservice_read_by_identifier USES tl_current_rx_pdu_ptr product_id 
-                                tl_slaveresp_cnt lin_tl_make_slaveres_pdu @58 
-                                ld_read_by_id_callout 
-lin_diagservice_assign_frame_id_range USES tl_current_rx_pdu_ptr 
-                                lin_tl_make_slaveres_pdu lin_configuration_RAM lin_process_parity 
-lin_condittional_change_nad USES tl_current_rx_pdu_ptr product_id 
-                                lin_tl_make_slaveres_pdu lin_configured_NAD 
+lin_lld_set_etf_collision_flag USES etf_collision_flag 
+lin_lld_timer_init        USES lin_lld_timer_S12_init 
+lin_diagservice_read_by_identifier USES lin_ifc_configuration 
+                                lin_tl_make_slaveres_pdu @130 ld_read_by_id_callout 
+lin_diagservice_assign_frame_id_range USES lin_ifc_configuration 
+                                lin_tl_make_slaveres_pdu lin_process_parity 
+lin_condittional_change_nad USES lin_ifc_configuration 
+                                lin_tl_make_slaveres_pdu 
+l_sys_init                USES lin_lld_timer_init 
+l_ifc_init                USES lin_lld_init 
 lin_pid_response_callback_handler USES lin_process_pid lin_update_tx 
                                 lin_update_rx lin_bus_activity_timeout lin_handle_error 
-lin_process_pid           USES lin_get_frame_index frame_index lin_frame_tbl 
-                                lin_flag_handle_tbl lin_configuration_RAM lin_make_res_evnt_frame 
-                                lin_process_uncd_frame tl_slaveresp_cnt tl_service_status 
-                                lin_make_res_diag_frame lin_lld_set_response lin_lld_rx_response 
-                                lin_lld_ignore_response 
-lin_update_rx             USES lin_frame_tbl frame_index 
-                                lin_successful_transfer lin_process_uncd_frame 
-                                lin_update_rx_diag_frame lin_frame_flag_tbl lin_flag_handle_tbl 
+lin_process_pid           USES lin_ifc_configuration lin_get_frame_index 
+                                lin_tl_make_mreq_pdu lin_make_res_diag_frame lin_flag_handle_tbl 
+                                lin_make_res_evnt_frame lin_process_uncd_frame lin_lld_set_response 
+                                lin_lld_rx_response lin_lld_ignore_response 
+lin_update_rx             USES lin_ifc_configuration lin_get_frame_index 
+                                lin_update_rx_diag_frame lin_update_rx_evnt_frame lin_process_parity 
+                                lin_process_uncd_frame lin_frame_flag_tbl lin_frame_tbl 
+                                lin_flag_handle_tbl lin_update_word_status_lin21 
+lin_update_tx             USES lin_ifc_configuration frame_signal_error 
+                                lin_get_frame_index lin_update_tx_flags lin_frame_flag_tbl 
+                                tl_check_timeout_type_array tl_check_timeout_array lin_update_err_signal 
                                 lin_update_word_status_lin21 
-lin_update_tx             USES lin_successful_transfer frame_signal_error 
-                                lin_error_in_response lin_get_frame_index frame_index 
-                                lin_update_tx_flags lin_frame_flag_tbl lin_update_err_signal 
-                                lin_update_word_status_lin21 tl_slaveresp_cnt tl_check_timeout_type 
-                                tl_check_timeout 
-lin_handle_error          USES lin_get_frame_index frame_index lin_frame_tbl 
-                                lin_error_in_response tl_slaveresp_cnt lin_update_err_signal 
+lin_handle_error          USES lin_ifc_configuration lin_get_frame_index 
+                                lin_lld_set_etf_collision_flag lin_tl_no_response lin_update_err_signal 
                                 lin_update_word_status_lin21 
-lin_bus_activity_timeout  USES lin_update_word_status_lin21 
-                                lin_lld_set_low_power_mode 
-lin_update_tx_flags       USES lin_frame_tbl frame_index lin_flag_handle_tbl 
-lin_update_rx_diag_frame  USES lin_lld_response_buffer lin_goto_sleep_flg 
+lin_bus_activity_timeout  USES lin_ifc_configuration 
+                                lin_update_word_status_lin21 lin_lld_set_low_power_mode 
+lin_update_tx_flags       USES lin_ifc_configuration lin_frame_tbl 
+                                lin_flag_handle_tbl lin_tl_update_tx_flag 
+lin_update_rx_diag_frame  USES lin_ifc_configuration 
                                 lin_lld_set_low_power_mode lin_tl_put_pdu lin_tl_handler 
 lin_make_res_diag_frame   USES lin_tl_get_pdu 
-lin_get_frame_index       USES lin_configuration_RAM 
-lin_process_uncd_frame    USES lin_frame_tbl frame_index 
-                                lin_lld_response_buffer response_error frame_signal_error 
-                                lin_frame_updating_flag_tbl buffer_backup_data lin_pFrameBuf 
-lin_update_word_status_lin21 USES lin_word_status lin_error_in_response 
-                                lin_successful_transfer lin_save_configuration_flg lin_goto_sleep_flg 
-lin_update_err_signal     USES lin_frame_tbl lin_response_error_byte_offset 
-                                lin_response_error_bit_offset lin_pFrameBuf lin_error_in_response 
-                                num_frame_have_esignal 
-lin_make_res_evnt_frame   USES lin_process_uncd_frame lin_lld_response_buffer 
-                                lin_process_parity 
+lin_get_frame_index       USES lin_ifc_configuration 
+lin_process_uncd_frame    USES lin_ifc_configuration lin_get_frame_index 
+                                lin_frame_tbl frame_signal_error lin_frame_updating_flag_tbl 
+                                buffer_backup_data lin_pFrameBuf 
+lin_update_word_status_lin21 USES lin_ifc_configuration 
+                                lin_save_configuration_flg lin_get_frame_index 
+lin_update_err_signal     USES lin_ifc_configuration lin_pFrameBuf 
+lin_update_rx_evnt_frame  USES lin_ifc_configuration lin_get_frame_index 
+                                lin_process_parity lin_process_uncd_frame 
+lin_make_res_evnt_frame   USES lin_process_uncd_frame lin_process_parity 
+                                lin_ifc_configuration 
 SCI0_INT                  USES lin_lld_sci_isr 
 TIMchan2_ISR              USES lin_lld_timer_isr 
+lin_lld_sci_init          USES lin_node_descrs lin_ifc_configuration 
+                                lin_goto_idle_state 
 lin_lld_sci_ignore_response USES lin_goto_idle_state 
-lin_lld_sci_set_low_power_mode USES state 
-lin_lld_sci_rx_response   USES response_buffer cnt_byte ptr state 
-lin_lld_sci_tx_response   USES pid response_buffer lin_checksum cnt_byte pSCI 
-                                state 
-lin_lld_sci_timeout       USES tl_check_timeout_type tl_check_timeout 
-                                tl_service_status state res_frame_timeout_cnt cnt_byte l_status 
-                                current_id lin_pid_response_callback_handler 
-                                lin_goto_idle_state idle_timeout_cnt frame_timeout_cnt 
-lin_goto_idle_state       USES l_status idle_timeout_cnt state 
-lin_lld_sci_isr           USES pSCI idle_timeout_cnt l_status 
-                                lin_max_frame_res_timeout_val frame_timeout_cnt state current_id 
-                                lin_pid_response_callback_handler cnt_byte response_buffer ptr pid lin_checksum 
-                                lin_process_parity res_frame_timeout_cnt 
-lin_lld_timer_isr         USES lin_lld_sci_timeout 
-PE_low_level_init         USES EI2C1_Init Shadow_P LINPHY0_Init 
+lin_lld_sci_set_low_power_mode USES lin_node_descrs 
+lin_lld_sci_rx_response   USES lin_node_descrs 
+lin_lld_sci_tx_response   USES lin_node_descrs lin_checksum 
+lin_lld_sci_timeout       USES lin_node_descrs lin_ifc_configuration 
+                                tl_check_timeout_type_array tl_check_timeout_array 
+                                lin_pid_response_callback_handler lin_goto_idle_state 
+lin_goto_idle_state       USES lin_node_descrs 
+lin_lld_sci_isr           USES lin_node_descrs lin_goto_idle_state 
+                                lin_max_frame_res_timeout_val lin_pid_response_callback_handler lin_checksum 
+                                lin_process_parity 
+lin_lld_timer_isr         USES lin_virtual_ifc lin_lld_sci_timeout 
+PE_low_level_init         USES EI2C1_Init EI2C2_Init Shadow_P LINPHY0_Init 
 EI2C1_Init                USES SlaveAddr 
-Write                     USES DataPin1_SetDir ClockPin1_SetDir 
-Read                      USES DataPin1_SetDir ClockPin1_SetDir 
-GetAck                    USES DataPin1_SetDir ClockPin1_SetDir 
-SetAck                    USES DataPin1_SetDir ClockPin1_SetDir 
-InternalStop              USES DataPin1_SetDir ClockPin1_SetDir 
-EI2C1_SendBlock           USES DataPin1_SetDir ClockPin1_SetDir SlaveAddr 
-                                Write GetAck EI2C1_OnNACK InternalStop 
-                                EI2C1_OnTxChar 
-EI2C1_RecvBlock           USES DataPin1_SetDir ClockPin1_SetDir SlaveAddr 
-                                Write GetAck EI2C1_OnNACK InternalStop Read 
-                                EI2C1_OnRxChar SetAck 
-EI2C1_SelectSlave         USES SlaveAddr 
+EI2C2_Init                USES SlaveAddr 
+Write                     USES DataPin2_SetDir ClockPin2_SetDir 
+Read                      USES DataPin2_SetDir ClockPin2_SetDir 
+GetAck                    USES DataPin2_SetDir ClockPin2_SetDir 
+SetAck                    USES DataPin2_SetDir ClockPin2_SetDir 
+InternalStop              USES DataPin2_SetDir ClockPin2_SetDir 
+EI2C2_SendBlock           USES DataPin2_SetDir ClockPin2_SetDir SlaveAddr 
+                                Write GetAck EI2C2_OnNACK InternalStop 
+                                EI2C2_OnTxChar 
+EI2C2_RecvBlock           USES DataPin2_SetDir ClockPin2_SetDir SlaveAddr 
+                                Write GetAck EI2C2_OnNACK InternalStop Read 
+                                EI2C2_OnRxChar SetAck 
+EI2C2_SelectSlave         USES SlaveAddr 
 _InterruptVectorTable     USES Cpu_ivVReserved123 Cpu_ivVReserved122 
                                 Cpu_ivVReserved121 Cpu_ivVReserved120 Cpu_ivVReserved119 
                                 Cpu_ivVReserved118 Cpu_ivVReserved117 Cpu_ivVReserved116 
@@ -3565,69 +3941,85 @@ DEPENDENCY TREE
  |  |  | 
  |  |  +- EI2C1_Init          
  |  |  |    
+ |  |  +- EI2C2_Init          
+ |  |  |    
  |  |  +- LINPHY0_Init        
  |  |       
  |  +- Reset_Sensor_RH     
  |  |    
+ |  +- l_sys_init          
+ |  |  | 
+ |  |  +- lin_lld_timer_init  
+ |  |     | 
+ |  |     +- lin_lld_timer_S12_init
+ |  |          
+ |  +- l_ifc_init          
+ |  |  | 
+ |  |  +- lin_lld_init        
+ |  |     | 
+ |  |     +- lin_lld_sci_init    
+ |  |        | 
+ |  |        +- lin_goto_idle_state 
+ |  |             
  |  +- Lectura_Sensor_RH   
  |     | 
- |     +- EI2C1_SelectSlave   
+ |     +- EI2C2_SelectSlave   
  |     |    
- |     +- EI2C1_SendBlock     
+ |     +- EI2C2_SendBlock     
  |     |  | 
- |     |  +- DataPin1_SetDir     
+ |     |  +- DataPin2_SetDir     
  |     |  |    
- |     |  +- ClockPin1_SetDir    
+ |     |  +- ClockPin2_SetDir    
  |     |  |    
  |     |  +- Write               
  |     |  |  | 
- |     |  |  +- DataPin1_SetDir      (see above)
+ |     |  |  +- DataPin2_SetDir      (see above)
  |     |  |  |  
- |     |  |  +- ClockPin1_SetDir     (see above)
+ |     |  |  +- ClockPin2_SetDir     (see above)
  |     |  |     
  |     |  +- GetAck              
  |     |  |  | 
- |     |  |  +- DataPin1_SetDir      (see above)
+ |     |  |  +- DataPin2_SetDir      (see above)
  |     |  |  |  
- |     |  |  +- ClockPin1_SetDir     (see above)
+ |     |  |  +- ClockPin2_SetDir     (see above)
  |     |  |     
- |     |  +- EI2C1_OnNACK        
+ |     |  +- EI2C2_OnNACK        
  |     |  |    
  |     |  +- InternalStop        
  |     |  |  | 
- |     |  |  +- DataPin1_SetDir      (see above)
+ |     |  |  +- DataPin2_SetDir      (see above)
  |     |  |  |  
- |     |  |  +- ClockPin1_SetDir     (see above)
+ |     |  |  +- ClockPin2_SetDir     (see above)
  |     |  |     
- |     |  +- EI2C1_OnTxChar      
+ |     |  +- EI2C2_OnTxChar      
  |     |       
- |     +- EI2C1_RecvBlock     
+ |     +- EI2C2_RecvBlock     
  |        | 
- |        +- DataPin1_SetDir      (see above)
+ |        +- DataPin2_SetDir      (see above)
  |        |  
- |        +- ClockPin1_SetDir     (see above)
+ |        +- ClockPin2_SetDir     (see above)
  |        |  
  |        +- Write                (see above)
  |        |  
  |        +- GetAck               (see above)
  |        |  
- |        +- EI2C1_OnNACK         (see above)
+ |        +- EI2C2_OnNACK         (see above)
  |        |  
  |        +- InternalStop         (see above)
  |        |  
  |        +- Read                
  |        |  | 
- |        |  +- DataPin1_SetDir      (see above)
+ |        |  +- DataPin2_SetDir      (see above)
  |        |  |  
- |        |  +- ClockPin1_SetDir     (see above)
+ |        |  +- ClockPin2_SetDir     (see above)
  |        |     
- |        +- EI2C1_OnRxChar      
+ |        +- EI2C2_OnRxChar      
  |        |    
  |        +- SetAck              
  |           | 
- |           +- DataPin1_SetDir      (see above)
+ |           +- DataPin2_SetDir      (see above)
  |           |  
- |           +- ClockPin1_SetDir     (see above)
+ |           +- ClockPin2_SetDir     (see above)
  |              
  +- _EntryPoint         
     | 
@@ -3845,24 +4237,30 @@ DEPENDENCY TREE
  |  | 
  |  +- lin_lld_sci_isr     
  |     | 
+ |     +- lin_goto_idle_state  (see above)
+ |     |  
  |     +- lin_pid_response_callback_handler
  |     |  | 
  |     |  +- lin_process_pid     
  |     |  |  | 
  |     |  |  +- lin_get_frame_index 
  |     |  |  |    
- |     |  |  +- lin_make_res_evnt_frame
- |     |  |  |  | 
- |     |  |  |  +- lin_process_uncd_frame
- |     |  |  |  |    
- |     |  |  |  +- lin_process_parity  
- |     |  |  |       
- |     |  |  +- lin_process_uncd_frame (see above)
- |     |  |  |  
+ |     |  |  +- lin_tl_make_mreq_pdu
+ |     |  |  |    
  |     |  |  +- lin_make_res_diag_frame
  |     |  |  |  | 
  |     |  |  |  +- lin_tl_get_pdu      
  |     |  |  |       
+ |     |  |  +- lin_make_res_evnt_frame
+ |     |  |  |  | 
+ |     |  |  |  +- lin_process_uncd_frame
+ |     |  |  |  |  | 
+ |     |  |  |  |  +- lin_get_frame_index  (see above)
+ |     |  |  |  |     
+ |     |  |  |  +- lin_process_parity  
+ |     |  |  |       
+ |     |  |  +- lin_process_uncd_frame (see above)
+ |     |  |  |  
  |     |  |  +- lin_lld_set_response
  |     |  |  |  | 
  |     |  |  |  +- lin_lld_sci_tx_response
@@ -3877,21 +4275,25 @@ DEPENDENCY TREE
  |     |  |     | 
  |     |  |     +- lin_lld_sci_ignore_response
  |     |  |        | 
- |     |  |        +- lin_goto_idle_state 
- |     |  |             
+ |     |  |        +- lin_goto_idle_state  (see above)
+ |     |  |           
  |     |  +- lin_update_tx       
  |     |  |  | 
  |     |  |  +- lin_get_frame_index  (see above)
  |     |  |  |  
  |     |  |  +- lin_update_tx_flags 
- |     |  |  |    
+ |     |  |  |  | 
+ |     |  |  |  +- lin_tl_update_tx_flag
+ |     |  |  |       
  |     |  |  +- lin_update_err_signal
  |     |  |  |    
  |     |  |  +- lin_update_word_status_lin21
- |     |  |       
+ |     |  |     | 
+ |     |  |     +- lin_get_frame_index  (see above)
+ |     |  |        
  |     |  +- lin_update_rx       
  |     |  |  | 
- |     |  |  +- lin_process_uncd_frame (see above)
+ |     |  |  +- lin_get_frame_index  (see above)
  |     |  |  |  
  |     |  |  +- lin_update_rx_diag_frame
  |     |  |  |  | 
@@ -3904,27 +4306,41 @@ DEPENDENCY TREE
  |     |  |  |  +- lin_tl_handler      
  |     |  |  |     | 
  |     |  |  |     +- lin_tl_attach_service
- |     |  |  |        | 
- |     |  |  |        +- lin_condittional_change_nad
- |     |  |  |        |  | 
- |     |  |  |        |  +- lin_tl_make_slaveres_pdu
- |     |  |  |        |     | 
- |     |  |  |        |     +- ld_read_by_id_callout
- |     |  |  |        |          
- |     |  |  |        +- lin_tl_make_slaveres_pdu (see above)
- |     |  |  |        |  
- |     |  |  |        +- lin_diagservice_assign_frame_id_range
- |     |  |  |        |  | 
- |     |  |  |        |  +- lin_tl_make_slaveres_pdu (see above)
- |     |  |  |        |  |  
- |     |  |  |        |  +- lin_process_parity   (see above)
- |     |  |  |        |     
- |     |  |  |        +- lin_diagservice_read_by_identifier
- |     |  |  |           | 
- |     |  |  |           +- lin_tl_make_slaveres_pdu (see above)
- |     |  |  |           |  
- |     |  |  |           +- ld_read_by_id_callout (see above)
- |     |  |  |              
+ |     |  |  |     |  | 
+ |     |  |  |     |  +- lin_condittional_change_nad
+ |     |  |  |     |  |  | 
+ |     |  |  |     |  |  +- lin_tl_make_slaveres_pdu
+ |     |  |  |     |  |     | 
+ |     |  |  |     |  |     +- ld_read_by_id_callout
+ |     |  |  |     |  |          
+ |     |  |  |     |  +- lin_tl_make_slaveres_pdu (see above)
+ |     |  |  |     |  |  
+ |     |  |  |     |  +- lin_diagservice_assign_frame_id_range
+ |     |  |  |     |  |  | 
+ |     |  |  |     |  |  +- lin_tl_make_slaveres_pdu (see above)
+ |     |  |  |     |  |  |  
+ |     |  |  |     |  |  +- lin_process_parity   (see above)
+ |     |  |  |     |  |     
+ |     |  |  |     |  +- lin_diagservice_read_by_identifier
+ |     |  |  |     |     | 
+ |     |  |  |     |     +- lin_tl_make_slaveres_pdu (see above)
+ |     |  |  |     |     |  
+ |     |  |  |     |     +- ld_read_by_id_callout (see above)
+ |     |  |  |     |        
+ |     |  |  |     +- lin_tl_get_response 
+ |     |  |  |          
+ |     |  |  +- lin_update_rx_evnt_frame
+ |     |  |  |  | 
+ |     |  |  |  +- lin_get_frame_index  (see above)
+ |     |  |  |  |  
+ |     |  |  |  +- lin_process_parity   (see above)
+ |     |  |  |  |  
+ |     |  |  |  +- lin_process_uncd_frame (see above)
+ |     |  |  |     
+ |     |  |  +- lin_process_parity   (see above)
+ |     |  |  |  
+ |     |  |  +- lin_process_uncd_frame (see above)
+ |     |  |  |  
  |     |  |  +- lin_update_word_status_lin21 (see above)
  |     |  |     
  |     |  +- lin_bus_activity_timeout
@@ -3937,6 +4353,10 @@ DEPENDENCY TREE
  |     |     | 
  |     |     +- lin_get_frame_index  (see above)
  |     |     |  
+ |     |     +- lin_lld_set_etf_collision_flag
+ |     |     |    
+ |     |     +- lin_tl_no_response  
+ |     |     |    
  |     |     +- lin_update_err_signal (see above)
  |     |     |  
  |     |     +- lin_update_word_status_lin21 (see above)
@@ -4010,5 +4430,5 @@ STATISTIC SECTION
 ExeFile:
 --------
 Number of blocks to be downloaded: 9
-Total size of all blocks to be downloaded: 8227
+Total size of all blocks to be downloaded: 12635
 

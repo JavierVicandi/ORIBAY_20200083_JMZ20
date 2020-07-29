@@ -7,6 +7,9 @@ Generated_Code/Vectors_c.obj: C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-So
 	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\EI2C1.h \
 	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\DataPin1.h \
 	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\ClockPin1.h \
+	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\EI2C2.h \
+	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\DataPin2.h \
+	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\ClockPin2.h \
 	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\Vsci0.h \
 	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\Vtim0ch2.h \
 	C:\Proyectos\Oribay\TM3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\TEST_IN_4.h \

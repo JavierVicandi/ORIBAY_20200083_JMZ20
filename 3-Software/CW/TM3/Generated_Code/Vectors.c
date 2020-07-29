@@ -5,7 +5,7 @@
 **     Processor   : MC9S12ZVLS16MFM
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 17:52, # CodeGen: 32
+**     Date/Time   : 2020-07-27, 18:31, # CodeGen: 18
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -58,6 +58,9 @@
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
+#include "EI2C2.h"
+#include "DataPin2.h"
+#include "ClockPin2.h"
 #include "Vsci0.h"
 #include "Vtim0ch2.h"
 #include "TEST_IN_4.h"

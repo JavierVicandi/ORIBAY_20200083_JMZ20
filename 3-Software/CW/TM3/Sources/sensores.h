@@ -23,9 +23,18 @@
 
 //-----------DEFINITIONS
 typedef struct{
-	uint8_t u8RH[2];
-	uint8_t u8ALS1[2];
-	uint8_t u8ALS2[2];
+	union{
+		uint8_t u8RH[2];	
+		uint16_t u16RH;
+	}unRH;	
+	union{
+		uint8_t u8ALS1[2];	
+		uint16_t u16ALS1;
+	}unALS1;
+	union{
+		uint8_t u8ALS2[2];	
+		uint16_t u16ALS2;
+	}unALS2;
 	uint16_t u16temp;
 	}stimage_process_t; 
 

@@ -41,6 +41,43 @@ Module "EI2C1"     (component SW_I2C)
                 slave address (XX). This method is not able to return the rest value of 10-bit slave address. This method is 
                 available only if the component is in MASTER mode.
 
+Module "EI2C2"     (component SW_I2C)
+   - EI2C2_SendChar -When working as a MASTER, this method writes 7 bits of slave address plus R/W bit = 0 to the I2C bus and 
+                then writes one character (byte) to the bus. The slave address must be specified before by the "SelectSlave" 
+                method or in the component initialization section of <Slave address init> property. When working as the SLAVE, 
+                this method writes one character (byte) to the bus. If the ERR_NOTAVAIL error code returned, the char is 
+                successfully sent to master but the master device responds by an acknowledgement instead of no acknowledgement 
+                at the end of transfer. <OnError> event is called in this case.
+   - EI2C2_RecvChar -When working as a MASTER, this method writes 7 bits of slave address plus R/W bit = 1 to the I2C bus and 
+                then reads one character (byte) from the bus. The slave address must be specified before by the "SelectSlave" 
+                method or in the component initialization section of <Slave address init> property. When working as a SLAVE, 
+                this method reads one character (byte) from the bus.
+   - EI2C2_SendBlock -When working as a MASTER, this method writes 7 bits of slave address plus R/W bit = 0 to the I2C bus and 
+                then writes the block of characters to the bus. If the component is disabled (by the "Disable" method or 
+                initialization), the block is moved to the output buffer if the <Output buffer size> property is different from 
+                zero. The content of the output buffer is sent immediately with the stop condition at the end when the 
+                component is enabled by the "Enable" method. After the output buffer transmission, the whole output buffer is 
+                cleared. The slave address must be specified before by the "SelectSlave" method or in component initialization 
+                section of <Slave address init> property. When working as a SLAVE, this method writes block of characters to 
+                the bus. If the ERR_NOTAVAIL error code is returned, the whole block is successfully sent to a master but the 
+                master device responds by an acknowledgement instead of no acknowledgment sent at the end of the last block 
+                byte transfer. <OnError> event is called in this case.
+   - EI2C2_RecvBlock -When working as a MASTER, this method writes 7 bits of slave address plus R/W bit = 1 to the I2C bus and 
+                then reads the block of characters from the bus. The slave address must be specified before by the 
+                "SelectSlave" method or in component initialization section of <Slave address init> property. When working as a 
+                SLAVE, this method reads the block of characters from the bus.
+   - EI2C2_SelectSlave -When working as a MASTER, this method selects a new slave for communication by its slave address value. 
+                Any send or receive method are directed to or from the selected device, until a new slave device is selected by 
+                this method. If the selected slave uses 10-bit slave addressing, as the parameter 7 bits must be passed, which 
+                involves 10-bit addressing (11110XX), including two MSBs of slave address (XX). The second byte of the 10-bit 
+                slave address must be sent to the slave as a general character of send methods. This method is available only 
+                if the component is in MASTER mode.
+   - EI2C2_GetSelected -When working as a MASTER, this method returns the identification address value of the slave, which is 
+                currently selected for communication with the master. If the current slave uses 10-bit slave addressing, the 
+                method returns the first 7 bits only, which involves 10-bit addressing (11110XX), including two MSBs of the 
+                slave address (XX). This method is not able to return the rest value of 10-bit slave address. This method is 
+                available only if the component is in MASTER mode.
+
 Module "Vsci0"     (component InterruptVector)
 
 Module "Vtim0ch2"  (component InterruptVector)

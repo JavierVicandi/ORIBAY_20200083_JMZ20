@@ -37,6 +37,9 @@
 #include "EI2C1.h"
 #include "DataPin1.h"
 #include "ClockPin1.h"
+#include "EI2C2.h"
+#include "DataPin2.h"
+#include "ClockPin2.h"
 #include "Vsci0.h"
 #include "Vtim0ch2.h"
 #include "TEST_IN_4.h"
@@ -110,6 +113,56 @@ void TI1_OnInterrupt(void);
 **         when the component is enabled - <Enable> and the events are
 **         enabled - <EnableEvent>). This event is enabled only if a
 **         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void EI2C2_OnRxChar(void);
+/*
+** ===================================================================
+**     Event       :  EI2C2_OnRxChar (module Events)
+**
+**     Component   :  EI2C2 [SW_I2C]
+**     Description :
+**         Called when a correct character is received. In the SLAVE
+**         mode, this event is not called if the component receives the
+**         first byte with slave address and R/W bit.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void EI2C2_OnTxChar(void);
+/*
+** ===================================================================
+**     Event       :  EI2C2_OnTxChar (module Events)
+**
+**     Component   :  EI2C2 [SW_I2C]
+**     Description :
+**         Called when a correct character is sent. In MASTER mode,
+**         this event is not called if the component sends the first
+**         byte with slave address and R/W bit.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+
+void EI2C2_OnNACK(void);
+/*
+** ===================================================================
+**     Event       :  EI2C2_OnNACK (module Events)
+**
+**     Component   :  EI2C2 [SW_I2C]
+**     Description :
+**         In the MASTER mode, this event is called when an invalid
+**         slaves acknowledgement occurs during communication transfer.
+**         If the acknowledge polling is provided (MASTER mode only), i.
+**         e., the <Acknowledge polling trials> property value is
+**         higher than one, this event is called only when no trial is
+**         successful. In the SLAVE mode, this event is called when a
+**         master sends an acknowledgement instead of no
+**         acknowledgement at the end of the last byte transfer.
 **     Parameters  : None
 **     Returns     : Nothing
 ** ===================================================================

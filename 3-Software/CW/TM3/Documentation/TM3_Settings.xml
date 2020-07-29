@@ -214,7 +214,7 @@ asm(BGND);
       </group>
       <boolgroup name="Generate PRM file" v="yes">
         <enumgroup name="Stack specification" v="size">
-          <Stack_size v="256" />
+          <Stack_size v="512" />
         </enumgroup>
         <group name="Memory segments">
           <Set_default_memory_segments v="Click to set default &amp;gt;" />
@@ -259,9 +259,15 @@ asm(BGND);
         <Template v="InOutPin" />
         <Properties>
           <Component_name v="DataPin1" />
-          <Pin_for_I_O v="PT0_IOC0_0_SDA0_RXD1_PWM2_LPTXD0" />
-          <Pull_resistor v="no pull resistor" />
+          <Pin_for_I_O v="PP7_KWP7_PWM7_IOC1_0" />
+          <Pull_resistor sel_value="pull up">
+            
+pull up or no pull
+
+            <EmptySection_DummyValue />
+          </Pull_resistor>
           <Open_drain v="push-pull" />
+          <Reduced_drive_for_PP7 v="no" />
           <Direction v="Input/Output" />
           <group name="Initialization">
             <Init__direction v="Input" />
@@ -291,7 +297,7 @@ asm(BGND);
         <Template v="InOutPin" />
         <Properties>
           <Component_name v="ClockPin1" />
-          <Pin_for_I_O v="PT1_IOC0_1_SCL0_TXD1_PWM0_LPRXD0" />
+          <Pin_for_I_O v="PP5_XIRQ_KWP5_PWM5" />
           <Pull_resistor sel_value="pull up">
             
 pull up or no pull
@@ -299,6 +305,7 @@ pull up or no pull
             <EmptySection_DummyValue />
           </Pull_resistor>
           <Open_drain v="push-pull" />
+          <Reduced_drive_for_PP5 v="no" />
           <Direction v="Input/Output" />
           <group name="Initialization">
             <Init__direction v="Input" />
@@ -371,6 +378,135 @@ pull up or no pull
       <event name="OnFreeTxBuf" v="don&amp;apos;t generate code" />
       <event name="OnNACK" v="generate code">
         <Event_procedure_name v="EI2C1_OnNACK" />
+      </event>
+    </Events>
+  </Bean>
+  <Bean name="EI2C2" type="SW_I2C">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="EI2C2" />
+      <inhrbean type="BitIO">
+        <Enabled v="Y" />
+        <Template v="InOutPin" />
+        <Properties>
+          <Component_name v="DataPin2" />
+          <Pin_for_I_O v="PT0_IOC0_0_SDA0_RXD1_PWM2_LPTXD0" />
+          <Pull_resistor sel_value="pull up">
+            
+pull up or no pull
+
+            <EmptySection_DummyValue />
+          </Pull_resistor>
+          <Open_drain v="push-pull" />
+          <Direction v="Input/Output" />
+          <group name="Initialization">
+            <Init__direction v="Input" />
+            <Init__value v="1" />
+          </group>
+          <Safe_mode v="no" />
+          <Optimization_for v="speed" />
+        </Properties>
+        <Methods>
+          <GetDir v="don&amp;apos;t generate code" />
+          <SetDir v="generate code" />
+          <SetInput v="don&amp;apos;t generate code" />
+          <SetOutput v="don&amp;apos;t generate code" />
+          <GetVal v="generate code" />
+          <PutVal v="don&amp;apos;t generate code" />
+          <ClrVal v="generate code" />
+          <SetVal v="generate code" />
+          <NegVal v="don&amp;apos;t generate code" />
+          <GetRawVal v="don&amp;apos;t generate code" />
+        </Methods>
+        <Events>
+          <EmptySection_DummyValue />
+        </Events>
+      </inhrbean>
+      <inhrbean type="BitIO">
+        <Enabled v="Y" />
+        <Template v="InOutPin" />
+        <Properties>
+          <Component_name v="ClockPin2" />
+          <Pin_for_I_O v="PT1_IOC0_1_SCL0_TXD1_PWM0_LPRXD0" />
+          <Pull_resistor sel_value="pull up">
+            
+pull up or no pull
+
+            <EmptySection_DummyValue />
+          </Pull_resistor>
+          <Open_drain v="push-pull" />
+          <Direction v="Input/Output" />
+          <group name="Initialization">
+            <Init__direction v="Input" />
+            <Init__value v="1" />
+          </group>
+          <Safe_mode v="no" />
+          <Optimization_for v="speed" />
+        </Properties>
+        <Methods>
+          <GetDir v="don&amp;apos;t generate code" />
+          <SetDir v="generate code" />
+          <SetInput v="don&amp;apos;t generate code" />
+          <SetOutput v="don&amp;apos;t generate code" />
+          <GetVal v="generate code" />
+          <PutVal v="don&amp;apos;t generate code" />
+          <ClrVal v="generate code" />
+          <SetVal v="generate code" />
+          <NegVal v="don&amp;apos;t generate code" />
+          <GetRawVal v="don&amp;apos;t generate code" />
+        </Methods>
+        <Events>
+          <EmptySection_DummyValue />
+        </Events>
+      </inhrbean>
+      <Mode_selection v="MASTER" />
+      <Slave_address v="8" />
+      <Clock_timeout v="16" />
+      <Output_buffer_size v="0" />
+      <I2C_bus_mode v="FAST MODE" />
+      <Automatic_stop_condition v="yes" />
+      <Acknowledge_polling_trials v="2000" />
+      <group name="Initialization">
+        <Slave_address_init v="69" />
+        <Enabled_in_init__code v="yes" />
+        <Events_enabled_in_init_ v="yes" />
+      </group>
+      <group name="CPU clock/speed selection">
+        <High_speed_mode v="Enabled" />
+        <Low_speed_mode v="Enabled" />
+        <Slow_speed_mode v="Enabled" />
+      </group>
+    </Properties>
+    <Methods>
+      <Enable v="don&amp;apos;t generate code" />
+      <Disable v="don&amp;apos;t generate code" />
+      <EnableEvent v="don&amp;apos;t generate code" />
+      <DisableEvent v="don&amp;apos;t generate code" />
+      <SendChar v="generate code" />
+      <RecvChar v="generate code" />
+      <SendBlock v="generate code" />
+      <RecvBlock v="generate code" />
+      <SendStop v="don&amp;apos;t generate code" />
+      <CheckBus v="don&amp;apos;t generate code" />
+      <ClearTxBuf v="don&amp;apos;t generate code" />
+      <CharsInTxBuf v="don&amp;apos;t generate code" />
+      <GetCharsInTxBuf v="don&amp;apos;t generate code" />
+      <SelectSlave v="generate code" />
+      <GetSelected v="generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
+      <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
+      <event name="OnRxChar" v="generate code">
+        <Event_procedure_name v="EI2C2_OnRxChar" />
+      </event>
+      <event name="OnTxChar" v="generate code">
+        <Event_procedure_name v="EI2C2_OnTxChar" />
+      </event>
+      <event name="OnFreeTxBuf" v="don&amp;apos;t generate code" />
+      <event name="OnNACK" v="generate code">
+        <Event_procedure_name v="EI2C2_OnNACK" />
       </event>
     </Events>
   </Bean>

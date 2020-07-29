@@ -6,7 +6,7 @@
 **     Component   : SW_I2C
 **     Version     : Component 01.121, Driver 03.31, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 18:13, # CodeGen: 33
+**     Date/Time   : 2020-07-27, 18:31, # CodeGen: 18
 **     Abstract    :
 **         This device "SW_I2C" implements an external I2C
 **         communication interface. It uses two general-purpose
@@ -16,14 +16,14 @@
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       19            |  PT1_IOC0_1_SCL0_TXD1_PWM0_LPRXD0
+**                       27            |  PP5_XIRQ_KWP5_PWM5
 **             ----------------------------------------------------
 **
 **         Serial Data (SDA) pin       :
 **             ----------------------------------------------------
 **                Number (on package)  |    Name
 **             ----------------------------------------------------
-**                       14            |  PT0_IOC0_0_SDA0_RXD1_PWM2_LPTXD0
+**                       28            |  PP7_KWP7_PWM7_IOC1_0
 **             ----------------------------------------------------
 **
 **

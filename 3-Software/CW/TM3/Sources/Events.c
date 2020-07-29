@@ -117,6 +117,65 @@ void TI1_OnInterrupt(void)
 	
 }
 
+/*
+** ===================================================================
+**     Event       :  EI2C2_OnRxChar (module Events)
+**
+**     Component   :  EI2C2 [SW_I2C]
+**     Description :
+**         Called when a correct character is received. In the SLAVE
+**         mode, this event is not called if the component receives the
+**         first byte with slave address and R/W bit.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void EI2C2_OnRxChar(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  EI2C2_OnTxChar (module Events)
+**
+**     Component   :  EI2C2 [SW_I2C]
+**     Description :
+**         Called when a correct character is sent. In MASTER mode,
+**         this event is not called if the component sends the first
+**         byte with slave address and R/W bit.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void EI2C2_OnTxChar(void)
+{
+  /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  EI2C2_OnNACK (module Events)
+**
+**     Component   :  EI2C2 [SW_I2C]
+**     Description :
+**         In the MASTER mode, this event is called when an invalid
+**         slaves acknowledgement occurs during communication transfer.
+**         If the acknowledge polling is provided (MASTER mode only), i.
+**         e., the <Acknowledge polling trials> property value is
+**         higher than one, this event is called only when no trial is
+**         successful. In the SLAVE mode, this event is called when a
+**         master sends an acknowledgement instead of no
+**         acknowledgement at the end of the last byte transfer.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void EI2C2_OnNACK(void)
+{
+  /* Write your code here ... */
+}
+
 /* END Events */
 
 /*!
