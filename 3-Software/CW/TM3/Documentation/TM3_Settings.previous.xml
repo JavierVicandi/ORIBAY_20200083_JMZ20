@@ -214,7 +214,7 @@ asm(BGND);
       </group>
       <boolgroup name="Generate PRM file" v="yes">
         <enumgroup name="Stack specification" v="size">
-          <Stack_size v="256" />
+          <Stack_size v="512" />
         </enumgroup>
         <group name="Memory segments">
           <Set_default_memory_segments v="Click to set default &amp;gt;" />

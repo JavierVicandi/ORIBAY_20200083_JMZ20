@@ -23,6 +23,7 @@ C_SRCS_QUOTED += \
 "../Generated_Code/Vectors.c" \
 "../Generated_Code/Vsci0.c" \
 "../Generated_Code/Vtim0ch2.c" \
+"../Generated_Code/WDog1.c" \
 
 C_SRCS += \
 ../Generated_Code/ClockPin1.c \
@@ -42,6 +43,7 @@ C_SRCS += \
 ../Generated_Code/Vectors.c \
 ../Generated_Code/Vsci0.c \
 ../Generated_Code/Vtim0ch2.c \
+../Generated_Code/WDog1.c \
 
 OBJS += \
 ./Generated_Code/ClockPin1_c.obj \
@@ -61,6 +63,7 @@ OBJS += \
 ./Generated_Code/Vectors_c.obj \
 ./Generated_Code/Vsci0_c.obj \
 ./Generated_Code/Vtim0ch2_c.obj \
+./Generated_Code/WDog1_c.obj \
 
 OBJS_QUOTED += \
 "./Generated_Code/ClockPin1_c.obj" \
@@ -80,6 +83,7 @@ OBJS_QUOTED += \
 "./Generated_Code/Vectors_c.obj" \
 "./Generated_Code/Vsci0_c.obj" \
 "./Generated_Code/Vtim0ch2_c.obj" \
+"./Generated_Code/WDog1_c.obj" \
 
 C_DEPS += \
 ./Generated_Code/ClockPin1_c.d \
@@ -99,6 +103,7 @@ C_DEPS += \
 ./Generated_Code/Vectors_c.d \
 ./Generated_Code/Vsci0_c.d \
 ./Generated_Code/Vtim0ch2_c.d \
+./Generated_Code/WDog1_c.d \
 
 C_DEPS_QUOTED += \
 "./Generated_Code/ClockPin1_c.d" \
@@ -118,6 +123,7 @@ C_DEPS_QUOTED += \
 "./Generated_Code/Vectors_c.d" \
 "./Generated_Code/Vsci0_c.d" \
 "./Generated_Code/Vtim0ch2_c.d" \
+"./Generated_Code/WDog1_c.d" \
 
 OBJS_OS_FORMAT += \
 ./Generated_Code/ClockPin1_c.obj \
@@ -137,6 +143,7 @@ OBJS_OS_FORMAT += \
 ./Generated_Code/Vectors_c.obj \
 ./Generated_Code/Vsci0_c.obj \
 ./Generated_Code/Vtim0ch2_c.obj \
+./Generated_Code/WDog1_c.obj \
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -278,6 +285,14 @@ Generated_Code/Vtim0ch2_c.obj: ../Generated_Code/Vtim0ch2.c
 	@echo 'Executing target #38 $<'
 	@echo 'Invoking: S12Z Compiler'
 	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/Vtim0ch2.args" -o "Generated_Code/Vtim0ch2_c.obj" "$<" -MD -gccdep
+	@echo 'Finished building: $<'
+	@echo ' '
+
+Generated_Code/WDog1_c.obj: ../Generated_Code/WDog1.c
+	@echo 'Building file: $<'
+	@echo 'Executing target #39 $<'
+	@echo 'Invoking: S12Z Compiler'
+	"$(S12Z_ToolsDirEnv)/mwccs12lisa" -c @@"Generated_Code/WDog1.args" -o "Generated_Code/WDog1_c.obj" "$<" -MD -gccdep
 	@echo 'Finished building: $<'
 	@echo ' '
 

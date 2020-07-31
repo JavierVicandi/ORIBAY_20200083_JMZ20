@@ -130,6 +130,9 @@ Module "RST_SHT"   (component BitIO)
    - RST_SHT_SetVal -Sets (to one) the output value. It is equivalent to the [PutVal(TRUE)]. This method is available only if 
                 the direction = _[output]_ or _[input/output]_.
 
+Module "WDog1"     (component WatchDog)
+   - WDog1_Clear -Clears the watchdog timer (it makes the timer restart from zero).
+
 Module "Cpu"       (component MC9S12ZVLS32_32)
    - Cpu_EnableInt -Enable maskable interrupts
    - Cpu_DisableInt -Disable maskable interrupts

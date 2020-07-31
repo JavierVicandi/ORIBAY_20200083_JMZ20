@@ -816,5 +816,32 @@ autoselected pull
       <EmptySection_DummyValue />
     </Events>
   </Bean>
+  <Bean name="WDog1" type="WatchDog">
+    <Enabled v="Y" />
+    <Properties>
+      <Component_name v="WDog1" />
+      <WatchDog_device v="COPControl" />
+      <WatchDog_action v="Reset CPU" />
+      <boolgroup name="Output pin" v="Disabled" />
+      <Period v="1 sec" />
+      <Stop_COP_and_RTI_in_Active_BDM_mode v="no" />
+      <COP_stops_in_stop_mode v="no" />
+      <COP_enable_during_Pseudo_stop_mode v="no" />
+      <Reset_Watchdog_in_CPUDelay100US_function v="yes" />
+      <boolgroup name="Mode" v="Normal" />
+      <group name="Initialization">
+        <Enabled_in_init__code v="yes" />
+      </group>
+      <boolgroup name="CPU clock/speed selection" v="Ignored" />
+    </Properties>
+    <Methods>
+      <Clear v="generate code" />
+    </Methods>
+    <Events>
+      <Event_module_name v="Events" />
+      <event name="BeforeNewSpeed" v="don&amp;apos;t generate code" />
+      <event name="AfterNewSpeed" v="don&amp;apos;t generate code" />
+    </Events>
+  </Bean>
 </PE_PROJECT_SETTINGS_DOCUMENTATION>
 

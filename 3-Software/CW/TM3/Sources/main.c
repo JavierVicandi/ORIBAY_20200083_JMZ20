@@ -43,6 +43,7 @@
 #include "LINPHY0.h"
 #include "TI1.h"
 #include "RST_SHT.h"
+#include "WDog1.h"
 /* Include shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -56,22 +57,28 @@
 void main(void)
 {
   /* Write your local variable definition here */
-
+	uint8_t u8wd = 0x55U;
+	
   /*** Processor Expert internal initialization. DON'T REMOVE THIS CODE!!! ***/
   PE_low_level_init();
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
   /* For example: for(;;) { } */
-	Config_ISLs();	
+	(void)Config_ISLs();	
 	Reset_Sensor_RH();
 	l_sys_init();
 	l_ifc_init(LI0);
 
 	for(;;){
+		if (u8wd == 0x55U){
+			WDog1_Clear();
+			u8wd = 0xAAU;
+		}
+		
 		Lectura_Sensor_RH();	
 		Lectura_Sensores_ALS();
-		
+
 		if (l_flg_tst_LI0_Humidity_f_flag())
 		{
 			l_flg_clr_LI0_Humidity_f_flag();               // Clear flag
@@ -89,7 +96,12 @@ void main(void)
 			l_flg_clr_LI0_LuminosityB_f_flag();          // Clear flag
 			l_bytes_wr_LI0_LuminosityB(0, 2, stimage_process.u8LE_ALS1);     // escribimos dato: señal luminosidadB
 		} // (l_flg_tst_LI0_LuminosityB_f_flag())
-		
+
+		if (u8wd == 0xAAU){
+			WDog1_Clear();
+			u8wd = 0x55U;
+		}		
+
 	}//(;;)
 
 

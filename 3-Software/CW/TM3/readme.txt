@@ -11,8 +11,8 @@
 ==========================================================================
 History
 Date			  	Ver		   Author			CW11.1	   Compiler			Description
-31/07/2020 		0.01			J.Vicandi		2018			S12Z 1.0.9		-		  	Versión inicial
-
+31/07/2020 		0.01			J.Vicandi		2018			S12Z 1.0.9		Versión inicial
+31/07/2020 		0.02			J.Vicandi		2018			S12Z 1.0.9		
 
 //------------------------------------------------------------------------
 // Project structure
@@ -35,3 +35,6 @@ The project generated contains various files/folders:
 
 Ver. 0.01
 Se configuran periféricos y se leen humedad y luminosidades y comunica por LIN.
+
+Ver. 0.02
+Se comprueba el CRC del dato de humedad leido del SHT31. Se añade el watchdog.

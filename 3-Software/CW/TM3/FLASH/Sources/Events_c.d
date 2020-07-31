@@ -19,4 +19,5 @@ Sources/Events_c.obj: C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\LINPHY0.h \
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\TI1.h \
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\RST_SHT.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\WDog1.h \
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Sources\sensores.h 

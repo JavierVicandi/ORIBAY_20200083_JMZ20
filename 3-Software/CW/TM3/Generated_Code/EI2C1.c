@@ -6,7 +6,7 @@
 **     Component   : SW_I2C
 **     Version     : Component 01.121, Driver 03.31, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 18:31, # CodeGen: 18
+**     Date/Time   : 2020-07-31, 19:59, # CodeGen: 26
 **     Abstract    :
 **         This device "SW_I2C" implements an external I2C
 **         communication interface. It uses two general-purpose
@@ -140,10 +140,12 @@ static void Delay(void)
      *   - possible                   : 16 c, 1280 ns, delta 30 ns
      *   - without removable overhead : 10.5 c, 840 ns
      */
-    LD D6,#0x0002                      /* (1_5 c: 120 ns) number of iterations */
+    LD D6,#0x0001                      /* (1_5 c: 120 ns) number of iterations */
 label0:
+    MOV.B #85,CPMUARMCOP               /* Reset watchdog counter - 2x write*/
+    MOV.B #-86,CPMUARMCOP
     DEC D6                             /* (1 c: 80 ns) decrement d1 */
-    BNE label0                         /* (4 c: 320 ns) repeat 2x */
+    BNE label0                         /* (4 c: 320 ns) repeat 1x */
     NOP                                /* (1 c: 80 ns) wait for 1 c */
     NOP                                /* (1 c: 80 ns) wait for 1 c */
     NOP                                /* (1 c: 80 ns) wait for 1 c */

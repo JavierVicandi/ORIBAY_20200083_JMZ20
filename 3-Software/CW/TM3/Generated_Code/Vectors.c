@@ -5,7 +5,7 @@
 **     Processor   : MC9S12ZVLS16MFM
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 18:31, # CodeGen: 18
+**     Date/Time   : 2020-07-31, 19:59, # CodeGen: 26
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -69,6 +69,7 @@
 #include "LINPHY0.h"
 #include "TI1.h"
 #include "RST_SHT.h"
+#include "WDog1.h"
 
 /* ISR prototype */
 typedef void (*const tIsrFunc)(void);

@@ -43,4 +43,5 @@
 "$(ProjDirPath)/FLASH/Generated_Code/Vectors_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Vsci0_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Vtim0ch2_c.obj"
+"$(ProjDirPath)/FLASH/Generated_Code/WDog1_c.obj"
 "$(MCUToolsBaseDirEnv)/S12lisa_Support/s12lisac/lib_small/ansii.lib" )

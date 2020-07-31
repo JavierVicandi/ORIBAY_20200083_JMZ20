@@ -48,6 +48,7 @@
 #include "LINPHY0.h"
 #include "TI1.h"
 #include "RST_SHT.h"
+#include "WDog1.h"
 
 #pragma CODE_SEG DEFAULT
 

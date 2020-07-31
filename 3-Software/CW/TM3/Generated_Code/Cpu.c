@@ -7,7 +7,7 @@
 **     Version     : Component 01.004, Driver 02.08, CPU db: 3.00.000
 **     Datasheet   : MC9S12ZVLRMV1 Rev. 0.09 December 10, 2012
 **     Compiler    : CodeWarrior HCS12Z C Compiler
-**     Date/Time   : 2020-07-27, 18:31, # CodeGen: 18
+**     Date/Time   : 2020-07-31, 19:59, # CodeGen: 26
 **     Abstract    :
 **         This component "MC9S12ZVLS32_32" implements properties, methods,
 **         and events of the CPU.
@@ -79,6 +79,7 @@
 #include "LINPHY0.h"
 #include "TI1.h"
 #include "RST_SHT.h"
+#include "WDog1.h"
 #include "Events.h"
 #include "Cpu.h"
 
@@ -2044,11 +2045,12 @@ void Cpu_Delay100US(word us100)
      *   - possible                   : 1250 c, 100000 ns
      *   - without removable overhead : 1245.5 c, 99640 ns
      */
-    LD D6,#0x00E3                      /* (1_5 c: 120 ns) number of iterations */
+    LD D6,#0x006D                      /* (1_5 c: 120 ns) number of iterations */
 label0:
+    MOV.B #85,CPMUARMCOP               /* Reset watchdog counter - 2x write*/
+    MOV.B #-86,CPMUARMCOP
     DEC D6                             /* (1 c: 80 ns) decrement d1 */
-    BNE label0                         /* (4 c: 320 ns) repeat 227x */
-    NOP                                /* (1 c: 80 ns) wait for 1 c */
+    BNE label0                         /* (4 c: 320 ns) repeat 109x */
     /* 100 us delay block end */
     DBNE D2, loop                      /* us100 parameter is passed via D register */
   };
@@ -2307,6 +2309,17 @@ void PE_low_level_init(void)
   /* TIM1TC0: BIT=0x30D4 */
   setReg16(TIM1TC0, 0x30D4U);          /* Store given value to the compare register */ 
   /* ### BitIO "RST_SHT" init code ... */
+  /* ###  WatchDog "WDog1" init code ... */
+  /* CPMUPROT: ??=0,??=0,??=1,??=0,??=0,??=1,??=1,PROT=0 */
+  setReg8(CPMUPROT, 0x26U);            /* Disable protection of clock-source register */ 
+  /* CPMUCLKS: CSAD=0,PCE=0,COPOSCSEL0=0 */
+  clrReg8Bits(CPMUCLKS, 0x25U);         
+  /* CPMUPROT: ??=0,??=0,??=0,??=0,??=0,??=0,??=0,PROT=0 */
+  setReg8(CPMUPROT, 0x00U);            /* Re-Enable protection of clock-source register */ 
+  /* CPMURFLG: COPRF=0 */
+  setReg8(CPMURFLG, 0x00U);            /* Clear COP reset flag */ 
+  /* CPMUCOP: WCOP=0,CR2=1,CR1=0,CR0=0 */
+  clrSetReg8Bits(CPMUCOP, 0x83U, 0x04U); 
   /* Common peripheral initialization - ENABLE */
   /* TIM1TSCR1: TEN=1,TSWAI=0,TSFRZ=0,TFFCA=0,PRNT=1,??=0,??=0,??=0 */
   setReg8(TIM1TSCR1, 0x88U);            

@@ -90,14 +90,20 @@ enum isl76683_lux_range {
 #define SHT_31_MEAS_TIME_MS			(uint16_t)(2U)
 #define ISL_76683_MEAS_TIME_MS		(uint16_t)(100U)	
 #define SHT_31_RST_TIME_MS				(uint16_t)(2U)	
+//CRC
+#define POLYNOMIAL 						0x131U      		//P(x)=x^8+x^5+x^4+1 = 100110001 
+#define CHECKSUM_ERROR 					0x04U
+#define CHECKSUM_OK 						0x00U
 
 //------------Global variables
 
 stimage_process_t stimage_process;
 
+
+//-----------------PROTOTYPES
+static uint8_t SF04_CheckCrc (uint8_t *u8data, uint8_t u8nbr_of_bytes, uint8_t u8checksum);
+
 //-----------------------FUNCTIONS--------------------------------------
-
-
 
 /***********************************************************************************************
 *
@@ -168,6 +174,46 @@ bool Config_ISLs(void)
 	
 }//Fin de Config_ISLs 
 
+
+//============================================================ 
+//calculates checksum for n bytes of data  
+//and compares it with expected checksum 
+//input:    uint8_t *        checksum is built based on this data 
+//          uint8_t    			checksum is built for n bytes of data 
+//          uint8_t         	expected checksum          
+//return:   uint8_t:        	CHECKSUM_ERROR = checksum does not match 
+//                        		CHECKSUM_OK = checksum matches 
+//============================================================ 
+static uint8_t SF04_CheckCrc (uint8_t *u8data, uint8_t u8nbr_of_bytes, uint8_t u8checksum)
+{ 
+	uint8_t u8crc = 0xFF;
+	uint8_t u8byte_ctr;
+	uint8_t u8bit;
+	uint8_t u8return = CHECKSUM_OK;
+	
+	//calculates 8-Bit checksum with given polynomial 
+	for(u8byte_ctr = 0;
+		u8byte_ctr < u8nbr_of_bytes;
+		++u8byte_ctr){
+		u8crc ^= (u8data[u8byte_ctr]);   
+		for (u8bit = 8; u8bit > 0; --u8bit){
+			if (u8crc & 0x80U){
+				u8crc = (u8crc << 1) ^ POLYNOMIAL;
+				}//(u8crc & 0x80)   
+			else{
+				u8crc = (u8crc << 1);
+				}//NO (u8crc & 0x80)
+			}//(u8bit = 8; u8bit > 0; --u8bit)
+		}//(u8byte_ctr = 0;.. 
+	if (u8crc != u8checksum){
+		u8return = CHECKSUM_ERROR;
+		}//(u8crc != u8checksum) 
+
+	return(u8return);
+		 
+}//Fin de SF04_CheckCrc 
+
+
 /***********************************************************************************************
 *
 * @brief    Lectura_Sensor_RH - Lee los valores del sensor de humedad SHT-31
@@ -187,18 +233,22 @@ void Lectura_Sensor_RH(void)
   	//Lectura sensor de humedad
 	EI2C2_SendBlock(u8cmd_SHT31, 2, &u16sent);
 	for(stimage_process.u16temp = 0;
-		stimage_process.u16temp < SHT_31_MEAS_TIME_MS;
-		){;}//Espera unos SHT_31_MEAS_TIME_MS antes de la lectura (>1ms)
+		stimage_process.u16temp < SHT_31_MEAS_TIME_MS;){
+		;
+		}//Espera unos SHT_31_MEAS_TIME_MS antes de la lectura (>1ms)
 
   	EI2C2_RecvBlock(u8receivebuff, 6, &u16rcv);
-  	stimage_process.unRH.u8RH[0] = u8receivebuff[3];		//Mantenemos en big endian
-  	stimage_process.unRH.u8RH[1] = u8receivebuff[4];
-  	stimage_process.u8LE_RH[0] = u8receivebuff[4];			//Pasamos a little endian
-  	stimage_process.u8LE_RH[1] = u8receivebuff[3];
   	
+  	if (SF04_CheckCrc (&u8receivebuff[3], 2, u8receivebuff[5]) == CHECKSUM_OK){
+	  	stimage_process.unRH.u8RH[0] = u8receivebuff[3];		//Mantenemos en big endian
+  		stimage_process.unRH.u8RH[1] = u8receivebuff[4];
+  		stimage_process.u8LE_RH[0] = u8receivebuff[4];			//Pasamos a little endian
+  		stimage_process.u8LE_RH[1] = u8receivebuff[3];
+  		}
 	for(stimage_process.u16temp = 0;
-		stimage_process.u16temp < SHT_31_MEAS_TIME_MS;
-		){;}//Espera unos SHT_31_MEAS_TIME_MS antes de otro comando (>1ms)
+		stimage_process.u16temp < SHT_31_MEAS_TIME_MS;){
+		;
+		}//Espera unos SHT_31_MEAS_TIME_MS antes de otro comando (>1ms)
 
 }//Fin de Lectura_Sensor_RH
 
@@ -230,8 +280,9 @@ void Lectura_Sensores_ALS(void)
 	// Leer de U1
   	EI2C1_RecvBlock(&u8receivebuff[1], 1, &u16rcv);
 	for(stimage_process.u16temp = 0;
-		stimage_process.u16temp < ISL_76683_MEAS_TIME_MS;
-		){;}//Espera unos ISL_76683_MEAS_TIME_MS para que se complete la medida
+		stimage_process.u16temp < ISL_76683_MEAS_TIME_MS;){
+		;
+		}//Espera unos ISL_76683_MEAS_TIME_MS para que se complete la medida
 
 	// Se leen el dato LSB de U3 y U1, sensores ISL76683 conectados a I2C hardware y software respectivamente.	
 	// U3
@@ -274,8 +325,9 @@ void Reset_Sensor_RH(void)
 	
 	RST_SHT_ClrVal();
 	for(stimage_process.u16temp = 0;
-		stimage_process.u16temp < SHT_31_RST_TIME_MS;
-		){;}//Espera unos SHT_31_RST_TIME_MS para garantizar el reset
+		stimage_process.u16temp < SHT_31_RST_TIME_MS;){
+		;
+		}//Espera unos SHT_31_RST_TIME_MS para garantizar el reset
 	RST_SHT_SetVal();	
 
 }//Fin de Reset_Sensor_RH

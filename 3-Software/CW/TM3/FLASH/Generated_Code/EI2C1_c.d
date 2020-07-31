@@ -18,4 +18,5 @@ Generated_Code/EI2C1_c.obj: C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\TEST_OUT.h \
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\LINPHY0.h \
 	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\TI1.h \
-	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\RST_SHT.h 
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\RST_SHT.h \
+	C:\Proyectos\ORIBAY\Sensor\ humedad\ y\ Luminosidad_TESLA_model3\ORIBAY_20200083_JMZ20\3-Software\CW\TM3\Generated_Code\WDog1.h 
