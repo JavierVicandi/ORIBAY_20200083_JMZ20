@@ -845,6 +845,8 @@ void lin_goto_idle_state ()
 } /* End function lin_goto_idle_state() */
 
 #if (SCI_VERSION != SCI_V5)
+//30/07/2020 16:19:38 Para evitar warning de "no prototipo"
+void lin_lld_sci_err_isr (void);
 void lin_lld_sci_err_isr ()
 {
 #if (SCI_VERSION == SCI_V2)
@@ -928,7 +930,8 @@ void lin_lld_sci_err_isr ()
 #endif /* End (SCI_VERSION == SCI_V4) */
 } /* End function lin_lld_sci_err_isr() */
 
-
+//30/07/2020 16:19:38 Para evitar warning de "no prototipo"
+void lin_lld_sci_rx_isr (void);
 void lin_lld_sci_rx_isr ()
 {
 #if (SCI_VERSION == SCI_V2)

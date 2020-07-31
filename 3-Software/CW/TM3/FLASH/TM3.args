@@ -41,7 +41,6 @@
 "$(ProjDirPath)/FLASH/Generated_Code/TEST_OUT_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/TI1_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Vectors_c.obj"
-"$(ProjDirPath)/FLASH/Generated_Code/Vlinphy0_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Vsci0_c.obj"
 "$(ProjDirPath)/FLASH/Generated_Code/Vtim0ch2_c.obj"
 "$(MCUToolsBaseDirEnv)/S12lisa_Support/s12lisac/lib_small/ansii.lib" )

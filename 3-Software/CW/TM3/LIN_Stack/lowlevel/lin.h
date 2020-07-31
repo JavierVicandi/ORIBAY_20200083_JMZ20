@@ -59,8 +59,8 @@
 
 /* Define data structure used for LIN Stack */
 
-/**************************************************************************//**
-*
+/**************************************************************************/
+/***
 * @var typedef unsigned char l_u8
 * lin unsigned char data type
 * @var typedef signed char l_s8

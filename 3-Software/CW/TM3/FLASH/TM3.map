@@ -26,8 +26,10 @@ lin_lin21_proto_c.obj                   Model: SMALL,         Lang: ANSI-C,     
 lin_isr_c.obj                           Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_lld_sci_c.obj                       Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 lin_lld_timesrv_c.obj                   Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+ClockPin1_c.obj                         Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 ClockPin2_c.obj                         Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 Cpu_c.obj                               Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+DataPin1_c.obj                          Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 DataPin2_c.obj                          Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 EI2C1_c.obj                             Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 EI2C2_c.obj                             Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
@@ -35,6 +37,7 @@ IO_Map_c.obj                            Model: SMALL,         Lang: ANSI-C,     
 LINPHY0_c.obj                           Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 TI1_c.obj                               Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 Vectors_c.obj                           Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
+rts12z.o (ansii.lib)                    Model: SMALL,         Lang: ANSI-C,        Compiler Version: C/C++ Compiler for S12/L-ISA v-5.0.47 build 19351
 
 *********************************************************************************************
 STARTUP SECTION
@@ -43,8 +46,8 @@ Entry point: 0xFFC165 (_EntryPoint)
 _startupData is allocated at 0xFFC1C3 and uses 20 Bytes
 extern struct _tagStartup {
   unsigned nofZeroOut     1
-  _Range   pZeroOut       0x1000     136
-  _Copy    *toCopyDownBeg 0xFFDF41
+  _Range   pZeroOut       0x1000     141
+  _Copy    *toCopyDownBeg 0xFFE76E
   int      nofInitBodies  0
   _Cpp     *initBodies    0xFFC1DE
   int      nofFiniBodies  0
@@ -57,10 +60,10 @@ Section Name                    Size  Type     From       To       Segment
 ---------------------------------------------------------------------------------------------
 .init                            451     R   0xFFC000   0xFFC1C2   ROM
 .startData                        27     R   0xFFC1C3   0xFFC1DD   ROM
-.rodata                          122     R   0xFFC1DE   0xFFC257   ROM
-NON_BANKED                        19     R   0xFFC258   0xFFC26A   ROM
-.text                           7262     R   0xFFC26B   0xFFDEC8   ROM
-.copy                             38     R   0xFFDF41   0xFFDF66   ROM
+.rodata                          127     R   0xFFC1DE   0xFFC25C   ROM
+NON_BANKED                        19     R   0xFFC25D   0xFFC26F   ROM
+.text                           9290     R   0xFFC270   0xFFE6B9   ROM
+.copy                             38     R   0xFFE76E   0xFFE793   ROM
 .data                             35   R/W     0x1000     0x1022   RAM
 .__absdata_ADC0RBP__               3   N/I      0x621      0x623   .absSeg0
 .__absdata_ADC0CBP__               3   N/I      0x61D      0x61F   .absSeg1
@@ -337,15 +340,17 @@ NON_BANKED                        19     R   0xFFC258   0xFFC26A   ROM
 .__absdata__InterruptVectorTable__        492     R   0xFFFE10   0xFFFFFB   .absSeg272
 .__absdata__ResetVectorTable__          4     R   0xFFFFFC   0xFFFFFF   .absSeg273
 .bss                               1   R/W     0x1023     0x1023   RAM
-.common                          100   R/W     0x1024     0x1087   RAM
-ClockPin2_CODE                    30     R   0xFFDEC9   0xFFDEE6   ROM
-DataPin2_CODE                     30     R   0xFFDEE7   0xFFDF04   ROM
-LINPHY0_CODE                      60     R   0xFFDF05   0xFFDF40   ROM
-.stack                           512   R/W     0x1088     0x1287   RAM
+.common                          105   R/W     0x1024     0x108C   RAM
+ClockPin1_CODE                    30     R   0xFFE6BA   0xFFE6D7   ROM
+ClockPin2_CODE                    30     R   0xFFE6D8   0xFFE6F5   ROM
+DataPin1_CODE                     30     R   0xFFE6F6   0xFFE713   ROM
+DataPin2_CODE                     30     R   0xFFE714   0xFFE731   ROM
+LINPHY0_CODE                      60     R   0xFFE732   0xFFE76D   ROM
+.stack                           512   R/W     0x108D     0x128C   RAM
 
 Summary of section sizes per section type:
-READ_ONLY (R):        2157 (dec:     8535)
-READ_WRITE (R/W):      288 (dec:      648)
+READ_ONLY (R):        2984 (dec:    10628)
+READ_WRITE (R/W):      28D (dec:      653)
 NO_INIT (N/I):         155 (dec:      341)
 
 *********************************************************************************************
@@ -359,7 +364,7 @@ OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 MODULE:                 -- lin_cfg_c.obj --
 - PROCEDURES:
-     ld_read_by_id_callout                   FFC26B      46      70       2   .text       
+     ld_read_by_id_callout                   FFC270      46      70       2   .text       
 - VARIABLES:
      lin_virtual_ifc                         FFC1DE       1       1       5   .rodata     
      LI0_response_error_signal               FFC1DF       1       1       1   .rodata     
@@ -372,148 +377,160 @@ MODULE:                 -- lin_cfg_c.obj --
      lin_response_error_byte_offset          FFC245       2       2       1   .rodata     
      lin_diag_services_supported             FFC247       5       5       1   .rodata     
      lin_save_configuration_flg                1024       1       1       2   .common     
-     lin_frame_flag_tbl                        1025       7       7       4   .common     
-     lin_frame_updating_flag_tbl               102C       7       7       5   .common     
+     lin_frame_flag_tbl                        1025       7       7       8   .common     
+     lin_frame_updating_flag_tbl               102C       7       7       9   .common     
      tx_single_pdu_data                        1033       8       8       2   .common     
      rx_single_pdu_data                        103B       8       8       1   .common     
      lin_diag_services_flag                    1043       5       5       1   .common     
      tl_slaveresp_cnt                          1048       1       1       9   .common     
      tl_current_rx_pdu_ptr                     1049       3       3      20   .common     
      tl_current_tx_pdu_ptr                     104C       3       3       2   .common     
-     buffer_backup_data                        104F       8       8       2   .common     
+     buffer_backup_data                        104F       8       8       4   .common     
      lin_word_status                           1057       2       2       7   .common     
      lin_goto_sleep_flg                        1059       1       1       2   .common     
      lin_error_in_response                     105A       1       1       5   .common     
      lin_successful_transfer                   105B       1       1       5   .common     
      lin_lld_response_buffer                   105C       A      10      12   .common     
-     lin_pFrameBuf                             1000       B      11       6   .data       
-     lin_flag_handle_tbl                       100B       5       5       6   .data       
+     lin_pFrameBuf                             1000       B      11      10   .data       
+     lin_flag_handle_tbl                       100B       5       5       8   .data       
      lin_configuration_RAM                     1010       9       9       4   .data       
      lin_configured_NAD                        1019       1       1       4   .data       
      lin_response_error_bit_offset             1023       1       1       1   .bss        
 MODULE:                 -- Events_c.obj --
 - PROCEDURES:
-     TI1_OnInterrupt                         FFC2B1      14      20       1   .text       
-     EI2C2_OnRxChar                          FFC2C5       1       1       1   .text       
-     EI2C2_OnTxChar                          FFC2C6       1       1       1   .text       
-     EI2C2_OnNACK                            FFC2C7       1       1       3   .text       
+     EI2C1_OnRxChar                          FFC2B6       1       1       1   .text       
+     EI2C1_OnTxChar                          FFC2B7       1       1       1   .text       
+     EI2C1_OnNACK                            FFC2B8       1       1       3   .text       
+     TI1_OnInterrupt                         FFC2B9      14      20       1   .text       
+     EI2C2_OnRxChar                          FFC2CD       1       1       1   .text       
+     EI2C2_OnTxChar                          FFC2CE       1       1       1   .text       
+     EI2C2_OnNACK                            FFC2CF       1       1       3   .text       
 - VARIABLES:
 MODULE:                 -- main_c.obj --
 - PROCEDURES:
-     main                                    FFC2C8      83     131       1   .text       
+     main                                    FFC2D0     1B2     434       1   .text       
 - VARIABLES:
 MODULE:                 -- sensores_c.obj --
 - PROCEDURES:
-     Lectura_Sensor_RH                       FFC34B      60      96       1   .text       
-     Reset_Sensor_RH                         FFC3AB      20      32       1   .text       
+     Config_ISLs                             FFC482     11C     284       1   .text       
+     Lectura_Sensor_RH                       FFC59E      71     113       1   .text       
+     Lectura_Sensores_ALS                    FFC60F     130     304       1   .text       
+     Reset_Sensor_RH                         FFC73F      20      32       1   .text       
 - VARIABLES:
-     @41                                     FFC24C       2       2       1   .rodata     
-     u8return                                  1066       1       1       1   .common     
-     stimage_process                           1067       8       8      10   .common     
+     @29                                     FFC24C       2       2       1   .rodata     
+     @59                                     FFC24E       2       2       1   .rodata     
+     @86                                     FFC250       1       1       1   .rodata     
+     @88                                     FFC251       1       1       1   .rodata     
+     @90                                     FFC252       1       1       1   .rodata     
+     stimage_process                           1066       E      14      24   .common     
 MODULE:                 -- starts12z_c.obj --
 - PROCEDURES:
-     DoZeroOut                               FFC3CB      19      25       1   .text       
-     DoCopyDown                              FFC3E4      15      21       1   .text       
-     _Startup                                FFC3F9      10      16       1   .text       
+     DoZeroOut                               FFC75F      19      25       1   .text       
+     DoCopyDown                              FFC778      15      21       1   .text       
+     _Startup                                FFC78D      10      16       1   .text       
 - VARIABLES:
      _startupData                            FFC1C3       A      10       3   .startData  
 - LABELS:
-     __SEG_END_SSTACK                          1288       0       0       1               
+     __SEG_END_SSTACK                          128D       0       0       1               
 MODULE:                 -- lin_commontl_proto_c.obj --
 - PROCEDURES:
-     lin_tl_make_slaveres_pdu                FFC409     21E     542      12   .text       
-     lin_tl_get_pdu                          FFC627      2E      46       1   .text       
-     lin_tl_put_pdu                          FFC655      33      51       1   .text       
-     lin_tl_handler                          FFC688      79     121       1   .text       
-     lin_tl_attach_service                   FFC701     138     312       1   .text       
+     lin_tl_make_slaveres_pdu                FFC79D     21E     542      12   .text       
+     lin_tl_get_pdu                          FFC9BB      2E      46       1   .text       
+     lin_tl_put_pdu                          FFC9E9      33      51       1   .text       
+     lin_tl_handler                          FFCA1C      79     121       1   .text       
+     lin_tl_attach_service                   FFCA95     138     312       1   .text       
 - VARIABLES:
-     @57                                     FFC24E       5       5       1   .rodata     
+     @57                                     FFC253       5       5       1   .rodata     
 MODULE:                 -- lin_c.obj --
 - PROCEDURES:
-     lin_lld_init                            FFC839       F      15       1   .text       
-     lin_lld_ignore_response                 FFC848       D      13       1   .text       
-     lin_lld_set_low_power_mode              FFC855       D      13       2   .text       
-     lin_lld_set_response                    FFC862      28      40       1   .text       
-     lin_lld_rx_response                     FFC88A      16      22       1   .text       
-     lin_process_parity                      FFC8A0      97     151       3   .text       
-     lin_checksum                            FFC937      57      87       2   .text       
-     lin_lld_timer_init                      FFC98E       5       5       1   .text       
+     lin_lld_init                            FFCBCD       F      15       1   .text       
+     lin_lld_ignore_response                 FFCBDC       D      13       1   .text       
+     lin_lld_set_low_power_mode              FFCBE9       D      13       2   .text       
+     lin_lld_set_response                    FFCBF6      28      40       1   .text       
+     lin_lld_rx_response                     FFCC1E      16      22       1   .text       
+     lin_process_parity                      FFCC34      97     151       3   .text       
+     lin_checksum                            FFCCCB      57      87       2   .text       
+     lin_lld_timer_init                      FFCD22       5       5       1   .text       
 - VARIABLES:
-     tl_check_timeout_type                     106F       1       1       4   .common     
+     tl_check_timeout_type                     1074       1       1       4   .common     
      tl_check_timeout                          101A       2       2       4   .data       
      tl_service_status                         101C       1       1       3   .data       
 MODULE:                 -- lin_diagnostic_service_c.obj --
 - PROCEDURES:
-     lin_diagservice_read_by_identifier      FFC993     13B     315       1   .text       
-     lin_diagservice_assign_frame_id_range     FFCACE      D6     214       1   .text       
-     lin_condittional_change_nad             FFCBA4      AF     175       1   .text       
+     lin_diagservice_read_by_identifier      FFCD27     13B     315       1   .text       
+     lin_diagservice_assign_frame_id_range     FFCE62      D6     214       1   .text       
+     lin_condittional_change_nad             FFCF38      AF     175       1   .text       
 - VARIABLES:
-     @58                                     FFC253       5       5       1   .rodata     
+     @58                                     FFC258       5       5       1   .rodata     
 MODULE:                 -- lin_common_api_c.obj --
 - PROCEDURES:
-     l_sys_init                              FFCC53       6       6       1   .text       
-     l_ifc_init                              FFCC59       5       5       1   .text       
+     l_sys_init                              FFCFE7       6       6       1   .text       
+     l_ifc_init                              FFCFED       5       5       1   .text       
 - VARIABLES:
 MODULE:                 -- lin_common_proto_c.obj --
 - PROCEDURES:
-     lin_pid_response_callback_handler       FFCC5E      4B      75      11   .text       
-     lin_process_pid                         FFCCA9     134     308       1   .text       
-     lin_update_rx                           FFCDDD      AE     174       1   .text       
-     lin_update_tx                           FFCE8B      57      87       1   .text       
-     lin_handle_error                        FFCEE2      5C      92       1   .text       
-     lin_bus_activity_timeout                FFCF3E      11      17       1   .text       
-     lin_update_tx_flags                     FFCF4F      ED     237       1   .text       
-     lin_update_rx_diag_frame                FFD03C      18      24       1   .text       
-     lin_make_res_diag_frame                 FFD054       5       5       1   .text       
-     lin_get_frame_index                     FFD059      2F      47       4   .text       
-     lin_process_uncd_frame                  FFD088     10E     270       3   .text       
+     lin_pid_response_callback_handler       FFCFF2      4B      75      11   .text       
+     lin_process_pid                         FFD03D     134     308       1   .text       
+     lin_update_rx                           FFD171      AE     174       1   .text       
+     lin_update_tx                           FFD21F      57      87       1   .text       
+     lin_handle_error                        FFD276      5C      92       1   .text       
+     lin_bus_activity_timeout                FFD2D2      11      17       1   .text       
+     lin_update_tx_flags                     FFD2E3      ED     237       1   .text       
+     lin_update_rx_diag_frame                FFD3D0      18      24       1   .text       
+     lin_make_res_diag_frame                 FFD3E8       5       5       1   .text       
+     lin_get_frame_index                     FFD3ED      2F      47       4   .text       
+     lin_process_uncd_frame                  FFD41C     10E     270       3   .text       
 - VARIABLES:
-     frame_index                               1070       1       1      21   .common     
-     frame_signal_error                        1071       1       1       3   .common     
+     frame_index                               1075       1       1      21   .common     
+     frame_signal_error                        1076       1       1       3   .common     
 MODULE:                 -- lin_lin21_proto_c.obj --
 - PROCEDURES:
-     lin_update_word_status_lin21            FFD196      77     119       4   .text       
-     lin_update_err_signal                   FFD20D      7E     126       2   .text       
-     lin_make_res_evnt_frame                 FFD28B      29      41       1   .text       
+     lin_update_word_status_lin21            FFD52A      77     119       4   .text       
+     lin_update_err_signal                   FFD5A1      7E     126       2   .text       
+     lin_make_res_evnt_frame                 FFD61F      29      41       1   .text       
 - VARIABLES:
 MODULE:                 -- lin_isr_c.obj --
 - PROCEDURES:
-     SCI0_INT                                FFD2B4       6       6       1   .text       
-     TIMchan2_ISR                            FFD2BA      16      22       1   .text       
-     LinPhy_ISR                              FFD2D0       B      11       1   .text       
+     SCI0_INT                                FFD648       6       6       1   .text       
+     TIMchan2_ISR                            FFD64E      16      22       1   .text       
+     LinPhy_ISR                              FFD664       B      11       1   .text       
 - VARIABLES:
 MODULE:                 -- lin_lld_sci_c.obj --
 - PROCEDURES:
-     lin_lld_sci_init                        FFD2DB      75     117       1   .text       
-     lin_lld_sci_ignore_response             FFD350       5       5       1   .text       
-     lin_lld_sci_set_low_power_mode          FFD355       5       5       1   .text       
-     lin_lld_sci_rx_response                 FFD35A      1A      26       1   .text       
-     lin_lld_sci_tx_response                 FFD374      3A      58       1   .text       
-     lin_lld_sci_timeout                     FFD3AE      BB     187       1   .text       
-     lin_goto_idle_state                     FFD469      11      17       4   .text       
-     lin_lld_sci_isr                         FFD47A     3B6     950       1   .text       
+     lin_lld_sci_init                        FFD66F      75     117       1   .text       
+     lin_lld_sci_ignore_response             FFD6E4       5       5       1   .text       
+     lin_lld_sci_set_low_power_mode          FFD6E9       5       5       1   .text       
+     lin_lld_sci_rx_response                 FFD6EE      1A      26       1   .text       
+     lin_lld_sci_tx_response                 FFD708      3A      58       1   .text       
+     lin_lld_sci_timeout                     FFD742      BB     187       1   .text       
+     lin_goto_idle_state                     FFD7FD      11      17       4   .text       
+     lin_lld_sci_isr                         FFD80E     3B6     950       1   .text       
 - VARIABLES:
-     cnt_byte                                  1072       1       1      11   .common     
-     ptr                                       1073       3       3       4   .common     
-     current_id                                1076       1       1      11   .common     
-     response_buffer                           1077       3       3      13   .common     
-     tbit                                      107A       2       2       1   .common     
-     frame_timeout_cnt                         107C       2       2       4   .common     
-     res_frame_timeout_cnt                     107E       2       2       4   .common     
-     idle_timeout_cnt                          1080       2       2      18   .common     
-     l_status                                  1082       3       3      41   .common     
+     cnt_byte                                  1077       1       1      11   .common     
+     ptr                                       1078       3       3       4   .common     
+     current_id                                107B       1       1      11   .common     
+     response_buffer                           107C       3       3      13   .common     
+     tbit                                      107F       2       2       1   .common     
+     frame_timeout_cnt                         1081       2       2       4   .common     
+     res_frame_timeout_cnt                     1083       2       2       4   .common     
+     idle_timeout_cnt                          1085       2       2      18   .common     
+     l_status                                  1087       3       3      41   .common     
      pSCI                                      101D       3       3      25   .data       
      ifc                                       1020       1       1       1   .data       
      state                                     1021       1       1      33   .data       
      pid                                       1022       1       1       3   .data       
 MODULE:                 -- lin_lld_timesrv_c.obj --
 - PROCEDURES:
-     lin_lld_timer_S12_init                  FFD830      19      25       1   .text       
-     lin_lld_timer_isr                       FFD849       5       5       1   .text       
+     lin_lld_timer_S12_init                  FFDBC4      19      25       1   .text       
+     lin_lld_timer_isr                       FFDBDD       5       5       1   .text       
+- VARIABLES:
+MODULE:                 -- ClockPin1_c.obj --
+- PROCEDURES:
+     ClockPin1_SetDir                        FFE6BA      1E      30      18   ClockPin1_CODE
 - VARIABLES:
 MODULE:                 -- ClockPin2_c.obj --
 - PROCEDURES:
-     ClockPin2_SetDir                        FFDEC9      1E      30      18   ClockPin2_CODE
+     ClockPin2_SetDir                        FFE6D8      1E      30      18   ClockPin2_CODE
 - VARIABLES:
 MODULE:                 -- Cpu_c.obj --
 - PROCEDURES:
@@ -637,31 +654,42 @@ MODULE:                 -- Cpu_c.obj --
      Cpu_ivVtrap                             FFC15F       3       3       1   .init       
      Cpu_ivVspare                            FFC162       3       3       1   .init       
      _EntryPoint                             FFC165      5E      94       1   .init       
-     PE_low_level_init                       FFD84E     212     530       1   .text       
+     PE_low_level_init                       FFDBE2     212     530       1   .text       
 - VARIABLES:
-     Shadow_P                                  1085       1       1       2   .common     
+     Shadow_P                                  108A       1       1       2   .common     
+MODULE:                 -- DataPin1_c.obj --
+- PROCEDURES:
+     DataPin1_SetDir                         FFE6F6      1E      30      13   DataPin1_CODE
+- VARIABLES:
 MODULE:                 -- DataPin2_c.obj --
 - PROCEDURES:
-     DataPin2_SetDir                         FFDEE7      1E      30      13   DataPin2_CODE
+     DataPin2_SetDir                         FFE714      1E      30      13   DataPin2_CODE
 - VARIABLES:
 MODULE:                 -- EI2C1_c.obj --
 - PROCEDURES:
-     EI2C1_Init                              FFDA60       5       5       1   .text       
+     EI2C1_Init                              FFDDF4       5       5       1   .text       
+     Write                                   FFDDF9      A1     161       3   .text       
+     Read                                    FFDE9A      94     148       1   .text       
+     GetAck                                  FFDF2E      45      69       3   .text       
+     SetAck                                  FFDF73      79     121       2   .text       
+     InternalStop                            FFDFEC      28      40       5   .text       
+     EI2C1_SendBlock                         FFE014     133     307       8   .text       
+     EI2C1_RecvBlock                         FFE147     109     265       5   .text       
 - VARIABLES:
-     SlaveAddr                                 1086       1       1       1   .common     
+     SlaveAddr                                 108B       1       1       3   .common     
 MODULE:                 -- EI2C2_c.obj --
 - PROCEDURES:
-     EI2C2_Init                              FFDA65       5       5       1   .text       
-     Write                                   FFDA6A      A0     160       3   .text       
-     Read                                    FFDB0A      92     146       1   .text       
-     GetAck                                  FFDB9C      43      67       3   .text       
-     SetAck                                  FFDBDF      78     120       2   .text       
-     InternalStop                            FFDC57      28      40       5   .text       
-     EI2C2_SendBlock                         FFDC7F     133     307       1   .text       
-     EI2C2_RecvBlock                         FFDDB2     109     265       1   .text       
-     EI2C2_SelectSlave                       FFDEBB       E      14       1   .text       
+     EI2C2_Init                              FFE250       5       5       1   .text       
+     Write                                   FFE255      A0     160       3   .text       
+     Read                                    FFE2F5      92     146       1   .text       
+     GetAck                                  FFE387      43      67       3   .text       
+     SetAck                                  FFE3CA      78     120       2   .text       
+     InternalStop                            FFE442      28      40       5   .text       
+     EI2C2_SendBlock                         FFE46A     133     307       9   .text       
+     EI2C2_RecvBlock                         FFE59D     109     265       6   .text       
+     EI2C2_SelectSlave                       FFE6A6       E      14       3   .text       
 - VARIABLES:
-     SlaveAddr                                 1087       1       1       4   .common     
+     SlaveAddr                                 108C       1       1       4   .common     
 MODULE:                 -- IO_Map_c.obj --
 - PROCEDURES:
 - VARIABLES:
@@ -939,26 +967,30 @@ MODULE:                 -- IO_Map_c.obj --
      _INT_CFADDR                                 17       1       1       0   .__absdata__INT_CFADDR__
 MODULE:                 -- LINPHY0_c.obj --
 - PROCEDURES:
-     LINPHY0_Init                            FFDF05      3C      60       1   LINPHY0_CODE
+     LINPHY0_Init                            FFE732      3C      60       1   LINPHY0_CODE
 - VARIABLES:
 MODULE:                 -- TI1_c.obj --
 - PROCEDURES:
-     TI1_Interrupt                           FFC258      13      19       1   NON_BANKED  
+     TI1_Interrupt                           FFC25D      13      19       1   NON_BANKED  
 - VARIABLES:
 MODULE:                 -- Vectors_c.obj --
 - PROCEDURES:
 - VARIABLES:
      _InterruptVectorTable                   FFFE10     1EC     492       0   .__absdata__InterruptVectorTable__
      _ResetVectorTable                       FFFFFC       4       4       0   .__absdata__ResetVectorTable__
+MODULE:                 -- rts12z.o (ansii.lib) --
+- PROCEDURES:
+     __clear                                 FFE6B4       6       6       1   .text       
+- VARIABLES:
 
 *********************************************************************************************
 MODULE STATISTIC
   Name                                      Data   Code  Const
 ---------------------------------------------------------------------------------------------
   lin_cfg_c.obj                               93     70    110
-  Events_c.obj                                 0     23      0
-  main_c.obj                                   0    131      0
-  sensores_c.obj                               9    128      2
+  Events_c.obj                                 0     26      0
+  main_c.obj                                   0    434      0
+  sensores_c.obj                              14    733      7
   starts12z_c.obj                              0     62      0
   lin_commontl_proto_c.obj                     0   1072      5
   lin_c.obj                                    4    346      0
@@ -969,23 +1001,27 @@ MODULE STATISTIC
   lin_isr_c.obj                                0     39      0
   lin_lld_sci_c.obj                           25   1365      0
   lin_lld_timesrv_c.obj                        0     30      0
+  ClockPin1_c.obj                              0     30      0
   ClockPin2_c.obj                              0     30      0
   Cpu_c.obj                                    1    981      0
+  DataPin1_c.obj                               0     30      0
   DataPin2_c.obj                               0     30      0
-  EI2C1_c.obj                                  1      5      0
+  EI2C1_c.obj                                  1   1116      0
   EI2C2_c.obj                                  1   1124      0
   IO_Map_c.obj                               341      0      0
   LINPHY0_c.obj                                0     60      0
   TI1_c.obj                                    0     19      0
   Vectors_c.obj                                0      0    496
+  rts12z.o (ansii.lib)                         0      6      0
   other                                      512     27     38
 
 *********************************************************************************************
 SECTION USE IN OBJECT-ALLOCATION SECTION
 ---------------------------------------------------------------------------------------------
 SECTION: ".text"
-  ld_read_by_id_callout TI1_OnInterrupt EI2C2_OnRxChar EI2C2_OnTxChar 
-  EI2C2_OnNACK main Lectura_Sensor_RH Reset_Sensor_RH DoZeroOut DoCopyDown 
+  ld_read_by_id_callout EI2C1_OnRxChar EI2C1_OnTxChar EI2C1_OnNACK 
+  TI1_OnInterrupt EI2C2_OnRxChar EI2C2_OnTxChar EI2C2_OnNACK main Config_ISLs 
+  Lectura_Sensor_RH Lectura_Sensores_ALS Reset_Sensor_RH DoZeroOut DoCopyDown 
   _Startup lin_tl_make_slaveres_pdu lin_tl_get_pdu lin_tl_put_pdu 
   lin_tl_handler lin_tl_attach_service lin_lld_init lin_lld_ignore_response 
   lin_lld_set_low_power_mode lin_lld_set_response lin_lld_rx_response 
@@ -1000,8 +1036,9 @@ SECTION: ".text"
   lin_lld_sci_ignore_response lin_lld_sci_set_low_power_mode 
   lin_lld_sci_rx_response lin_lld_sci_tx_response lin_lld_sci_timeout 
   lin_goto_idle_state lin_lld_sci_isr lin_lld_timer_S12_init lin_lld_timer_isr 
-  PE_low_level_init EI2C1_Init EI2C2_Init Write Read GetAck SetAck InternalStop 
-  EI2C2_SendBlock EI2C2_RecvBlock EI2C2_SelectSlave 
+  PE_low_level_init EI2C1_Init Write Read GetAck SetAck InternalStop 
+  EI2C1_SendBlock EI2C1_RecvBlock EI2C2_Init Write Read GetAck SetAck 
+  InternalStop EI2C2_SendBlock EI2C2_RecvBlock EI2C2_SelectSlave __clear 
 SECTION: ".data"
   lin_pFrameBuf lin_flag_handle_tbl lin_configuration_RAM lin_configured_NAD 
   tl_check_timeout tl_service_status pSCI ifc state pid 
@@ -1040,7 +1077,7 @@ SECTION: ".rodata"
   lin_virtual_ifc LI0_response_error_signal lin_frame_tbl 
   lin_max_frame_res_timeout_val lin_initial_NAD product_id response_error 
   num_frame_have_esignal lin_response_error_byte_offset 
-  lin_diag_services_supported @41 @57 @58 
+  lin_diag_services_supported @29 @59 @86 @88 @90 @57 @58 
 SECTION: "NON_BANKED"
   TI1_Interrupt 
 SECTION: ".common"
@@ -1048,12 +1085,16 @@ SECTION: ".common"
   tx_single_pdu_data rx_single_pdu_data lin_diag_services_flag tl_slaveresp_cnt 
   tl_current_rx_pdu_ptr tl_current_tx_pdu_ptr buffer_backup_data 
   lin_word_status lin_goto_sleep_flg lin_error_in_response 
-  lin_successful_transfer lin_lld_response_buffer u8return stimage_process 
+  lin_successful_transfer lin_lld_response_buffer stimage_process 
   tl_check_timeout_type frame_index frame_signal_error cnt_byte ptr current_id 
   response_buffer tbit frame_timeout_cnt res_frame_timeout_cnt idle_timeout_cnt 
   l_status Shadow_P SlaveAddr SlaveAddr 
+SECTION: "ClockPin1_CODE"
+  ClockPin1_SetDir 
 SECTION: "ClockPin2_CODE"
   ClockPin2_SetDir 
+SECTION: "DataPin1_CODE"
+  DataPin1_SetDir 
 SECTION: "DataPin2_CODE"
   DataPin2_SetDir 
 SECTION: ".__absdata_ADC0RBP__"
@@ -1883,8 +1924,8 @@ OBJECT LIST SORTED BY ADDRESS
      _LP0SR                                     985       1       1       0   .__absdata__LP0SR__
      _LP0IE                                     986       1       1       0   .__absdata__LP0IE__
      _LP0IF                                     987       1       1       0   .__absdata__LP0IF__
-     lin_pFrameBuf                             1000       B      11       6   .data       
-     lin_flag_handle_tbl                       100B       5       5       6   .data       
+     lin_pFrameBuf                             1000       B      11      10   .data       
+     lin_flag_handle_tbl                       100B       5       5       8   .data       
      lin_configuration_RAM                     1010       9       9       4   .data       
      lin_configured_NAD                        1019       1       1       4   .data       
      tl_check_timeout                          101A       2       2       4   .data       
@@ -1895,37 +1936,36 @@ OBJECT LIST SORTED BY ADDRESS
      pid                                       1022       1       1       3   .data       
      lin_response_error_bit_offset             1023       1       1       1   .bss        
      lin_save_configuration_flg                1024       1       1       2   .common     
-     lin_frame_flag_tbl                        1025       7       7       4   .common     
-     lin_frame_updating_flag_tbl               102C       7       7       5   .common     
+     lin_frame_flag_tbl                        1025       7       7       8   .common     
+     lin_frame_updating_flag_tbl               102C       7       7       9   .common     
      tx_single_pdu_data                        1033       8       8       2   .common     
      rx_single_pdu_data                        103B       8       8       1   .common     
      lin_diag_services_flag                    1043       5       5       1   .common     
      tl_slaveresp_cnt                          1048       1       1       9   .common     
      tl_current_rx_pdu_ptr                     1049       3       3      20   .common     
      tl_current_tx_pdu_ptr                     104C       3       3       2   .common     
-     buffer_backup_data                        104F       8       8       2   .common     
+     buffer_backup_data                        104F       8       8       4   .common     
      lin_word_status                           1057       2       2       7   .common     
      lin_goto_sleep_flg                        1059       1       1       2   .common     
      lin_error_in_response                     105A       1       1       5   .common     
      lin_successful_transfer                   105B       1       1       5   .common     
      lin_lld_response_buffer                   105C       A      10      12   .common     
-     u8return                                  1066       1       1       1   .common     
-     stimage_process                           1067       8       8      10   .common     
-     tl_check_timeout_type                     106F       1       1       4   .common     
-     frame_index                               1070       1       1      21   .common     
-     frame_signal_error                        1071       1       1       3   .common     
-     cnt_byte                                  1072       1       1      11   .common     
-     ptr                                       1073       3       3       4   .common     
-     current_id                                1076       1       1      11   .common     
-     response_buffer                           1077       3       3      13   .common     
-     tbit                                      107A       2       2       1   .common     
-     frame_timeout_cnt                         107C       2       2       4   .common     
-     res_frame_timeout_cnt                     107E       2       2       4   .common     
-     idle_timeout_cnt                          1080       2       2      18   .common     
-     l_status                                  1082       3       3      41   .common     
-     Shadow_P                                  1085       1       1       2   .common     
-     SlaveAddr                                 1086       1       1       1   .common     
-     SlaveAddr                                 1087       1       1       4   .common     
+     stimage_process                           1066       E      14      24   .common     
+     tl_check_timeout_type                     1074       1       1       4   .common     
+     frame_index                               1075       1       1      21   .common     
+     frame_signal_error                        1076       1       1       3   .common     
+     cnt_byte                                  1077       1       1      11   .common     
+     ptr                                       1078       3       3       4   .common     
+     current_id                                107B       1       1      11   .common     
+     response_buffer                           107C       3       3      13   .common     
+     tbit                                      107F       2       2       1   .common     
+     frame_timeout_cnt                         1081       2       2       4   .common     
+     res_frame_timeout_cnt                     1083       2       2       4   .common     
+     idle_timeout_cnt                          1085       2       2      18   .common     
+     l_status                                  1087       3       3      41   .common     
+     Shadow_P                                  108A       1       1       2   .common     
+     SlaveAddr                                 108B       1       1       3   .common     
+     SlaveAddr                                 108C       1       1       4   .common     
      Cpu_ivVReserved123                      FFC000       3       3       1   .init       
      Cpu_ivVReserved122                      FFC003       3       3       1   .init       
      Cpu_ivVReserved121                      FFC006       3       3       1   .init       
@@ -2056,80 +2096,99 @@ OBJECT LIST SORTED BY ADDRESS
      num_frame_have_esignal                  FFC244       1       1       1   .rodata     
      lin_response_error_byte_offset          FFC245       2       2       1   .rodata     
      lin_diag_services_supported             FFC247       5       5       1   .rodata     
-     @41                                     FFC24C       2       2       1   .rodata     
-     @57                                     FFC24E       5       5       1   .rodata     
-     @58                                     FFC253       5       5       1   .rodata     
-     TI1_Interrupt                           FFC258      13      19       1   NON_BANKED  
-     ld_read_by_id_callout                   FFC26B      46      70       2   .text       
-     TI1_OnInterrupt                         FFC2B1      14      20       1   .text       
-     EI2C2_OnRxChar                          FFC2C5       1       1       1   .text       
-     EI2C2_OnTxChar                          FFC2C6       1       1       1   .text       
-     EI2C2_OnNACK                            FFC2C7       1       1       3   .text       
-     main                                    FFC2C8      83     131       1   .text       
-     Lectura_Sensor_RH                       FFC34B      60      96       1   .text       
-     Reset_Sensor_RH                         FFC3AB      20      32       1   .text       
-     DoZeroOut                               FFC3CB      19      25       1   .text       
-     DoCopyDown                              FFC3E4      15      21       1   .text       
-     _Startup                                FFC3F9      10      16       1   .text       
-     lin_tl_make_slaveres_pdu                FFC409     21E     542      12   .text       
-     lin_tl_get_pdu                          FFC627      2E      46       1   .text       
-     lin_tl_put_pdu                          FFC655      33      51       1   .text       
-     lin_tl_handler                          FFC688      79     121       1   .text       
-     lin_tl_attach_service                   FFC701     138     312       1   .text       
-     lin_lld_init                            FFC839       F      15       1   .text       
-     lin_lld_ignore_response                 FFC848       D      13       1   .text       
-     lin_lld_set_low_power_mode              FFC855       D      13       2   .text       
-     lin_lld_set_response                    FFC862      28      40       1   .text       
-     lin_lld_rx_response                     FFC88A      16      22       1   .text       
-     lin_process_parity                      FFC8A0      97     151       3   .text       
-     lin_checksum                            FFC937      57      87       2   .text       
-     lin_lld_timer_init                      FFC98E       5       5       1   .text       
-     lin_diagservice_read_by_identifier      FFC993     13B     315       1   .text       
-     lin_diagservice_assign_frame_id_range     FFCACE      D6     214       1   .text       
-     lin_condittional_change_nad             FFCBA4      AF     175       1   .text       
-     l_sys_init                              FFCC53       6       6       1   .text       
-     l_ifc_init                              FFCC59       5       5       1   .text       
-     lin_pid_response_callback_handler       FFCC5E      4B      75      11   .text       
-     lin_process_pid                         FFCCA9     134     308       1   .text       
-     lin_update_rx                           FFCDDD      AE     174       1   .text       
-     lin_update_tx                           FFCE8B      57      87       1   .text       
-     lin_handle_error                        FFCEE2      5C      92       1   .text       
-     lin_bus_activity_timeout                FFCF3E      11      17       1   .text       
-     lin_update_tx_flags                     FFCF4F      ED     237       1   .text       
-     lin_update_rx_diag_frame                FFD03C      18      24       1   .text       
-     lin_make_res_diag_frame                 FFD054       5       5       1   .text       
-     lin_get_frame_index                     FFD059      2F      47       4   .text       
-     lin_process_uncd_frame                  FFD088     10E     270       3   .text       
-     lin_update_word_status_lin21            FFD196      77     119       4   .text       
-     lin_update_err_signal                   FFD20D      7E     126       2   .text       
-     lin_make_res_evnt_frame                 FFD28B      29      41       1   .text       
-     SCI0_INT                                FFD2B4       6       6       1   .text       
-     TIMchan2_ISR                            FFD2BA      16      22       1   .text       
-     LinPhy_ISR                              FFD2D0       B      11       1   .text       
-     lin_lld_sci_init                        FFD2DB      75     117       1   .text       
-     lin_lld_sci_ignore_response             FFD350       5       5       1   .text       
-     lin_lld_sci_set_low_power_mode          FFD355       5       5       1   .text       
-     lin_lld_sci_rx_response                 FFD35A      1A      26       1   .text       
-     lin_lld_sci_tx_response                 FFD374      3A      58       1   .text       
-     lin_lld_sci_timeout                     FFD3AE      BB     187       1   .text       
-     lin_goto_idle_state                     FFD469      11      17       4   .text       
-     lin_lld_sci_isr                         FFD47A     3B6     950       1   .text       
-     lin_lld_timer_S12_init                  FFD830      19      25       1   .text       
-     lin_lld_timer_isr                       FFD849       5       5       1   .text       
-     PE_low_level_init                       FFD84E     212     530       1   .text       
-     EI2C1_Init                              FFDA60       5       5       1   .text       
-     EI2C2_Init                              FFDA65       5       5       1   .text       
-     Write                                   FFDA6A      A0     160       3   .text       
-     Read                                    FFDB0A      92     146       1   .text       
-     GetAck                                  FFDB9C      43      67       3   .text       
-     SetAck                                  FFDBDF      78     120       2   .text       
-     InternalStop                            FFDC57      28      40       5   .text       
-     EI2C2_SendBlock                         FFDC7F     133     307       1   .text       
-     EI2C2_RecvBlock                         FFDDB2     109     265       1   .text       
-     EI2C2_SelectSlave                       FFDEBB       E      14       1   .text       
-     ClockPin2_SetDir                        FFDEC9      1E      30      18   ClockPin2_CODE
-     DataPin2_SetDir                         FFDEE7      1E      30      13   DataPin2_CODE
-     LINPHY0_Init                            FFDF05      3C      60       1   LINPHY0_CODE
+     @29                                     FFC24C       2       2       1   .rodata     
+     @59                                     FFC24E       2       2       1   .rodata     
+     @86                                     FFC250       1       1       1   .rodata     
+     @88                                     FFC251       1       1       1   .rodata     
+     @90                                     FFC252       1       1       1   .rodata     
+     @57                                     FFC253       5       5       1   .rodata     
+     @58                                     FFC258       5       5       1   .rodata     
+     TI1_Interrupt                           FFC25D      13      19       1   NON_BANKED  
+     ld_read_by_id_callout                   FFC270      46      70       2   .text       
+     EI2C1_OnRxChar                          FFC2B6       1       1       1   .text       
+     EI2C1_OnTxChar                          FFC2B7       1       1       1   .text       
+     EI2C1_OnNACK                            FFC2B8       1       1       3   .text       
+     TI1_OnInterrupt                         FFC2B9      14      20       1   .text       
+     EI2C2_OnRxChar                          FFC2CD       1       1       1   .text       
+     EI2C2_OnTxChar                          FFC2CE       1       1       1   .text       
+     EI2C2_OnNACK                            FFC2CF       1       1       3   .text       
+     main                                    FFC2D0     1B2     434       1   .text       
+     Config_ISLs                             FFC482     11C     284       1   .text       
+     Lectura_Sensor_RH                       FFC59E      71     113       1   .text       
+     Lectura_Sensores_ALS                    FFC60F     130     304       1   .text       
+     Reset_Sensor_RH                         FFC73F      20      32       1   .text       
+     DoZeroOut                               FFC75F      19      25       1   .text       
+     DoCopyDown                              FFC778      15      21       1   .text       
+     _Startup                                FFC78D      10      16       1   .text       
+     lin_tl_make_slaveres_pdu                FFC79D     21E     542      12   .text       
+     lin_tl_get_pdu                          FFC9BB      2E      46       1   .text       
+     lin_tl_put_pdu                          FFC9E9      33      51       1   .text       
+     lin_tl_handler                          FFCA1C      79     121       1   .text       
+     lin_tl_attach_service                   FFCA95     138     312       1   .text       
+     lin_lld_init                            FFCBCD       F      15       1   .text       
+     lin_lld_ignore_response                 FFCBDC       D      13       1   .text       
+     lin_lld_set_low_power_mode              FFCBE9       D      13       2   .text       
+     lin_lld_set_response                    FFCBF6      28      40       1   .text       
+     lin_lld_rx_response                     FFCC1E      16      22       1   .text       
+     lin_process_parity                      FFCC34      97     151       3   .text       
+     lin_checksum                            FFCCCB      57      87       2   .text       
+     lin_lld_timer_init                      FFCD22       5       5       1   .text       
+     lin_diagservice_read_by_identifier      FFCD27     13B     315       1   .text       
+     lin_diagservice_assign_frame_id_range     FFCE62      D6     214       1   .text       
+     lin_condittional_change_nad             FFCF38      AF     175       1   .text       
+     l_sys_init                              FFCFE7       6       6       1   .text       
+     l_ifc_init                              FFCFED       5       5       1   .text       
+     lin_pid_response_callback_handler       FFCFF2      4B      75      11   .text       
+     lin_process_pid                         FFD03D     134     308       1   .text       
+     lin_update_rx                           FFD171      AE     174       1   .text       
+     lin_update_tx                           FFD21F      57      87       1   .text       
+     lin_handle_error                        FFD276      5C      92       1   .text       
+     lin_bus_activity_timeout                FFD2D2      11      17       1   .text       
+     lin_update_tx_flags                     FFD2E3      ED     237       1   .text       
+     lin_update_rx_diag_frame                FFD3D0      18      24       1   .text       
+     lin_make_res_diag_frame                 FFD3E8       5       5       1   .text       
+     lin_get_frame_index                     FFD3ED      2F      47       4   .text       
+     lin_process_uncd_frame                  FFD41C     10E     270       3   .text       
+     lin_update_word_status_lin21            FFD52A      77     119       4   .text       
+     lin_update_err_signal                   FFD5A1      7E     126       2   .text       
+     lin_make_res_evnt_frame                 FFD61F      29      41       1   .text       
+     SCI0_INT                                FFD648       6       6       1   .text       
+     TIMchan2_ISR                            FFD64E      16      22       1   .text       
+     LinPhy_ISR                              FFD664       B      11       1   .text       
+     lin_lld_sci_init                        FFD66F      75     117       1   .text       
+     lin_lld_sci_ignore_response             FFD6E4       5       5       1   .text       
+     lin_lld_sci_set_low_power_mode          FFD6E9       5       5       1   .text       
+     lin_lld_sci_rx_response                 FFD6EE      1A      26       1   .text       
+     lin_lld_sci_tx_response                 FFD708      3A      58       1   .text       
+     lin_lld_sci_timeout                     FFD742      BB     187       1   .text       
+     lin_goto_idle_state                     FFD7FD      11      17       4   .text       
+     lin_lld_sci_isr                         FFD80E     3B6     950       1   .text       
+     lin_lld_timer_S12_init                  FFDBC4      19      25       1   .text       
+     lin_lld_timer_isr                       FFDBDD       5       5       1   .text       
+     PE_low_level_init                       FFDBE2     212     530       1   .text       
+     EI2C1_Init                              FFDDF4       5       5       1   .text       
+     Write                                   FFDDF9      A1     161       3   .text       
+     Read                                    FFDE9A      94     148       1   .text       
+     GetAck                                  FFDF2E      45      69       3   .text       
+     SetAck                                  FFDF73      79     121       2   .text       
+     InternalStop                            FFDFEC      28      40       5   .text       
+     EI2C1_SendBlock                         FFE014     133     307       8   .text       
+     EI2C1_RecvBlock                         FFE147     109     265       5   .text       
+     EI2C2_Init                              FFE250       5       5       1   .text       
+     Write                                   FFE255      A0     160       3   .text       
+     Read                                    FFE2F5      92     146       1   .text       
+     GetAck                                  FFE387      43      67       3   .text       
+     SetAck                                  FFE3CA      78     120       2   .text       
+     InternalStop                            FFE442      28      40       5   .text       
+     EI2C2_SendBlock                         FFE46A     133     307       9   .text       
+     EI2C2_RecvBlock                         FFE59D     109     265       6   .text       
+     EI2C2_SelectSlave                       FFE6A6       E      14       3   .text       
+     __clear                                 FFE6B4       6       6       1   .text       
+     ClockPin1_SetDir                        FFE6BA      1E      30      18   ClockPin1_CODE
+     ClockPin2_SetDir                        FFE6D8      1E      30      18   ClockPin2_CODE
+     DataPin1_SetDir                         FFE6F6      1E      30      13   DataPin1_CODE
+     DataPin2_SetDir                         FFE714      1E      30      13   DataPin2_CODE
+     LINPHY0_Init                            FFE732      3C      60       1   LINPHY0_CODE
      _InterruptVectorTable                   FFFE10     1EC     492       0   .__absdata__InterruptVectorTable__
      _ResetVectorTable                       FFFFFC       4       4       0   .__absdata__ResetVectorTable__
 
@@ -2137,10 +2196,6 @@ OBJECT LIST SORTED BY ADDRESS
 UNUSED-OBJECTS SECTION
 ---------------------------------------------------------------------------------------------
 NOT USED PROCEDURES
-Events_c.obj:
-  EI2C1_OnRxChar EI2C1_OnTxChar EI2C1_OnNACK 
-sensores_c.obj:
-  Config_ISLs Lectura_Sensores_ALS 
 lin_c.obj:
   lin_lld_deinit lin_lld_get_status lin_lld_get_state lin_lld_tx_wake_up 
   lin_lld_int_enable lin_lld_int_disable lin_lld_mcu_reset 
@@ -2154,10 +2209,11 @@ lin_lld_sci_c.obj:
 Cpu_c.obj:
   Cpu_Delay100US 
 EI2C1_c.obj:
-  Delay Write Read GetAck SetAck InternalStop EI2C1_SendChar EI2C1_RecvChar 
-  EI2C1_SendBlock EI2C1_RecvBlock EI2C1_SelectSlave EI2C1_GetSelected 
+  Delay EI2C1_SendChar EI2C1_RecvChar EI2C1_SelectSlave EI2C1_GetSelected 
 EI2C2_c.obj:
   Delay EI2C2_SendChar EI2C2_RecvChar EI2C2_GetSelected 
+rts12z.o (ansii.lib):
+  __copy __stack_protect_init __stack_check_fail __stack_check 
 NOT USED VARIABLES
 lin_cfg_c.obj:
   .dwarf.lin_virtual_ifc .dwarf.lin_save_configuration_flg 
@@ -2250,25 +2306,25 @@ main_c.obj:
   .dwarf_type.void .dwarf_type.unsigned char .dwarf.main .dwarf_loc.main 
   .dwarf_line.main .dwarf_frame.main .dwarf_pubnames.main .dwarf_aranges.main 
 sensores_c.obj:
-  .dwarf.u8return .dwarf.stimage_process .dwarf_type.void 
-  .dwarf_type.unsigned int .dwarf_type.98 .dwarf_type.unsigned char 
-  .dwarf_type.99 .dwarf_type.100 .dwarf_type.101 .dwarf_type.102 
-  .dwarf_type.103 .dwarf_type.104 .dwarf_type.105 .dwarf_type.106 
-  .dwarf_typedef.stimage_process_t .dwarf_type.107 .dwarf_type.108 
-  .dwarf_type.109 .dwarf_type.110 .dwarf_type.111 .dwarf_type.112 
-  .dwarf.Config_ISLs .dwarf.Lectura_Sensor_RH .dwarf.Lectura_Sensores_ALS 
-  .dwarf.Reset_Sensor_RH .dwarf_loc.Config_ISLs .dwarf_loc.Lectura_Sensor_RH 
+  .dwarf.stimage_process .dwarf_type.unsigned char .dwarf_type.unsigned int 
+  .dwarf_type.118 .dwarf_type.119 .dwarf_type.120 .dwarf_type.void 
+  .dwarf_type.121 .dwarf_type.122 .dwarf_type.123 .dwarf_type.124 
+  .dwarf_type.125 .dwarf_type.126 .dwarf_type.127 
+  .dwarf_typedef.stimage_process_t .dwarf_type.128 .dwarf_type.129 
+  .dwarf_type.130 .dwarf_type.131 .dwarf_type.132 .dwarf_type.133 
+  .dwarf_type.134 .dwarf_type.135 .dwarf_type.136 .dwarf.Config_ISLs 
+  .dwarf.Lectura_Sensor_RH .dwarf.Lectura_Sensores_ALS .dwarf.Reset_Sensor_RH 
+  .dwarf_loc.Config_ISLs .dwarf_loc.Lectura_Sensor_RH 
   .dwarf_loc.Lectura_Sensores_ALS .dwarf_line.Config_ISLs 
   .dwarf_line.Lectura_Sensor_RH .dwarf_line.Lectura_Sensores_ALS 
   .dwarf_line.Reset_Sensor_RH .dwarf_frame.Config_ISLs 
   .dwarf_frame.Lectura_Sensor_RH .dwarf_frame.Lectura_Sensores_ALS 
-  .dwarf_frame.Reset_Sensor_RH .dwarf_pubnames.u8return 
-  .dwarf_pubnames.stimage_process .dwarf_pubnames.Config_ISLs 
-  .dwarf_pubnames.Lectura_Sensor_RH .dwarf_pubnames.Lectura_Sensores_ALS 
-  .dwarf_pubnames.Reset_Sensor_RH .dwarf_aranges.u8return 
+  .dwarf_frame.Reset_Sensor_RH .dwarf_pubnames.stimage_process 
+  .dwarf_pubnames.Config_ISLs .dwarf_pubnames.Lectura_Sensor_RH 
+  .dwarf_pubnames.Lectura_Sensores_ALS .dwarf_pubnames.Reset_Sensor_RH 
   .dwarf_aranges.stimage_process .dwarf_aranges.Config_ISLs 
   .dwarf_aranges.Lectura_Sensor_RH .dwarf_aranges.Lectura_Sensores_ALS 
-  .dwarf_aranges.Reset_Sensor_RH @27 @29 @31 @68 @70 
+  .dwarf_aranges.Reset_Sensor_RH 
 starts12z_c.obj:
   .dwarf._startupData .dwarf_type.void .dwarf_type._tagStartup 
   .dwarf_type.unsigned long .dwarf_type.89 .dwarf_type._Range 
@@ -2522,6 +2578,11 @@ lin_lld_timesrv_c.obj:
   .dwarf_frame.lin_lld_timer_S12_init .dwarf_frame.lin_lld_timer_isr 
   .dwarf_pubnames.lin_lld_timer_S12_init .dwarf_pubnames.lin_lld_timer_isr 
   .dwarf_aranges.lin_lld_timer_S12_init .dwarf_aranges.lin_lld_timer_isr 
+ClockPin1_c.obj:
+  .dwarf_type.void .dwarf_type.unsigned char .dwarf.ClockPin1_SetDir 
+  .dwarf_loc.ClockPin1_SetDir .dwarf_line.ClockPin1_SetDir 
+  .dwarf_frame.ClockPin1_SetDir .dwarf_pubnames.ClockPin1_SetDir 
+  .dwarf_aranges.ClockPin1_SetDir 
 ClockPin2_c.obj:
   .dwarf_type.void .dwarf_type.unsigned char .dwarf.ClockPin2_SetDir 
   .dwarf_loc.ClockPin2_SetDir .dwarf_line.ClockPin2_SetDir 
@@ -2810,6 +2871,11 @@ Cpu_c.obj:
   .dwarf_aranges.Cpu_ivVtrap .dwarf_aranges.Cpu_ivVspare 
   .dwarf_aranges.Cpu_Delay100US .dwarf_aranges._EntryPoint 
   .dwarf_aranges.PE_low_level_init CCR_reg 
+DataPin1_c.obj:
+  .dwarf_type.void .dwarf_type.unsigned char .dwarf.DataPin1_SetDir 
+  .dwarf_loc.DataPin1_SetDir .dwarf_line.DataPin1_SetDir 
+  .dwarf_frame.DataPin1_SetDir .dwarf_pubnames.DataPin1_SetDir 
+  .dwarf_aranges.DataPin1_SetDir 
 DataPin2_c.obj:
   .dwarf_type.void .dwarf_type.unsigned char .dwarf.DataPin2_SetDir 
   .dwarf_loc.DataPin2_SetDir .dwarf_line.DataPin2_SetDir 
@@ -3452,56 +3518,72 @@ Vectors_c.obj:
   .dwarf_type.32 .dwarf_type.33 .dwarf_type.void .dwarf_type.34 
   .dwarf_pubnames._InterruptVectorTable .dwarf_pubnames._ResetVectorTable 
   .dwarf_aranges._InterruptVectorTable .dwarf_aranges._ResetVectorTable 
+rts12z.o (ansii.lib):
+  .dwarf.__stack_guard .dwarf.errno .dwarf_type.void .dwarf_type.42 
+  .dwarf_type.char .dwarf_type.int .dwarf.__copy .dwarf.__clear 
+  .dwarf.__stack_protect_init .dwarf.__stack_check_fail .dwarf.__stack_check 
+  .dwarf_loc.__stack_protect_init .dwarf_loc.__stack_check .dwarf_line.__copy 
+  .dwarf_line.__clear .dwarf_line.__stack_protect_init 
+  .dwarf_line.__stack_check_fail .dwarf_line.__stack_check .dwarf_frame.__copy 
+  .dwarf_frame.__clear .dwarf_frame.__stack_protect_init 
+  .dwarf_frame.__stack_check_fail .dwarf_frame.__stack_check 
+  .dwarf_pubnames.__stack_guard .dwarf_pubnames.errno .dwarf_pubnames.__copy 
+  .dwarf_pubnames.__clear .dwarf_pubnames.__stack_protect_init 
+  .dwarf_pubnames.__stack_check_fail .dwarf_pubnames.__stack_check 
+  .dwarf_aranges.__stack_guard .dwarf_aranges.errno .dwarf_aranges.__copy 
+  .dwarf_aranges.__clear .dwarf_aranges.__stack_protect_init 
+  .dwarf_aranges.__stack_check_fail .dwarf_aranges.__stack_check __stack_guard 
+  errno 
 
 *********************************************************************************************
 COPYDOWN SECTION
 ---------------------------------------------------------------------------------------------
-------- ROM-ADDRESS: 0xFFDF41 ---- SIZE       7 ---
+------- ROM-ADDRESS: 0xFFE76E ---- SIZE       7 ---
 Filling bytes inserted
  0000001B00 1008
-------- ROM-ADDRESS: 0xFFDF48 ---- RAM-ADDRESS: 0x1008 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE775 ---- RAM-ADDRESS: 0x1008 ---- SIZE       1 ---
 Name of initialized Object : lin_pFrameBuf:8
  FE
-------- ROM-ADDRESS: 0xFFDF49 ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xFFE776 ---- SIZE       2 ---
 Filling bytes inserted
  0000
-------- ROM-ADDRESS: 0xFFDF4B ---- RAM-ADDRESS: 0x100B ---- SIZE       5 ---
+------- ROM-ADDRESS: 0xFFE778 ---- RAM-ADDRESS: 0x100B ---- SIZE       5 ---
 Name of initialized Object : lin_flag_handle_tbl
  FFFFFFFFFF
-------- ROM-ADDRESS: 0xFFDF50 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE77D ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xFFDF51 ---- RAM-ADDRESS: 0x1011 ---- SIZE       8 ---
+------- ROM-ADDRESS: 0xFFE77E ---- RAM-ADDRESS: 0x1011 ---- SIZE       8 ---
 Name of initialized Object : lin_configuration_RAM:1
  050A121416 3C3DFF
-------- ROM-ADDRESS: 0xFFDF59 ---- RAM-ADDRESS: 0x1019 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE786 ---- RAM-ADDRESS: 0x1019 ---- SIZE       1 ---
 Name of initialized Object : lin_configured_NAD
  05
-------- ROM-ADDRESS: 0xFFDF5A ---- RAM-ADDRESS: 0x101A ---- SIZE       2 ---
+------- ROM-ADDRESS: 0xFFE787 ---- RAM-ADDRESS: 0x101A ---- SIZE       2 ---
 Name of initialized Object : tl_check_timeout
  07D0
-------- ROM-ADDRESS: 0xFFDF5C ---- RAM-ADDRESS: 0x101C ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE789 ---- RAM-ADDRESS: 0x101C ---- SIZE       1 ---
 Name of initialized Object : tl_service_status
  02
-------- ROM-ADDRESS: 0xFFDF5D ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE78A ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xFFDF5E ---- RAM-ADDRESS: 0x101E ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE78B ---- RAM-ADDRESS: 0x101E ---- SIZE       1 ---
 Name of initialized Object : pSCI:1
  07
-------- ROM-ADDRESS: 0xFFDF5F ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE78C ---- SIZE       1 ---
 Filling bytes inserted
  00
-------- ROM-ADDRESS: 0xFFDF60 ---- RAM-ADDRESS: 0x1020 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE78D ---- RAM-ADDRESS: 0x1020 ---- SIZE       1 ---
 Name of initialized Object : ifc
  FF
-------- ROM-ADDRESS: 0xFFDF61 ---- RAM-ADDRESS: 0x1021 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE78E ---- RAM-ADDRESS: 0x1021 ---- SIZE       1 ---
 Name of initialized Object : state
  FF
-------- ROM-ADDRESS: 0xFFDF62 ---- RAM-ADDRESS: 0x1022 ---- SIZE       1 ---
+------- ROM-ADDRESS: 0xFFE78F ---- RAM-ADDRESS: 0x1022 ---- SIZE       1 ---
 Name of initialized Object : pid
  80
-------- ROM-ADDRESS: 0xFFDF63 ---- SIZE       4 ---
+------- ROM-ADDRESS: 0xFFE790 ---- SIZE       4 ---
 Filling bytes inserted
  00000000
 
@@ -3512,12 +3594,18 @@ _EntryPoint               USES _Startup
 lin_frame_tbl             USES LI0_response_error_signal 
 TI1_Interrupt             USES TI1_OnInterrupt 
 TI1_OnInterrupt           USES stimage_process 
-main                      USES PE_low_level_init Reset_Sensor_RH l_sys_init 
-                                l_ifc_init Lectura_Sensor_RH lin_frame_flag_tbl 
-                                buffer_backup_data lin_pFrameBuf lin_frame_updating_flag_tbl 
-                                stimage_process lin_flag_handle_tbl 
-Lectura_Sensor_RH         USES @41 EI2C2_SelectSlave EI2C2_SendBlock 
-                                stimage_process EI2C2_RecvBlock u8return 
+main                      USES PE_low_level_init Config_ISLs Reset_Sensor_RH 
+                                l_sys_init l_ifc_init Lectura_Sensor_RH 
+                                Lectura_Sensores_ALS lin_frame_flag_tbl buffer_backup_data 
+                                lin_pFrameBuf lin_frame_updating_flag_tbl stimage_process 
+                                lin_flag_handle_tbl 
+Config_ISLs               USES __clear @29 EI2C2_SelectSlave EI2C2_SendBlock 
+                                EI2C1_SendBlock EI2C2_RecvBlock EI2C1_RecvBlock 
+Lectura_Sensor_RH         USES @59 EI2C2_SelectSlave EI2C2_SendBlock 
+                                stimage_process EI2C2_RecvBlock 
+Lectura_Sensores_ALS      USES @86 @88 @90 EI2C2_SelectSlave EI2C2_SendBlock 
+                                EI2C1_SendBlock EI2C2_RecvBlock EI2C1_RecvBlock 
+                                stimage_process 
 Reset_Sensor_RH           USES stimage_process 
 DoZeroOut                 USES _startupData 
 DoCopyDown                USES _startupData 
@@ -3610,6 +3698,17 @@ lin_lld_sci_isr           USES pSCI idle_timeout_cnt l_status
 lin_lld_timer_isr         USES lin_lld_sci_timeout 
 PE_low_level_init         USES EI2C1_Init EI2C2_Init Shadow_P LINPHY0_Init 
 EI2C1_Init                USES SlaveAddr 
+Write                     USES DataPin1_SetDir ClockPin1_SetDir 
+Read                      USES DataPin1_SetDir ClockPin1_SetDir 
+GetAck                    USES DataPin1_SetDir ClockPin1_SetDir 
+SetAck                    USES DataPin1_SetDir ClockPin1_SetDir 
+InternalStop              USES DataPin1_SetDir ClockPin1_SetDir 
+EI2C1_SendBlock           USES DataPin1_SetDir ClockPin1_SetDir SlaveAddr 
+                                Write GetAck EI2C1_OnNACK InternalStop 
+                                EI2C1_OnTxChar 
+EI2C1_RecvBlock           USES DataPin1_SetDir ClockPin1_SetDir SlaveAddr 
+                                Write GetAck EI2C1_OnNACK InternalStop Read 
+                                EI2C1_OnRxChar SetAck 
 EI2C2_Init                USES SlaveAddr 
 Write                     USES DataPin2_SetDir ClockPin2_SetDir 
 Read                      USES DataPin2_SetDir ClockPin2_SetDir 
@@ -3678,6 +3777,124 @@ DEPENDENCY TREE
  |  |  |    
  |  |  +- LINPHY0_Init        
  |  |       
+ |  +- Config_ISLs         
+ |  |  | 
+ |  |  +- __clear             
+ |  |  |    
+ |  |  +- EI2C2_SelectSlave   
+ |  |  |    
+ |  |  +- EI2C2_SendBlock     
+ |  |  |  | 
+ |  |  |  +- DataPin2_SetDir     
+ |  |  |  |    
+ |  |  |  +- ClockPin2_SetDir    
+ |  |  |  |    
+ |  |  |  +- Write               
+ |  |  |  |  | 
+ |  |  |  |  +- DataPin2_SetDir      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ClockPin2_SetDir     (see above)
+ |  |  |  |     
+ |  |  |  +- GetAck              
+ |  |  |  |  | 
+ |  |  |  |  +- DataPin2_SetDir      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ClockPin2_SetDir     (see above)
+ |  |  |  |     
+ |  |  |  +- EI2C2_OnNACK        
+ |  |  |  |    
+ |  |  |  +- InternalStop        
+ |  |  |  |  | 
+ |  |  |  |  +- DataPin2_SetDir      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ClockPin2_SetDir     (see above)
+ |  |  |  |     
+ |  |  |  +- EI2C2_OnTxChar      
+ |  |  |       
+ |  |  +- EI2C1_SendBlock     
+ |  |  |  | 
+ |  |  |  +- DataPin1_SetDir     
+ |  |  |  |    
+ |  |  |  +- ClockPin1_SetDir    
+ |  |  |  |    
+ |  |  |  +- Write               
+ |  |  |  |  | 
+ |  |  |  |  +- DataPin1_SetDir      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ClockPin1_SetDir     (see above)
+ |  |  |  |     
+ |  |  |  +- GetAck              
+ |  |  |  |  | 
+ |  |  |  |  +- DataPin1_SetDir      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ClockPin1_SetDir     (see above)
+ |  |  |  |     
+ |  |  |  +- EI2C1_OnNACK        
+ |  |  |  |    
+ |  |  |  +- InternalStop        
+ |  |  |  |  | 
+ |  |  |  |  +- DataPin1_SetDir      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ClockPin1_SetDir     (see above)
+ |  |  |  |     
+ |  |  |  +- EI2C1_OnTxChar      
+ |  |  |       
+ |  |  +- EI2C2_RecvBlock     
+ |  |  |  | 
+ |  |  |  +- DataPin2_SetDir      (see above)
+ |  |  |  |  
+ |  |  |  +- ClockPin2_SetDir     (see above)
+ |  |  |  |  
+ |  |  |  +- Write                (see above)
+ |  |  |  |  
+ |  |  |  +- GetAck               (see above)
+ |  |  |  |  
+ |  |  |  +- EI2C2_OnNACK         (see above)
+ |  |  |  |  
+ |  |  |  +- InternalStop         (see above)
+ |  |  |  |  
+ |  |  |  +- Read                
+ |  |  |  |  | 
+ |  |  |  |  +- DataPin2_SetDir      (see above)
+ |  |  |  |  |  
+ |  |  |  |  +- ClockPin2_SetDir     (see above)
+ |  |  |  |     
+ |  |  |  +- EI2C2_OnRxChar      
+ |  |  |  |    
+ |  |  |  +- SetAck              
+ |  |  |     | 
+ |  |  |     +- DataPin2_SetDir      (see above)
+ |  |  |     |  
+ |  |  |     +- ClockPin2_SetDir     (see above)
+ |  |  |        
+ |  |  +- EI2C1_RecvBlock     
+ |  |     | 
+ |  |     +- DataPin1_SetDir      (see above)
+ |  |     |  
+ |  |     +- ClockPin1_SetDir     (see above)
+ |  |     |  
+ |  |     +- Write                (see above)
+ |  |     |  
+ |  |     +- GetAck               (see above)
+ |  |     |  
+ |  |     +- EI2C1_OnNACK         (see above)
+ |  |     |  
+ |  |     +- InternalStop         (see above)
+ |  |     |  
+ |  |     +- Read                
+ |  |     |  | 
+ |  |     |  +- DataPin1_SetDir      (see above)
+ |  |     |  |  
+ |  |     |  +- ClockPin1_SetDir     (see above)
+ |  |     |     
+ |  |     +- EI2C1_OnRxChar      
+ |  |     |    
+ |  |     +- SetAck              
+ |  |        | 
+ |  |        +- DataPin1_SetDir      (see above)
+ |  |        |  
+ |  |        +- ClockPin1_SetDir     (see above)
+ |  |           
  |  +- Reset_Sensor_RH     
  |  |    
  |  +- l_sys_init          
@@ -3695,65 +3912,25 @@ DEPENDENCY TREE
  |  |        +- lin_goto_idle_state 
  |  |             
  |  +- Lectura_Sensor_RH   
+ |  |  | 
+ |  |  +- EI2C2_SelectSlave    (see above)
+ |  |  |  
+ |  |  +- EI2C2_SendBlock      (see above)
+ |  |  |  
+ |  |  +- EI2C2_RecvBlock      (see above)
+ |  |     
+ |  +- Lectura_Sensores_ALS
  |     | 
- |     +- EI2C2_SelectSlave   
- |     |    
- |     +- EI2C2_SendBlock     
- |     |  | 
- |     |  +- DataPin2_SetDir     
- |     |  |    
- |     |  +- ClockPin2_SetDir    
- |     |  |    
- |     |  +- Write               
- |     |  |  | 
- |     |  |  +- DataPin2_SetDir      (see above)
- |     |  |  |  
- |     |  |  +- ClockPin2_SetDir     (see above)
- |     |  |     
- |     |  +- GetAck              
- |     |  |  | 
- |     |  |  +- DataPin2_SetDir      (see above)
- |     |  |  |  
- |     |  |  +- ClockPin2_SetDir     (see above)
- |     |  |     
- |     |  +- EI2C2_OnNACK        
- |     |  |    
- |     |  +- InternalStop        
- |     |  |  | 
- |     |  |  +- DataPin2_SetDir      (see above)
- |     |  |  |  
- |     |  |  +- ClockPin2_SetDir     (see above)
- |     |  |     
- |     |  +- EI2C2_OnTxChar      
- |     |       
- |     +- EI2C2_RecvBlock     
- |        | 
- |        +- DataPin2_SetDir      (see above)
- |        |  
- |        +- ClockPin2_SetDir     (see above)
- |        |  
- |        +- Write                (see above)
- |        |  
- |        +- GetAck               (see above)
- |        |  
- |        +- EI2C2_OnNACK         (see above)
- |        |  
- |        +- InternalStop         (see above)
- |        |  
- |        +- Read                
- |        |  | 
- |        |  +- DataPin2_SetDir      (see above)
- |        |  |  
- |        |  +- ClockPin2_SetDir     (see above)
- |        |     
- |        +- EI2C2_OnRxChar      
- |        |    
- |        +- SetAck              
- |           | 
- |           +- DataPin2_SetDir      (see above)
- |           |  
- |           +- ClockPin2_SetDir     (see above)
- |              
+ |     +- EI2C2_SelectSlave    (see above)
+ |     |  
+ |     +- EI2C2_SendBlock      (see above)
+ |     |  
+ |     +- EI2C1_SendBlock      (see above)
+ |     |  
+ |     +- EI2C2_RecvBlock      (see above)
+ |     |  
+ |     +- EI2C1_RecvBlock      (see above)
+ |        
  +- _EntryPoint         
     | 
     +- _Startup            
@@ -4134,6 +4311,6 @@ STATISTIC SECTION
 
 ExeFile:
 --------
-Number of blocks to be downloaded: 9
-Total size of all blocks to be downloaded: 8535
+Number of blocks to be downloaded: 11
+Total size of all blocks to be downloaded: 10628
 

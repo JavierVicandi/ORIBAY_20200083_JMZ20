@@ -20,21 +20,25 @@
 //-------- ParameterType --------
 
 
-
 //-----------DEFINITIONS
+//Estos microcontroladores S12Z de NXP(antes Freescale, antes Motorola) utilizan un 
+//orden de bytes BIG ENDIAN.
 typedef struct{
 	union{
 		uint8_t u8RH[2];	
 		uint16_t u16RH;
 	}unRH;	
+	uint8_t u8LE_RH[2];					//Versión Little Endian para LIN
 	union{
 		uint8_t u8ALS1[2];	
 		uint16_t u16ALS1;
 	}unALS1;
+	uint8_t u8LE_ALS1[2];				//Versión Little Endian para LIN
 	union{
 		uint8_t u8ALS2[2];	
 		uint16_t u16ALS2;
 	}unALS2;
+	uint8_t u8LE_ALS2[2];				//Versión Little Endian para LIN
 	uint16_t u16temp;
 	}stimage_process_t; 
 
@@ -42,7 +46,7 @@ typedef struct{
 extern stimage_process_t stimage_process;
 
 //----------Prototipos
-void Config_ISLs(void);  
+bool Config_ISLs(void);  
 void Lectura_Sensor_RH(void);
 void Lectura_Sensores_ALS(void);
 void Reset_Sensor_RH(void); 

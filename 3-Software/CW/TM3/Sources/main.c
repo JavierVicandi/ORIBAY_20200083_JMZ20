@@ -63,24 +63,34 @@ void main(void)
 
   /* Write your code here */
   /* For example: for(;;) { } */
-	//Config_ISLs();	
+	Config_ISLs();	
 	Reset_Sensor_RH();
 	l_sys_init();
 	l_ifc_init(LI0);
 
 	for(;;){
 		Lectura_Sensor_RH();	
-		//Lectura_Sensores_ALS();
+		Lectura_Sensores_ALS();
 		
 		if (l_flg_tst_LI0_Humidity_f_flag())
 		{
 			l_flg_clr_LI0_Humidity_f_flag();               // Clear flag
-			//WDOG_DRV_Trigger(INST_WATCHDOG1);             // Refresh wdog value
-			l_bytes_wr_LI0_Humidity(0, 2, stimage_process.unRH.u8RH);           // escribimos dato: señal humedad
-			//Lectura_Sensor_RH();                          // Lectura de humedad x I2C
-		} // (l_flg_tst_LI0_Humedad_f_flag())
+			l_bytes_wr_LI0_Humidity(0, 2, stimage_process.u8LE_RH);           // escribimos dato: señal humedad
+		} // (l_flg_tst_LI0_Humidity_f_flag())
+
+		if (l_flg_tst_LI0_LuminosityA_f_flag())
+		{
+			l_flg_clr_LI0_LuminosityA_f_flag();          // Clear flag
+			l_bytes_wr_LI0_LuminosityA(0, 2, stimage_process.u8LE_ALS2);     // escribimos dato: señal luminosidadA
+		} // (l_flg_tst_LI0_LuminosityA_f_flag())
 		
-	}
+		if (l_flg_tst_LI0_LuminosityB_f_flag())
+		{
+			l_flg_clr_LI0_LuminosityB_f_flag();          // Clear flag
+			l_bytes_wr_LI0_LuminosityB(0, 2, stimage_process.u8LE_ALS1);     // escribimos dato: señal luminosidadB
+		} // (l_flg_tst_LI0_LuminosityB_f_flag())
+		
+	}//(;;)
 
 
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
