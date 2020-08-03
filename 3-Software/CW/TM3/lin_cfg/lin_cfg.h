@@ -13,7 +13,7 @@
 *
 * @version   1.0
 *
-* @date      Wed Jul 15 18:39:12 CEST 2020
+* @date      Mon Aug 03 17:44:42 CEST 2020
 *
 * @brief     Hardware configuration file
 *
@@ -68,8 +68,8 @@
 #define _TL_FRAME_SUPPORT_      _TL_SINGLE_FRAME_
 
 /* frame buffer size */
-#define LIN_FRAME_BUF_SIZE			11
-#define LIN_FLAG_BUF_SIZE			5
+#define LIN_FRAME_BUF_SIZE			15
+#define LIN_FLAG_BUF_SIZE			7
 
 /**********************************************************************/
 /***************               Interfaces           *******************/
@@ -82,7 +82,7 @@ typedef enum {
 /***************               Signals              *******************/
 /**********************************************************************/
 /* Number of signals */
-#define LIN_NUM_OF_SIGS  7
+#define LIN_NUM_OF_SIGS  9
 /* List of signals */
 typedef enum {
 
@@ -102,12 +102,16 @@ typedef enum {
   
    , LI0_Temperature
   
+   , LI0_LuminosityA2
+  
+   , LI0_LuminosityB2
+  
 } l_signal_handle;
 /**********************************************************************/
 /*****************               Frame             ********************/
 /**********************************************************************/
 /* Number of frames */
-#define LIN_NUM_OF_FRMS  7
+#define LIN_NUM_OF_FRMS  9
 /* List of frames */
 typedef enum {
 /* All frames for master node */
@@ -124,6 +128,10 @@ typedef enum {
   
    , LI0_TestSensor_f
   
+   , LI0_LuminosityA2_f
+  
+   , LI0_LuminosityB2_f
+  
    , LI0_MasterReq
   
    , LI0_SlaveResp
@@ -133,8 +141,8 @@ typedef enum {
 /***************             Configuration          *******************/
 /**********************************************************************/
 /* Size of configuration in ROM and RAM used for interface: LI1 */
-#define LIN_SIZE_OF_CFG  9
-#define LIN_CFG_FRAME_NUM  5
+#define LIN_SIZE_OF_CFG  11
+#define LIN_CFG_FRAME_NUM  7
 /*********************************************************************
  * global macros
  *********************************************************************/
@@ -218,6 +226,20 @@ typedef enum {
 #define LIN_FLAG_BIT_OFFSET_LI0_Temperature    0U
 
 
+#define LIN_BYTE_OFFSET_LI0_LuminosityA2    11U
+#define LIN_BIT_OFFSET_LI0_LuminosityA2    0U
+#define LIN_SIGNAL_SIZE_LI0_LuminosityA2    16U
+#define LIN_FLAG_BYTE_OFFSET_LI0_LuminosityA2    5U
+#define LIN_FLAG_BIT_OFFSET_LI0_LuminosityA2    0U
+
+
+#define LIN_BYTE_OFFSET_LI0_LuminosityB2    13U
+#define LIN_BIT_OFFSET_LI0_LuminosityB2    0U
+#define LIN_SIGNAL_SIZE_LI0_LuminosityB2    16U
+#define LIN_FLAG_BYTE_OFFSET_LI0_LuminosityB2    6U
+#define LIN_FLAG_BIT_OFFSET_LI0_LuminosityB2    0U
+
+
 
 
 #define LIN_FLAG_BYTE_OFFSET_LI0_Humidity_f             0
@@ -234,6 +256,12 @@ typedef enum {
 
 #define LIN_FLAG_BYTE_OFFSET_LI0_TestSensor_f             4
 #define LIN_FLAG_BIT_OFFSET_LI0_TestSensor_f              0
+
+#define LIN_FLAG_BYTE_OFFSET_LI0_LuminosityA2_f             5
+#define LIN_FLAG_BIT_OFFSET_LI0_LuminosityA2_f              0
+
+#define LIN_FLAG_BYTE_OFFSET_LI0_LuminosityB2_f             6
+#define LIN_FLAG_BIT_OFFSET_LI0_LuminosityB2_f              0
 
 
 /**********************************************************************/
@@ -361,6 +389,40 @@ typedef enum {
      lin_frame_updating_flag_tbl[LI0_Temperature_f] &= (~(((1 << count) -1) << (start + 0))); \
      LIN_CLEAR_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_Temperature],\
          LIN_FLAG_BIT_OFFSET_LI0_Temperature);}
+/* static access macros for signal LI0_LuminosityA2 */
+ 
+#define l_bytes_rd_LI0_LuminosityA2(start, count, data) \
+    {l_u8       i; \
+     for (i = 0; i < (count); ++i)  (data)[i] = lin_pFrameBuf[LIN_BYTE_OFFSET_LI0_LuminosityA2 + i + (start)];}
+
+#define l_bytes_wr_LI0_LuminosityA2(start, count, data) \
+    {l_u8       i; \
+     for (i = 0; i < (count); ++i) \
+     { \
+        buffer_backup_data[i + (start) + 0] =  lin_pFrameBuf[LIN_BYTE_OFFSET_LI0_LuminosityA2 + i + (start)]; \
+        lin_frame_updating_flag_tbl[LI0_LuminosityA2_f] |= (1 << (i + (start) + 0)); \
+        lin_pFrameBuf[LIN_BYTE_OFFSET_LI0_LuminosityA2 + i + (start)]  = (data)[i]; \
+     } \
+     lin_frame_updating_flag_tbl[LI0_LuminosityA2_f] &= (~(((1 << count) -1) << (start + 0))); \
+     LIN_CLEAR_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_LuminosityA2],\
+         LIN_FLAG_BIT_OFFSET_LI0_LuminosityA2);}
+/* static access macros for signal LI0_LuminosityB2 */
+ 
+#define l_bytes_rd_LI0_LuminosityB2(start, count, data) \
+    {l_u8       i; \
+     for (i = 0; i < (count); ++i)  (data)[i] = lin_pFrameBuf[LIN_BYTE_OFFSET_LI0_LuminosityB2 + i + (start)];}
+
+#define l_bytes_wr_LI0_LuminosityB2(start, count, data) \
+    {l_u8       i; \
+     for (i = 0; i < (count); ++i) \
+     { \
+        buffer_backup_data[i + (start) + 0] =  lin_pFrameBuf[LIN_BYTE_OFFSET_LI0_LuminosityB2 + i + (start)]; \
+        lin_frame_updating_flag_tbl[LI0_LuminosityB2_f] |= (1 << (i + (start) + 0)); \
+        lin_pFrameBuf[LIN_BYTE_OFFSET_LI0_LuminosityB2 + i + (start)]  = (data)[i]; \
+     } \
+     lin_frame_updating_flag_tbl[LI0_LuminosityB2_f] &= (~(((1 << count) -1) << (start + 0))); \
+     LIN_CLEAR_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_LuminosityB2],\
+         LIN_FLAG_BIT_OFFSET_LI0_LuminosityB2);}
 
 
 /* Signal flag APIs */
@@ -414,6 +476,20 @@ typedef enum {
          LIN_CLEAR_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_Temperature],\
          LIN_FLAG_BIT_OFFSET_LI0_Temperature)
 
+#define l_flg_tst_LI0_LuminosityA2_flag() \
+         LIN_TEST_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_LuminosityA2],\
+         LIN_FLAG_BIT_OFFSET_LI0_LuminosityA2)
+#define l_flg_clr_LI0_LuminosityA2_flag() \
+         LIN_CLEAR_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_LuminosityA2],\
+         LIN_FLAG_BIT_OFFSET_LI0_LuminosityA2)
+
+#define l_flg_tst_LI0_LuminosityB2_flag() \
+         LIN_TEST_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_LuminosityB2],\
+         LIN_FLAG_BIT_OFFSET_LI0_LuminosityB2)
+#define l_flg_clr_LI0_LuminosityB2_flag() \
+         LIN_CLEAR_BIT(lin_flag_handle_tbl[LIN_FLAG_BYTE_OFFSET_LI0_LuminosityB2],\
+         LIN_FLAG_BIT_OFFSET_LI0_LuminosityB2)
+
 
 
 /* Frame flag APIs */
@@ -444,6 +520,16 @@ typedef enum {
           lin_frame_flag_tbl[LI0_TestSensor_f]
  #define l_flg_clr_LI0_TestSensor_f_flag() \
           lin_frame_flag_tbl[LI0_TestSensor_f] = 0
+
+ #define l_flg_tst_LI0_LuminosityA2_f_flag() \
+          lin_frame_flag_tbl[LI0_LuminosityA2_f]
+ #define l_flg_clr_LI0_LuminosityA2_f_flag() \
+          lin_frame_flag_tbl[LI0_LuminosityA2_f] = 0
+
+ #define l_flg_tst_LI0_LuminosityB2_f_flag() \
+          lin_frame_flag_tbl[LI0_LuminosityB2_f]
+ #define l_flg_clr_LI0_LuminosityB2_f_flag() \
+          lin_frame_flag_tbl[LI0_LuminosityB2_f] = 0
 
  #define l_flg_tst_LI0_MasterReq_flag() \
           lin_frame_flag_tbl[LI0_MasterReq]

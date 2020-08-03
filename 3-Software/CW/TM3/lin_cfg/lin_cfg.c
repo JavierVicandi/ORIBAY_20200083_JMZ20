@@ -13,7 +13,7 @@
 *
 * @version   1.0
 *
-* @date      Wed Jul 15 18:39:12 CEST 2020
+* @date      Mon Aug 03 17:44:42 CEST 2020
 *
 * @brief     Common LIN configuration, data structure
 *
@@ -66,6 +66,16 @@ l_u8    lin_pFrameBuf[LIN_FRAME_BUF_SIZE] =
   
   ,0x00 /* 10 : 00000000 */
   
+
+  ,0x00 /* 11 : 00000000 */ /* start of frame LI0_LuminosityA2_f */
+
+  ,0x00 /* 12 : 00000000 */
+  
+
+  ,0x00 /* 13 : 00000000 */ /* start of frame LI0_LuminosityB2_f */
+
+  ,0x00 /* 14 : 00000000 */
+  
 };
 
 /* definition and initialization of signal array */
@@ -88,6 +98,12 @@ l_u8    lin_flag_handle_tbl[LIN_FLAG_BUF_SIZE] =
 
   ,0xFF /* 4: start of flag frame LI0_TestSensor_f */
 
+
+  ,0xFF /* 5: start of flag frame LI0_LuminosityA2_f */
+
+
+  ,0xFF /* 6: start of flag frame LI0_LuminosityB2_f */
+
 };
 
 /*************************** Flag set when signal is updated ******************/
@@ -108,6 +124,10 @@ const lin_frame_struct lin_frame_tbl[LIN_NUM_OF_FRMS] ={
   
    ,{ LIN_FRM_UNCD, 3, LIN_RES_PUB, 8, 4, 1 , (l_u8*)&LI0_response_error_signal }
   
+   ,{ LIN_FRM_UNCD, 2, LIN_RES_PUB, 11, 5, 1 , (l_u8*)0 }
+  
+   ,{ LIN_FRM_UNCD, 2, LIN_RES_PUB, 13, 6, 1 , (l_u8*)0 }
+  
    ,{ LIN_FRM_DIAG, 8, LIN_RES_SUB, 0, 0, 0 , (l_u8*)0 }
   
    ,{ LIN_FRM_DIAG, 8, LIN_RES_PUB, 0, 0, 0 , (l_u8*)0 }
@@ -116,9 +136,9 @@ const lin_frame_struct lin_frame_tbl[LIN_NUM_OF_FRMS] ={
 
 /*********************************** Frame flag Initialization **********************/
 /*************************** Frame flag for send/receive successfully ***************/
-l_bool lin_frame_flag_tbl[LIN_NUM_OF_FRMS] = {0, 0, 0, 0, 0, 0, 0};
+l_bool lin_frame_flag_tbl[LIN_NUM_OF_FRMS] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 /*************************** Frame flag for updating signal in frame ****************/
-volatile l_u8 lin_frame_updating_flag_tbl[LIN_NUM_OF_FRMS] = {0, 0, 0, 0, 0, 0, 0};
+volatile l_u8 lin_frame_updating_flag_tbl[LIN_NUM_OF_FRMS] = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 
 /**************************** Lin configuration Initialization ***********************/
@@ -131,10 +151,10 @@ const l_u16 lin_max_frame_res_timeout_val[8]={
 };
 
 
-l_u8 lin_configuration_RAM[LIN_SIZE_OF_CFG]= {0x00, 0x05, 0x0A, 0x12, 0x14, 0x16, 0x3C, 0x3D ,0xFF};
+l_u8 lin_configuration_RAM[LIN_SIZE_OF_CFG]= {0x00, 0x05, 0x0A, 0x12, 0x14, 0x16, 0x0B, 0x13, 0x3C, 0x3D ,0xFF};
 
 
-const l_u16  lin_configuration_ROM[LIN_SIZE_OF_CFG]= {0x00, 0x05, 0x0A, 0x12, 0x14, 0x16, 0x3C, 0x3D ,0xFFFF};
+const l_u16  lin_configuration_ROM[LIN_SIZE_OF_CFG]= {0x00, 0x05, 0x0A, 0x12, 0x14, 0x16, 0x0B, 0x13, 0x3C, 0x3D ,0xFFFF};
 
 /***************************************** Node Attribute*****************************************/
 
@@ -183,7 +203,6 @@ l_u8 tl_slaveresp_cnt = 0;
            LD_POSTIVE_RESPONSE Respond with a positive response.
            LD_ID_NO_RESPONSE The slave node will not answer.
  */
-l_u8 ld_read_by_id_callout(l_u8 id, l_u8 *data);	//Evita warning
 l_u8 ld_read_by_id_callout(l_u8 id, l_u8 *data)
 {
     l_u8 retval = LD_NEGATIVE_RESPONSE;

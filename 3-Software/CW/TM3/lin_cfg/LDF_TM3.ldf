@@ -22,6 +22,8 @@ Signals {
    LuminosityA                   : 16,  {0x0,0x0},            TM3Sensor, TM3Ecu;
    LuminosityB                   : 16,  {0x0,0x0},            TM3Sensor, TM3Ecu;
    Temperature                   : 16,  {0x0,0x0},            TM3Sensor, TM3Ecu;
+   LuminosityA2                  : 16,  {0x0,0x0},            TM3Sensor, TM3Ecu;
+   LuminosityB2                  : 16,  {0x0,0x0},            TM3Sensor, TM3Ecu;
 }
 /* ----------DIAGNOSTIC SIGNAL DEFINITIONS---------- */
 Diagnostic_signals {
@@ -63,6 +65,12 @@ Frames {
       SensorErrorCode     , 8;
       SensorErrorValue    , 16;
    }
+   LuminosityA2_f      :  0xb, TM3Sensor           ,    2 {
+      LuminosityA2        , 0;
+   }
+   LuminosityB2_f      : 0x13, TM3Sensor           ,    2 {
+      LuminosityB2        , 0;
+   }
 }
 /* ----------DIAGNOSTIC FRAME DEFINITIONS---------- */
 Diagnostic_frames {
@@ -95,7 +103,6 @@ Node_attributes {
       initial_NAD                = 0x5;                      /* initial NAD of node (1-125) */
       product_id                 =   0x1e,    0x2,    0x1;   /* Product id */
       response_error             = SensorError;              /* Response error signal */
-      fault_state_signals        = SensorErrorCode, SensorErrorValue; /* Fault state signals */
       P2_min                     = 50 ms;                    /* P2_min */
       ST_min                     = 0 ms;                     /* ST_min */
       N_As_timeout               = 1000 ms;                  /* N_As timeout value */
@@ -106,27 +113,32 @@ Node_attributes {
          LuminosityB_f;
          Temperature_f;
          TestSensor_f;
+         LuminosityA2_f;
+         LuminosityB2_f;
       }
    }
 }
 /* ----------SCHEDULE TABLE DEFINITIONS---------- */
 Schedule_tables {
    NormalTable {
-      Humidity_f                    delay 15.0 ms;
-      LuminosityA_f                 delay 15.0 ms;
-      LuminosityB_f					delay 15.0 ms;
-      Temperature_f					delay 15.0 ms;
-      TestSensor_f					delay 15.0 ms;
-    }
+      Humidity_f                          delay 15.0 ms;
+      LuminosityA_f                       delay 15.0 ms;
+      LuminosityB_f                       delay 15.0 ms;
+      Temperature_f                       delay 15.0 ms;
+      TestSensor_f                        delay 15.0 ms;
+      TestSensor_f                        delay 15.0 ms;
+      LuminosityA2_f                      delay 15.0 ms;
+      LuminosityB2_f                      delay 15.0 ms;
+   }
    InitTable {
-      AssignNAD {TM3Sensor} 	        delay 50.0 ms;
-      SlaveResp                         delay 50.0 ms;
-      AssignFrameIdRange {TM3Sensor, 0}      delay 50.0 ms;
-      AssignFrameIdRange {TM3Sensor, 4}      delay 50.0 ms;
-    }
+      AssignNAD {TM3Sensor}               delay 50.0 ms;
+      SlaveResp                           delay 50.0 ms;
+      AssignFrameIdRange {TM3Sensor, 0}   delay 50.0 ms;
+      AssignFrameIdRange {TM3Sensor, 4}   delay 50.0 ms;
+   }
    DiagnosticTable {
-	  MasterReq                    delay 15.0 ms;
-	  SlaveResp                    delay 15.0 ms;
-	}
+      MasterReq                           delay 15.0 ms;
+      SlaveResp                           delay 15.0 ms;
+   }
 }
 

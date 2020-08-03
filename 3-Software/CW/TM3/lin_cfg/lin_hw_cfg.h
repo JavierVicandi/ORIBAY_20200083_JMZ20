@@ -13,7 +13,7 @@
 *
 * @version   1.0
 *
-* @date      Wed Jul 15 18:39:12 CEST 2020
+* @date      Mon Aug 03 17:44:42 CEST 2020
 *
 * @brief     Hardware configuration file
 *

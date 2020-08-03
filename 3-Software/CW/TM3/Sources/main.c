@@ -88,13 +88,29 @@ void main(void)
 		if (l_flg_tst_LI0_LuminosityA_f_flag())
 		{
 			l_flg_clr_LI0_LuminosityA_f_flag();          // Clear flag
-			l_bytes_wr_LI0_LuminosityA(0, 2, stimage_process.u8LE_ALS2);     // escribimos dato: señal luminosidadA
+			l_bytes_wr_LI0_LuminosityA(0, 2, stimage_process.u8LE_ALS1);     // escribimos dato: señal luminosidadA
 		} // (l_flg_tst_LI0_LuminosityA_f_flag())
+		
+		
 		
 		if (l_flg_tst_LI0_LuminosityB_f_flag())
 		{
 			l_flg_clr_LI0_LuminosityB_f_flag();          // Clear flag
 			l_bytes_wr_LI0_LuminosityB(0, 2, stimage_process.u8LE_ALS1);     // escribimos dato: señal luminosidadB
+		} // (l_flg_tst_LI0_LuminosityB_f_flag())
+		
+		if (l_flg_tst_LI0_LuminosityA2_f_flag())
+		{
+			l_flg_clr_LI0_LuminosityA2_f_flag();          // Clear flag
+			l_bytes_wr_LI0_LuminosityA2(0, 2, stimage_process.u8LE_ALS2);     // escribimos dato: señal luminosidadA
+		} // (l_flg_tst_LI0_LuminosityA_f_flag())
+		
+		
+		
+		if (l_flg_tst_LI0_LuminosityB2_f_flag())
+		{
+			l_flg_clr_LI0_LuminosityB2_f_flag();          // Clear flag
+			l_bytes_wr_LI0_LuminosityB2(0, 2, stimage_process.u8LE_ALS2);     // escribimos dato: señal luminosidadB
 		} // (l_flg_tst_LI0_LuminosityB_f_flag())
 
 		if (u8wd == 0xAAU){
