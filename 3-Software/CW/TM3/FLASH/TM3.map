@@ -2248,14 +2248,14 @@ lin_cfg_c.obj:
   .dwarf.lin_goto_sleep_flg .dwarf.lin_error_in_response 
   .dwarf.lin_successful_transfer .dwarf.lin_lld_response_buffer 
   .dwarf_type.@enum$1lin_cfg_c .dwarf_type.unsigned char 
-  .dwarf_type.@enum$3lin_cfg_c .dwarf_type.48 .dwarf_type.49 .dwarf_type.50 
-  .dwarf_type.51 .dwarf_typedef.lin_frame_struct .dwarf_type.@enum$11lin_cfg_c 
-  .dwarf_type.@enum$12lin_cfg_c .dwarf_type.unsigned short .dwarf_type.52 
-  .dwarf_type.53 .dwarf_type.54 .dwarf_type.55 .dwarf_type.56 .dwarf_type.57 
-  .dwarf_type.58 .dwarf_typedef.lin_product_id .dwarf_type.59 .dwarf_type.60 
-  .dwarf_type.61 .dwarf_type.62 .dwarf_type.63 .dwarf_type.64 .dwarf_type.65 
-  .dwarf_type.66 .dwarf_type.67 .dwarf_type.68 .dwarf_type.wstatus 
-  .dwarf_typedef.lin_word_status_str .dwarf_type.69 .dwarf_type.70 
+  .dwarf_type.@enum$3lin_cfg_c .dwarf_type.50 .dwarf_type.51 .dwarf_type.52 
+  .dwarf_type.53 .dwarf_typedef.lin_frame_struct .dwarf_type.@enum$11lin_cfg_c 
+  .dwarf_type.@enum$12lin_cfg_c .dwarf_type.unsigned short .dwarf_type.54 
+  .dwarf_type.55 .dwarf_type.56 .dwarf_type.57 .dwarf_type.58 .dwarf_type.59 
+  .dwarf_type.60 .dwarf_typedef.lin_product_id .dwarf_type.61 .dwarf_type.62 
+  .dwarf_type.63 .dwarf_type.64 .dwarf_type.65 .dwarf_type.66 .dwarf_type.67 
+  .dwarf_type.68 .dwarf_type.69 .dwarf_type.70 .dwarf_type.wstatus 
+  .dwarf_typedef.lin_word_status_str .dwarf_type.71 .dwarf_type.72 
   .dwarf.ld_read_by_id_callout .dwarf_loc.ld_read_by_id_callout 
   .dwarf_line.ld_read_by_id_callout .dwarf_frame.ld_read_by_id_callout 
   .dwarf_pubnames.lin_virtual_ifc .dwarf_pubnames.lin_save_configuration_flg 

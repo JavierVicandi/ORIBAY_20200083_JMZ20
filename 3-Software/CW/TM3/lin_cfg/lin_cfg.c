@@ -203,6 +203,7 @@ l_u8 tl_slaveresp_cnt = 0;
            LD_POSTIVE_RESPONSE Respond with a positive response.
            LD_ID_NO_RESPONSE The slave node will not answer.
  */
+l_u8 ld_read_by_id_callout(l_u8 id, l_u8 *data);	//Evita warning
 l_u8 ld_read_by_id_callout(l_u8 id, l_u8 *data)
 {
     l_u8 retval = LD_NEGATIVE_RESPONSE;

@@ -13,7 +13,7 @@ History
 Date			  	Ver		   Author			CW11.1	   Compiler			Description
 31/07/2020 		0.01			J.Vicandi		2018			S12Z 1.0.9		Versión inicial
 31/07/2020 		0.02			J.Vicandi		2018			S12Z 1.0.9		
-
+04/08/2020 		0.03			B.Gómez			2018			S12Z 1.0.9		
 //------------------------------------------------------------------------
 // Project structure
 //------------------------------------------------------------------------
@@ -38,3 +38,8 @@ Se configuran periféricos y se leen humedad y luminosidades y comunica por LIN.
 
 Ver. 0.02
 Se comprueba el CRC del dato de humedad leido del SHT31. Se añade el watchdog.
+
+Ver. 0.03
+Se añaden mensajes de LIN para el segundo sensor de luminosidad (U1). En los ensayos 
+que se han hecho en el Tesla no se ha podido ver peticiones LIN para este sensor pero 
+puede ser debido a que se hagan sólamente para configuraciones de volante a la derecha.

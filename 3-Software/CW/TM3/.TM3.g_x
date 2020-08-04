@@ -13,10 +13,10 @@
       <File Name="Generated_Code/EI2C2.c" FileDate="2020-07-31, 19:59:44" FileAge="1596218384516" FileType="45637" CompNumb="31" />
       <File Name="Generated_Code/EI2C1.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824352" FileType="45637" CompNumb="7" />
       <File Name="Generated_Code/EI2C1.c" FileDate="2020-07-31, 19:59:44" FileAge="1596218384496" FileType="45637" CompNumb="7" />
-      <File Name="Documentation/TM3_SIGNALS.txt" FileDate="2020-07-31, 19:59:44" FileAge="1596218384660" FileType="3072" />
+      <File Name="Documentation/TM3_SIGNALS.txt" FileDate="2020-08-04, 16:03:15" FileAge="1596549795849" FileType="3072" />
       <File Name="Generated_Code/RST_SHT.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824358" FileType="45637" CompNumb="24" />
       <File Name="Generated_Code/TEST_IN_0_3.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824359" FileType="45637" CompNumb="20" />
-      <File Name="Sources/main.c" FileDate="2020-07-31, 19:59:44" FileAge="1596218384546" FileType="128" />
+      <File Name="Sources/main.c" FileDate="2020-08-04, 15:53:31" FileAge="1596549211036" FileType="128" />
       <File Name="Generated_Code/RST_SHT.c" FileDate="2020-07-29, 16:10:24" FileAge="1596031824358" FileType="45637" CompNumb="24" />
       <File Name="Generated_Code/ClockPin2.h" FileDate="2020-07-29, 16:12:30" FileAge="1596031950570" FileType="45637" CompNumb="33" />
       <File Name="Generated_Code/TEST_IN_0_3.c" FileDate="2020-07-29, 16:10:24" FileAge="1596031824359" FileType="45637" CompNumb="20" />
@@ -40,12 +40,12 @@
       <File Name="Generated_Code/DataPin2.c" FileDate="2020-07-29, 16:12:30" FileAge="1596031950572" FileType="45637" CompNumb="32" />
       <File Name="Generated_Code/LINPHY0.c" FileDate="2020-07-29, 16:10:24" FileAge="1596031824356" FileType="45637" CompNumb="22" />
       <File Name="Documentation/TM3_Settings.xml" FileDate="2020-07-31, 19:59:44" FileAge="1596218384784" FileType="3072" />
-      <File Name="Generated_Code/WDog1.c" FileDate="2020-07-31, 19:59:44" FileAge="1596218384458" FileType="45637" CompNumb="40" />
       <File Name="Generated_Code/IO_Map.c" FileDate="2020-07-29, 16:10:24" FileAge="1596031824353" FileType="45637" />
+      <File Name="Generated_Code/WDog1.c" FileDate="2020-07-31, 19:59:44" FileAge="1596218384458" FileType="45637" CompNumb="40" />
       <File Name="Generated_Code/PE_Const.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824357" FileType="45637" />
       <File Name="Generated_Code/DataPin1.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824351" FileType="45637" CompNumb="8" />
-      <File Name="Generated_Code/PE_Types.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824358" FileType="45637" />
       <File Name="Generated_Code/PE_Error.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824357" FileType="45637" />
+      <File Name="Generated_Code/PE_Types.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824358" FileType="45637" />
       <File Name="Generated_Code/Vtim0ch2.h" FileDate="2020-07-29, 16:10:24" FileAge="1596031824363" FileType="45637" CompNumb="14" />
       <File Name="Generated_Code/DataPin1.c" FileDate="2020-07-29, 16:10:24" FileAge="1596031824351" FileType="45637" CompNumb="8" />
       <File Name="Generated_Code/Vtim0ch2.c" FileDate="2020-07-29, 16:10:24" FileAge="1596031824362" FileType="45637" CompNumb="14" />
@@ -57,5 +57,5 @@
       <File Name="Generated_Code/Vectors.c" FileDate="2020-07-31, 19:59:44" FileAge="1596218384583" FileType="45637" CompNumb="2" />
     </GeneratedByPE>
   </GeneratedFilesList>
-  <CodeGenReference>27</CodeGenReference>
+  <CodeGenReference>28</CodeGenReference>
 </CodeGenerationInfo>

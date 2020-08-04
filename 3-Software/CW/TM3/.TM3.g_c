@@ -94,7 +94,7 @@
     </GenFiles>
     <SignalListFile>Documentation\TM3_SIGNALS.txt</SignalListFile>
     <DestinationCompiler>CodeWarriorHCS12Z</DestinationCompiler>
-    <ProjectModificationStamp>18</ProjectModificationStamp>
+    <ProjectModificationStamp>19</ProjectModificationStamp>
   </Options>
   <CpuID_2>
     <Generated>true</Generated>

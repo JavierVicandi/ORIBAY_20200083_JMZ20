@@ -40,7 +40,7 @@
 									<listOptionValue builtIn="false" value="1100"/>
 									<listOptionValue builtIn="false" value="1912"/>
 								</option>
-								<option id="com.freescale.s12z.toolchain.linker.output.b.1907012635" superClass="com.freescale.s12z.toolchain.linker.output.b" value="true" valueType="boolean"/>
+								<option id="com.freescale.s12z.toolchain.linker.output.b.1907012635" name="Generate S-Record file" superClass="com.freescale.s12z.toolchain.linker.output.b" value="true" valueType="boolean"/>
 								<inputType id="com.freescale.s12z.toolchain.linker.inputType.889101299" name="S12Z Linker Input" superClass="com.freescale.s12z.toolchain.linker.inputType">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
