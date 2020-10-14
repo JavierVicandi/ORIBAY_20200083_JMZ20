@@ -21,6 +21,9 @@
 
 
 //-----------DEFINITIONS
+
+
+
 //Estos microcontroladores S12Z de NXP(antes Freescale, antes Motorola) utilizan un 
 //orden de bytes BIG ENDIAN.
 typedef struct{
